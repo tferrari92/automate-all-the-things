@@ -27,13 +27,10 @@ On your machine:
 SOURCE: https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install
 
 
-
-
-
-2. Sign in Azure Devops https://dev.azure.com/
-    Install Terraform Tasks plugin for Azure Pipelines https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
-
-    Create new project
+# 2. Create pipeline
+Sign in Azure DevOps:
+1. Install Terraform Tasks plugin for Azure Pipelines https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
+2. Create new project
     Pipleines -> Pipelines -> Create pipeline -> Github -> Give access to repo
      Existing Azure Pipelines YAML file
 Crear Service Connection a Github
