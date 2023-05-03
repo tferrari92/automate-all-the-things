@@ -9,7 +9,6 @@ resources:
 #    endpoint: MyBitbucketServiceConnection
 #    name: MyBitbucketOrgOrUser/MyBitbucketRepo
 
-
 trigger:
 - main
 
@@ -23,10 +22,6 @@ variables:
   gitUsername: 'tferrari92'
   gitPassword: $(GitPassword) # Secret variable with Git credentials
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
@@ -34,19 +29,24 @@ steps:
 
 # Install Terraform
 - task: TerraformInstaller@0
+  displayName: install terraform
   inputs:
     terraformVersion: '1.4.6'
 
-
+# Checkout repo
 - checkout: tomaco
 
+# Verify checkout
 - script: ls
-  displayName: 'Run a one-line script'
+  displayName: 'Verify checkout'
+
+# Terraform plan
+- task: TerraformCLI
+  displayName: 'terraform plan'
+  inputs:
+    command: plan
+    workingDirectory: './terraform/aws/'
+    providerServiceAws: 'My AWS Service Connection'
+    providerAwsRegion: us-east-2
 
 
-
-#- script: |
-#    cd $(Build.Repository.LocalPath)/terraform/aws
-#    terraform init
-#    terraform plan
-#    terraform apply --auto-approve
