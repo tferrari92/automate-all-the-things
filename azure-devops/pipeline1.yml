@@ -15,7 +15,9 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: lenovo # Agent Pool Name
+  demands:
+    - lenovo-agent -equals # Agent Name
 
 variables:
   gitUsername: 'tferrari92'
