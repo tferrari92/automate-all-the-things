@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  gitUsername: 'exampleusername'
+  gitUsername: 'tferrari92'
   gitPassword: $(GitPassword) # Secret variable with Git credentials
 
 steps:
