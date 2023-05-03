@@ -34,8 +34,8 @@ steps:
 
 
 
-- script: |
-    cd $(Build.Repository.LocalPath)/terraform/aws
+#- script: |
+#    cd $(Build.Repository.LocalPath)/terraform/aws
 #    terraform init
 #    terraform plan
-    terraform apply --auto-approve
+#    terraform apply --auto-approve
