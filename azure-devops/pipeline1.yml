@@ -17,7 +17,7 @@ trigger:
 pool:
   name: lenovo # Agent Pool Name
   demands:
-    - lenovo-agent -equals # Agent Name
+    - agent.name -equals lenovo-agent # Agent Name
 
 variables:
   gitUsername: 'tferrari92'
