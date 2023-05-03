@@ -22,9 +22,11 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: TerraformInstaller@0
+  inputs:
+    terraformVersion: '1.4.6'
 
 
-steps:
 - task: GitClone@2
   inputs:
     repository: 'https://$(gitUsername):$(gitPassword)@github.com/example/repo.git'
