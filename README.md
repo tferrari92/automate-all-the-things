@@ -1,10 +1,13 @@
 1. Create Bucket on AWS for tfstate storage.
 
 2. Sign in Azure Devops https://dev.azure.com/
+    Install Terraform Tasks plugin for Azure Pipelines https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform
+
     Create new project
     Pipleines -> Pipelines -> Create pipeline -> Github -> Give access to repo
-
-3. Rename pipeline to azure-devops/pipeline1.yml
+     Existing Azure Pipelines YAML file
+Crear Service Connection a Github
+     Agregar variable para GitPassword
    ??? Repos-> Import (You'll need to use an Access Token) 
 
 ESCONDER LLAVES
