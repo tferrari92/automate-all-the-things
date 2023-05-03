@@ -22,6 +22,7 @@ variables:
   gitUsername: 'tferrari92'
   gitPassword: $(GitPassword) # Secret variable with Git credentials
 
+steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
