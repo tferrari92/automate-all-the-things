@@ -2,6 +2,18 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+resources:
+  repositories:
+  - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: MyGitHubServiceConnection
+    name: MyGitHubOrgOrUser/MyGitHubRepo
+#  - repository: MyBitbucketRepo
+#    type: bitbucket
+#    endpoint: MyBitbucketServiceConnection
+#    name: MyBitbucketOrgOrUser/MyBitbucketRepo
+
+
 
 trigger:
 - main
@@ -27,10 +39,7 @@ steps:
     terraformVersion: '1.4.6'
 
 
-- task: GitClone@2
-  inputs:
-    repository: 'https://$(gitUsername):$(gitPassword)@github.com/example/repo.git'
-    clean: true
+- checkout: https://$(gitUsername):$(gitPassword)@github.com/example/repo.git # Azure Repos Git repository in the same organization
 
 
 
