@@ -42,7 +42,7 @@ steps:
   displayName: 'Verify checkout'
 
 # Terraform plan
-- task: TerraformCLI
+- task: TerraformCLI@0
   displayName: 'terraform plan'
   inputs:
     command: plan
