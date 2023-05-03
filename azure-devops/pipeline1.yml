@@ -46,6 +46,7 @@ steps:
   displayName: 'terraform init'
   inputs:
     command: init
+    workingDirectory: './terraform/aws/'
 
 # Terraform plan
 - task: TerraformCLI@0
