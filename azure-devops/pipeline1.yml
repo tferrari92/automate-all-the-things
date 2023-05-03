@@ -46,7 +46,7 @@ variables:
   inputs:
     command: plan
     workingDirectory: './terraform/aws/'
-    providerServiceAws: 'My AWS Service Connection'
+  #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
     providerAwsRegion: us-east-2
 
 
