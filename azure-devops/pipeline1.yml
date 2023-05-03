@@ -10,10 +10,10 @@ resources:
 #    name: MyBitbucketOrgOrUser/MyBitbucketRepo
 
 
-
 trigger:
 - main
 
+# Select the self-hosted agent
 pool:
   name: lenovo # Agent Pool Name
   demands:
@@ -32,12 +32,16 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+# Install Terraform
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: '1.4.6'
 
 
 - checkout: tomaco
+
+- script: ls
+  displayName: 'Run a one-line script'
 
 
 
