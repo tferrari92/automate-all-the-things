@@ -41,6 +41,12 @@ steps:
 - script: ls
   displayName: 'Verify checkout'
 
+# Terraform init
+- task: TerraformCLI@0
+  displayName: 'terraform init'
+  inputs:
+    command: init
+
 # Terraform plan
 - task: TerraformCLI@0
   displayName: 'terraform plan'
