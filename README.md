@@ -1,4 +1,4 @@
-## 1. Create a Self-Hosted Agent on your machine 
+# 1. Create a Self-Hosted Agent on your machine 
 In Azure DevOps:
 1. Navigate inside your project and open the tab “Project Settings”
 2. Click on the “Agent pools” tab
