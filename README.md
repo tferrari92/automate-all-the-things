@@ -1,9 +1,15 @@
 
+<br/>
+
 <p align="center"> <img width="460" src="https://i.imgur.com/CnDPSpV.png"> </p>
 
-CHEKEAR FREE PARALELISM!!!!!!!!!!!!!!!!!!!!
+<br/>
 
-# 1. Create a Self-Hosted Agent on your machine
+# (Optional) Create a Self-Hosted Agent on your machine
+***If you have Free Parallelism or a paid Azure subscription, skip this step.***<br/>
+
+If you don't have Free Parallelism activated on Azure DevOps, or don't have paid Azure subscriptions, you will have to run the pipeline in a self-hosted agent. 
+This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
 
 ## In Azure DevOps:
 1. Navigate inside your project and open the tab “Project Settings”
@@ -18,12 +24,16 @@ CHEKEAR FREE PARALELISM!!!!!!!!!!!!!!!!!!!!
 
 6. Select “Linux” and copy the “Download the agent” link.
 
+<br/>
+
 You need also to create a PAT (Personal Access Token) in order to be able to authenticate the VM. To do so:
 1. In the Azure DevOps portal, click on the “User settings” (the icon in the top right corner)
 
 2. Select “Personal Access Token”
 
 3. Create a new token with the Full access” permission. Copy the value of the token, it will be needed in the next step.
+
+<br/>
 
 ## On your machine:
 1. Create the agent
@@ -55,7 +65,7 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 <p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
 
 
-# 2. Create pipeline
+# 1. Create pipeline
 
 Sign in Azure DevOps:
 
@@ -72,6 +82,8 @@ Crear Service Connection a Github
      Agregar variable para GitPassword
 
    ??? Repos-> Import (You'll need to use an Access Token)
+
+Might ask you for permission, go to Job and click permit
 
   
 
@@ -95,7 +107,7 @@ DOCKER BEST PRACTICES
 TF BEST PRACTICES
 
 12 FACTOR APP
-
+PASAR TODO A PYTHON SCRIPT
 
   
   

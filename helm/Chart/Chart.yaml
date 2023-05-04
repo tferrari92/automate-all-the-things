@@ -1,0 +1,4 @@
+apiVersion: v2
+name: nginx-chart
+description: A Helm chart for deploying an nginx website with an ingress
+version: 0.1.0

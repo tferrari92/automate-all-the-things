@@ -1,0 +1,22 @@
+image:
+  repository: nginx
+  tag: stable
+
+website:
+  repository: your-website-repo
+  tag: latest
+  config:
+    index.html: |
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Welcome to my website</title>
+      </head>
+      <body>
+        <h1>Hello, world!</h1>
+      </body>
+      </html>
+
+ingress:
+  enabled: true
+  host: yourdomain.com
