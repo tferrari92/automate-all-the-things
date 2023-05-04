@@ -1,5 +1,7 @@
 ![alt text](https://github.com/tferrari92/tomaco/blob/main/resources/all-the-things.webp?raw=true)
 
+<img src="https://github.com/tferrari92/tomaco/blob/main/resources/all-the-things.webp" width="48" allign="center">
+
 
 # 1. Create a Self-Hosted Agent on your machine 
 In Azure DevOps:
