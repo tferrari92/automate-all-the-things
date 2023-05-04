@@ -29,6 +29,7 @@ On your machine:
 
 SOURCE: https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install
 
+![alt text](https://github.com/tferrari92/tomaco/blob/main/resources/not-the-same.png?raw=true)
 
 # 2. Create pipeline
 Sign in Azure DevOps:
