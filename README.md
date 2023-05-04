@@ -1,3 +1,6 @@
+![alt text](https://github.com/tferrari92/tomaco/blob/main/resources/all-the-things.webp?raw=true)
+
+
 # 1. Create a Self-Hosted Agent on your machine 
 In Azure DevOps:
 1. Navigate inside your project and open the tab “Project Settings”
