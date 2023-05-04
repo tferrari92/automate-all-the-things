@@ -1,8 +1,5 @@
-<!-- ![alt text](https://github.com/tferrari92/tomaco/blob/main/resources/all-the-things.webp?raw=true) -->
 
 <p style="text-align: center;"><img src="https://github.com/tferrari92/tomaco/blob/main/resources/all-the-things.webp" width="500"></p>
-
-
 
 
 # 1. Create a Self-Hosted Agent on your machine 
@@ -35,7 +32,6 @@ SOURCE: https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?v
 
 <img src="(https://github.com/tferrari92/tomaco/blob/main/resources/not-the-same.png" width="500">
 
-<!-- ![alt text](https://github.com/tferrari92/tomaco/blob/main/resources/not-the-same.png?raw=true) -->
 
 # 2. Create pipeline
 Sign in Azure DevOps:
