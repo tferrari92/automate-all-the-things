@@ -1,6 +1,8 @@
 <!-- ![alt text](https://github.com/tferrari92/tomaco/blob/main/resources/all-the-things.webp?raw=true) -->
 
-<img src="https://github.com/tferrari92/tomaco/blob/main/resources/all-the-things.webp" width="500" allign="center">
+<p style="text-align: center;"><img src="https://github.com/tferrari92/tomaco/blob/main/resources/all-the-things.webp" width="500"></p>
+
+
 
 
 # 1. Create a Self-Hosted Agent on your machine 
@@ -31,7 +33,7 @@ On your machine:
 
 SOURCE: https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install
 
-<img src="(https://github.com/tferrari92/tomaco/blob/main/resources/not-the-same.png" width="500" allign="center">
+<img src="(https://github.com/tferrari92/tomaco/blob/main/resources/not-the-same.png" width="500">
 
 <!-- ![alt text](https://github.com/tferrari92/tomaco/blob/main/resources/not-the-same.png?raw=true) -->
 
