@@ -13,10 +13,14 @@ trigger:
 - main
 
 # Select the self-hosted agent
+# pool:
+#   name: lenovo # Agent Pool Name
+#   demands:
+#     - agent.name -equals lenovo-agent # Agent Name
+
+# Or choose this if you have free parallelism
 pool:
-  name: lenovo # Agent Pool Name
-  demands:
-    - agent.name -equals lenovo-agent # Agent Name
+  vmImage: 'ubuntu-latest'
 
 variables:
   gitUsername: 'tferrari92'
