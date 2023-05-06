@@ -71,11 +71,11 @@ steps:
     providerAwsRegion: us-east-2 # Required
 
 # Terraform apply
-# - task: TerraformCLI@0
-#   displayName: 'terraform apply'
-#   inputs:
-#     command: apply
-#     workingDirectory: './terraform/aws/'
-    # providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-   # providerAwsRegion: us-east-2 # Required
+- task: TerraformCLI@0
+  displayName: 'terraform apply'
+  inputs:
+    command: apply
+    workingDirectory: './terraform/aws/'
+    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerAwsRegion: us-east-2 # Required
 
