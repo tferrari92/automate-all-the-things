@@ -28,53 +28,9 @@ export AZURE_DEVOPS_EXT_GITHUB_PAT=<your-github-pat>
 <p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
 <br/>
 
-# 1. CREATE PIPELINE
-
-## 1.1 Azure CLI
-
-a. Install [azure cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
-```bash
-sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-```
-
-b. Sign in:
-```bash
-az login 
-```
-
-## 1.2 Azure DevOps CLI 
-
-a. Add the [Azure DevOps extension](https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops)
-
-```bash
-az extension add --name azure-devops
-```
 
 
-## 1.3 Project & Pipeline 
-a. Create project
-```bash
-az devops project create --name automate-all-the-things --org https://dev.azure.com/tomasferrari --verbose
-```
-
-b. Set organization and project as defaults
-```bash
-az devops configure --defaults  organization=https://dev.azure.com/tomasferrari project=automate-all-the-things 
-```
-
-c. Create service-connection to github
-```bash
-az devops service-endpoint github create --name github-sc --github-url https://github.com/tferrari92/automate-all-the-things.git
-```
-
-d. Create pipeline
-```bash
-az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
-```
-
-<br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
-<br/>
+CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
 
 # (Optional) CREATE A SELF HOSTED-AGENT ON YOUR MACHINE
 ***If you have Free Parallelism or a paid Azure subscription, skip this step.***<br/>
@@ -83,10 +39,6 @@ If you don't have Free Parallelism activated on Azure DevOps, or don't have paid
 This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
 
 ## In Azure DevOps:
-
-CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
-
-az devops project create --name automate-all-the-things
 
 1. Navigate inside your project and open the tab “Project Settings”
 
@@ -137,8 +89,6 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
   
 [SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
 
-  
-
 
 # 1. Create pipeline
 
@@ -173,6 +123,7 @@ ESCONDER LLAVES
 
 MANDAR BACKEND A BUCKET
 
+CAMBIAR KEYS DE AWS PORQ YA ESTAN EN GITHUB!!!
   
 
 GITIGNORE
@@ -191,3 +142,55 @@ Link de infra de la foto:
 
 https://mylearn.oracle.com/ou/component/-/108432/165507
 <p align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
+
+
+
+DESCARTADO
+
+# 1. CREATE PIPELINE
+
+## 1.1 Azure CLI
+
+a. Install [azure cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+```bash
+sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+b. Sign in:
+```bash
+az login 
+```
+
+## 1.2 Azure DevOps CLI 
+
+a. Add the [Azure DevOps extension](https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops)
+
+```bash
+az extension add --name azure-devops
+```
+
+
+## 1.3 Project & Pipeline 
+a. Create project
+```bash
+az devops project create --name automate-all-the-things --org https://dev.azure.com/tomasferrari --verbose
+```
+
+b. Set organization and project as defaults
+```bash
+az devops configure --defaults  organization=https://dev.azure.com/tomasferrari project=automate-all-the-things 
+```
+
+c. Create service-connection to github
+```bash
+az devops service-endpoint github create --name github-sc --github-url https://github.com/tferrari92/automate-all-the-things.git
+```
+
+d. Create pipeline
+```bash
+az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
+```
+
+<br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<br/>

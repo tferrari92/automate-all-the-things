@@ -1,0 +1,73 @@
+resources:
+  repositories:
+  - repository: tomaco # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: github.com_tferrari92 # Name of the service connection
+    name: tferrari92/tomaco
+#  - repository: MyBitbucketRepo
+#    type: bitbucket
+#    endpoint: MyBitbucketServiceConnection
+#    name: MyBitbucketOrgOrUser/MyBitbucketRepo
+
+trigger:
+- main
+
+# Select the self-hosted agent
+# pool:
+#   name: lenovo # Agent Pool Name
+#   demands:
+#     - agent.name -equals lenovo-agent # Agent Name
+
+# Or choose this if you have free parallelism
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  gitUsername: 'tferrari92'
+  gitPassword: $(GitPassword) # Secret variable with Git credentials
+
+steps:
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+# Install Terraform
+- task: TerraformInstaller@0
+  displayName: install terraform
+  inputs:
+    terraformVersion: '1.4.6'
+
+# Checkout repo
+- checkout: tomaco
+
+# Verify checkout
+- script: ls
+  displayName: 'Verify checkout'
+
+# Terraform init
+- task: TerraformCLI@0
+  displayName: 'terraform init'
+  inputs:
+    command: init
+    workingDirectory: './terraform/backend-aws-bucket/'
+
+# Terraform plan
+- task: TerraformCLI@0
+  displayName: 'terraform plan'
+  inputs:
+    command: plan
+    workingDirectory: './terraform/backend-aws-bucket/'
+  #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
+    providerAwsRegion: us-east-2
+
+# Terraform apply
+# - task: TerraformCLI@0
+#   displayName: 'terraform apply'
+#   inputs:
+#     command: apply
+#     workingDirectory: './terraform/aws/'
+#   #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
+#     providerAwsRegion: us-east-2
+
+
