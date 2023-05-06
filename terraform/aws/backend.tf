@@ -4,7 +4,7 @@ terraform {
     bucket         = "aatt-tf-state"
     dynamodb_table = "terraform-state-locking"
     key            = "aa-tt.tfstate"
-    region         = var.region
+    region         = "us-east-2"
     encrypt        = true
   }
 }
