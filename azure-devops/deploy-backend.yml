@@ -58,7 +58,7 @@ steps:
   inputs:
     command: plan
     workingDirectory: './terraform/backend/'
-  #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
+  #  providerServiceAws: 'My AWS Service Connection' 
     providerAwsRegion: us-east-2
 
 # Terraform apply
@@ -67,7 +67,7 @@ steps:
   inputs:
     command: apply
     workingDirectory: './terraform/backend/'
-  #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
+  #  providerServiceAws: 'My AWS Service Connection' 
     providerAwsRegion: us-east-2
 
 
