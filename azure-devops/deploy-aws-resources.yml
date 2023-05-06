@@ -51,6 +51,11 @@ steps:
   inputs:
     command: init
     workingDirectory: './terraform/aws/'
+    # set to `aws` to use aws backend
+    backendType: aws
+    # service connection name, required if backendType = aws
+    backendServiceAws: aws
+
 
 # Terraform plan
 - task: TerraformCLI@0

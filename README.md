@@ -81,7 +81,10 @@ Create service connection
 
 4. Crear Service Connection a Github EXPLICAR!!!
 
-1. Install [Terraform Tasks plugin]( https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
+1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
+1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines
+
+
 
 2. Create new project
 
