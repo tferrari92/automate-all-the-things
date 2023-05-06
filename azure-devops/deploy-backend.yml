@@ -62,12 +62,12 @@ steps:
     providerAwsRegion: us-east-2
 
 # Terraform apply
-# - task: TerraformCLI@0
-#   displayName: 'terraform apply'
-#   inputs:
-#     command: apply
-#     workingDirectory: './terraform/aws/'
-#   #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
-#     providerAwsRegion: us-east-2
+- task: TerraformCLI@0
+  displayName: 'terraform apply'
+  inputs:
+    command: apply
+    workingDirectory: './terraform/backend/'
+  #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
+    providerAwsRegion: us-east-2
 
 
