@@ -50,14 +50,14 @@ steps:
   displayName: 'terraform init'
   inputs:
     command: init
-    workingDirectory: './terraform/backend-aws-bucket/'
+    workingDirectory: './terraform/backend/'
 
 # Terraform plan
 - task: TerraformCLI@0
   displayName: 'terraform plan'
   inputs:
     command: plan
-    workingDirectory: './terraform/backend-aws-bucket/'
+    workingDirectory: './terraform/backend/'
   #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
     providerAwsRegion: us-east-2
 
