@@ -44,18 +44,13 @@ You need also to create a PAT (Personal Access Token) in order to be able to aut
 mkdir myagent && cd myagent
 tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 ```
-
 2. Configure the agent
 ```bash
 ./config.sh
 ```
-
 3. It will prompt you asking the DevOps Server URL, that is: https://dev.azure.com/<organization-name>.
-
 4. After that it will ask you the authentication key, paste here you PAT token.
-
 5. Finally insert the name of the agent pool created in the previous step and a name for the new agent.
-
 6. Complete the installation running the following command:
 ```bash
 ./run.sh
