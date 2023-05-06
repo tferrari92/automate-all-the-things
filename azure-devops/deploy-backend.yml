@@ -12,7 +12,9 @@ resources:
 #    name: MyBitbucketOrgOrUser/MyBitbucketRepo
 
 trigger:
-- main
+  paths:
+    include:
+    - 'terraform/backend/*'
 
 # Select the self-hosted agent
 # pool:
