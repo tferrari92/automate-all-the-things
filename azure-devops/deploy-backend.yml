@@ -2,7 +2,7 @@ resources:
   repositories:
   - repository: tomaco # The name used to reference this repository in the checkout step
     type: github
-    endpoint: github.com_tferrari92 # Name of the service connection
+    endpoint: tferrari92 # Name of the service connection
     name: tferrari92/tomaco
 #  - repository: MyBitbucketRepo
 #    type: bitbucket

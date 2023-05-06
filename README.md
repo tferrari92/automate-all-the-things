@@ -5,24 +5,7 @@
 
 <br/>
 
-# (Optional) GET GITHUB PERSONAL ACCESS TOKEN
-***If the repo you are using is public skip this step.***<br/>
 
-In your Github account:
-1. In the upper-right corner of any page, click your profile photo, then click Settings.
-2. In the left sidebar, click  Developer settings.
-3. In the left sidebar, click Personal access tokens.
-4. Click Generate new token.
-5. In the "Note" field, give your token a descriptive name.
-6. To give your token an expiration, select Expiration, then choose a default option or click Custom to enter a date.
-7. Select the scopes you'd like to grant this token. To use your token to access repositories from the command line, select repo. A token with no assigned scopes can only access public information. For more information, see "Scopes for OAuth Apps".
-8. Click Generate token.
-9. Copy the new token to your clipboard, click.
-
-Set as environment variable
-```bash
-export AZURE_DEVOPS_EXT_GITHUB_PAT=<your-github-pat>
-```
 
 <br/>
 <p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
@@ -90,7 +73,7 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 [SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
 
 
-# 1. Create pipeline
+# CREATE PIPELINE
 
 Sign in Azure DevOps:
 
@@ -98,17 +81,15 @@ Sign in Azure DevOps:
 
 2. Create new project
 
-    Pipleines -> Pipelines -> Create pipeline -> Github -> Give access to repo
+3. Create pipelie: Pipelines -> Pipelines -> Create pipeline -> Github -> Give access to repo -> Existing Azure Pipelines YAML file
 
-     Existing Azure Pipelines YAML file
+4. Crear Service Connection a Github EXPLICAR!!!
 
-Crear Service Connection a Github
-
-     Agregar variable para GitPassword
+5. Agregar variable para GitPassword: Variables -> New variable -> Name: GitPassword, Value: 
 
    ??? Repos-> Import (You'll need to use an Access Token)
 
-Might ask you for permission, go to Job and click permit
+6. Might ask you for permission, go to Job and click permit
 
   
 
@@ -146,6 +127,25 @@ https://mylearn.oracle.com/ou/component/-/108432/165507
 
 
 DESCARTADO
+
+# (Optional) GET GITHUB PERSONAL ACCESS TOKEN
+***If the repo you are using is public skip this step.***<br/>
+
+In your Github account:
+1. In the upper-right corner of any page, click your profile photo, then click Settings.
+2. In the left sidebar, click  Developer settings.
+3. In the left sidebar, click Personal access tokens.
+4. Click Generate new token.
+5. In the "Note" field, give your token a descriptive name.
+6. To give your token an expiration, select Expiration, then choose a default option or click Custom to enter a date.
+7. Select the scopes you'd like to grant this token. To use your token to access repositories from the command line, select repo. A token with no assigned scopes can only access public information. For more information, see "Scopes for OAuth Apps".
+8. Click Generate token.
+9. Copy the new token to your clipboard, click.
+
+Set as environment variable
+```bash
+export AZURE_DEVOPS_EXT_GITHUB_PAT=<your-github-pat>
+```
 
 # 1. CREATE PIPELINE
 
