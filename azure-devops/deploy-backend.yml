@@ -1,9 +1,9 @@
 resources:
   repositories:
-  - repository: tomaco # The name used to reference this repository in the checkout step
+  - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
     endpoint: tferrari92 # Name of the service connection
-    name: tferrari92/tomaco
+    name: automate-all-the-things
 #  - repository: MyBitbucketRepo
 #    type: bitbucket
 #    endpoint: MyBitbucketServiceConnection
