@@ -1,3 +1,5 @@
+name: deploy-backend
+
 resources:
   repositories:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
