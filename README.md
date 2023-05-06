@@ -7,15 +7,14 @@
 
 
 
-<br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
-<br/>
 
 
+
+# **CREATE AZURE ACCOUNT & ORGANIZATION**
 
 CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
 
-# (Optional) CREATE A SELF HOSTED-AGENT ON YOUR MACHINE
+# **CREATE A SELF HOSTED-AGENT ON YOUR MACHINE** (OPTIONAL)
 ***If you have Free Parallelism or a paid Azure subscription, skip this step.***<br/>
 
 If you don't have Free Parallelism activated on Azure DevOps, or don't have paid Azure subscriptions, you will have to run the pipeline in a self-hosted agent. 
@@ -23,25 +22,18 @@ This means you'll install an Azure DevOps Agent on your local machine, which wil
 
 ## In Azure DevOps:
 
-1. Navigate inside your project and open the tab “Project Settings”
-
-2. Click on the “Agent pools” tab
-
-3. Add pool
-
+1. Navigate inside your project and open the tab “Project Settings”.
+2. Click on the “Agent pools” tab.
+3. Add pool.
 4. Select “Self-hosted”, give a name and create it.
-
-5. Navigate into the new Agent Pool and click “New agent”
-
+5. Navigate into the new Agent Pool and click “New agent”.
 6. Select “Linux” and copy the “Download the agent” link.
 
 <br/>
 
 You need also to create a PAT (Personal Access Token) in order to be able to authenticate the VM. To do so:
-1. In the Azure DevOps portal, click on the “User settings” (the icon in the top right corner)
-
-2. Select “Personal Access Token”
-
+1. In the Azure DevOps portal, click on the “User settings” (the icon in the top right corner).
+2. Select “Personal Access Token”.
 3. Create a new token with the Full access” permission. Copy the value of the token, it will be needed in the next step.
 
 <br/>
@@ -72,42 +64,96 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
   
 [SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
 
+<br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
+<br/>
 
-# CREATE PIPELINE
+# **SETUP AZURE DEVOPS**
 
-Sign in Azure DevOps:
+Before creating our pipelines we need to get a few things set up.<br>
+Sign in Azure DevOps.
 
-Create service connection
+<br/>
 
-4. Crear Service Connection a Github EXPLICAR!!!
-4. Crear Service Connection a AWS EXPLICAR!!! nombre q sea "aws"
-
+## Install required plugins
+These plugins are required for the pipelines we'll be creating.
 1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
 1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines 
 
+<br/>
+
+## Get your AWS Keys
+These will be required for Azure DevOps to connect to your AWS account.
+
+1. Open the IAM console at https://console.aws.amazon.com/iam/.
+2. On the navigation menu, choose Users. *If you are root user and haven't created any users, you'll find the option on the IAM dashboard*
+3. Choose your IAM user name (not the check box).
+4. Open the Security credentials tab, and then choose Create access key.
+5. To see the new access key, choose Show. Your credentials resemble the following:<br>
+-- Access key ID: AKIAIOSFODNN7EXAMPLE<br>
+-- Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+6. Copy and paste these somewhere safe.
+
+<br/>
+
+## Create service connections
+These are required service connections for the pipelines we'll be creating.
+
+1. Open your project on Azure DevOps.
+2. Go to Project settings on the left side menu (bottom-left corner).
+3. On the left side menu, under Pipelines, select Service connections.
+4. Click on New service connection (top-right).
+5. Select AWS.
+6. Paste your Access Key ID and Secret Access Key.
+7. Under Service connection name, write "aws".
+8. Save.
 
 
-2. Create new project
 
-3. Create pipelie: Pipelines -> Pipelines -> Create pipeline -> Github -> Give access to repo -> Existing Azure Pipelines YAML file
+HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA PIPELINE?????
 
 
-<!-- 5. Rename the pipeline -->
 
-<!-- 5. Agregar variable para GitPassword: Variables -> New variable -> Name: GitPassword, Value: <github-pat> -> Select "Keep this value a secret" -> OK -> Save -->
 
-   ??? Repos-> Import (You'll need to use an Access Token)
 
-6. Might ask you for permission, go to Job and click permit
+<br/>
+<br/>
 
+
+# **PIPELINES**
+
+## Terraform backend pipeline
+
+Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table with Terraform.<br>
+These two resources will allow us to store our terraform state remotely and for state locking.
+
+1. Go to Pipelines on the left side menu
+2. Select Pipelines under Pipelines on the left side menu
+3. Click on Create/New pipeline
+4. Select Github
+5. Give access to repo if it's the first time connecting to GitHub. Else select the repository.
+6. Select Existing Azure Pipelines YAML file
+7. Select Branch and Path to the pipeline YAML file and click Continue
+8. Click on Save & Run
+9. Rename the pipeline to a more appropiate name
+
+<br/>
+
+## AWS resources pipeline
+
+1. Go to Pipelines
+2. Select Pipelines on the left side menu
+3. Click on Create/New pipeline
+4. Select Github
+5. Give access to repo if it's the first time connecting to GitHub. Else select the repository.
+6. Select Existing Azure Pipelines YAML file
+7. Select Branch and Path to the pipeline YAML file and click Continue
+8. Click on Save & Run
   
-
-1. Create Bucket on AWS for tfstate storage.
-
   
-  
-  
-  
+<br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<br/>
 
 ESCONDER LLAVES, Agregar tfvars a gitignore
 
@@ -126,17 +172,16 @@ TF BEST PRACTICES
 12 FACTOR APP
 PASAR TODO A PYTHON SCRIPT
 
+  EXPLICAR PORQ USAMOS REMOTE BACKEDN PARA TFSTATE.
+  BUSCAR COMO HACER TF DESTROY PARA EL BACKEND. HAY Q GUARDAR EL TFSATE DEL BACKEND DE ALGUNA FORMA
   
-  
-
-Link de infra de la foto:
 
 https://mylearn.oracle.com/ou/component/-/108432/165507
 <p align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
 
 
 
-DESCARTADO
+DESCARTADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # (Optional) GET GITHUB PERSONAL ACCESS TOKEN
 ***If the repo you are using is public skip this step.***<br/>
@@ -201,6 +246,3 @@ d. Create pipeline
 az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
 ```
 
-<br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
-<br/>
