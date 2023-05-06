@@ -85,6 +85,8 @@ Sign in Azure DevOps:
 
 4. Crear Service Connection a Github EXPLICAR!!!
 
+5. Rename the pipeline
+
 5. Agregar variable para GitPassword: Variables -> New variable -> Name: GitPassword, Value: 
 
    ??? Repos-> Import (You'll need to use an Access Token)
