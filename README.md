@@ -24,6 +24,8 @@ Set as environment variable
 export AZURE_DEVOPS_EXT_GITHUB_PAT=<your-github-pat>
 ```
 
+<p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
+
 # 1. CREATE PIPELINE
 
 ## 1.1 Azure CLI
@@ -40,8 +42,7 @@ az login
 
 ## 1.2 Azure DevOps CLI 
 
-a. Install [azure devops cli](https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops)
-Add the Azure DevOps extension:
+a. Add the [Azure DevOps extension](https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops)
 
 ```bash
 az extension add --name azure-devops
@@ -131,7 +132,6 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 [SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
 
   
-<p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
 
 
 # 1. Create pipeline
