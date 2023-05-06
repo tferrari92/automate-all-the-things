@@ -39,7 +39,7 @@ steps:
     terraformVersion: '1.4.6'
 
 # Checkout repo
-- checkout: tomaco
+- checkout: automate-all-the-things
 
 # Verify checkout
 - script: ls
