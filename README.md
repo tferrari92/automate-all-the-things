@@ -5,13 +5,82 @@
 
 <br/>
 
-# (Optional) Create a Self-Hosted Agent on your machine
+# (Optional) GET GITHUB PERSONAL ACCESS TOKEN
+***If the repo you are using is public skip this step.***<br/>
+
+In your Github account:
+1. In the upper-right corner of any page, click your profile photo, then click Settings.
+2. In the left sidebar, click  Developer settings.
+3. In the left sidebar, click Personal access tokens.
+4. Click Generate new token.
+5. In the "Note" field, give your token a descriptive name.
+6. To give your token an expiration, select Expiration, then choose a default option or click Custom to enter a date.
+7. Select the scopes you'd like to grant this token. To use your token to access repositories from the command line, select repo. A token with no assigned scopes can only access public information. For more information, see "Scopes for OAuth Apps".
+8. Click Generate token.
+9. Copy the new token to your clipboard, click.
+
+Set as environment variable
+```bash
+export AZURE_DEVOPS_EXT_GITHUB_PAT=<your-github-pat>
+```
+
+# 1. CREATE PIPELINE
+
+## 1.1 Azure CLI
+
+a. Install [azure cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+```bash
+sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+b. Sign in:
+```bash
+az login 
+```
+
+## 1.2 Azure DevOps CLI 
+
+a. Install [azure devops cli](https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops)
+Add the Azure DevOps extension:
+
+```bash
+az extension add --name azure-devops
+```
+
+
+## 1.3 Project & Pipeline 
+a. Create project
+```bash
+az devops project create --name automate-all-the-things --org https://dev.azure.com/tomasferrari --verbose
+```
+
+b. Set organization and project as defaults
+```bash
+az devops configure --defaults  organization=https://dev.azure.com/tomasferrari project=automate-all-the-things 
+```
+
+c. Create service-connection to github
+```bash
+az devops service-endpoint github create --name github-sc --github-url https://github.com/tferrari92/automate-all-the-things.git
+```
+
+d. Create pipeline
+```bash
+az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
+```
+
+# (Optional) CREATE A SELF HOSTED-AGENT ON YOUR MACHINE
 ***If you have Free Parallelism or a paid Azure subscription, skip this step.***<br/>
 
 If you don't have Free Parallelism activated on Azure DevOps, or don't have paid Azure subscriptions, you will have to run the pipeline in a self-hosted agent. 
 This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
 
 ## In Azure DevOps:
+
+CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
+
+az devops project create --name automate-all-the-things
+
 1. Navigate inside your project and open the tab “Project Settings”
 
 2. Click on the “Agent pools” tab
