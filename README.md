@@ -20,7 +20,7 @@ CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/
 If you don't have Free Parallelism activated on Azure DevOps, or don't have paid Azure subscriptions, you will have to run the pipeline in a self-hosted agent. 
 This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
 
-### In Azure DevOps:
+### **In Azure DevOps**
 
 1. Navigate inside your project and open the tab “Project Settings”.
 2. Click on the “Agent pools” tab.
@@ -38,7 +38,7 @@ You need also to create a PAT (Personal Access Token) in order to be able to aut
 
 <br/>
 
-### On your machine:
+### **On your machine**
 1. Create the agent
 ```bash
 mkdir myagent && cd myagent
@@ -69,14 +69,14 @@ Before creating our pipelines we need to get a few things set up.<br>
 Sign in Azure DevOps.
 
 
-### Install required plugins
+### **Install required plugins**
 These plugins are required for the pipelines we'll be creating.
 1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
 1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines 
 
 <br/>
 
-### Get your AWS Keys
+### **Get your AWS Keys**
 These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
@@ -90,7 +90,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 <br/>
 
-### Create service connections
+### **Create service connections**
 These are required service connections for the pipelines we'll be creating.
 
 1. Open your project on Azure DevOps.
@@ -113,7 +113,7 @@ HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA P
 
 # **PIPELINES**
 
-### Terraform backend pipeline
+### **Terraform backend pipeline**
 
 Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on aws with Terraform.<br>
 These two resources will allow us to store our terraform state remotely and for state locking.
@@ -130,7 +130,7 @@ These two resources will allow us to store our terraform state remotely and for 
 
 <br/>
 
-## AWS resources pipeline
+## **AWS resources pipeline**
 
 1. Go to Pipelines
 2. Select Pipelines on the left side menu
