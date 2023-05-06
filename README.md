@@ -77,15 +77,18 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 
 Sign in Azure DevOps:
 
+Create service connection
+
+4. Crear Service Connection a Github EXPLICAR!!!
+
 1. Install [Terraform Tasks plugin]( https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
 
 2. Create new project
 
 3. Create pipelie: Pipelines -> Pipelines -> Create pipeline -> Github -> Give access to repo -> Existing Azure Pipelines YAML file
 
-4. Crear Service Connection a Github EXPLICAR!!!
 
-5. Rename the pipeline
+<!-- 5. Rename the pipeline -->
 
 5. Agregar variable para GitPassword: Variables -> New variable -> Name: GitPassword, Value: 
 
