@@ -14,7 +14,7 @@ resources:
 trigger:
   paths:
     include:
-    - 'terraform/aws/*'
+    - terraform/aws/*
 
 # Select the self-hosted agent
 # pool:
