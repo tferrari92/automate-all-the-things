@@ -1,9 +1,9 @@
 resources:
   repositories:
-  - repository: tomaco # The name used to reference this repository in the checkout step
+  - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
-    endpoint: github.com_tferrari92 # Name of the service connection
-    name: tferrari92/tomaco
+    endpoint: tferrari92 # Name of the service connection
+    name: tferrari92/automate-all-the-things
 #  - repository: MyBitbucketRepo
 #    type: bitbucket
 #    endpoint: MyBitbucketServiceConnection
@@ -22,9 +22,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  gitUsername: 'tferrari92'
-  gitPassword: $(GitPassword) # Secret variable with Git credentials
+# variables:
+#   gitUsername: 'tferrari92'
+#   gitPassword: $(GitPassword) # Secret variable with Git credentials
 
 steps:
 - script: |
@@ -39,7 +39,7 @@ steps:
     terraformVersion: '1.4.6'
 
 # Checkout repo
-- checkout: tomaco
+- checkout: automate-all-the-things
 
 # Verify checkout
 - script: ls
