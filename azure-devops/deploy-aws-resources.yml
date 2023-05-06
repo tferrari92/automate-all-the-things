@@ -54,7 +54,7 @@ steps:
     # set to `aws` to use aws backend
     backendType: aws
     # service connection name, required if backendType = aws
-    backendServiceAws: aws
+    backendServiceAws: 'aws'
 
 
 # Terraform plan
