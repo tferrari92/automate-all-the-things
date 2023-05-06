@@ -24,7 +24,9 @@ Set as environment variable
 export AZURE_DEVOPS_EXT_GITHUB_PAT=<your-github-pat>
 ```
 
+<br/>
 <p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
+<br/>
 
 # 1. CREATE PIPELINE
 
@@ -69,6 +71,10 @@ d. Create pipeline
 ```bash
 az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
 ```
+
+<br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<br/>
 
 # (Optional) CREATE A SELF HOSTED-AGENT ON YOUR MACHINE
 ***If you have Free Parallelism or a paid Azure subscription, skip this step.***<br/>
@@ -184,5 +190,4 @@ PASAR TODO A PYTHON SCRIPT
 Link de infra de la foto:
 
 https://mylearn.oracle.com/ou/component/-/108432/165507
-<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <p align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
