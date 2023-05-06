@@ -54,7 +54,7 @@ steps:
     # set to `aws` to use aws backend
     backendType: aws
     # service connection name, required if backendType = aws
-    backendServiceAws: 'aws'
+    backendServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
 
 
 # Terraform plan
@@ -63,7 +63,7 @@ steps:
   inputs:
     command: plan
     workingDirectory: './terraform/aws/'
-  #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
+    providerServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2
 
 # Terraform apply
@@ -72,7 +72,7 @@ steps:
 #   inputs:
 #     command: apply
 #     workingDirectory: './terraform/aws/'
-#   #  providerServiceAws: 'My AWS Service Connection' USAR ESTO EN LUGAR DE DEJAR EL TFVARS EN EL REPO!!!!!!
+    # providerServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
 #     providerAwsRegion: us-east-2
 
 
