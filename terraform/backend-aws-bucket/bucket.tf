@@ -16,8 +16,8 @@ provider "aws" {
   secret_key = var.aws_secret_key
 }
 
-resource "aws_s3 _bucket" "terraform_state" {
-    bucket = "devops-directive-tf-state"
+resource "aws_s3_bucket" "terraform_state" {
+    bucket = "aatt-tf-state"
     force_destroy = true
     versioning {
         enabled = true
