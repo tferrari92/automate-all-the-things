@@ -105,7 +105,7 @@ Create service connection
   
   
 
-ESCONDER LLAVES
+ESCONDER LLAVES, Agregar tfvars a gitignore
 
 MANDAR BACKEND A BUCKET
 
