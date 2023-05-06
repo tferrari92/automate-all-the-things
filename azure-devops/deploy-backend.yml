@@ -14,7 +14,7 @@ resources:
 trigger:
   paths:
     include:
-    - terraform/backend/*
+    - azure-devops/deploy-backend.yml
 
 # Select the self-hosted agent
 # pool:

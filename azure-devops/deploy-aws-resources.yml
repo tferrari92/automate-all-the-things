@@ -14,7 +14,7 @@ resources:
 trigger:
   paths:
     include:
-    - terraform/aws/*
+    - azure-devops/deploy-aws-resources.yml
 
 # Select the self-hosted agent
 # pool:
