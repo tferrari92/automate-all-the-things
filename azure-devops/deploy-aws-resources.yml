@@ -54,7 +54,7 @@ steps:
     # set to `aws` to use aws backend
     backendType: aws
     # service connection name, required if backendType = aws
-    backendServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
 
 
 # Terraform plan
@@ -63,7 +63,7 @@ steps:
   inputs:
     command: plan
     workingDirectory: './terraform/aws/'
-    providerServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
 
 # Terraform apply
@@ -72,6 +72,6 @@ steps:
 #   inputs:
 #     command: apply
 #     workingDirectory: './terraform/aws/'
-    # providerServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    # providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
    # providerAwsRegion: us-east-2 # Required
 

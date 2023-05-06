@@ -51,7 +51,7 @@ steps:
   inputs:
     command: init
     workingDirectory: './terraform/backend/'
-    providerServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
 
 # Terraform plan
@@ -60,7 +60,7 @@ steps:
   inputs:
     command: plan
     workingDirectory: './terraform/backend/'
-    providerServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
 
 
@@ -70,7 +70,7 @@ steps:
   inputs:
     command: apply
     workingDirectory: './terraform/backend/'
-    providerServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
 
 
