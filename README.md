@@ -68,7 +68,6 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 Before creating our pipelines we need to get a few things set up.<br>
 Sign in Azure DevOps.
 
-<br/>
 
 ### Install required plugins
 These plugins are required for the pipelines we'll be creating.
@@ -108,6 +107,7 @@ These are required service connections for the pipelines we'll be creating.
 HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA PIPELINE?????
 
 <br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <br/>
 
 
@@ -142,9 +142,7 @@ These two resources will allow us to store our terraform state remotely and for 
 8. Click on Save & Run
   
   
-<br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
-<br/>
+
 
 ESCONDER LLAVES, Agregar tfvars a gitignore
 
