@@ -90,7 +90,7 @@ Create service connection
 
 <!-- 5. Rename the pipeline -->
 
-5. Agregar variable para GitPassword: Variables -> New variable -> Name: GitPassword, Value: 
+<!-- 5. Agregar variable para GitPassword: Variables -> New variable -> Name: GitPassword, Value: <github-pat> -> Select "Keep this value a secret" -> OK -> Save -->
 
    ??? Repos-> Import (You'll need to use an Access Token)
 
