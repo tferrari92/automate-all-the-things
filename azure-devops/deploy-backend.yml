@@ -52,6 +52,7 @@ steps:
     command: init
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerAwsRegion: us-east-2
 
 # Terraform plan
 - task: TerraformCLI@0
