@@ -3,7 +3,7 @@ resources:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
     endpoint: tferrari92 # Name of the service connection
-    name: automate-all-the-things
+    name: tferrari92/automate-all-the-things
 #  - repository: MyBitbucketRepo
 #    type: bitbucket
 #    endpoint: MyBitbucketServiceConnection
