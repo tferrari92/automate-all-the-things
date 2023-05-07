@@ -79,9 +79,9 @@ steps:
   workingDirectory: './terraform/aws/'
   displayName: 'Save kubeconfig'
 
-- task: CmdLine@2
-  inputs:
-    script: 'tree /F'
+# - task: CmdLine@2
+#   inputs:
+#     script: 'tree /F'
 
 # - script: terraform output kubeconfig > $(System.DefaultWorkingDirectory)/kubeconfig2.yaml
 #   workingDirectory: './terraform/aws/'
