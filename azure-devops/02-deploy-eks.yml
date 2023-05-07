@@ -71,16 +71,16 @@ steps:
     providerAwsRegion: us-east-2 # Required
 
 
-- script: terraform output -json > $(System.DefaultWorkingDirectory)/outputs.json
+- script: terraform output -json > $(System.DefaultWorkingDirectory)/pyhton/outputs.json
   workingDirectory: './terraform/aws/'
   displayName: 'Save outputs'
 
 
-# - task: PythonScript@0
-#   displayName: 'Create kubeconfig'
-#   inputs:
-#     scriptSource: 'filePath'
-#     scriptPath: 'python/create-kubeconfig.py'
+- task: PythonScript@0
+  displayName: 'Create kubeconfig'
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: 'python/create-kubeconfig.py'
 
 
 # Save terraform state file
