@@ -126,7 +126,7 @@ These two resources will allow us to store our terraform state remotely and for 
 6. Select Existing Azure Pipelines YAML file
 7. Select Branch and Path to the pipeline YAML file and click Continue
 8. Click on Save & Run
-9. Rename the pipeline to a more appropiate name
+9. Rename the pipeline to a more appropiate name. Click on the three-dot menu on the top-right.
 10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
 
 <br/>
