@@ -79,9 +79,11 @@ steps:
   workingDirectory: './terraform/aws/'
   displayName: 'Save kubeconfig'
 
-# - task: CmdLine@2
-#   inputs:
-#     script: 'tree /F'
+- script: |
+    echo "Structure of work folder of this pipeline:"
+    tree $(Agent.WorkFolder)\1 /f
+  workingDirectory: './terraform/aws/'
+  displayName: 'tree'
 
 # - script: terraform output kubeconfig > $(System.DefaultWorkingDirectory)/kubeconfig2.yaml
 #   workingDirectory: './terraform/aws/'
