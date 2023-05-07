@@ -1,4 +1,4 @@
-name: deploy-backend
+name: deploy-eks
 
 resources:
   repositories:
@@ -14,7 +14,7 @@ resources:
 trigger:
   paths:
     include:
-    - azure-devops/deploy-backend.yml
+    - azure-devops/02-deploy-eks.yml
 
 # Select the self-hosted agent
 # pool:
@@ -38,7 +38,7 @@ steps:
 
 # Install Terraform
 - task: TerraformInstaller@0
-  displayName: Install terraform
+  displayName: install terraform
   inputs:
     terraformVersion: '1.4.6'
 
@@ -51,38 +51,53 @@ steps:
 
 # Terraform init
 - task: TerraformCLI@0
-  displayName: 'Terraform init'
+  displayName: 'terraform init'
   inputs:
     command: init
-    workingDirectory: './terraform/backend/'
+    workingDirectory: './terraform/aws/'
+    backendType: aws # set to `aws` to use aws backend
+    backendServiceAws: aws # service connection name, required if backendType = aws
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
+
 
 # Terraform plan
 - task: TerraformCLI@0
-  displayName: 'Terraform plan'
+  displayName: 'terraform plan'
   inputs:
     command: plan
-    workingDirectory: './terraform/backend/'
+    workingDirectory: './terraform/aws/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
-
 
 # Terraform apply
 - task: TerraformCLI@0
-  displayName: 'Terraform apply'
+  displayName: 'terraform apply'
   inputs:
     command: apply
-    workingDirectory: './terraform/backend/'
+    workingDirectory: './terraform/aws/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
+
+
+- task: TerraformCLI@0
+  displayName: 'terraform output'
+  inputs:
+    command: output
+    # ensure working directory targets same directory as apply step
+    # if not specified $(System.DefaultWorkingDirectory) will be used
+    workingDirectory: './terraform/aws/'
+
+- script: terraform output -json > outputs.json
+  displayName: 'terraform output -json > outputs.json'
+
 
 # Save terraform state file
 - task: PublishBuildArtifacts@1
   displayName: 'Save terraform state file'
   inputs:
-    PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
+    # PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
+    PathtoPublish: '$(Pipeline.Workspace)'
     ArtifactName: 'TerraformState'
     publishLocation: 'Container'
     # condition: always()
-

@@ -130,13 +130,13 @@ These two resources will allow us to store our terraform state remotely and for 
 10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
 
 <br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/UtZyCCe.png"> </p>
+<p align="center"> <img width="600" src="https://i.imgur.com/UtZyCCe.png"> </p>
 <br/>
 
 
 <br/>
 
-## **AWS resources pipeline**
+## **EKS pipeline**
 
 1. Go to Pipelines
 2. Select Pipelines on the left side menu
@@ -147,7 +147,16 @@ These two resources will allow us to store our terraform state remotely and for 
 7. Select Branch and Path to the pipeline YAML file and click Continue
 8. Click on Save & Run
   
-  
+## **ArgoCD pipeline**
+
+1. Go to Pipelines
+2. Select Pipelines on the left side menu
+3. Click on Create/New pipeline
+4. Select Github
+5. Give access to repo if it's the first time connecting to GitHub. Else select the repository.
+6. Select Existing Azure Pipelines YAML file
+7. Select Branch and Path to the pipeline YAML file and click Continue
+8. Click on Save & Run
 
 
 ESCONDER LLAVES, Agregar tfvars a gitignore

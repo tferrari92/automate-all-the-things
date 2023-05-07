@@ -1,0 +1,49 @@
+name: deploy-argocd
+
+resources:
+  repositories:
+  - repository: automate-all-the-things # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: tferrari92 # Name of the service connection
+    name: tferrari92/automate-all-the-things
+#  - repository: MyBitbucketRepo
+#    type: bitbucket
+#    endpoint: MyBitbucketServiceConnection
+#    name: MyBitbucketOrgOrUser/MyBitbucketRepo
+
+trigger:
+  paths:
+    include:
+    - azure-devops/03-deploy-argocd.yml
+
+# Select the self-hosted agent
+# pool:
+#   name: lenovo # Agent Pool Name
+#   demands:
+#     - agent.name -equals lenovo-agent # Agent Name
+
+# Or choose this if you have free parallelism
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: HelmInstaller@0
+  inputs:
+    helmVersion: '2.14.1'
+    installKubectl: true
+
+- task: HelmDeploy@0
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceConnection: '<your-kubernetes-service-connection-name>'
+    namespace: '<your-namespace-name>'
+    command: 'upgrade'
+    chartType: 'Name'
+    chartName: 'argo-cd'
+    chartVersion: '3.20.5'
+    releaseName: 'argo-cd'
+    install: true
+    wait: true
+    timeout: '600'
+
