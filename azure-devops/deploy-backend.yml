@@ -83,4 +83,5 @@ steps:
     PathtoPublish: '$(Pipeline.Workspace)/terraform.tfstate'
     ArtifactName: 'MyFile'
     publishLocation: 'Container'
+    condition: always()
 
