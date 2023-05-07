@@ -76,17 +76,24 @@ steps:
     providerAwsRegion: us-east-2 # Required
 
 
-- task: TerraformCLI@0
-  displayName: 'terraform output'
-  inputs:
-    command: output
-    # ensure working directory targets same directory as apply step
-    # if not specified $(System.DefaultWorkingDirectory) will be used
-    workingDirectory: './terraform/aws/'
+# - task: TerraformCLI@0
+#   displayName: 'terraform output'
+#   inputs:
+#     command: output
+#     # ensure working directory targets same directory as apply step
+#     # if not specified $(System.DefaultWorkingDirectory) will be used
+#     workingDirectory: './terraform/aws/'
 
 - script: terraform output -json > outputs.json
   workingDirectory: './terraform/aws/'
-  displayName: 'Save outputs kubeconfig'
+  displayName: 'Save outputs'
+
+
+- task: PythonScript@0
+  displayName: 'Create kubeconfig'
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: 'python/create-kubeconfig.py'
 
 
 # Save terraform state file
