@@ -84,5 +84,5 @@ steps:
     PathtoPublish: '$(Pipeline.Workspace)'
     ArtifactName: 'MyFile'
     publishLocation: 'Container'
-    # condition: always()
+    condition: always()
 
