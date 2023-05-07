@@ -71,7 +71,7 @@ steps:
     providerAwsRegion: us-east-2 # Required
 
 
-- script: terraform output -json > $(System.DefaultWorkingDirectory)
+- script: terraform output -json > $(System.DefaultWorkingDirectory)/outputs.json
   workingDirectory: './terraform/aws/'
   displayName: 'Save outputs'
 
@@ -87,7 +87,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Export kubeconfig'
   inputs:
-    # PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
+    # PathtoPublish: '$(Pipeline.Workspace)/s/kubeconfig'
     PathtoPublish: '$(Pipeline.Workspace)'
     ArtifactName: 'Kubeconfig'
     publishLocation: 'Container'
