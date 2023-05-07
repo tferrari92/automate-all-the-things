@@ -66,7 +66,7 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 # **SETUP AZURE DEVOPS**
 
 Before creating our pipelines we need to get a few things set up.<br>
-Sign in Azure DevOps.
+Sign in [Azure DevOps](https://dev.azure.com/).
 
 
 ### **Install required plugins**

@@ -77,5 +77,10 @@ steps:
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
 
-
+# Save terraform state file
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Pipeline.Workspace)/terraform.tfstate'
+    ArtifactName: 'MyFile'
+    publishLocation: 'Container'
 
