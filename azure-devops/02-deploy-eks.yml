@@ -78,6 +78,11 @@ steps:
 - script: terraform output -raw kubeconfig > $(System.DefaultWorkingDirectory)/kubeconfig.yaml
   workingDirectory: './terraform/aws/'
   displayName: 'Save outputs'
+
+- script: terraform output kubeconfig > $(System.DefaultWorkingDirectory)/kubeconfig2.yaml
+  workingDirectory: './terraform/aws/'
+  displayName: 'Save outputs'
+
 # - task: PythonScript@0
 #   displayName: 'Create kubeconfig'
 #   inputs:
