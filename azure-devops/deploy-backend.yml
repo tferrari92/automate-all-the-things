@@ -38,7 +38,7 @@ steps:
 
 # Install Terraform
 - task: TerraformInstaller@0
-  displayName: install terraform
+  displayName: Install terraform
   inputs:
     terraformVersion: '1.4.6'
 
@@ -81,7 +81,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Save terraform state file'
   inputs:
-    PathtoPublish: '$(Pipeline.Workspace)/terraform.tfstate'
+    PathtoPublish: '$(Pipeline.Workspace)'
     ArtifactName: 'MyFile'
     publishLocation: 'Container'
     # condition: always()
