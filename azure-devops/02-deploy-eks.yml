@@ -27,14 +27,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-
 # Install Terraform
 - task: TerraformInstaller@0
-  displayName: install terraform
+  displayName: Install terraform
   inputs:
     terraformVersion: '1.4.6'
 
@@ -76,24 +71,16 @@ steps:
     providerAwsRegion: us-east-2 # Required
 
 
-# - task: TerraformCLI@0
-#   displayName: 'terraform output'
-#   inputs:
-#     command: output
-#     # ensure working directory targets same directory as apply step
-#     # if not specified $(System.DefaultWorkingDirectory) will be used
-#     workingDirectory: './terraform/aws/'
-
-- script: terraform output -json > outputs.json
+- script: terraform output -json > $(System.DefaultWorkingDirectory)/outputs.json
   workingDirectory: './terraform/aws/'
   displayName: 'Save outputs'
 
 
-- task: PythonScript@0
-  displayName: 'Create kubeconfig'
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: 'python/create-kubeconfig.py'
+# - task: PythonScript@0
+#   displayName: 'Create kubeconfig'
+#   inputs:
+#     scriptSource: 'filePath'
+#     scriptPath: 'python/create-kubeconfig.py'
 
 
 # Save terraform state file

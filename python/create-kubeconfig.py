@@ -2,7 +2,7 @@ import base64
 import json
 
 # Load the JSON input from a file
-with open('../terraform/aws/outputs.json', 'r') as f:
+with open('outputs.json', 'r') as f:
     input_json = f.read()
 input_dict = json.loads(input_json)
 
