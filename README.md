@@ -130,7 +130,7 @@ These two resources will allow us to store our terraform state remotely and for 
 10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
 
 <br/>
-<p align="center"> <img width="600" src="https://i.imgur.com/UtZyCCe.png"> </p>
+<p align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 <br/>
 
 

@@ -26,10 +26,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-# variables:
-#   gitUsername: 'tferrari92'
-#   gitPassword: $(GitPassword) # Secret variable with Git credentials
-
 steps:
 - script: |
     echo Add other tasks to build, test, and deploy your project.
@@ -51,7 +47,7 @@ steps:
 
 # Terraform init
 - task: TerraformCLI@0
-  displayName: 'terraform init'
+  displayName: 'Terraform init'
   inputs:
     command: init
     workingDirectory: './terraform/aws/'
@@ -63,7 +59,7 @@ steps:
 
 # Terraform plan
 - task: TerraformCLI@0
-  displayName: 'terraform plan'
+  displayName: 'Terraform plan'
   inputs:
     command: plan
     workingDirectory: './terraform/aws/'
@@ -72,7 +68,7 @@ steps:
 
 # Terraform apply
 - task: TerraformCLI@0
-  displayName: 'terraform apply'
+  displayName: 'Terraform apply'
   inputs:
     command: apply
     workingDirectory: './terraform/aws/'
@@ -88,16 +84,17 @@ steps:
     # if not specified $(System.DefaultWorkingDirectory) will be used
     workingDirectory: './terraform/aws/'
 
-- script: terraform output -json > outputs.json
-  displayName: 'terraform output -json > outputs.json'
+- script: terraform output -raw kubeconfig > kubeconfig.yaml
+  workingDirectory: './terraform/aws/'
+  displayName: 'Save kubeconfig'
 
 
 # Save terraform state file
 - task: PublishBuildArtifacts@1
-  displayName: 'Save terraform state file'
+  displayName: 'Save kubeconfig'
   inputs:
     # PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
     PathtoPublish: '$(Pipeline.Workspace)'
-    ArtifactName: 'TerraformState'
+    ArtifactName: 'Kubeconfig'
     publishLocation: 'Container'
     # condition: always()
