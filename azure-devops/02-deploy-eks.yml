@@ -84,14 +84,14 @@ steps:
     # if not specified $(System.DefaultWorkingDirectory) will be used
     workingDirectory: './terraform/aws/'
 
-- script: terraform output -raw kubeconfig > kubeconfig.yaml
+- script: terraform output -json > outputs.json
   workingDirectory: './terraform/aws/'
-  displayName: 'Save kubeconfig'
+  displayName: 'Save outputs kubeconfig'
 
 
 # Save terraform state file
 - task: PublishBuildArtifacts@1
-  displayName: 'Save kubeconfig'
+  displayName: 'Export kubeconfig'
   inputs:
     # PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
     PathtoPublish: '$(Pipeline.Workspace)'
