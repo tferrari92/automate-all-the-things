@@ -127,6 +127,7 @@ These two resources will allow us to store our terraform state remotely and for 
 7. Select Branch and Path to the pipeline YAML file and click Continue
 8. Click on Save & Run
 9. Rename the pipeline to a more appropiate name
+10. The terraform state file will be exported as an artifact, you can find it at ... and save it for later destroy.
 
 <br/>
 
