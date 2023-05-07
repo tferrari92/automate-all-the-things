@@ -51,7 +51,7 @@ steps:
 
 # Terraform init
 - task: TerraformCLI@0
-  displayName: 'terraform init'
+  displayName: 'Terraform init'
   inputs:
     command: init
     workingDirectory: './terraform/backend/'
@@ -60,7 +60,7 @@ steps:
 
 # Terraform plan
 - task: TerraformCLI@0
-  displayName: 'terraform plan'
+  displayName: 'Terraform plan'
   inputs:
     command: plan
     workingDirectory: './terraform/backend/'
@@ -70,7 +70,7 @@ steps:
 
 # Terraform apply
 - task: TerraformCLI@0
-  displayName: 'terraform apply'
+  displayName: 'Terraform apply'
   inputs:
     command: apply
     workingDirectory: './terraform/backend/'
@@ -79,9 +79,10 @@ steps:
 
 # Save terraform state file
 - task: PublishBuildArtifacts@1
+  displayName: 'Save terraform state file'
   inputs:
     PathtoPublish: '$(Pipeline.Workspace)/terraform.tfstate'
     ArtifactName: 'MyFile'
     publishLocation: 'Container'
-    condition: always()
+    # condition: always()
 
