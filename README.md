@@ -127,7 +127,12 @@ These two resources will allow us to store our terraform state remotely and for 
 7. Select Branch and Path to the pipeline YAML file and click Continue
 8. Click on Save & Run
 9. Rename the pipeline to a more appropiate name
-10. The terraform state file will be exported as an artifact, you can find it at ... and save it for later destroy.
+10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
+
+<br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/UtZyCCe.png"> </p>
+<br/>
+
 
 <br/>
 
@@ -147,8 +152,6 @@ These two resources will allow us to store our terraform state remotely and for 
 
 ESCONDER LLAVES, Agregar tfvars a gitignore
 
-MANDAR BACKEND A BUCKET
-
 CAMBIAR KEYS DE AWS PORQ YA ESTAN EN GITHUB!!!
 
 VER LOS TRIGGERS DE DEVOPS Q SOLO MANDEN EL PPL NECESARIO  
@@ -162,8 +165,7 @@ TF BEST PRACTICES
 12 FACTOR APP
 PASAR TODO A PYTHON SCRIPT
 
-  EXPLICAR PORQ USAMOS REMOTE BACKEDN PARA TFSTATE.
-  BUSCAR COMO HACER TF DESTROY PARA EL BACKEND. HAY Q GUARDAR EL TFSATE DEL BACKEND DE ALGUNA FORMA
+EXPLICAR PORQ USAMOS REMOTE BACKEDN PARA TFSTATE.
   
 
 https://mylearn.oracle.com/ou/component/-/108432/165507

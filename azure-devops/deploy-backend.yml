@@ -82,7 +82,7 @@ steps:
   displayName: 'Save terraform state file'
   inputs:
     PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
-    ArtifactName: 'MyFile'
+    ArtifactName: 'TerraformState'
     publishLocation: 'Container'
     # condition: always()
 
