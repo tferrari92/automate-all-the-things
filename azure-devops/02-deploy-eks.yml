@@ -71,7 +71,7 @@ steps:
     providerAwsRegion: us-east-2 # Required
 
 
-- script: terraform output -json > $(System.DefaultWorkingDirectory)/pyhton/
+- script: terraform output -json > $(System.DefaultWorkingDirectory)
   workingDirectory: './terraform/aws/'
   displayName: 'Save outputs'
 
