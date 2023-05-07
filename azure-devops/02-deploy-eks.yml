@@ -76,11 +76,11 @@ steps:
   displayName: 'Save outputs'
 
 
-- task: PythonScript@0
-  displayName: 'Create kubeconfig'
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: 'python/create-kubeconfig.py'
+# - task: PythonScript@0
+#   displayName: 'Create kubeconfig'
+#   inputs:
+#     scriptSource: 'filePath'
+#     scriptPath: 'python/create-kubeconfig.py'
 
 
 # Save terraform state file
