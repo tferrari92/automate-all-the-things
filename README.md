@@ -3,7 +3,6 @@
 
 <p align="center"> <img width="460" src="https://i.imgur.com/CnDPSpV.png"> </p>
 
-<br/>
 
 # **INTRO**
 
