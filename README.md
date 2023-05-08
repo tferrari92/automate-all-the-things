@@ -6,13 +6,12 @@
 
 # **INTRO**
 
-I believe in a world where all that's required of me is to enjoy life, lay on the couch, play COD and have exitential crises.<br>
+I believe in a world where all that's required of me is to enjoy life, lay on the couch, play COD and have exitential crises.
+<br/>
+If I could, I'd automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.
 <br/>
 
-If I could, I'd automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.<br>
-<br/>
-
-But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).<br>
+But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
 <a href="https://www.youtube.com/watch?v=EzWNBmjyv7Y" target="_blank">"Fine... I'll do it myself"</a>.
 <br/>
 
