@@ -81,9 +81,9 @@ steps:
 
 - script: |
     echo "Structure of work folder of this pipeline:"
-    tree $(System.DefaultWorkingDirectory)\1 /f
+    tree $(System.DefaultWorkingDirectory)
     echo "Structure of work folder of this pipeline:"
-    tree $(Agent.WorkFolder)\1 /f
+    tree $(Agent.WorkFolder)
   displayName: 'tree'
 
 # - script: terraform output kubeconfig > $(System.DefaultWorkingDirectory)/kubeconfig2.yaml
