@@ -79,11 +79,6 @@ steps:
   workingDirectory: './terraform/aws/'
   displayName: 'Save kubeconfig'
 
-# - script: |
-#     echo "Structure of work folder of this pipeline:"
-#     tree $(System.DefaultWorkingDirectory)
-#   displayName: 'tree'
-
 # - script: terraform output kubeconfig > $(System.DefaultWorkingDirectory)/kubeconfig2.yaml
 #   workingDirectory: './terraform/aws/'
 #   displayName: 'Save outputs'
@@ -102,11 +97,16 @@ steps:
     scriptPath: 'python/format-kubeconfig.py'
 
 
+- script: |
+    echo "Structure of work folder of this pipeline:"
+    tree $(System.DefaultWorkingDirectory)
+  displayName: 'tree'
+
 # Save terraform state file
 - task: PublishBuildArtifacts@1
   displayName: 'Export kubeconfig'
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/python/kubeconfig.yaml'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/kubeconfig.yaml'
     # PathtoPublish: '$(Pipeline.Workspace)'
     ArtifactName: 'Kubeconfig'
     publishLocation: 'Container'
