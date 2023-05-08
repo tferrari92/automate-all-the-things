@@ -5,12 +5,14 @@
 
 <br/>
 
+# **INTRO**
 
 I believe in a world where all that's required of me is to enjoy life, lay on the couch, play COD and have exitential crises.<br>
 If I could, I'd automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.<br>
 But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).<br>
 Here is my attempt at making the world a better place. People in the future will look back at heros like me and enjoy their time playing video games and fighting the war against AI, in peace.
 
+### Tools we'll be using
 For each step of the process, I’ve chosen to use the best/most popular tool in its field.
 - Source Code Versioning -> GitHub
 - Cloud Infrastructure -> Amazon Web Services
