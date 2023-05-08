@@ -1,7 +1,7 @@
 import yaml
 
 # Load data from external file
-with open('kubeconfig-data', 'r') as f:
+with open('./kubeconfig-data', 'r') as f:
     data = yaml.safe_load(f)
 
 # Create kubeconfig dictionary
