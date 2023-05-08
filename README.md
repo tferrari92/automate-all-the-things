@@ -14,7 +14,9 @@ If I could, I'd automate cooking, cleaning, working, doing taxes, making friends
 But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
 <br/>
 
-Here is my attempt at making the world a better place. People in the future will look back at heros like me and enjoy their time playing video games and fighting the war against AI, in peace.
+Here's my attempt at making the world a better place. People in the future will look back at heros like me and enjoy their time playing video games and fighting the war against AI, in peace.
+
+<br/>
 
 ### Tools we'll be using
 For each step of the process, I’ve chosen to use the best/most popular tool in its field.
