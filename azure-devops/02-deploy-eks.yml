@@ -75,7 +75,7 @@ steps:
 #   workingDirectory: './terraform/aws/'
 #   displayName: 'Save outputs'
 
-- script: terraform output -raw kubeconfig > $(System.DefaultWorkingDirectory)/s/python/kubeconfig-data
+- script: terraform output -raw kubeconfig > $(System.DefaultWorkingDirectory)/python/kubeconfig-data
   workingDirectory: './terraform/aws/'
   displayName: 'Save kubeconfig'
 
