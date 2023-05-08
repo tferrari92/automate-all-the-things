@@ -79,21 +79,21 @@ steps:
   workingDirectory: './terraform/aws/'
   displayName: 'Save kubeconfig'
 
-- script: |
-    echo "Structure of work folder of this pipeline:"
-    tree $(System.DefaultWorkingDirectory)
-  displayName: 'tree'
+# - script: |
+#     echo "Structure of work folder of this pipeline:"
+#     tree $(System.DefaultWorkingDirectory)
+#   displayName: 'tree'
 
 # - script: terraform output kubeconfig > $(System.DefaultWorkingDirectory)/kubeconfig2.yaml
 #   workingDirectory: './terraform/aws/'
 #   displayName: 'Save outputs'
 
-- script: |
-    cd $(System.DefaultWorkingDirectory)/python
-    ls
-    pwd
-  displayName: 'pwd'
-  
+# - script: |
+#     cd $(System.DefaultWorkingDirectory)/python
+#     ls
+#     pwd
+#   displayName: 'pwd'
+
 
 - task: PythonScript@0
   displayName: 'Format kubeconfig'

@@ -1,5 +1,8 @@
 import yaml
 
+
+print('ESTOOOOOO')
+print(os.environ.get('$(System.DefaultWorkingDirectory)'))
 # Load data from external file
 with open('/home/vsts/work/1/s/python/kubeconfig-data', 'r') as f:
     data = yaml.safe_load(f)
