@@ -1,46 +1,44 @@
 name: deploy-eks
 
+trigger: none
+
 resources:
   repositories:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
     endpoint: tferrari92 # Name of the service connection
     name: tferrari92/automate-all-the-things
-#  - repository: MyBitbucketRepo
-#    type: bitbucket
-#    endpoint: MyBitbucketServiceConnection
-#    name: MyBitbucketOrgOrUser/MyBitbucketRepo
+  pipelines:
+  - pipeline: deploy-backend # Any arbitrary name
+    source: deploy-backend   # Name of the pipeline that needs to succeed for this pipeline to run
+    trigger:
+    branches:
+      include:
+        - main
 
-trigger:
-  paths:
-    include:
-    - azure-devops/02-deploy-eks.yml
+# trigger:
+#   paths:
+#     include:
+#     - azure-devops/02-deploy-eks.yml
 
-# Select the self-hosted agent
-# pool:
-#   name: lenovo # Agent Pool Name
-#   demands:
-#     - agent.name -equals lenovo-agent # Agent Name
-
-# Or choose this if you have free parallelism
 pool:
   vmImage: 'ubuntu-latest'
+  # Uncomment the three lines below and comment the previous line if you will use a self-hosted agent
+  # name: lenovo # Agent Pool Name
+  # demands:
+  #   - agent.name -equals lenovo-agent # Agent Name
 
 steps:
-# Install Terraform
 - task: TerraformInstaller@0
   displayName: Install terraform
   inputs:
     terraformVersion: '1.4.6'
 
-# Checkout repo
 - checkout: automate-all-the-things
 
-# Verify checkout
 - script: ls
   displayName: 'Verify checkout'
 
-# Terraform init
 - task: TerraformCLI@0
   displayName: 'Terraform init'
   inputs:
@@ -51,8 +49,6 @@ steps:
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
 
-
-# Terraform plan
 - task: TerraformCLI@0
   displayName: 'Terraform plan'
   inputs:
@@ -61,7 +57,6 @@ steps:
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # Required
 
-# Terraform apply
 - task: TerraformCLI@0
   displayName: 'Terraform apply'
   inputs:

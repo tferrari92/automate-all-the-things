@@ -113,7 +113,7 @@ HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA P
 
 # **PIPELINES**
 
-### **Terraform backend pipeline**
+### **Terraform backend deployment pipeline**
 
 Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on aws with Terraform.<br>
 These two resources will allow us to store our terraform state remotely and for state locking.
@@ -126,7 +126,7 @@ These two resources will allow us to store our terraform state remotely and for 
 6. Select Existing Azure Pipelines YAML file
 7. Select Branch and Path to the pipeline YAML file and click Continue
 8. Click on Save & Run
-9. Rename the pipeline to a more appropiate name. Click on the three-dot menu on the top-right.
+9. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
 10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
 
 <br/>
@@ -136,7 +136,7 @@ These two resources will allow us to store our terraform state remotely and for 
 
 <br/>
 
-## **EKS pipeline**
+### **EKS deployment pipeline**
 
 1. Go to Pipelines
 2. Select Pipelines on the left side menu
@@ -146,8 +146,26 @@ These two resources will allow us to store our terraform state remotely and for 
 6. Select Existing Azure Pipelines YAML file
 7. Select Branch and Path to the pipeline YAML file and click Continue
 8. Click on Save & Run
+9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
+10. The kubeconfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
+
+<br/>
+
+## **Create K8S service connection**
+These are required service connections for the pipelines we'll be creating.
+
+1. Go to Project settings on the left side menu (bottom-left corner).
+2. On the left side menu, under Pipelines, select Service connections.
+3. Click on New service connection (top-right).
+4. Select Kubernetes.
+5. Under "Authentication method" select KubeConfig.
+6. Paste the contents of the kubeconfig previously downloaded inside the box.
+7. Under Service connection name, write "k8s".
+8. Verify and save.
   
-## **ArgoCD pipeline**
+<br/>
+
+## **ArgoCD deployment pipeline**
 
 1. Go to Pipelines
 2. Select Pipelines on the left side menu
@@ -157,7 +175,11 @@ These two resources will allow us to store our terraform state remotely and for 
 6. Select Existing Azure Pipelines YAML file
 7. Select Branch and Path to the pipeline YAML file and click Continue
 8. Click on Save & Run
+9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
+10. The kubeconfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
 
+
+<br/>
 
 ESCONDER LLAVES, Agregar tfvars a gitignore
 
