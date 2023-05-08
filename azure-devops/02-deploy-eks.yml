@@ -93,6 +93,7 @@ steps:
     ls
     pwd
   displayName: 'pwd'
+  
 
 - task: PythonScript@0
   displayName: 'Format kubeconfig'
