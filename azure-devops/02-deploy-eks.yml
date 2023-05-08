@@ -88,6 +88,12 @@ steps:
 #   workingDirectory: './terraform/aws/'
 #   displayName: 'Save outputs'
 
+- script: |
+    cd $(System.DefaultWorkingDirectory)/python
+    ls
+    pwd
+  displayName: 'pwd'
+
 - task: PythonScript@0
   displayName: 'Format kubeconfig'
   inputs:
