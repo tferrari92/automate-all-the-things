@@ -3,8 +3,6 @@
 
 <p align="center"> <img src="https://i.imgur.com/s55uj2b.jpg"> </p>
 
-
-<a align="left" href="/docs/readme_es.md">Versión en Español</a>
 <a href="https://www.instagram.com/ttomasferrari/">
     <img align="right" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
 </a>
@@ -14,7 +12,9 @@
 <a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
     <img align="right" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
 </a>
-<br/>
+<p align="right">
+    <a  href="/docs/readme_es.md">Versión en Español</a>
+</p>
 
 # **INTRODUCTION**
 
