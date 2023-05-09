@@ -4,7 +4,7 @@
 <p align="center"> <img width="460" src="https://i.imgur.com/CnDPSpV.png"> </p>
 
 
-# **INTRO**
+# **INTRODUCTION**
 
 I believe in a world where all that's required of me is to enjoy life, lay on the couch, play COD and have exitential crises.
 <br/>
@@ -19,8 +19,13 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ### Tools we'll be using
-For each step of the process, I’ve chosen to use the best/most popular tool in its field.
-- Source Code Versioning -> GitHub
+For each step of the process, I’ve chosen to use the best tool in its field.<br>
+And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!! GOT IT???
+<br/>
+
+Ok, now that that's out of the way...
+
+- Code Versioning -> GitHub
 - Cloud Infrastructure -> Amazon Web Services
 - Infrastructure as Code -> Terraform
 - Containerization -> Docker
