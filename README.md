@@ -33,6 +33,10 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ### **TOOLS WE'LL BE USING**
+
+<p align="center"> <img width="460" src="https://i.imgur.com/Jd0Jve8.png"> </p>
+
+
 For each step of the process, I’ve chosen to use the best tool in its field.<br>
 And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!! GOT IT???
 <br/>
