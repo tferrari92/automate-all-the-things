@@ -18,11 +18,11 @@ Here's my attempt at making the world a better place. People in the future will 
 
 <br/>
 
-### WHAT WE'LL BE DOING
+### **WHAT WE'LL BE DOING**
 
 <br/>
 
-### TOOLS WE'LL BE USING
+### **TOOLS WE'LL BE USING**
 For each step of the process, I’ve chosen to use the best tool in its field.<br>
 And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!! GOT IT???
 <br/>
@@ -53,7 +53,7 @@ CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/
 If you don't have Free Parallelism activated on Azure DevOps, or don't have paid Azure subscriptions, you will have to run the pipeline in a self-hosted agent. 
 This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
 
-### **In Azure DevOps**
+### **IN AZURE DEVOPS**
 
 1. Navigate inside your project and open the tab “Project Settings”.
 2. Click on the “Agent pools” tab.
@@ -71,7 +71,7 @@ You need also to create a PAT (Personal Access Token) in order to be able to aut
 
 <br/>
 
-### **On your machine**
+### **ON YOUR MACHINE**
 1. Create the agent
 ```bash
 mkdir myagent && cd myagent
@@ -102,14 +102,14 @@ Before creating our pipelines we need to get a few things set up.<br>
 Sign in [Azure DevOps](https://dev.azure.com/).
 
 
-### **Install required plugins**
+### **INSTALL REQUIRED PLUGINS**
 These plugins are required for the pipelines we'll be creating.
 1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
 1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines 
 
 <br/>
 
-### **Get your AWS Keys**
+### **GET YOUR AWS KEYS**
 These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
@@ -123,7 +123,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 <br/>
 
-### **Create service connections**
+### **CREATE SERVICE CONNECTION**
 These are required service connections for the pipelines we'll be creating.
 
 1. Open your project on Azure DevOps.
@@ -146,7 +146,7 @@ HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA P
 
 # **PIPELINES**
 
-### **Terraform backend deployment pipeline**
+### **TERRAFORM BACKEND DEPLOYMENT PIPELINE**
 
 Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on aws with Terraform.<br>
 These two resources will allow us to store our terraform state remotely and for state locking.
@@ -169,7 +169,7 @@ These two resources will allow us to store our terraform state remotely and for 
 
 <br/>
 
-### **EKS deployment pipeline**
+### **EKS DEPLOYMENT PIPELINE**
 
 1. Go to Pipelines
 2. Select Pipelines on the left side menu
@@ -184,7 +184,7 @@ These two resources will allow us to store our terraform state remotely and for 
 
 <br/>
 
-## **Create K8S service connection**
+## **CREATE K8S SERVICE CONNECTION**
 These are required service connections for the pipelines we'll be creating.
 
 1. Go to Project settings on the left side menu (bottom-left corner).
@@ -198,7 +198,7 @@ These are required service connections for the pipelines we'll be creating.
   
 <br/>
 
-## **ArgoCD deployment pipeline**
+## **ARGOCD DEPLOYMENT PIPELINE**
 
 1. Go to Pipelines
 2. Select Pipelines on the left side menu
