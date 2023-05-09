@@ -3,7 +3,7 @@
 
 <p align="center"> <img width="460" src="https://i.imgur.com/CnDPSpV.png"> </p>
 
-![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=Bhard27.Bhard27)
+![Visitor Badge](https://visitor-badge.laobi.icu/badge?page_id=tferrari92.automate-all-the-things)
 # **INTRODUCTION**
 
 I believe in a world where all that's required of me is to enjoy life, lay on the couch, play COD and have exitential crises.
