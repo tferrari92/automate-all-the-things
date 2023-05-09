@@ -12,6 +12,7 @@
 <a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
   <img align="left" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
 </a>
+<br/>
 
 
 # **INTRODUCTION**
@@ -51,8 +52,9 @@ Ok, now that that's out of the way...
 - Continuous Integration -> Azure DevOps
 - Continuous Deployment -> Helm & ArgoCD
 - Scripting -> Python
+<br/>
 
-<p align="center"> <img width="700" src="https://i.imgur.com/Jd0Jve8.png"> </p>
+<p align="center"> <img width="800" src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
 
 Let's begin...
