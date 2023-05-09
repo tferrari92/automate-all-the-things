@@ -41,6 +41,29 @@ Ok, now that that's out of the way...
 Let's begin...
 
 <br/>
+
+# CATALOG
+
+-   [GitHub Stats Card](#github-stats-card)
+-   [GitHub Extra Pins](#github-extra-pins)
+-   [Top Languages Card](#top-languages-card)
+-   [Wakatime Week Stats](#wakatime-week-stats)
+-   [Themes](#themes)
+    -   [Responsive Card Theme](#responsive-card-theme)
+-   [Customization](#customization)
+    -   [Common Options](#common-options)
+    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
+    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
+    -   [Language Card Exclusive Options](#language-card-exclusive-options)
+    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
+-   [Deploy Yourself](#deploy-on-your-own)
+    -   [On Vercel](#on-vercel)
+    -   [On other platforms](#on-other-platforms)
+    -   [Keep your fork up to date](#keep-your-fork-up-to-date)
+<br/>
+
+<p align="center">Version en <a href="/docs/readme_es.md">Español</a></p>
+
 <br/>
 
 # **CREATE AZURE ACCOUNT & ORGANIZATION**
