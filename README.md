@@ -14,10 +14,6 @@
 </a>
 
 
-
-[![Linkedin Badge](https://img.shields.io/badge/-TomasFerrari-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tomas-ferrari-devops/)](https://www.linkedin.com/in/tomas-ferrari-devops/)
-[![Instagram Badge](https://img.shields.io/badge/-ttomasferrari-e4405f?style=flat-square&logo=Instagram&logoColor=white&link=https://www.instagram.com/ttomasferrari/)](https://www.instagram.com/ttomasferrari/)
-
 # **INTRODUCTION**
 
 I believe in a world where all that's required of me is to enjoy life, lay on the couch, play COD and have exitential crises.
