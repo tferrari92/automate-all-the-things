@@ -66,6 +66,8 @@ Let's begin...
 
 <br/>
 
+* * *
+
 # **CREATE AZURE ACCOUNT & ORGANIZATION**
 
 CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
