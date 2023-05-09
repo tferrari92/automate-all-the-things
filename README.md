@@ -34,7 +34,6 @@ Here's my attempt at making the world a better place. People in the future will 
 
 ### **TOOLS WE'LL BE USING**
 
-<p align="center"> <img width="460" src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
 
 For each step of the process, I’ve chosen to use the best tool in its field.<br>
@@ -52,6 +51,9 @@ Ok, now that that's out of the way...
 - Continuous Integration -> Azure DevOps
 - Continuous Deployment -> Helm & ArgoCD
 - Scripting -> Python
+
+<p align="center"> <img width="700" src="https://i.imgur.com/Jd0Jve8.png"> </p>
+
 
 Let's begin...
 
