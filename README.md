@@ -30,11 +30,11 @@ Here's my attempt at making the world a better place. People in the future will 
 
 <br/>
 
-### **WHAT WE'LL BE DOING**
+## **What we'll be doing**
 
 <br/>
 
-### **TOOLS WE'LL BE USING**
+## **Tools we'll be using**
 
 
 
@@ -62,7 +62,7 @@ Let's begin...
 
 <br/>
 
-# CATALOG
+## Index
 
 -   [GitHub Stats Card](#github-stats-card)
 -   [GitHub Extra Pins](#github-extra-pins)
