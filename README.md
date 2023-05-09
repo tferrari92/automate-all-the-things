@@ -39,7 +39,8 @@ And yeah... you might be thinking, "best" is a subjective term, right? Well... n
 
 Ok, now that that's out of the way...
 
-- Code Versioning -> GitHub
+- Code Versioning -> Git
+- Source Code Managment -> GitHub
 - Cloud Infrastructure -> Amazon Web Services
 - Infrastructure as Code -> Terraform
 - Containerization -> Docker
