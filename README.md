@@ -3,8 +3,20 @@
 
 <p align="center"> <img src="https://i.imgur.com/s55uj2b.jpg"> </p>
 
-<p align="center"><a href="https://www.instagram.com/ttomasferrari/"><img align="left" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" /></a><a href="https://twitter.com/tomasferrari"><img align="left" alt="Abhishek Naidu | Twitter" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" /></a>
-<a href="https://www.linkedin.com/in/tomas-ferrari-devops/"><img align="left" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" /></a></p>
+<div align="center">
+    <a href="https://www.instagram.com/ttomasferrari/">
+        <img align="left" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
+    </a>
+    <a href="https://twitter.com/tomasferrari">
+        <img align="left" alt="Abhishek Naidu | Twitter" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
+    </a>
+    <a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
+        <img align="left" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
+    </a>
+    <p align="center">Version en 
+        <a href="/docs/readme_es.md">Español</a>
+    </p>
+</div>
 
 <br/>
 
@@ -48,7 +60,7 @@ Ok, now that that's out of the way...
 - Scripting -> Python
 <br/>
 
-<p align="center"> <img width="900" src="https://i.imgur.com/Jd0Jve8.png"> </p>
+<p align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
 
 Let's begin...
@@ -75,7 +87,6 @@ Let's begin...
     -   [Keep your fork up to date](#keep-your-fork-up-to-date)
 <br/>
 
-<p align="center">Version en <a href="/docs/readme_es.md">Español</a></p>
 
 <br/>
 
