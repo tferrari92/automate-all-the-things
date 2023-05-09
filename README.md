@@ -3,6 +3,15 @@
 
 <p align="center"> <img width="460" src="https://i.imgur.com/CnDPSpV.png"> </p>
 
+<a href="https://www.instagram.com/ttomasferrari/">
+  <img align="left" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
+</a>
+<a href="https://twitter.com/tomasferrari">
+  <img align="left" alt="Abhishek Naidu | Twitter" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
+</a>
+<a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
+  <img align="left" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
+</a>
 [![Linkedin Badge](https://img.shields.io/badge/-TomasFerrari-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tomas-ferrari-devops/)](https://www.linkedin.com/in/tomas-ferrari-devops/)
 [![Instagram Badge](https://img.shields.io/badge/-ttomasferrari-e4405f?style=flat-square&logo=Instagram&logoColor=white&link=https://www.instagram.com/ttomasferrari/)](https://www.instagram.com/ttomasferrari/)
 
