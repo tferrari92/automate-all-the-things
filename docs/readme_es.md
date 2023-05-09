@@ -13,7 +13,7 @@
     <img align="right" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
 </a>
 <p align="right">
-    <a  href="/docs/README.md">English Version</a>
+    <a  href="/README.md">English Version</a>
 </p>
 
 # **INTRODUCCIÓN**
