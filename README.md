@@ -1,7 +1,7 @@
 
 <br/>
 
-<p align="center"> <img width="460" src="https://i.imgur.com/CnDPSpV.png"> </p>
+<p align="center"> <img  src="https://i.imgur.com/s55uj2b.jpg"> </p>
 
 <a href="https://www.instagram.com/ttomasferrari/">
   <img align="left" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
