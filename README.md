@@ -99,8 +99,6 @@ Let's begin...
 
 <br/>
 
-
-
 * * *
 
 <br/>
@@ -220,7 +218,7 @@ These are required service connections for the pipelines we'll be creating.
 
 HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA PIPELINE?????
 
-
+* * *
 
 # **PIPELINES**
 
