@@ -61,7 +61,7 @@ Here's my attempt at making the world a better place. People in the future will 
 - [Active DockerHub account](https://hub.docker.com/)
 - [Active AWS account](https://aws.amazon.com/)
 - [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
-
+<br/>
 
 ## What we'll be doing
 
@@ -102,16 +102,16 @@ Let's begin...
 * * *
 
 # **CUSTOM SETUP**
-In order to turn this whole deployment into your own thing, we need to do some initial setup.
+In order to turn this whole deployment into your own thing, we need to do some initial setup:
 1. Clone this repo
 ```bash
 git clone https://github.com/tferrari92/automate-all-the-things.git
 ```
-2. Move into the directory 
+2. Move into the directory.
 ```bash
 cd automate-all-the-things
 ```
-2. Run the initial setup script. Come back when you are done
+2. Run the initial setup script. Come back when you are done.
 ```bash
 python3 python/initial-setup.py
 ``` 
