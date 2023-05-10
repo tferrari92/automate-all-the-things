@@ -170,6 +170,9 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 ./run.sh
 ```
 
+<br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<br/>
   
 [SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
 
@@ -217,9 +220,6 @@ These are required service connections for the pipelines we'll be creating.
 
 HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA PIPELINE?????
 
-<br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
-<br/>
 
 
 # **PIPELINES**
