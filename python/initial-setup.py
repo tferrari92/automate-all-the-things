@@ -1,6 +1,7 @@
 import sys
 import time
 import os
+import json
 
 # Get the absolute path of the script
 script_path = os.path.abspath(__file__)
@@ -51,7 +52,7 @@ user_choice = prompt_with_options(message, options)
 
 # Process the user's choice
 if user_choice == 'Yes':
-    print_gradually("That's great! I appreciate your excitement!\n")
+    print_gradually("That's great!\n")
 else:
     print_gradually("WOOOOHOOOOOOOO!!!! DAMN RIGHT!!\n")
 
@@ -60,18 +61,35 @@ print_gradually("Alright, let's get the necessary details. What will be the name
 app_name = input()
 
 
-print_gradually("Great name! I'm gonna need you to get your aws key?: ")
-app_name = input()
+print_gradually("Great name! What's the name of your Azure DevOps Organization?: ")
+az_devops_org = input()
+
+print_gradually("I'm gonna need you to get your AWS Access Keys (to create them you can follow this guide: https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html):\n")
+aws_access_key = input("Access Key: ")
+aws_secret_access_key = input("Secret Access Key: ")
 
 
+
+# Create a dictionary with the variable names and their values
+data = {
+    "FIRST_NAME": first_name,
+    "APP_NAME": app_name,
+    "AZ_DEVOPS_ORG": az_devops_org,
+    "AWS_ACCESS_KEY": aws_access_key,
+    "AWS_SECRET_ACCESS_KEY": aws_secret_access_key
+}
+
+# Save the data dictionary to a JSON file
+output_file = root_dir_path + "/info.json"
+with open(output_file, "w") as file:
+    json.dump(data, file, indent=4)
 
 print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\nHAPPY AUTOMATING!!!")
 
-# # Save the variables in a new file
-output_file = root_dir_path + "/info.json"
-with open(output_file, "w") as file:
-    file.write("Full Name: " + full_name + "\n")
-    file.write("Script Path: " + script_path + "\n")
+# Save the variables in a new file
+# with open(output_file, "w") as file:
+#     file.write("Full Name: " + full_name + "\n")
+#     file.write("Script Path: " + script_path + "\n")
 
 # Print the entered name and the script's absolute path
 # print("\nYour full name is:", full_name)
