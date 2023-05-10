@@ -18,12 +18,12 @@
 
 # **INDEX**
 
--   [Introduction](#INTRODUCTION)
+-   [Introduction](#introduction)
     -   [What we'll be doing](#what-well-be-doing)
-    -   [Tools we'll be using](#*tools-well-be-using)
+    -   [Tools we'll be using](#tools-well-be-using)
     -   [Disclaimer](#disclaimer)
--   [GitHub Extra Pins](#github-extra-pins)
--   [Top Languages Card](#top-languages-card)
+-   [Create Azure Account & Organization](#CREATE-AZURE-ACCOUNT-&-ORGANIZATION)
+-   [Create a Self-Hosted Agent On Your Machine](#create-a-self-hosted-agent-on-your-machine-optional)
 -   [Wakatime Week Stats](#wakatime-week-stats)
 -   [Themes](#themes)
 -   [Customization](#customization)
@@ -103,7 +103,7 @@ Let's begin...
 
 CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
 
-# **CREATE A SELF HOSTED-AGENT ON YOUR MACHINE** (OPTIONAL)
+# **CREATE AN AZURE SELF HOSTED-AGENT** (OPTIONAL)
 ***If you have Free Parallelism or a paid Azure subscription, skip this step.***<br/>
 
 If you don't have Free Parallelism activated on Azure DevOps, or don't have paid Azure subscriptions, you will have to run the pipeline in a self-hosted agent. 
