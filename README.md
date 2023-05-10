@@ -169,7 +169,7 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 ```
 
 <br/>
-<p title="We are not the same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <br/>
   
 [SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
@@ -311,7 +311,24 @@ EL NOMBRE DEL BACKEND S3 y DYNAMODB ESTAN HARDCODEADOS EN EL BACKEND DE aws-reso
   
 
 https://mylearn.oracle.com/ou/component/-/108432/165507
-<p align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
+<br/>
+<p title="Anakin" align="center"> <img width="460" src="https://i.imgur.com/tup8Ocu.jpg"> </p>
+<br/>
+<br/>
+<p title="Scroll Of Truth" align="center"> <img width="460" src="https://i.imgur.com/yjpOvlM.jpg"> </p>
+<br/>
+<br/>
+<p title="Guy Behind Tree" align="center"> <img width="460" src="https://i.imgur.com/y3I39FA.jpg"> </p>
+<br/>
+<br/>
+<p title="Thinking About Another Woman" align="center"> <img width="460" src="https://i.imgur.com/akNhnrh.jpg"> </p>
+<br/>
+<br/>
+<p title="Wolverine & Nana" align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
+<br/>
+<br/>
+<p title="Wolverine & Nana" align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
+<br/>
 
 
 
