@@ -214,11 +214,13 @@ These are required service connections for the pipelines we'll be creating.
 7. Under Service connection name, write "aws".
 8. Save.
 
-
-
 HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA PIPELINE?????
 
+<br/>
+
 * * *
+
+<br/>
 
 # **PIPELINES**
 
