@@ -93,7 +93,7 @@ Ok, now that that's out of the way...
 ## **Disclaimer**
 
 Some things could have been further automatized but I prioritized the separation of concerns.<br>
-For example, the EKS cluster could have been deployed with ArgoCD installed in one go, but I wanted to have them separate to increase recyclabilty of and so that each module is focused on its specific task.
+For example, the EKS cluster could have been deployed with ArgoCD installed in one go, but I wanted to have them separated so that each module is focused on its specific task, increasing its recyclability.
 
 Let's begin...
 
