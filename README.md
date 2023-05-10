@@ -61,9 +61,11 @@ Here's my attempt at making the world a better place. People in the future will 
 - [Active DockerHub account](https://hub.docker.com/)
 - [Active AWS account](https://aws.amazon.com/)
 - [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
+
 <br/>
 
 ## What we'll be doing
+Fkdjfksdgnslfgk
 
 <br/>
 
@@ -100,6 +102,8 @@ Let's begin...
 
 
 * * *
+
+<br/>
 
 # **CUSTOM SETUP**
 In order to turn this whole deployment into your own thing, we need to do some initial setup:
