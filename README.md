@@ -224,7 +224,7 @@ HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA P
 
 # **PIPELINES**
 
-### **TERRAFORM BACKEND DEPLOYMENT PIPELINE**
+## Terraform Backend Deployment Pipeline
 
 Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on aws with Terraform.<br>
 These two resources will allow us to store our terraform state remotely and for state locking.
@@ -247,7 +247,7 @@ These two resources will allow us to store our terraform state remotely and for 
 
 <br/>
 
-### **EKS DEPLOYMENT PIPELINE**
+## EKS Deployment Pipeline
 
 1. Go to Pipelines
 2. Select Pipelines on the left side menu
@@ -260,9 +260,8 @@ These two resources will allow us to store our terraform state remotely and for 
 9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
 10. The kubeconfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
 
-<br/>
 
-## **CREATE K8S SERVICE CONNECTION**
+### Create K8S Service Connection
 These are required service connections for the pipelines we'll be creating.
 
 1. Go to Project settings on the left side menu (bottom-left corner).
@@ -276,7 +275,7 @@ These are required service connections for the pipelines we'll be creating.
   
 <br/>
 
-## **ARGOCD DEPLOYMENT PIPELINE**
+## ArgoCD Deployment Pipeline
 
 1. Go to Pipelines
 2. Select Pipelines on the left side menu
