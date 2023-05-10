@@ -19,6 +19,7 @@
 # **INDEX**
 
 -   [Introduction](#introduction)
+    -   [Prerequisites](#prerequisites)
     -   [What we'll be doing](#what-well-be-doing)
     -   [Tools we'll be using](#tools-well-be-using)
     -   [Disclaimer](#disclaimer)
@@ -55,17 +56,17 @@ Here's my attempt at making the world a better place. People in the future will 
 
 <br/>
 
-## **Prerequisites**
+## Prerequisites
 - DockerHub account
 - AWS Account
 - Azure DevOps accont
 
 
-## **What we'll be doing**
+## What we'll be doing
 
 <br/>
 
-## **Tools we'll be using**
+## Tools we'll be using
 
 For each step of the process, I’ve chosen to use the best tool in its field.<br>
 And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!! GOT IT???
