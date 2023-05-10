@@ -1,7 +1,7 @@
 
 <br/>
 
-<p align="center"> <img src="https://i.imgur.com/s55uj2b.jpg"> </p>
+<p title="All The Things" align="center"> <img src="https://i.imgur.com/s55uj2b.jpg"> </p>
 
 <a href="https://www.instagram.com/ttomasferrari/">
     <img align="right" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
@@ -88,7 +88,7 @@ Ok, now that that's out of the way...
 - Scripting -> Python
 <br/>
 
-<p align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
+<p title="Logos Banner" align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
 ## **Disclaimer**
 
@@ -119,7 +119,7 @@ python3 python/initial-setup.py
 ``` 
 
 <br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
+<p title="Automation Everywhere" align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
 <br/>
 
 # **CREATE AZURE ACCOUNT & ORGANIZATION**
@@ -169,7 +169,7 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
 ```
 
 <br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<p title="We are not the same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <br/>
   
 [SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
@@ -241,7 +241,7 @@ These two resources will allow us to store our terraform state remotely and for 
 10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
 
 <br/>
-<p align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
+<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 <br/>
 
 
@@ -289,7 +289,7 @@ For the next step to work, we need to create a K8S service connection with the K
 10. The kubeconfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
 
 <br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
+<p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
 <br/>
 
 ESCONDER LLAVES, Agregar tfvars a gitignore
