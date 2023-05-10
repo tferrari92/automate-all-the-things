@@ -120,6 +120,10 @@ cd automate-all-the-things
 python3 python/initial-setup.py
 ``` 
 
+<br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
+<br/>
+
 # **CREATE AZURE ACCOUNT & ORGANIZATION**
 
 CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
@@ -169,9 +173,6 @@ tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
   
 [SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
 
-<br/>
-<p align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
-<br/>
 
 # **SETUP AZURE DEVOPS**
 
