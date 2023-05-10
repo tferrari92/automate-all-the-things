@@ -4,3 +4,4 @@
 *.tfstate.backup
 
 credentials
+info.json

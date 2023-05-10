@@ -1,0 +1,2 @@
+Full Name: Tomas Ferrari
+Script Path: /home/tferrari/Desktop/automate-all-the-things/python/initial-setup.py
