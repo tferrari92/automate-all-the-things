@@ -198,8 +198,8 @@ These will be required for Azure DevOps to connect to your AWS account.
 3. Choose your IAM user name (not the check box).
 4. Open the Security credentials tab, and then choose Create access key.
 5. To see the new access key, choose Show. Your credentials resemble the following:<br>
--- Access key ID: AKIAIOSFODNN7EXAMPLE<br>
--- Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+- Access key ID: AKIAIOSFODNN7EXAMPLE<br>
+- Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 6. Copy and paste these somewhere safe.
 
 <br/>
