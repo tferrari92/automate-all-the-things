@@ -1,7 +1,7 @@
 import os
 import json
 
-# Get the absolute path of the script
+# Get the absolute path of the script & root directory
 script_path = os.path.abspath(__file__)
 root_dir_path = os.path.dirname(os.path.dirname(script_path))
 
