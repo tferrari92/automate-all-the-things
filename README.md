@@ -258,11 +258,11 @@ These two resources will allow us to store our terraform state remotely and for 
 7. Select Branch and Path to the pipeline YAML file and click Continue
 8. Click on Save & Run
 9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
-10. The kubeconfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
+10. The KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
 
 
 ### Create K8S Service Connection
-These are required service connections for the pipelines we'll be creating.
+For the next step to work, we need to create a K8S service connection with the KubeConfig we've just downloaded.
 
 1. Go to Project settings on the left side menu (bottom-left corner).
 2. On the left side menu, under Pipelines, select Service connections.
