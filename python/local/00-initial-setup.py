@@ -18,6 +18,11 @@ def print_gradually(text):
         print(char, end='', flush=True)
         time.sleep(0.04)  
 
+def print_gradually_fast(text):
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.005) 
+
 # Prompt the user for their full name character by character
 print_gradually("Please enter your full name: ")
 full_name = input()
@@ -72,7 +77,7 @@ az_devops_org = input()
 print_gradually("Ok. What's your DockerHub username?: ")
 dockerhub_username = input()
 
-print_gradually("I'm gonna need you to get your AWS Access Keys (to create them you can follow this guide: https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html):\n")
+print_gradually("I'm gonna need you to get me your AWS Access Keys:\n")
 aws_access_key = getpass.getpass("- Access Key: ")
 aws_secret_access_key = getpass.getpass("- Secret Access Key: ")
 
@@ -95,7 +100,7 @@ with open(output_file, "w") as file:
 
 print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
 
-print(" _   _    _    ____  ______   __     _   _   _ _____ ___  __  __    _  _____ ___ _   _  ____ _ _ _ \n| | | |  / \  |  _ \|  _ \ \ / /    / \ | | | |_   _/ _ \|  \/  |  / \|_   _|_ _| \ | |/ ___| | | |\n| |_| | / _ \ | |_) | |_) \ V /    / _ \| | | | | || | | | |\/| | / _ \ | |  | ||  \| | |  _| | | |\n|  _  |/ ___ \|  __/|  __/ | |    / ___ \ |_| | | || |_| | |  | |/ ___ \| |  | || |\  | |_| |_|_|_|\n|_| |_/_/   \_\_|   |_|    |_|   /_/   \_\___/  |_| \___/|_|  |_/_/   \_\_| |___|_| \_|\____(_|_|_)")
+print_gradually_fast(" _   _    _    ____  ______   __     _   _   _ _____ ___  __  __    _  _____ ___ _   _  ____ _ _ _ \n| | | |  / \  |  _ \|  _ \ \ / /    / \ | | | |_   _/ _ \|  \/  |  / \|_   _|_ _| \ | |/ ___| | | |\n| |_| | / _ \ | |_) | |_) \ V /    / _ \| | | | | || | | | |\/| | / _ \ | |  | ||  \| | |  _| | | |\n|  _  |/ ___ \|  __/|  __/ | |    / ___ \ |_| | | || |_| | |  | |/ ___ \| |  | || |\  | |_| |_|_|_|\n|_| |_/_/   \_\_|   |_|    |_|   /_/   \_\___/  |_| \___/|_|  |_/_/   \_\_| |___|_| \_|\____(_|_|_)")
 
 
 # Print the entered name and the script's absolute path

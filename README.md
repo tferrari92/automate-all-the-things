@@ -93,7 +93,7 @@ Ok, now that that's out of the way...
 ## **Disclaimer**
 
 Some things could have been further automatized but I prioritized the separation of concerns.<br>
-For example, the EKS cluster could have been deployed with ArgoCD installed in one go, but I wanted to have them separated so that each module is focused on its specific task, increasing its recyclability.
+For example, the EKS cluster could have been deployed with ArgoCD installed in one go, but I wanted to have them separated so that each module is focused on it's specific task, increasing it's recyclability.
 
 Let's begin...
 
@@ -288,7 +288,8 @@ For the next step to work, we need to create a K8S service connection with the K
 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
 10. The kubeconfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
 
-
+<br/>
+<p align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
 <br/>
 
 ESCONDER LLAVES, Agregar tfvars a gitignore

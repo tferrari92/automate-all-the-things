@@ -89,7 +89,7 @@ steps:
   displayName: 'Format kubeconfig'
   inputs:
     scriptSource: 'filePath'
-    scriptPath: 'python/format-kubeconfig.py'
+    scriptPath: 'python/azure-devops/00-format-kubeconfig.py'
 
 
 - script: |
