@@ -1,4 +1,4 @@
 apiVersion: v2
-name: nginx-chart
-description: A Helm chart for deploying an nginx website with an ingress
+name: AATT_APP_NAME
+description: A Helm chart for deploying an AATT_APP_NAME website with an ingress
 version: 0.1.0

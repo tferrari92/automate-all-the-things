@@ -16,6 +16,31 @@
     <a  href="/docs/readme_es.md">Versión en Español</a>
 </p>
 
+## Index
+
+-   [Introduction](#INTRODUCTION)
+    -   [What we'll be doing](#what-well-be-doing)
+    -   [Tools we'll be using](#*tools-well-be-using)
+    -   [Disclaimer](#disclaimer)
+-   [GitHub Extra Pins](#github-extra-pins)
+-   [Top Languages Card](#top-languages-card)
+-   [Wakatime Week Stats](#wakatime-week-stats)
+-   [Themes](#themes)
+-   [Customization](#customization)
+    -   [Common Options](#common-options)
+    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
+    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
+    -   [Language Card Exclusive Options](#language-card-exclusive-options)
+    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
+-   [Deploy Yourself](#deploy-on-your-own)
+    -   [On Vercel](#on-vercel)
+    -   [On other platforms](#on-other-platforms)
+    -   [Keep your fork up to date](#keep-your-fork-up-to-date)
+<br/>
+
+
+<br/>
+
 # **INTRODUCTION**
 
 I believe in a world where all that's required of me is to enjoy life, lay on the couch, play COD and have exitential crises.
@@ -30,13 +55,17 @@ Here's my attempt at making the world a better place. People in the future will 
 
 <br/>
 
+## **Prerequisites**
+- DockerHub account
+- AWS Account
+- Azure DevOps accont
+
+
 ## **What we'll be doing**
 
 <br/>
 
 ## **Tools we'll be using**
-
-
 
 For each step of the process, I’ve chosen to use the best tool in its field.<br>
 And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!! GOT IT???
@@ -57,33 +86,16 @@ Ok, now that that's out of the way...
 
 <p align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
+## **Disclaimer**
+
+Some things could have been further automatized but I prioritized the separation of concerns.<br>
+For example, the EKS cluster could have been deployed with ArgoCD installed in one go, but I wanted to have them separate to increase recyclabilty of and so that each module is focused on its specific task.
 
 Let's begin...
 
 <br/>
 
-## Index
 
--   [GitHub Stats Card](#github-stats-card)
--   [GitHub Extra Pins](#github-extra-pins)
--   [Top Languages Card](#top-languages-card)
--   [Wakatime Week Stats](#wakatime-week-stats)
--   [Themes](#themes)
-    -   [Responsive Card Theme](#responsive-card-theme)
--   [Customization](#customization)
-    -   [Common Options](#common-options)
-    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
-    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
-    -   [Language Card Exclusive Options](#language-card-exclusive-options)
-    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
--   [Deploy Yourself](#deploy-on-your-own)
-    -   [On Vercel](#on-vercel)
-    -   [On other platforms](#on-other-platforms)
-    -   [Keep your fork up to date](#keep-your-fork-up-to-date)
-<br/>
-
-
-<br/>
 
 * * *
 

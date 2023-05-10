@@ -1,6 +1,6 @@
 image:
-  repository: nginx
-  tag: stable
+  repository: AATT_DOCKERHUB_USERNAME/AATT_APP_NAME
+  tag: latest
 
 website:
   repository: your-website-repo
