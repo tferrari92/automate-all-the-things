@@ -2,6 +2,11 @@ import sys
 import time
 import os
 import json
+import getpass
+
+
+print('''                                                                                             \n                                                                         ▄                          \n      ╒█▄    ,¬▄█AA ▄▄▄ ¬█▄█▄ ██`▀▀█▀¬██▀▀     ▄▄  ▄    ▄      a▄N█▀▀▀█  █ █▀▀▀▀▀                   \n      █"█▄█═ █▌ █  ╒█ -█µ█▀▀█µ███  █. █&       ███▄▐▌   █         █   █▀╘█ ▐▌-                      \n      █▄███▌ █▌ ▀█ ▐█▄▄█"█  ▐▌█-▀ⁿ ▐⌐▐█▄;      ▀ ▀┐▐███,███▀"     █   ▀    ▐█A⌐                     \n      █⌐ └█▀██   ▀ⁿ  ¬¬     `▀└        `     ▀▀▀▀▀▀└`└└└└└`▀▀▀                                      \n                 ▄▄▄▄∩▌ j▌ ╓█  ╒▄,  ▄ ╒█    ▄Æ▄  ╒r                                 ,╓              \n              '▀▀█    █44█ ]█╖ ▐▌▀█ █ ▐▌ ▄▄ ▀▀R▄ █                    ▀█        ╓@╢▒╜               \n                 █    █  ▀  █▒▒▒▌  ▀█ ╘█,█▀▄▄▄▄▀ ▀   ╖               , ▌    ╓╥╢▒▒▒╢`                \n                 '           ╢▒▒▒▒@╖    ¬¬ ▀╢░   e  ╢▒           ╓╢╢╜` ▌,╥╢▒▒▒▒▒▒╜                  \n                             ╙▒▒▒▒▒▒╢╗╖    ║▒▒╖    ║▒▒▒       ╓╢╢▒▒╜,╓▐▒▒▒▒▒▒▒▒╢                    \n                              ║▒▒▒▒▒▒▒▒╢@╖ ║▒▒▒╢╖ j▒▒▒╢    ╓@╢▒▒▒▒▒╢▒▒█▒▒▒▒▒▒▒╜                     \n                               ╢▒▒▒▒▒▒▒▒▒▒╢╢▒▒▒▒▒▒▒▒▒▒▒░╓╢╢▒▒▒▒▒▒▒▒▒▒▒▌▒▒▒▒▒╣                       \n                  .╓           ╙▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▀⌠!░░░░▀█▒▒▒▒▒█▀'╙Ñ▒▒▒▒▌▒▒▒▒╜                        \n                    ╙╢╢╗╖       ╙▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒W▄W╧²"╙▀'¬¬▐▌  ` ▒▒▒▒▒▒▒▒╜                         \n                     ▄▄▓@▒▒p╖    ╙▒▒▒▒▒▒▒▒▒▒▒▒▒╩█,     ▄∞M══▄▀▀∞²└▀▒▒▐▒▒▒░                          \n                  ,█╢╣▓▓▓╢█▒▒█▒@╖╖║▒▒▒▒▒▒▒▒▒▒▌⌐  ▐,≈M▀▄▄██████     ╙▒█▒▒░                           \n                 ╒╣▓▓▓▓▀▀█▒╢╢╢▒▌▒▒▒▒▒▒▒▒▒▒▒▒▒▒╗▄∞█▀▄███████████     █▌▒▒                 ,,╓╥╢╜     \n           ▄▄▄▄▄,██▀██     █▒╢╢█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█ "▀████████████     █▒▒╓╖╥@╢╢╢╜     ,╓@╢╢▒║╜`       \n        ▄█▒╢╣╣█▀▒▒▒▒▒█▄, ╙▒▒████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄   ▀██████████▌    ▓▒▒▒▒▒▒╢`  ,╓╥╢╢▒▒▒╢╜`          \n       ▐▒╣╣╢▓╩▓▀▄▒▒▒▒▒█▀▒▒▒╢╢▒█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█    ████████▀L   █╢█▒▒▒╢▒╓╥╢╢▒▒▒▒▒╢╜              \n       ██▄██    ▐▒▒▄▒▄█▒╢╢╢▒█▀╙╢▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█   ██▀███▀▄▀   █╢╢╢▌▒▒▒▒▒▒▒▒▒▒╢╜                 \n       ▌▒▒╢█    ▐▒▒▒██▓▓█░▒╖╥@@╢▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█▄   "▀▀└`    █▒║╢╢▓▒▒▒▒▒▒▒▒╨`                   \n       ▀▒╢╢╢▒█▓▒▒▒▒▒█╙▀▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█╦▄▄▄▄▄▄▄@▓▒╢╢╢╢╢╢█▒▒▒▒▒╜`                     \n        └▀╣▒▄█▒▒▒▒█▀╖╖╓,▀▓▓█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒╢╢║╢║║╢╢╢╢╢╢╢╢╢╢╫▒▒▒▒╢╢╢╢╢╢╢╢╢╢╢@@@╗╥╖╓,     \n            -└▀▀╙▒▒▒▒▒▒▒▒▒▀▓▓█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒╢╢╢╢╢╢╢╢╢╢╢╢╢╢╢╢█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒╢Ñ    \n                 └╢▒▒▒▒▒▒▒▒▒█▓██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█╣╢╢╢╢╢╢╢╢╢╢╢╢╢╢╢╫▒▒▒▒▒▒▒▒▒▒▒▒▒▒╢╜╜`      \n''')
+
 
 # Get the absolute path of the script
 script_path = os.path.abspath(__file__)
@@ -11,7 +16,7 @@ root_dir_path = os.path.dirname(os.path.dirname(script_path))
 def print_gradually(text):
     for char in text:
         print(char, end='', flush=True)
-        time.sleep(0.05)  
+        time.sleep(0.04)  
 
 # Prompt the user for their full name character by character
 print_gradually("Please enter your full name: ")
@@ -65,8 +70,8 @@ print_gradually("Great name! What's the name of your Azure DevOps Organization?:
 az_devops_org = input()
 
 print_gradually("I'm gonna need you to get your AWS Access Keys (to create them you can follow this guide: https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html):\n")
-aws_access_key = input("Access Key: ")
-aws_secret_access_key = input("Secret Access Key: ")
+aws_access_key = getpass.getpass("- Access Key: ")
+aws_secret_access_key = getpass.getpass("- Secret Access Key: ")
 
 
 
@@ -84,8 +89,9 @@ output_file = root_dir_path + "/info.json"
 with open(output_file, "w") as file:
     json.dump(data, file, indent=4)
 
-print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\nHAPPY AUTOMATING!!!")
+print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
 
+print(" _   _    _    ____  ______   __     _   _   _ _____ ___  __  __    _  _____ ___ _   _  ____ _ _ _ \n| | | |  / \  |  _ \|  _ \ \ / /    / \ | | | |_   _/ _ \|  \/  |  / \|_   _|_ _| \ | |/ ___| | | |\n| |_| | / _ \ | |_) | |_) \ V /    / _ \| | | | | || | | | |\/| | / _ \ | |  | ||  \| | |  _| | | |\n|  _  |/ ___ \|  __/|  __/ | |    / ___ \ |_| | | || |_| | |  | |/ ___ \| |  | || |\  | |_| |_|_|_|\n|_| |_/_/   \_\_|   |_|    |_|   /_/   \_\___/  |_| \___/|_|  |_/_/   \_\_| |___|_| \_|\____(_|_|_)")
 # Save the variables in a new file
 # with open(output_file, "w") as file:
 #     file.write("Full Name: " + full_name + "\n")
