@@ -57,6 +57,7 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## Prerequisites
+- Python3 installed
 - DockerHub account
 - AWS Account
 - Azure DevOps accont
@@ -110,6 +111,10 @@ git clone https://github.com/tferrari92/automate-all-the-things.git
 ```bash
 cd automate-all-the-things
 ```
+2. Run the initial setup script. Come back when you are done
+```bash
+python3 python/initial-setup.py
+``` 
 
 # **CREATE AZURE ACCOUNT & ORGANIZATION**
 
