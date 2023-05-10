@@ -16,7 +16,7 @@
     <a  href="/docs/readme_es.md">Versión en Español</a>
 </p>
 
-## Index
+# **INDEX**
 
 -   [Introduction](#INTRODUCTION)
     -   [What we'll be doing](#what-well-be-doing)
