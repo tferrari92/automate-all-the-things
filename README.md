@@ -109,7 +109,7 @@ CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/
 If you don't have Free Parallelism activated on Azure DevOps, or don't have paid Azure subscriptions, you will have to run the pipeline in a self-hosted agent. 
 This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
 
-### **IN AZURE DEVOPS**
+## In Azure DevOps
 
 1. Navigate inside your project and open the tab “Project Settings”.
 2. Click on the “Agent pools” tab.
@@ -127,7 +127,7 @@ You need also to create a PAT (Personal Access Token) in order to be able to aut
 
 <br/>
 
-### **ON YOUR MACHINE**
+## On Your Machine
 1. Create the agent
 ```bash
 mkdir myagent && cd myagent
@@ -158,14 +158,14 @@ Before creating our pipelines we need to get a few things set up.<br>
 Sign in [Azure DevOps](https://dev.azure.com/).
 
 
-### **INSTALL REQUIRED PLUGINS**
+## Install Required Plugins
 These plugins are required for the pipelines we'll be creating.
 1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
 1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines 
 
 <br/>
 
-### **GET YOUR AWS KEYS**
+## Get Your AWS Keys
 These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
@@ -179,7 +179,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 <br/>
 
-### **CREATE SERVICE CONNECTION**
+## Create AWS Service Connection
 These are required service connections for the pipelines we'll be creating.
 
 1. Open your project on Azure DevOps.
