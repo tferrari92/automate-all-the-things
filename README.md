@@ -100,6 +100,17 @@ Let's begin...
 
 * * *
 
+# **CUSTOM SETUP**
+In order to turn this whole deployment into your own thing, we need to do some initial setup.
+1. Clone this repo
+```bash
+git clone https://github.com/tferrari92/automate-all-the-things.git
+```
+2. Move into the directory 
+```bash
+cd automate-all-the-things
+```
+
 # **CREATE AZURE ACCOUNT & ORGANIZATION**
 
 CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
