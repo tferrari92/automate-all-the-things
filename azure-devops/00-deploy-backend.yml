@@ -10,11 +10,11 @@ resources:
     name: tferrari92/automate-all-the-things
 
 pool:
-  # vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest'
   # Uncomment the three lines below and comment the previous line if you will use a self-hosted agent
-  name: lenovo # Agent Pool Name
-  demands:
-    - agent.name -equals lenovo-agent # Agent Name
+  # name: lenovo # Agent Pool Name
+  # demands:
+  #   - agent.name -equals lenovo-agent # Agent Name
 
 steps:
 - task: TerraformInstaller@0
