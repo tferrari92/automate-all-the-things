@@ -33,7 +33,7 @@ steps:
     command: init
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required
+    providerAwsRegion: AATT_AWS_REGION # Required
 
 - task: TerraformCLI@0
   displayName: 'Terraform plan'
@@ -41,7 +41,7 @@ steps:
     command: plan
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required
+    providerAwsRegion: AATT_AWS_REGION # Required
 
 - task: TerraformCLI@0
   displayName: 'Terraform apply'
@@ -49,7 +49,7 @@ steps:
     command: apply
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required
+    providerAwsRegion: AATT_AWS_REGION # Required
 
 - task: PublishBuildArtifacts@1
   displayName: 'Save terraform state file'
