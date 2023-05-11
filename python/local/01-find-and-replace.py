@@ -3,7 +3,7 @@ import json
 
 # Get the absolute path of the script & root directory
 script_path = os.path.abspath(__file__)
-root_dir_path = os.path.dirname(os.path.dirname(script_path))
+root_dir_path = os.path.dirname(os.path.dirname(os.path.dirname(script_path)))
 
 def replace_keys_in_file(file_path, replacements):
     with open(file_path, 'r') as file:
