@@ -105,26 +105,26 @@ Let's begin...
 
 # **LOCAL CUSTOM SETUP**
 In order to turn this whole deployment into your own thing, we need to do some initial setup:
-1. Fork this repo. COMPLETSAR ESTOO UNA VEZ ESTE PUBLICO
-
-1. Clone this repo
+1. Fork this repo.
+1. Clone the repo from your fork:
 ```bash
 git clone https://github.com/<your-username>/automate-all-the-things.git
 ```
-2. Move into the directory.
+2. Move into the directory:
 ```bash
 cd automate-all-the-things
 ```
-2. Run the initial setup script. Come back when you are done.
+2. Run the initial setup script. Come back when you are done:
 ```bash
 python3 python/local/00-initial-setup.py
 ``` 
-4. Hope you enjoyed the welcome script! You can proceed with the Azure DevOps setup.
-
-<!-- 4. Hope you enjoyed the welcome script! Now... open your info.json and double-check each value. You can modify the values if neccesary, if not then run the next script:
+4. Hope you enjoyed the welcome script! Now push the customized repo to GitHub:
 ```bash
-python3 python/local/01-find-and-replace.py
-```  -->
+git add .
+git commit -m "customized repo"
+git push
+```
+5. Awesome! You can now proceed with the Azure DevOps setup.
 
 <br/>
 <p title="Automation Everywhere" align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>

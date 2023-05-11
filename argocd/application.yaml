@@ -13,7 +13,7 @@ spec:
       valueFiles:
         - ../values.yaml
     path: helm/my-app/Chart
-    repoURL: https://github.com/tferrari92/automate-all-the-things.git
+    repoURL: https://github.com/AATT_GITHUB_USERNAME/automate-all-the-things.git
   syncPolicy:
     automated:
       prune: true
