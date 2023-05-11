@@ -1,18 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: automation-meme-web
+  name: AATT_APP_NAME-argocd-application
   namespace: argocd
 spec:
   destination:
-    namespace: automation-meme-web
+    namespace: AATT_APP_NAME
     server: https://kubernetes.default.svc
   project: default
   source:
     helm:
       valueFiles:
         - ../values.yaml
-    path: helm-charts/automation-meme-web/Chart
+    path: helm/my-app/Chart
     repoURL: https://github.com/tferrari92/automate-all-the-things.git
   syncPolicy:
     automated:

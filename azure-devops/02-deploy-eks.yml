@@ -70,6 +70,14 @@ steps:
 #   workingDirectory: './terraform/aws/'
 #   displayName: 'Save outputs'
 
+- script: terraform output kubeconfig
+  workingDirectory: './terraform/aws/'
+  displayName: 'BORRAR'
+
+- script: terraform output -json kubeconfig
+  workingDirectory: './terraform/aws/'
+  displayName: 'BORRAR 2' 
+
 - script: terraform output -raw kubeconfig > $(System.DefaultWorkingDirectory)/python/kubeconfig-data
   workingDirectory: './terraform/aws/'
   displayName: 'Save kubeconfig'

@@ -85,7 +85,7 @@ aws_secret_access_key = getpass.getpass("- Secret Access Key: ")
 
 # Create a dictionary with the variable names and their values
 data = {
-    "AATT_FIRST_NAME": first_name,
+    "AATT_FULL_NAME": full_name,
     "AATT_APP_NAME": app_name,
     "AATT_AZ_DEVOPS_ORG": az_devops_org,
     "AATT_DOCKERHUB_USERNAME": dockerhub_username,

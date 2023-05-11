@@ -42,8 +42,8 @@ variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
   default = {
-    "Project"     = "AutomateAllTheThings"
+    "Project"     = "AATT_APP_NAME"
     "Environment" = "Development"
-    "Owner"       = "Tomas Ferrari"
+    "Owner"       = "AATT_FULL_NAME"
   }
 }

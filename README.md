@@ -72,7 +72,7 @@ Fkdjfksdgnslfgk
 ## Tools we'll be using
 
 For each step of the process, I’ve chosen to use the best tool in its field.<br>
-And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!! GOT IT???
+And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!!
 <br/>
 
 Ok, now that that's out of the way...
