@@ -117,6 +117,10 @@ cd automate-all-the-things
 ```bash
 python3 python/local/00-initial-setup.py
 ``` 
+4. Hope you enjoyed the welcome script! Now... open your info.json and double-check each value. You can modify the values if neccesary, if not then run the next script:
+```bash
+python3 python/local/01-find-and-replace.py
+``` 
 
 <br/>
 <p title="Automation Everywhere" align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>

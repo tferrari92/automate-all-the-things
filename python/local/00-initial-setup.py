@@ -1,7 +1,7 @@
-import sys
+# import sys
 import time
 import os
-import json
+# import json
 import getpass
 
 
@@ -12,7 +12,7 @@ print('''                                                                       
 script_path = os.path.abspath(__file__)
 root_dir_path = os.path.dirname(os.path.dirname(os.path.dirname(script_path)))
 
-print(root_dir_path)
+# print(root_dir_path)
 
 # Function to print text gradually
 def print_gradually(text):
@@ -96,15 +96,58 @@ data = {
 }
 
 # Save the data dictionary to a JSON file
-output_file = root_dir_path + "/info.json"
-with open(output_file, "w") as file:
-    json.dump(data, file, indent=4)
+# output_file = root_dir_path + "/info.json"
+# with open(output_file, "w") as file:
+#     json.dump(data, file, indent=4)
+
+def replace_keys_in_file(file_path, replacements):
+    with open(file_path, 'r') as file:
+        content = file.read()
+    
+    for key, value in replacements.items():
+        content = content.replace(key, value)
+    
+    with open(file_path, 'w') as file:
+        file.write(content)
+
+def search_and_replace(directory, replacements):
+    for root, _, files in os.walk(directory):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+            if file_name in ['application.yaml',
+                             'values.yaml',
+                             'terraform.tfvars']:
+                replace_keys_in_file(file_path, replacements)
 
 
-print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
-# print_gradually("That's it! All necessary files were updated with the  info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
+def main():
+    # Read the JSON file
+    # with open('info.json', 'r') as json_file:
+    #     data = json.load(json_file)
 
-print_gradually_fast(" _   _    _    ____  ______   __     _   _   _ _____ ___  __  __    _  _____ ___ _   _  ____ _ _ _ \n| | | |  / \  |  _ \|  _ \ \ / /    / \ | | | |_   _/ _ \|  \/  |  / \|_   _|_ _| \ | |/ ___| | | |\n| |_| | / _ \ | |_) | |_) \ V /    / _ \| | | | | || | | | |\/| | / _ \ | |  | ||  \| | |  _| | | |\n|  _  |/ ___ \|  __/|  __/ | |    / ___ \ |_| | | || |_| | |  | |/ ___ \| |  | || |\  | |_| |_|_|_|\n|_| |_/_/   \_\_|   |_|    |_|   /_/   \_\___/  |_| \___/|_|  |_/_/   \_\_| |___|_| \_|\____(_|_|_)")
+    # Extract the replacements
+    replacements = {key: str(value) for key, value in data.items()}
+
+    # Specify the directory to search
+    directory = root_dir_path  
+
+    # Search and replace keys in files
+    search_and_replace(directory, replacements)
+
+    print('Replacement completed successfully!')
+
+
+main()
+
+
+print_gradually("That's it! All necessary files were updated with the info you provided.\nYou can go back to the README and carry on with the guide.\n\n")
+# print_gradually("That's it! All necessary files were updated with the info you provided. The info has also been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
+# print_gradually("That's it! The info you provided has been saved in an 'info.json' file on the repo root directory and all necessary files have been updated.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nYou can go back to the README on the repo and carry on with the guide.\n\n")
+# print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nYou can go back to the README on the repo and carry on with the guide.\n\n")
+# print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
+# print_gradually("That's it! The info you provided has been saved in an 'info.json' file on the repo root directory and all necessary files have been updated.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
+
+print_gradually_fast(" _   _    _    ____  ______   __     _   _   _ _____ ___  __  __    _  _____ ___ _   _  ____ _ _ _ \n| | | |  / \  |  _ \|  _ \ \ / /    / \ | | | |_   _/ _ \|  \/  |  / \|_   _|_ _| \ | |/ ___| | | |\n| |_| | / _ \ | |_) | |_) \ V /    / _ \| | | | | || | | | |\/| | / _ \ | |  | ||  \| | |  _| | | |\n|  _  |/ ___ \|  __/|  __/ | |    / ___ \ |_| | | || |_| | |  | |/ ___ \| |  | || |\  | |_| |_|_|_|\n|_| |_/_/   \_\_|   |_|    |_|   /_/   \_\___/  |_| \___/|_|  |_/_/   \_\_| |___|_| \_|\____(_|_|_)\n\n")
 
 
 # Print the entered name and the script's absolute path
