@@ -219,11 +219,13 @@ Storing it remotely means that everyone on the team can access the same state fi
 5. Give access to repo if it's the first time connecting to GitHub. Else select the repository.
 6. Select Existing Azure Pipelines YAML file.
 7. Under Branch select "main" and under Path select "/azure-devops/00-deploy-backend.yml". Click Continue.
-8. (OPTIONAL) If you DON'T have a hosted parallelism, you'll need to go to the repo and modify the file azure-devops
-/00-deploy-backend.yml. You have to comment It should look like this:
+8. If you DON'T have a hosted parallelism, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). To do this, you'll need to go to the repo and modify the file azure-devops
+/00-deploy-backend.yml file.<br>
+Under "pool" you need to edit it so that it looks like this:
 <br/>
 <p title="Guide" align="center"> <img width="600" src="https://i.imgur.com/D6YTglh.png"> </p>
 <br/>
+
 8. Click on Save & Run.
 9. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
 10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
