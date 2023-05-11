@@ -23,9 +23,9 @@
     -   [What we'll be doing](#what-well-be-doing)
     -   [Tools we'll be using](#tools-well-be-using)
     -   [Disclaimer](#disclaimer)
+-   [Custom Setup](#custom-setup)
 -   [Create Azure Account & Organization](#CREATE-AZURE-ACCOUNT-&-ORGANIZATION)
 -   [Create a Self-Hosted Agent On Your Machine](#create-a-self-hosted-agent-on-your-machine-optional)
--   [Wakatime Week Stats](#wakatime-week-stats)
 -   [Themes](#themes)
 -   [Customization](#customization)
     -   [Common Options](#common-options)
@@ -57,7 +57,7 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## Prerequisites
-- [Python3 installed](https://www.python.org/downloads/)
+- [Python3 installed on your machine](https://www.python.org/downloads/)
 - [Active DockerHub account](https://hub.docker.com/)
 - [Active AWS account](https://aws.amazon.com/)
 - [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
