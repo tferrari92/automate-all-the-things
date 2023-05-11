@@ -10,7 +10,7 @@ print('''                                                                       
 
 # Get the absolute path of the script
 script_path = os.path.abspath(__file__)
-root_dir_path = os.path.dirname(os.path.dirname(script_path))
+root_dir_path = os.path.dirname(os.path.dirname(os.path.dirname(script_path)))
 
 # Function to print text gradually
 def print_gradually(text):
