@@ -108,7 +108,7 @@ def replace_keys_in_directory(directory, data):
     for root, dirs, files in os.walk(directory):
         for filename in files:
             file_path = os.path.join(root, filename)
-            with fileinput.FileInput(file_path, inplace=True) as file:
+            with fileinput.FileInput(file_path, inplace=True, openhook=fileinput.hook_encoded("utf-8-sig")) as file:
                 for line in file:
                     for key, value in data.items():
                         line = line.replace(key, value)
