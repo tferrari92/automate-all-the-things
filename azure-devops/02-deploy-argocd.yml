@@ -6,8 +6,8 @@ resources:
   repositories:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
-    endpoint: tferrari92 # Name of the service connection
-    name: tferrari92/automate-all-the-things
+    endpoint: github # Name of the service connection
+    name: AATT_GITHUB_USERNAME/automate-all-the-things
   pipelines:
   - pipeline: deploy-eks # any arbitrary name
     source: deploy-eks   # name of the pipeline shown on azure UI portal
@@ -22,11 +22,11 @@ resources:
 #     - azure-devops/03-deploy-argocd.yml
 
 pool:
-  vmImage: 'ubuntu-latest'
-  # Uncomment the three lines below and comment the previous line if you will use a self-hosted agent
-  # name: lenovo # Agent Pool Name
+  vmImage: 'ubuntu-latest' 
+  # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
+  # name: <agent-pool-name> # Insert here the name of the agent pool you created
   # demands:
-  #   - agent.name -equals lenovo-agent # Agent Name
+  #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
 
 steps:
 - task: HelmInstaller@0
