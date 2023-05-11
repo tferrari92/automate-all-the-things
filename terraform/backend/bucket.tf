@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "terraform_state" {
-    bucket = "AATT_APP_NAME-tf-state-bucket"
+    bucket = "${var.project}-tf-state-bucket"
     force_destroy = true
     versioning {
         enabled = true
