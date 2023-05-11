@@ -219,8 +219,7 @@ Storing it remotely means that everyone on the team can access the same state fi
 5. Give access to repo if it's the first time connecting to GitHub. Else select the repository.
 6. Select Existing Azure Pipelines YAML file.
 7. Under Branch select "main" and under Path select "/azure-devops/00-deploy-backend.yml". Click Continue.
-8. If you DON'T have a hosted parallelism, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the file azure-devops
-/00-deploy-backend.yml file.<br>
+8. If you DON'T have a hosted parallelism, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the file azure-devops/00-deploy-backend.yml file.<br>
 Under "pool" you need to edit it so that it looks like this:
 ```yaml
 pool:
