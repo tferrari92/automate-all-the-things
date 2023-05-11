@@ -115,7 +115,7 @@ cd automate-all-the-things
 ```
 2. Run the initial setup script. Come back when you are done.
 ```bash
-python3 python/local/01-initial-setup.py
+python3 python/local/00-initial-setup.py
 ``` 
 
 <br/>
