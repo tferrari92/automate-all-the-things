@@ -102,44 +102,20 @@ with open(output_file, "w") as file:
 
 
 
-def replace_keys_in_file(file_path, replacements):
-    with open(file_path, 'r') as file:
-        content = file.read()
-    
-    for key, value in replacements.items():
-        content = content.replace(key, value)
-    
-    with open(file_path, 'w') as file:
-        file.write(content)
+import fileinput
 
+def replace_keys_in_directory(directory, data):
+    for root, dirs, files in os.walk(directory):
+        for filename in files:
+            file_path = os.path.join(root, filename)
+            with fileinput.FileInput(file_path, inplace=True) as file:
+                for line in file:
+                    for key, value in data.items():
+                        line = line.replace(key, value)
+                    print(line, end='')
 
-def search_and_replace(directory, replacements):
-    for root, _, files in os.walk(directory):
-        for file_name in files:
-            if file_name == 'info.json':
-                continue  # Skip processing info.json file
-            file_path = os.path.join(root, file_name)
-            replace_keys_in_file(file_path, replacements)
-
-
-def main():
-    # Read the JSON file
-    with open('info.json', 'r') as json_file:
-        data = json.load(json_file)
-
-    # Extract the replacements
-    replacements = {key: str(value) for key, value in data.items()}
-
-    # Specify the directory to search
-    directory = root_dir_path  
-
-    # Search and replace keys in files
-    search_and_replace(directory, replacements)
-
-    print('Replacement completed successfully!')
-
-
-main()
+# Usage example
+replace_keys_in_directory(root_dir_path, data)
 
 print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
 
