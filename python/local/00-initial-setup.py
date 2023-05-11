@@ -101,23 +101,8 @@ with open(output_file, "w") as file:
     json.dump(data, file, indent=4)
 
 
-
-import fileinput
-
-def replace_keys_in_directory(directory, data):
-    for root, dirs, files in os.walk(directory):
-        for filename in files:
-            file_path = os.path.join(root, filename)
-            with fileinput.FileInput(file_path, inplace=True, openhook=fileinput.hook_encoded("utf-8-sig")) as file:
-                for line in file:
-                    for key, value in data.items():
-                        line = line.replace(key, value)
-                    print(line, end='')
-
-# Usage example
-replace_keys_in_directory(root_dir_path, data)
-
 print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
+# print_gradually("That's it! All necessary files were updated with the  info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
 
 print_gradually_fast(" _   _    _    ____  ______   __     _   _   _ _____ ___  __  __    _  _____ ___ _   _  ____ _ _ _ \n| | | |  / \  |  _ \|  _ \ \ / /    / \ | | | |_   _/ _ \|  \/  |  / \|_   _|_ _| \ | |/ ___| | | |\n| |_| | / _ \ | |_) | |_) \ V /    / _ \| | | | | || | | | |\/| | / _ \ | |  | ||  \| | |  _| | | |\n|  _  |/ ___ \|  __/|  __/ | |    / ___ \ |_| | | || |_| | |  | |/ ___ \| |  | || |\  | |_| |_|_|_|\n|_| |_/_/   \_\_|   |_|    |_|   /_/   \_\___/  |_| \___/|_|  |_/_/   \_\_| |___|_| \_|\____(_|_|_)")
 

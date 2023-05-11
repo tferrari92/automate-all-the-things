@@ -30,8 +30,8 @@ def search_and_replace(directory, replacements):
             file_path = os.path.join(root, file_name)
             if file_name in ['argocd/application.yaml',
                              'helm/my-app/values.yaml',
-                             'terraform/aws/variables.tf',
-                             'terraform/backend/variables.tf']:
+                             'terraform/aws/terraform.tfvars',
+                             'terraform/backend/terraform.tfvars']:
                 replace_keys_in_file(file_path, replacements)
 
 
