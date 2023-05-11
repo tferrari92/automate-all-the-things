@@ -78,7 +78,7 @@ az_devops_org = input()
 print_gradually("Nice! Sounds professional! What's your GitHub username?: ")
 github_username = input()
 
-print_gradually("In what AWS region will you be deploying your resources? (e.g. us-east-2): ")
+print_gradually("In what AWS region will you be deploying your resources? (e.g. 'us-east-2'): ")
 aws_region = input()
 
 # print_gradually("Ok. What's your DockerHub username?: ")
@@ -97,9 +97,9 @@ data = {
     "AATT_AZ_DEVOPS_ORG": az_devops_org,
     "AATT_GITHUB_USERNAME": github_username,
     "AATT_AWS_REGION": aws_region,
-    "AATT_DOCKERHUB_USERNAME": dockerhub_username,
-    "AATT_AWS_ACCESS_KEY": aws_access_key,
-    "AATT_AWS_SECRET_ACCESS_KEY": aws_secret_access_key
+    # "AATT_DOCKERHUB_USERNAME": dockerhub_username,
+    # "AATT_AWS_ACCESS_KEY": aws_access_key,
+    # "AATT_AWS_SECRET_ACCESS_KEY": aws_secret_access_key
 }
 
 # Save the data dictionary to a JSON file
