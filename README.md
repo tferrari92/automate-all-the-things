@@ -103,11 +103,13 @@ Let's begin...
 
 <br/>
 
-# **CUSTOM SETUP**
+# **LOCAL CUSTOM SETUP**
 In order to turn this whole deployment into your own thing, we need to do some initial setup:
+1. Fork this repo. COMPLETSAR ESTOO UNA VEZ ESTE PUBLICO
+
 1. Clone this repo
 ```bash
-git clone https://github.com/tferrari92/automate-all-the-things.git
+git clone https://github.com/<your-username>/automate-all-the-things.git
 ```
 2. Move into the directory.
 ```bash
@@ -117,76 +119,31 @@ cd automate-all-the-things
 ```bash
 python3 python/local/00-initial-setup.py
 ``` 
-4. Hope you enjoyed the welcome script! Now... open your info.json and double-check each value. You can modify the values if neccesary, if not then run the next script:
+4. Hope you enjoyed the welcome script! You can proceed with the Azure DevOps setup.
+
+<!-- 4. Hope you enjoyed the welcome script! Now... open your info.json and double-check each value. You can modify the values if neccesary, if not then run the next script:
 ```bash
 python3 python/local/01-find-and-replace.py
-``` 
+```  -->
 
 <br/>
 <p title="Automation Everywhere" align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
 <br/>
 
-# **CREATE AZURE ACCOUNT & ORGANIZATION**
+# **AZURE DEVOPS SETUP**
 
-CREAR ORGANIZACION DE 0!!!!!!!!!!!!!!!!!https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?view=azure-devops
+Before creating our pipelines we need to get a few things set up:<br>
 
-# **CREATE AN AZURE SELF HOSTED-AGENT** (OPTIONAL)
-***If you have Free Parallelism or a paid Azure subscription, skip this step.***<br/>
-
-If you don't have Free Parallelism activated on Azure DevOps, or don't have paid Azure subscriptions, you will have to run the pipeline in a self-hosted agent. 
-This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
-
-## In Azure DevOps
-
-1. Navigate inside your project and open the tab “Project Settings”.
-2. Click on the “Agent pools” tab.
-3. Add pool.
-4. Select “Self-hosted”, give a name and create it.
-5. Navigate into the new Agent Pool and click “New agent”.
-6. Select “Linux” and copy the “Download the agent” link.
+## Create project
+1. Sign in [Azure DevOps](https://dev.azure.com/).
+2. Go to "New project" on the top-right.
+3. Write the name for your project and under "Visibility" select "Private".
+4. Click "Create".
 
 <br/>
-
-You need also to create a PAT (Personal Access Token) in order to be able to authenticate the VM. To do so:
-1. In the Azure DevOps portal, click on the “User settings” (the icon in the top right corner).
-2. Select “Personal Access Token”.
-3. Create a new token with the Full access” permission. Copy the value of the token, it will be needed in the next step.
-
-<br/>
-
-## On Your Machine
-1. Create the agent
-```bash
-mkdir myagent && cd myagent
-tar zxvf ~/Downloads/vsts-agent-linux-x64-3.220.0.tar.gz
-```
-2. Configure the agent
-```bash
-./config.sh
-```
-3. It will prompt you asking the DevOps Server URL, that is: https://dev.azure.com/<organization-name>.
-4. After that it will ask you the authentication key, paste here you PAT token.
-5. Finally insert the name of the agent pool created in the previous step and a name for the new agent.
-6. Complete the installation running the following command:
-```bash
-./run.sh
-```
-
-<br/>
-<p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
-<br/>
-  
-[SOURCE](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install)
-
-
-# **SETUP AZURE DEVOPS**
-
-Before creating our pipelines we need to get a few things set up.<br>
-Sign in [Azure DevOps](https://dev.azure.com/).
-
 
 ## Install Required Plugins
-These plugins are required for the pipelines we'll be creating.
+These plugins are required for the pipelines we'll be creating. Click on "Get it free" and then "Install".
 1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
 1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines 
 
@@ -196,33 +153,53 @@ These plugins are required for the pipelines we'll be creating.
 These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
-2. On the navigation menu, choose Users. *If you are root user and haven't created any users, you'll find the option on the IAM dashboard*
-3. Choose your IAM user name (not the check box).
-4. Open the Security credentials tab, and then choose Create access key.
-5. To see the new access key, choose Show. Your credentials resemble the following:<br>
+2. On the search bar look up "IAM".
+3. On the IAM dashboard, select "Users" on the left side menu. *If you are root user and haven't created any users, you'll find the "Manage access keys "option on the IAM dashboard. Click it and then go to "Create access keys". skip to 6*.
+4. Choose your IAM user name (not the check box).
+5. Open the Security credentials tab, and then choose "Create access key".
+6. To see the new access key, choose Show. Your credentials resemble the following:<br>
 - Access key ID: AKIAIOSFODNN7EXAMPLE<br>
 - Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-6. Copy and paste these somewhere safe.
+7. Copy and save these somewhere safe.
 
 <br/>
 
 ## Create AWS Service Connection
 These are required service connections for the pipelines we'll be creating.
 
-1. Open your project on Azure DevOps.
+1. Go back to Azure DevOps and open your project.
 2. Go to Project settings on the left side menu (bottom-left corner).
 3. On the left side menu, under Pipelines, select Service connections.
-4. Click on New service connection (top-right).
+4. Click on Create service connection.
 5. Select AWS.
 6. Paste your Access Key ID and Secret Access Key.
 7. Under Service connection name, write "aws".
+8. Select the "Grant access permission to all pipelines" option.
 8. Save.
 
 HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA PIPELINE?????
 
 <br/>
 
+## (OPTIONAL) Create An Azure Self-Hosted Agent
+***If you have a hosted parallelism, you can skip this step.***<br/>
+
+A hosted parallelism basically means that Azure will spin up a server in which to run your pipelines. You can purchase one or you can request a free parallelism by filling out [this form](https://aka.ms/azpipelines-parallelism-request).<br/>
+
+If you don't have a hosted parallelism, you will have to run the pipeline in a **self-hosted agent**. 
+This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.<br/>
+
+To install a self-hosted agent on your machine, you can follow the official documentation [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install).
+
+
+
+<br/>
+<p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<br/>
+
+
 * * *
+
 
 <br/>
 
@@ -230,17 +207,21 @@ HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA P
 
 ## Terraform Backend Deployment Pipeline
 
-Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on aws with Terraform.<br>
-These two resources will allow us to store our terraform state remotely and for state locking.
+Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on aws with Terraform. These two resources will allow us to store our terraform state remotely and lock it.<br/>
 
-1. Go to Pipelines on the left side menu
-2. Select Pipelines under Pipelines on the left side menu
-3. Click on Create/New pipeline
-4. Select Github
+This is probably not necessary for this excercise but it's a best practice when working on a team.<br>
+Storing it remotely means that everyone on the team can access the same state file, and locking it means that only one person can access it at a time, this prevents state conflicts.
+
+1. On your Azure DevOps project, go to Pipelines on the left side menu.
+2. Select Pipelines under Pipelines on the left side menu.
+3. Click on "Create Pipeline".
+4. Select Github.
 5. Give access to repo if it's the first time connecting to GitHub. Else select the repository.
-6. Select Existing Azure Pipelines YAML file
-7. Select Branch and Path to the pipeline YAML file and click Continue
-8. Click on Save & Run
+6. Select Existing Azure Pipelines YAML file.
+7. Under Branch select "main" and under Path select "/azure-devops/00-deploy-backend.yml". Click Continue.
+8. (OPTIONAL) If you DON'T have a hosted parallelism, you'll need to go to the pipeline file on the repo and under automate-all-the-things/azure-devops
+/00-deploy-backend.yml 
+8. Click on Save & Run.
 9. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
 10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
 

@@ -76,12 +76,12 @@ app_name = input()
 print_gradually("Great name! What's the name of your Azure DevOps Organization?: ")
 az_devops_org = input()
 
-print_gradually("Ok. What's your DockerHub username?: ")
-dockerhub_username = input()
+# print_gradually("Ok. What's your DockerHub username?: ")
+# dockerhub_username = input()
 
-print_gradually("I'm gonna need you to get me your AWS Access Keys:\n")
-aws_access_key = getpass.getpass("- Access Key: ")
-aws_secret_access_key = getpass.getpass("- Secret Access Key: ")
+# print_gradually("I'm gonna need you to get me your AWS Access Keys:\n")
+# aws_access_key = getpass.getpass("- Access Key: ")
+# aws_secret_access_key = getpass.getpass("- Secret Access Key: ")
 
 
 
