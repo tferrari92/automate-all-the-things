@@ -93,15 +93,15 @@ data = {
     "AATT_AWS_SECRET_ACCESS_KEY": aws_secret_access_key
 }
 
-def replace_keys_in_file(file_path, replacements):
-    with open(file_path, 'r') as file:
-        content = file.read()
+# def replace_keys_in_file(file_path, replacements):
+#     with open(file_path, 'r') as file:
+#         content = file.read()
     
-    for key, value in replacements.items():
-        content = content.replace(key, value)
+#     for key, value in replacements.items():
+#         content = content.replace(key, value)
     
-    with open(file_path, 'w') as file:
-        file.write(content)
+#     with open(file_path, 'w') as file:
+#         file.write(content)
 
 
 # def search_and_replace(directory, replacements):
@@ -112,8 +112,16 @@ def replace_keys_in_file(file_path, replacements):
 #             file_path = os.path.join(root, file_name)
 #             replace_keys_in_file(file_path, replacements)
 
-
-def search_and_replace():
+def main():
+    # Create a dictionary with the variable names and their values
+    data = {
+        "AATT_FULL_NAME": full_name,
+        "AATT_APP_NAME": app_name,
+        "AATT_AZ_DEVOPS_ORG": az_devops_org,
+        "AATT_DOCKERHUB_USERNAME": dockerhub_username,
+        "AATT_AWS_ACCESS_KEY": aws_access_key,
+        "AATT_AWS_SECRET_ACCESS_KEY": aws_secret_access_key
+    }
 
     # Extract the replacements
     replacements = {key: str(value) for key, value in data.items()}
@@ -121,29 +129,32 @@ def search_and_replace():
     # Specify the directory to search
     directory = root_dir_path  
 
-    # Search and replace keys in files
-    # search_and_replace(directory, replacements)
-
     for root, _, files in os.walk(directory):
         for file_name in files:
             if file_name == 'info.json':
                 continue  # Skip processing info.json file
             file_path = os.path.join(root, file_name)
-            replace_keys_in_file(file_path, replacements)
+            with open(file_path, 'r') as file:
+                content = file.read()
             
+            for key, value in replacements.items():
+                content = content.replace(key, value)
+            
+            with open(file_path, 'w') as file:
+                file.write(content)
+            # replace_keys_in_file(file_path, replacements)
 
-    print('Replacement completed successfully!')
+    # Search and replace keys in files
+    # search_and_replace(directory, replacements)
 
-
+    # print('Replacement completed successfully!')
 
 # Save the data dictionary to a JSON file
 # output_file = root_dir_path + "/info.json"
 # with open(output_file, "w") as file:
 #     json.dump(data, file, indent=4)
 
-search_and_replace()
-
-print_gradually("That's it! All the info you provided has been saved in an 'info.json' file on the repo root directory.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\nIf you need to modify any of this info, you can just edit the info.json file.\n\n")
+print_gradually("That's it! All files have been customized with your info.\nDon't worry, this file is specified in the .gitignore so it won't be pushed if you decide to upload this.\n\n")
 
 print_gradually_fast(" _   _    _    ____  ______   __     _   _   _ _____ ___  __  __    _  _____ ___ _   _  ____ _ _ _ \n| | | |  / \  |  _ \|  _ \ \ / /    / \ | | | |_   _/ _ \|  \/  |  / \|_   _|_ _| \ | |/ ___| | | |\n| |_| | / _ \ | |_) | |_) \ V /    / _ \| | | | | || | | | |\/| | / _ \ | |  | ||  \| | |  _| | | |\n|  _  |/ ___ \|  __/|  __/ | |    / ___ \ |_| | | || |_| | |  | |/ ___ \| |  | || |\  | |_| |_|_|_|\n|_| |_/_/   \_\_|   |_|    |_|   /_/   \_\___/  |_| \___/|_|  |_/_/   \_\_| |___|_| \_|\____(_|_|_)")
 
