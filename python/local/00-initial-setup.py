@@ -141,8 +141,6 @@ def main():
     # Search and replace keys in files
     search_and_replace(directory, replacements)
 
-    print('Replacement completed successfully!')
-
 
 main()
 

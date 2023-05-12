@@ -65,7 +65,7 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## What we'll be doing
-Fkdjfksdgnslfgk
+The purpose of this repo is not to guive you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infra and how the tools can interact with each other to make them as efficient as posible. To show good practices and how to provide your devs, ops, and devops teams with guides on how to perfmmorm their specific. tasks . Demonstrate the power of infrastructure as code (IaC) and CI/CD (cont interg cont deplo)
 
 <br/>
 
