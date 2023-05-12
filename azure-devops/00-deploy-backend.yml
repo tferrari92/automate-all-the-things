@@ -9,6 +9,9 @@ resources:
     endpoint: tferrari92 # Name of the service connection  #AATT_GITHUB_USERNAME
     name: tferrari92/automate-all-the-things #AATT_GITHUB_USERNAME
 
+variables:
+  - group: aws-keys
+
 pool:
   vmImage: 'ubuntu-latest' 
   # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
@@ -25,6 +28,11 @@ steps:
 - checkout: automate-all-the-things
 
 - script: ls
+  displayName: 'Verify checkout'
+
+- script: |
+    export AWS_ACCESS_KEY_ID=$(aws_access_key_id)
+    export AWS_SECRET_ACCESS_KEY=$(aws_secret_access_key)
   displayName: 'Verify checkout'
 
 - task: TerraformCLI@0

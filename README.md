@@ -173,10 +173,9 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 <br/>
 
-## Create Service Connections
-These service connections are required for our Azure DevOps pipelines to interact with other services.
+## Create AWS Service Connections
+This service connection is required for our Azure DevOps pipelines to interact with other AWS.
 
-<!-- ### AWS -->
 1. Go back to Azure DevOps and open your project.
 2. Go to Project settings on the left side menu (bottom-left corner).
 3. On the left side menu, under "Pipelines", select "Service connections".
@@ -187,6 +186,18 @@ These service connections are required for our Azure DevOps pipelines to interac
 8. Select the "Grant access permission to all pipelines" option.
 9. Save.
 
+## Create AWS-Keys Variable Group
+These are needed for Terraform to be able to deploy our AWS infrastructure.
+1. On the left side menu under "Pipelines" go to "Library"
+2. Click on "+ Variable group".
+3. Under "Variable group name" write "aws-keys".
+4. Add the variables  
+aws_access_key_id 
+aws_secret_access_key
+5. Click on the lock icon on each variable.
+6. Save.
+
+<!-- NO HACE FALTA PORQ SE CREA SOLA CON EL NOMBRE DE USERNEAME DE GITHUB -->
 <!-- ### GitHub
 4. On the Service connectionlick on "New service connection" .
 5. Select AWS.
