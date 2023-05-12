@@ -33,17 +33,25 @@ steps:
 
 - script: |
     env:
-      AWS_ACCESS_KEY_ID: $(aws_access_key_id)
-      AWS_ACCESS_KEY_ID: $(aws_access_key_id)
       HOLA: $(hola)
-
   displayName: 'Set keys as env vars'
 
 - script: |
     echo $HOLA
-    echo $AWS_ACCESS_KEY_ID
-    echo $AWS_SECRET_ACCESS_KEY
   displayName: 'Echo'
+
+# - script: |
+#     env:
+#       AWS_ACCESS_KEY_ID: $(aws_access_key_id)
+#       AWS_ACCESS_KEY_ID: $(aws_access_key_id)
+#       HOLA: $(hola)
+#   displayName: 'Set keys as env vars'
+
+# - script: |
+#     echo $HOLA
+#     echo $AWS_ACCESS_KEY_ID
+#     echo $AWS_SECRET_ACCESS_KEY
+#   displayName: 'Echo'
 
 - task: TerraformCLI@0
   displayName: 'Terraform init'
