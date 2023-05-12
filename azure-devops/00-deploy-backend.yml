@@ -6,8 +6,8 @@ resources:
   repositories:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
-    endpoint: github # Name of the service connection
-    name: tferrari92/automate-all-the-things
+    endpoint: tferrari92 # Name of the service connection  #AATT_GITHUB_USERNAME
+    name: tferrari92/automate-all-the-things #AATT_GITHUB_USERNAME
 
 pool:
   vmImage: 'ubuntu-latest' 

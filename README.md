@@ -173,9 +173,10 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 <br/>
 
-## Create AWS Service Connection
-These are required service connections for the pipelines we'll be creating.
+## Create Service Connections
+These service connections are required for our Azure DevOps pipelines to interact with other services.
 
+<!-- ### AWS -->
 1. Go back to Azure DevOps and open your project.
 2. Go to Project settings on the left side menu (bottom-left corner).
 3. On the left side menu, under "Pipelines", select "Service connections".
@@ -184,9 +185,15 @@ These are required service connections for the pipelines we'll be creating.
 6. Paste your Access Key ID and Secret Access Key.
 7. Under "Service connection name", write "aws".
 8. Select the "Grant access permission to all pipelines" option.
-8. Save.
+9. Save.
 
-HACE FALTA HACER LA SERVICE CONNECTIONS GITHUB O SE HACE SOA EN EL SETIP DE LA PIPELINE?????
+<!-- ### GitHub
+4. On the Service connectionlick on "New service connection" .
+5. Select AWS.
+6. Paste your Access Key ID and Secret Access Key.
+7. Under "Service connection name", write "aws".
+8. Select the "Grant access permission to all pipelines" option.
+9. Save. -->
 
 <br/>
 
