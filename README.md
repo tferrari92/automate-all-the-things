@@ -191,9 +191,9 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 1. On the left side menu under "Pipelines" go to "Library"
 2. Click on "+ Variable group".
 3. Under "Variable group name" write "aws-keys".
-4. Add the variables  
-aws_access_key_id 
-aws_secret_access_key
+4. Add the following variables pasting on each the same keys you used to create the AWS service connection:
+- aws_access_key_id 
+- aws_secret_access_key
 5. Click on the lock icon on each variable.
 6. Save.
 
@@ -258,8 +258,9 @@ pool:
     - agent.name -equals <agent-name> # Insert here the name of the agent you created
 ```
 11. Click on "Run".
-12. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
-13. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
+12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit".
+13. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
+14. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
 
 <br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
