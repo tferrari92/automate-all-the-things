@@ -1,6 +1,6 @@
 
-project = "AATT_APP_NAME"
-region  = "AATT_AWS_REGION"
+project = "cafe"
+region  = "us-east-2"
 # aws_access_key = ""
 # aws_secret_key = ""
 availability_zones_count = 2

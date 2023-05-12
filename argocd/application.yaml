@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: AATT_APP_NAME-argocd-application
+  name: cafe-argocd-application
   namespace: argocd
 spec:
   destination:
-    namespace: AATT_APP_NAME
+    namespace: cafe
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -13,7 +13,7 @@ spec:
       valueFiles:
         - ../values.yaml
     path: helm/my-app/Chart
-    repoURL: https://github.com/AATT_GITHUB_USERNAME/automate-all-the-things.git
+    repoURL: https://github.com/tferrari92/automate-all-the-things.git
   syncPolicy:
     automated:
       prune: true

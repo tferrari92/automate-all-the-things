@@ -1,5 +1,5 @@
 image:
-  repository: AATT_DOCKERHUB_USERNAME/AATT_APP_NAME
+  repository: AATT_DOCKERHUB_USERNAME/cafe
   tag: latest
 
 website:
