@@ -34,9 +34,6 @@ steps:
 
 - checkout: automate-all-the-things
 
-- script: ls
-  displayName: 'Verify checkout'
-
 - task: TerraformCLI@0
   displayName: 'Terraform init'
   inputs:
