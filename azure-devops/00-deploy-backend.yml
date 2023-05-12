@@ -9,10 +9,6 @@ resources:
     endpoint: tferrari92 # Name of the service connection  #AATT_GITHUB_USERNAME
     name: tferrari92/automate-all-the-things #AATT_GITHUB_USERNAME
 
-# variables:
-#   - group: aws-keys
-#   - group: test
-
 pool:
   vmImage: 'ubuntu-latest' 
   # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
@@ -28,39 +24,13 @@ steps:
 
 - checkout: automate-all-the-things
 
-- script: ls
-  displayName: 'Verify checkout'
-
-# - script: |
-#     env:
-#       HOLA: $(hola)
-#   displayName: 'Set keys as env vars'
-
-# - script: |
-#     echo $HOLA
-#   displayName: 'Echo'
-
-# - script: |
-#     env:
-#       AWS_ACCESS_KEY_ID: $(aws_access_key_id)
-#       AWS_ACCESS_KEY_ID: $(aws_access_key_id)
-   #    AWS_DEFAULT_REGION: AATT_AWS_REGION
-#       HOLA: $(hola)
-#   displayName: 'Set keys as env vars'
-
-# - script: |
-#     echo $HOLA
-#     echo $AWS_ACCESS_KEY_ID
-#     echo $AWS_SECRET_ACCESS_KEY
-#   displayName: 'Echo'
-
 - task: TerraformCLI@0
   displayName: 'Terraform init'
   inputs:
     command: init
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required
+    providerAwsRegion: us-east-2 # Required #AATT_AWS_REGION
 
 - task: TerraformCLI@0
   displayName: 'Terraform plan'
@@ -68,7 +38,7 @@ steps:
     command: plan
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required
+    providerAwsRegion: us-east-2 # Required #AATT_AWS_REGION
 
 - task: TerraformCLI@0
   displayName: 'Terraform apply'
@@ -76,7 +46,7 @@ steps:
     command: apply
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required
+    providerAwsRegion: us-east-2 # Required #AATT_AWS_REGION
 
 - task: PublishBuildArtifacts@1
   displayName: 'Save terraform state file'

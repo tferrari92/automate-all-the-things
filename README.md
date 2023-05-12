@@ -186,7 +186,7 @@ This service connection is required for our Azure DevOps pipelines to interact w
 8. Select the "Grant access permission to all pipelines" option.
 9. Save.
 
-## Create AWS-Keys Variable Group
+<!-- ## Create AWS-Keys Variable Group
 These are needed for Terraform to be able to deploy our AWS infrastructure.
 1. On the left side menu under "Pipelines" go to "Library"
 2. Click on "+ Variable group".
@@ -195,7 +195,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 - aws_access_key_id 
 - aws_secret_access_key
 5. Click on the lock icon on each variable.
-6. Save.
+6. Save. -->
 
 <!-- NO HACE FALTA PORQ SE CREA SOLA CON EL NOMBRE DE USERNEAME DE GITHUB -->
 <!-- ### GitHub
