@@ -37,6 +37,7 @@ steps:
   displayName: 'Set keys as env vars'
 
 - script: |
+    echo $(aws_access_key_id)
     echo $AWS_ACCESS_KEY_ID
     echo $AWS_SECRET_ACCESS_KEY
     echo $GATURRO
