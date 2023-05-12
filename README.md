@@ -1,8 +1,3 @@
-
-<br/>
-
-<p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
-
 <a href="https://www.instagram.com/ttomasferrari/">
     <img align="right" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
 </a>
@@ -15,6 +10,8 @@
 <p align="right">
     <a  href="/docs/readme_es.md">Versión en Español</a>
 </p>
+
+<p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
 # **INDEX**
 
