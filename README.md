@@ -1,7 +1,7 @@
 
 <br/>
 
-<p title="All The Things" align="center"> <img src="https://i.imgur.com/s55uj2b.jpg"> </p>
+<p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
 <a href="https://www.instagram.com/ttomasferrari/">
     <img align="right" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
