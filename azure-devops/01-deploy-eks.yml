@@ -7,7 +7,7 @@ resources:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
     endpoint: github # Name of the service connection
-    name: AATT_GITHUB_USERNAME/automate-all-the-things
+    name: tferrari92/automate-all-the-things
   pipelines:
   - pipeline: deploy-backend # Any arbitrary name
     source: deploy-backend   # Name of the pipeline that needs to succeed for this pipeline to run
@@ -47,7 +47,7 @@ steps:
     backendType: aws # set to `aws` to use aws backend
     backendServiceAws: aws # service connection name, required if backendType = aws
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: AATT_AWS_REGION # Required
+    providerAwsRegion: us-east-2 # Required
 
 - task: TerraformCLI@0
   displayName: 'Terraform plan'
@@ -55,7 +55,7 @@ steps:
     command: plan
     workingDirectory: './terraform/aws/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: AATT_AWS_REGION # Required
+    providerAwsRegion: us-east-2 # Required
 
 - task: TerraformCLI@0
   displayName: 'Terraform apply'
@@ -63,7 +63,7 @@ steps:
     command: apply
     workingDirectory: './terraform/aws/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: AATT_AWS_REGION # Required
+    providerAwsRegion: us-east-2 # Required
 
 
 # - script: terraform output -json > $(System.DefaultWorkingDirectory)/outputs.json

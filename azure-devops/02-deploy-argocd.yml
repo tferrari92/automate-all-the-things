@@ -7,7 +7,7 @@ resources:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
     endpoint: github # Name of the service connection
-    name: AATT_GITHUB_USERNAME/automate-all-the-things
+    name: tferrari92/automate-all-the-things
   pipelines:
   - pipeline: deploy-eks # any arbitrary name
     source: deploy-eks   # name of the pipeline shown on azure UI portal

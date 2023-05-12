@@ -178,11 +178,11 @@ These are required service connections for the pipelines we'll be creating.
 
 1. Go back to Azure DevOps and open your project.
 2. Go to Project settings on the left side menu (bottom-left corner).
-3. On the left side menu, under Pipelines, select Service connections.
-4. Click on Create service connection.
+3. On the left side menu, under "Pipelines", select "Service connections".
+4. Click on "Create service connection".
 5. Select AWS.
 6. Paste your Access Key ID and Secret Access Key.
-7. Under Service connection name, write "aws".
+7. Under "Service connection name", write "aws".
 8. Select the "Grant access permission to all pipelines" option.
 8. Save.
 
@@ -216,19 +216,21 @@ To install a self-hosted agent on your machine, you can follow the official docu
 
 ## Terraform Backend Deployment Pipeline
 
-Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on aws with Terraform. These two resources will allow us to store our terraform state remotely and lock it.<br/>
+Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on AWS with Terraform. These two resources will allow us to store our terraform state remotely and lock it.<br/>
 
-This is probably not necessary for this excercise but it's a best practice when working on a team.<br>
+Why do we need to store our tf state remotely and locking it? Well, this is probably not necessary for this excercise but it's a best practice when working on a team.<br>
 Storing it remotely means that everyone on the team can access the same state file, and locking it means that only one person can access it at a time, this prevents state conflicts.
 
 1. On your Azure DevOps project, go to Pipelines on the left side menu.
 2. Select Pipelines under Pipelines on the left side menu.
 3. Click on "Create Pipeline".
 4. Select Github.
-5. Give access to repo if it's the first time connecting to GitHub. Else select the repository.
-6. Select Existing Azure Pipelines YAML file.
-7. Under Branch select "main" and under Path select "/azure-devops/00-deploy-backend.yml". Click Continue.
-8. If you DON'T have a hosted parallelism, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the file azure-devops/00-deploy-backend.yml file.<br>
+5. You might need to go through the GitHub authorization process, go ahead and click the green button.
+6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+7. You might need to click more green buttons to allow Azure DevOps to interact with GitHub, go ahead.
+8. Select Existing Azure Pipelines YAML file.
+9. Under Branch select "main" and under Path select "/azure-devops/00-deploy-backend.yml". Click Continue.
+10. If you have hosted parallelism skip to point 11. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the azure-devops/00-deploy-backend.yml file.<br>
 Under "pool" you need to edit it so that it looks like this:
 ```yaml
 pool:
@@ -237,11 +239,9 @@ pool:
   demands:
     - agent.name -equals <agent-name> # Insert here the name of the agent you created
 ```
-
-
-8. Click on Save & Run.
-9. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
-10. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
+11. Click on "Run".
+12. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
+13. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
 
 <br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>

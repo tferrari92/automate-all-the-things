@@ -18,7 +18,7 @@ root_dir_path = os.path.dirname(os.path.dirname(os.path.dirname(script_path)))
 def print_gradually(text):
     for char in text:
         print(char, end='', flush=True)
-        time.sleep(0.04)  
+        time.sleep(0.01)  
 
 def print_gradually_fast(text):
     for char in text:
@@ -123,7 +123,10 @@ def search_and_replace(directory, replacements):
             file_path = os.path.join(root, file_name)
             if file_name in ['application.yaml',
                              'values.yaml',
-                             'terraform.tfvars']:
+                             'terraform.tfvars',
+                             '00-deploy-backend.yml',
+                             '01-deploy-eks.yml',
+                             '02-deploy-argocd.yml']:
                 replace_keys_in_file(file_path, replacements)
 
 
