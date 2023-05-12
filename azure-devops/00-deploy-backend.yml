@@ -11,6 +11,7 @@ resources:
 
 variables:
   - group: aws-keys
+  - group: test
 
 pool:
   vmImage: 'ubuntu-latest' 
@@ -38,6 +39,7 @@ steps:
 
 - script: |
     echo $(aws_access_key_id)
+    echo $(hola)
     echo $AWS_ACCESS_KEY_ID
     echo $AWS_SECRET_ACCESS_KEY
     echo $GATURRO
