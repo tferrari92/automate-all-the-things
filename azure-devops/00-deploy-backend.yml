@@ -33,11 +33,13 @@ steps:
 - script: |
     export AWS_ACCESS_KEY_ID=$(aws_access_key_id)
     export AWS_SECRET_ACCESS_KEY=$(aws_secret_access_key)
+    export GATURRO=gatogarabato
   displayName: 'Set keys as env vars'
 
 - script: |
     echo $AWS_ACCESS_KEY_ID
     echo $AWS_SECRET_ACCESS_KEY
+    echo $GATURRO
   displayName: 'Echo'
 
 - task: TerraformCLI@0
