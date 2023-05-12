@@ -163,7 +163,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
 2. On the search bar look up "IAM".
-3. On the IAM dashboard, select "Users" on the left side menu. *If you are root user and haven't created any users, you'll find the "Manage access keys "option on the IAM dashboard. Click it and then go to "Create access keys". skip to 6*.
+3. On the IAM dashboard, select "Users" on the left side menu. *If you are root user and haven't created any users, you'll find the "Create access key" option on IAM > My security credentials. You should know that ***creating Access Keys for the root user is a bad security practice***. If you choose to proceed anyway, click on "Create access key" and skip to point 6*.
 4. Choose your IAM user name (not the check box).
 5. Open the Security credentials tab, and then choose "Create access key".
 6. To see the new access key, choose Show. Your credentials resemble the following:<br>
