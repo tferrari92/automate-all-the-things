@@ -7,10 +7,11 @@ resources:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
     endpoint: github # Name of the service connection
-    name: tferrari92/automate-all-the-things
+    name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
   pipelines:
   - pipeline: deploy-backend # Any arbitrary name
     source: deploy-backend   # Name of the pipeline that needs to succeed for this pipeline to run
+    # source: AATT_GITHUB_USERNAME.automate-all-the-things   # Name of the pipeline that needs to succeed for this pipeline to run # AATT_GITHUB_USERNAME
     trigger:
     branches:
       include:

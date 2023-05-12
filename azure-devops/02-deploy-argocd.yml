@@ -11,6 +11,7 @@ resources:
   pipelines:
   - pipeline: deploy-eks # any arbitrary name
     source: deploy-eks   # name of the pipeline shown on azure UI portal
+    # source: AATT_GITHUB_USERNAME.automate-all-the-things(1)   # Name of the pipeline that needs to succeed for this pipeline to run # AATT_GITHUB_USERNAME
     trigger:
     branches:
       include:
