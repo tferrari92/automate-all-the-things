@@ -23,7 +23,7 @@
     -   [What we'll be doing](#what-well-be-doing)
     -   [Tools we'll be using](#tools-well-be-using)
     -   [Disclaimer](#disclaimer)
--   [Custom Setup](#custom-setup)
+-   [Local Setup](#local-setup)
 -   [Create Azure Account & Organization](#CREATE-AZURE-ACCOUNT-&-ORGANIZATION)
 -   [Create a Self-Hosted Agent On Your Machine](#create-a-self-hosted-agent-on-your-machine-optional)
 -   [Themes](#themes)
@@ -103,7 +103,7 @@ Let's begin...
 
 <br/>
 
-# **LOCAL CUSTOM SETUP**
+# **LOCAL SETUP**
 In order to turn this whole deployment into your own thing, we need to do some initial setup:
 1. Fork this repo.
 1. Clone the repo from your fork:
