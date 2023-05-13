@@ -50,7 +50,7 @@ jobs:
   displayName: 'Deploy Job'
   dependsOn: BuildJob
   steps:
-  - script: |
+  - bash: |
       sed 's/tag:*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml
     displayName: Update Tag In values.yaml
 
@@ -62,5 +62,7 @@ jobs:
   #   displayName: Update Tag In values.yaml
 
 
-  - script: cat helm/my-app/values.yaml
+  - script: |
+      echo $(Build.BuildId)
+      cat helm/my-app/values.yaml
     displayName: Verify
