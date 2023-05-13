@@ -77,3 +77,4 @@ steps:
 
 - script: kubectl create -f argocd/application.yaml
   displayName: 'Create ArgoCD Application'
+

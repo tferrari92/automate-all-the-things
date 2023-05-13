@@ -1,10 +1,10 @@
 image:
-  repository: AATT_DOCKERHUB_USERNAME/cafe # This value was modified by the initial-setup python script
-  tag: latest
+  repository: tferrari92/cafe # This value was modified by the initial-setup python script
+tag: 2
 
 website:
   repository: your-website-repo
-  tag: latest
+tag: 2
   config:
     index.html: |
       <!DOCTYPE html>

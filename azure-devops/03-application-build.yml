@@ -38,3 +38,10 @@ steps:
     repository: 'tferrari92/cafe' # This value was modified by the initial-setup python script
     command: 'buildAndPush'
     Dockerfile: 'my-app/Dockerfile'
+
+- script: sed 's/tag:*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml
+  displayName: Update Tag In values.yaml
+
+
+- script: cat helm/my-app/values.yaml
+  displayName: Verify
