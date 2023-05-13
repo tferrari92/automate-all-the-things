@@ -31,7 +31,7 @@ steps:
     helmVersion: '3.11.2'
     installKubectl: true
 
-- script: helm dependency build helm/argocd
+- script: helm dependency build .
   workingDirectory: './helm/argocd/'
   displayName: 'Build dependencies'
 
