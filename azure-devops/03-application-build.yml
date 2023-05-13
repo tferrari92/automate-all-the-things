@@ -48,7 +48,7 @@ jobs:
 
 - job: DeployJob
   displayName: 'Deploy Job'
-  dependsOn: TestJob
+  dependsOn: BuildJob
   steps:
   - script: |
       sed 's/tag:*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml
