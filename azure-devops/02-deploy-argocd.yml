@@ -53,6 +53,7 @@ steps:
     # awsArguments: '--profile myprofile'
 
 # AGREGAR A MANO????? FUNCIONA!!!! AGREGAR A README TUTO PARA AGREGAR VARIABLES A LIBRARY
+# Couldn't find a way to create profile with the AWS Toolkit Plugin for Azure DevOps so I had to do it this way
 - script: | # This value was modified by the initial-setup python script
     mkdir ~/.aws
     echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
@@ -69,11 +70,12 @@ steps:
 # - script: cat config view --minify
 #   displayName: 'Verify KubeConfig'
 
-# - script: |
-#     helm repo add dandydev https://dandydeveloper.github.io/charts
-#     helm dependency build .
-#   workingDirectory: './helm/argocd/'
-#   displayName: 'Build dependencies'
+# HelmDeploy@0 task option
+- script: |
+    helm repo add dandydev https://dandydeveloper.github.io/charts
+    helm dependency build .
+  workingDirectory: './helm/argocd/'
+  displayName: 'Build dependencies'
 
 # - script: helm install argocd . -n argocd
 #   workingDirectory: './helm/argocd/'
@@ -87,7 +89,7 @@ steps:
     chartType: 'FilePath'
     chartPath: 'helm/argocd'
     releaseName: 'argocd'
-    updatedependency: true
+    arguments: '--dependency-update'
 
 # - task: HelmDeploy@0
 #   displayName: Deploy argocd
