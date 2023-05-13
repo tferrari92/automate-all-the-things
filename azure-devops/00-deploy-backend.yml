@@ -2,12 +2,12 @@ name: deploy-backend
 
 trigger: none
 
-resources:
-  repositories:
-  - repository: automate-all-the-things # The name used to reference this repository in the checkout step
-    type: github
-    endpoint: tferrari92 # Name of the service connection # This value was modified by the initial-setup python script
-    name: tferrari92/automate-all-the-things # This value was modified by the initial-setup python script
+# resources:
+#   repositories:
+#   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
+#     type: github
+#     endpoint: tferrari92 # Name of the service connection # This value was modified by the initial-setup python script
+#     name: tferrari92/automate-all-the-things # This value was modified by the initial-setup python script
 
 pool:
   vmImage: 'ubuntu-latest' 
@@ -22,7 +22,7 @@ steps:
   inputs:
     terraformVersion: '1.4.6'
 
-- checkout: automate-all-the-things
+# - checkout: automate-all-the-things
 
 - task: TerraformCLI@0
   displayName: 'Terraform init'

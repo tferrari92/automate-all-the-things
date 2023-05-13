@@ -2,12 +2,12 @@ name: deploy-argocd
 
 trigger: none
 
-resources:
-  repositories:
-  - repository: automate-all-the-things # The name used to reference this repository in the checkout step
-    type: github
-    endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
-    name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
+# resources:
+#   repositories:
+#   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
+#     type: github
+#     endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
+#     name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
   # pipelines:
   # - pipeline: deploy-eks # any arbitrary name
   #   source: deploy-eks   # name of the pipeline shown on azure UI portal
@@ -75,3 +75,5 @@ steps:
     arguments: '--dependency-update'
 
 
+- script: kubectl create -f argocd/application.yaml
+  displayName: 'Create ArgoCD Application'

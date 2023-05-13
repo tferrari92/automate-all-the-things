@@ -2,12 +2,12 @@ name: deploy-eks
 
 trigger: none
 
-resources:
-  repositories:
-  - repository: automate-all-the-things # The name used to reference this repository in the checkout step
-    type: github
-    endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
-    name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
+# resources:
+#   repositories:
+#   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
+#     type: github
+#     endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
+#     name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
   # This is for automatic triggering when specified pipeline is successful
   # pipelines:
   # - pipeline: deploy-backend # Any arbitrary name
@@ -32,7 +32,7 @@ steps:
   inputs:
     terraformVersion: '1.4.6'
 
-- checkout: automate-all-the-things
+# - checkout: automate-all-the-things
 
 - task: TerraformCLI@0
   displayName: 'Terraform init'

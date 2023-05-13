@@ -366,6 +366,19 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/03-application-build.yml". Click "Continue".
 11. Click on "Run".
 
+## Create ArgoCD Application
+Ok this is the only command 
+
+
+## Application Deployment Pipeline
+2. Go to "Pipelines" under "Pipelines" on the left side menu.
+3. Click on "New pipeline".
+4. Select "GitHub".
+6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+6. Select "Existing Azure Pipelines YAML file".
+9. Under "Branch" select "main" and under "Path" select "/azure-devops/04-application-deploy.yml". Click "Continue".
+11. Click on "Run".
+
 CREAR INGRESS PARA ARGOCD. IP PUBLICA TAMBIEN!!!!!
 
 CAMBIAR KEYS DE AWS!!!

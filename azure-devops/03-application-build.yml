@@ -1,13 +1,13 @@
 name: application-build
 
 trigger: none
-
-resources:
-  repositories:
-  - repository: automate-all-the-things # The name used to reference this repository in the checkout step
-    type: github
-    endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
-    name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
+# A ESTE HAY Q AGREGARLE UN WEBHOOK CON GITHUB PA Q BUILDEE CADA Q HAY UN CAMBIO EN EL CODIGO DE LA APP!!!!!!!!!!!!!!!!!!!!!!!!!!
+# resources:
+#   repositories:
+#   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
+#     type: github
+#     endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
+#     name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
   # pipelines:
   # - pipeline: deploy-eks # any arbitrary name
   #   source: deploy-eks   # name of the pipeline shown on azure UI portal

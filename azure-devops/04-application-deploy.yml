@@ -1,0 +1,28 @@
+name: application-deploy
+
+trigger: none
+
+resources:
+  # repositories:
+  # - repository: automate-all-the-things # The name used to reference this repository in the checkout step
+  #   type: github
+  #   endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
+  #   name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
+  pipelines:
+  - pipeline: deploy-eks # any arbitrary name
+    # source: deploy-eks   # name of the pipeline shown on azure UI portal
+    source: "tferrari92.automate-all-the-things (3)"   # Name of the pipeline that needs to succeed for this pipeline to run # AATT_GITHUB_USERNAME
+    trigger:
+    branches:
+      include:
+        - main
+
+
+pool:
+  vmImage: 'ubuntu-latest' 
+  # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
+  # name: <agent-pool-name> # Insert here the name of the agent pool you created
+  # demands:
+  #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
+
+steps:
