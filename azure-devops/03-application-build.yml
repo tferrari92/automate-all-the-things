@@ -51,10 +51,15 @@ jobs:
   dependsOn: TestJob
   steps:
   - script: |
-      new_tag=${{ $(Build.BuildId) }}
-      echo $new_tag
-      sed 's/tag:*/tag: $new_tag/g' helm/my-app/values.yaml
+      sed 's/tag:*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml
     displayName: Update Tag In values.yaml
+
+
+  # - script: |
+  #     new_tag=${{ $(Build.BuildId) }}
+  #     echo $new_tag
+  #     sed 's/tag:*/tag: $new_tag/g' helm/my-app/values.yaml
+  #   displayName: Update Tag In values.yaml
 
 
   - script: cat helm/my-app/values.yaml
