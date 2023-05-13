@@ -71,11 +71,11 @@ steps:
 #   displayName: 'Verify KubeConfig'
 
 # HelmDeploy@0 task option
-- script: |
-    helm repo add dandydev https://dandydeveloper.github.io/charts
-    helm dependency build .
-  workingDirectory: './helm/argocd/'
-  displayName: 'Build dependencies'
+# - script: |
+#     helm repo add dandydev https://dandydeveloper.github.io/charts
+#     helm dependency build .
+#   workingDirectory: './helm/argocd/'
+#   displayName: 'Build dependencies'
 
 # - script: helm install argocd . -n argocd
 #   workingDirectory: './helm/argocd/'
