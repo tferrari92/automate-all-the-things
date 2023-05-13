@@ -357,29 +357,33 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 <p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
 <br/>
 
-## Application Build Pipeline
+## Application Build & Deploy Pipeline
+
+Chekear si es necesario lo de project setting > Repos > Repositories > cafe > Users > cafe Build Service (tomasferrari) > Contribute set to Allow
+https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/git-commands?view=azure-devops&tabs=yaml
+
+
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
 4. Select "GitHub".
 6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
 6. Select "Existing Azure Pipelines YAML file".
-9. Under "Branch" select "main" and under "Path" select "/azure-devops/03-application-build.yml". Click "Continue".
+9. Under "Branch" select "main" and under "Path" select "/azure-devops/03-build-and-deploy-app.yml". Click "Continue".
 11. Click on "Run".
 
 ## Create ArgoCD Application
 Ok this is the only command 
 
 
-## Application Deployment Pipeline
+<!-- ## Application Deployment Pipeline
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
 4. Select "GitHub".
 6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
 6. Select "Existing Azure Pipelines YAML file".
-9. Under "Branch" select "main" and under "Path" select "/azure-devops/04-application-deploy.yml". Click "Continue".
-11. Click on "Run".
+9. Under "Branch" select "main" and under "Path" select "/azure-devops/04-dep-and-deploy-app.yml". Click "Continue".
+11. Click on "Run". -->
 
-https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/git-commands?view=azure-devops&tabs=yaml
 
 
 
