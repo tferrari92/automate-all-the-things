@@ -67,7 +67,7 @@ steps:
 
 
 
-- script: terraform output -raw kubeconfig > $(System.DefaultWorkingDirectory)/python/kubeconfig-data
+- script: terraform output -raw kubeconfig > $(System.DefaultWorkingDirectory)/kubeconfig.yaml
   workingDirectory: './terraform/aws/'
   displayName: 'Save kubeconfig'
   
@@ -100,9 +100,9 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Export kubeconfig'
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/python/kubeconfig-data'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/kubeconfig.yaml'
     # PathtoPublish: '$(Pipeline.Workspace)'
-    ArtifactName: 'Kubeconfig'
+    ArtifactName: 'KubeConfig'
     publishLocation: 'Container'
     # condition: always()
 

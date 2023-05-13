@@ -276,21 +276,22 @@ pool:
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-eks.yml". Click "Continue".
 11. Click on "Run".
 <!-- 9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
-10. The KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, we'll need it to create the Kubernetes service connection.
+10. When it's finished, the KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, we'll need it to create the Kubernetes service connection.
 
 <br>
 
 #### Create K8S Service Connection
-For the next step to work, we need to create a K8S service connection with the KubeConfig we've just downloaded.
 
-1. Go to Project settings on the left side menu (bottom-left corner).
-2. On the left side menu, under Pipelines, select Service connections.
-3. Click on New service connection (top-right).
-4. Select Kubernetes.
-5. Under "Authentication method" select KubeConfig.
+1. Go to "Project settings" on the left side menu (bottom-left corner).
+2. On the left side menu, under "Pipelines", select "Service connections".
+3. Click on "New service connection" (top-right).
+4. Select "Kubernetes" and click "Next".
+5. Under "Authentication method" select "KubeConfig".
 6. Paste the contents of the kubeconfig previously downloaded inside the box.
-7. Under Service connection name, write "k8s".
-8. Verify and save.
+7. Select "Accept untrusted certificates".
+7. Under "Service connection name", write "k8s".
+8. Select "Grant access permission to all pipelines".
+8. Click on "Verify and save".
   
 <br/>
 
