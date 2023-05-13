@@ -194,10 +194,9 @@ This service connection is required for our Azure DevOps pipelines to interact w
 5. Select "Docker Registry".
 6. Under "Registry type" select "Docker Hub".
 7. Input your Docker ID and Password.
-8. Click on "Verify" to check the connection works.
 7. Under "Service connection name", write "dockerhub".
 8. Select the "Grant access permission to all pipelines" option.
-9. Save.
+9. Click on "Verify and save".
 
 <!-- ## Create AWS-Keys Variable Group
 These are needed for Terraform to be able to deploy our AWS infrastructure.
