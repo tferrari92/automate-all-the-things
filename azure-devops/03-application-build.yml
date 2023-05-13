@@ -25,23 +25,34 @@ pool:
   # demands:
   #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
 
-steps:
-- task: DockerInstaller@0
-  displayName: Install Docker
-  inputs:
-    dockerVersion: '17.09.0-ce'
-  
-- task: Docker@2
-  displayName: Build And Push Image
-  inputs:
-    containerRegistry: 'dockerhub'
-    repository: 'tferrari92/cafe' # This value was modified by the initial-setup python script
-    command: 'buildAndPush'
-    Dockerfile: 'my-app/Dockerfile'
+jobs:
+- job: BuildJob
+  displayName: 'Build Job'
+  steps:
+  - task: DockerInstaller@0
+    displayName: Install Docker
+    inputs:
+      dockerVersion: '17.09.0-ce'
+    
+  - task: Docker@2
+    displayName: Build And Push Image
+    inputs:
+      containerRegistry: 'dockerhub'
+      repository: 'tferrari92/cafe' # This value was modified by the initial-setup python script
+      command: 'buildAndPush'
+      Dockerfile: 'my-app/Dockerfile'
 
-- script: sed 's/tag:*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml
-  displayName: Update Tag In values.yaml
 
 
-- script: cat helm/my-app/values.yaml
-  displayName: Verify
+
+
+- job: DeployJob
+  displayName: 'Deploy Job'
+  dependsOn: TestJob
+  steps:
+  - script: sed 's/tag:*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml
+    displayName: Update Tag In values.yaml
+
+
+  - script: cat helm/my-app/values.yaml
+    displayName: Verify
