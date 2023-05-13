@@ -100,7 +100,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Export kubeconfig'
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/python/kubeconfig.yaml'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/python/kubeconfig-data'
     # PathtoPublish: '$(Pipeline.Workspace)'
     ArtifactName: 'Kubeconfig'
     publishLocation: 'Container'
