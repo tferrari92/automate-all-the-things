@@ -31,6 +31,17 @@ steps:
     helmVersion: '3.11.2'
     installKubectl: true
 
+- task: AWSCLI@1
+  inputs:
+    awsCredentials: 'aws'
+    regionName: 'us-east-2'
+    awsCommand: 'eks update-kubeconfig'
+    awsArguments: '--name cafe-cluster --region us-east-2' # This value was modified by the initial-setup python script
+
+- script: kubectl config view --minify
+  displayName: 'Verify KubeConfig'
+
+
 - script: |
     helm repo add dandydev https://dandydeveloper.github.io/charts
     helm dependency build .
