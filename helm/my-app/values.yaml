@@ -1,10 +1,10 @@
 image:
   repository: tferrari92/cafe # This value was modified by the initial-setup python script
-tag: 2
+tag: gato
 
 website:
   repository: your-website-repo
-tag: 2
+tag: gato
   config:
     index.html: |
       <!DOCTYPE html>

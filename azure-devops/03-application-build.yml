@@ -51,7 +51,8 @@ jobs:
   dependsOn: BuildJob
   steps:
   - script: |
-      sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml
+      sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml > helm/my-app/values.temp
+      mv helm/my-app/values.temp helm/my-app/values.yaml
     displayName: Update Tag In values.yaml
 
 
