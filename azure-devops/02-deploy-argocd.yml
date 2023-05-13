@@ -87,6 +87,7 @@ steps:
     chartType: 'FilePath'
     chartPath: 'helm/argocd'
     releaseName: 'argocd'
+    updatedependency: true
 
 # - task: HelmDeploy@0
 #   displayName: Deploy argocd
