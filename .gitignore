@@ -2,6 +2,3 @@
 *.tfstate
 #*.tfvars
 *.tfstate.backup
-
-credentials
-info.json

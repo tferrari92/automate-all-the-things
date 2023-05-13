@@ -64,7 +64,7 @@ Here's my attempt at making the world a better place. People in the future will 
 
 ## Prerequisites
 - [Python3 installed on your machine](https://www.python.org/downloads/)
-- [AWS CLI installed on your machine]()
+- [AWS CLI installed on your machine](https://aws.amazon.com/cli/)
 - [Active DockerHub account](https://hub.docker.com/)
 - [Active AWS account](https://aws.amazon.com/)
 - [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
@@ -287,9 +287,9 @@ To check that everything went OK we will connect to our cluster from our local m
 aws configure
 aws eks update-kubeconfig --name <your-app-name>-cluster --region <your-aws-region>
 ```
-**REMEMBER**: This is only to SEE our resources, creating or deleting resources is strictly prohibited. We are not some cavemen using kubectl create/delete. We're gentlemen, we modify our infrastrucure with GitOps. 
+**REMEMBER**: This is only to SEE our resources. Creating or deleting resources is strictly prohibited. We're not some cavemen using kubectl create/delete. We are gentlemen, we modify our infrastrucure with **GitOps**. 
 
-To visualize our resource we can now use
+To visualize our resource we can now use:
 ```bash
 kubectl get all --all-namespaces
 ```
@@ -338,20 +338,24 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit".
 <!-- 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
 
+
 <br/>
 <p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
 <br/>
 
-CONFIGURAR AWS LOCALMENTE PARA VISUALIZAR EL CLUSTER. DECIR Q ES SOLO PARA MIRAR PORQ SOMOS GENTE Q USA GITOPS!!!
-install aws cli
-aws configure
-aws eks update-kubeconfig --name <your-app-name>-cluster --region <your-aws-region>
+## Application Build Pipeline
 
-ESCONDER LLAVES, Agregar tfvars a gitignore
+2. Go to "Pipelines" under "Pipelines" on the left side menu.
+3. Click on "New pipeline".
+4. Select "GitHub".
+6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+6. Select "Existing Azure Pipelines YAML file".
+9. Under "Branch" select "main" and under "Path" select "/azure-devops/03-application-build.yml". Click "Continue".
+11. Click on "Run".
 
-CAMBIAR KEYS DE AWS PORQ YA ESTAN EN GITHUB!!!
+CREAR INGRESS PARA ARGOCD. IP PUBLICA TAMBIEN!!!!!
 
-GITIGNORE
+CAMBIAR KEYS DE AWS!!!
 
 DOCKER BEST PRACTICES
 
