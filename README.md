@@ -379,6 +379,16 @@ Ok this is the only command
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/04-application-deploy.yml". Click "Continue".
 11. Click on "Run".
 
+https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/git-commands?view=azure-devops&tabs=yaml
+
+
+
+## Destroy Pipeline
+uncomment vars
+complete values in .tfvars
+tf init
+tf destroy
+
 CONFIGURAR REPO PRIVADO EN ARGOCD??
 
 CREAR INGRESS PARA ARGOCD. IP PUBLICA TAMBIEN!!!!!
