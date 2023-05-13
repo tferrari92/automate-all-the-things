@@ -59,27 +59,6 @@ steps:
     echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
     echo -e "[default]\nregion = us-east-2"> ~/.aws/config 
   displayName: 'Configure AWS Profile'
-    
-
-# - script: kubectl get svc
-#   displayName: 'Kubectl'
-
-# - script: kubectl config view --minify
-#   displayName: 'Verify KubeConfig'
-
-# - script: cat config view --minify
-#   displayName: 'Verify KubeConfig'
-
-# HelmDeploy@0 task option
-# - script: |
-#     helm repo add dandydev https://dandydeveloper.github.io/charts
-#     helm dependency build .
-#   workingDirectory: './helm/argocd/'
-#   displayName: 'Build dependencies'
-
-# - script: helm install argocd . -n argocd
-#   workingDirectory: './helm/argocd/'
-#   displayName: 'Helm Install'
 
 - script: kubectl create namespace argocd
   displayName: 'Create argocd Namespace'
@@ -94,15 +73,5 @@ steps:
     chartPath: 'helm/argocd'
     releaseName: 'argocd'
     arguments: '--dependency-update'
-
-# - task: HelmDeploy@0
-#   displayName: Deploy argocd
-#   inputs:
-#     connectionType: 'Kubernetes Service Connection'
-#     kubernetesServiceConnection: 'k8s'
-#     command: 'install'
-#     chartType: 'FilePath'
-#     chartPath: 'helm/argocd'
-#     releaseName: 'argocd'
 
 

@@ -64,6 +64,7 @@ Here's my attempt at making the world a better place. People in the future will 
 
 ## Prerequisites
 - [Python3 installed on your machine](https://www.python.org/downloads/)
+- [AWS CLI installed on your machine]()
 - [Active DockerHub account](https://hub.docker.com/)
 - [Active AWS account](https://aws.amazon.com/)
 - [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
@@ -276,9 +277,39 @@ pool:
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-eks.yml". Click "Continue".
 11. Click on "Run".
 <!-- 9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
-10. When it's finished, the KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, NO PARA SERVICE CONNECTION PERO SI PARA TOCAR KUBECTL A MANO DESDE LOCAL we'll need it to create the Kubernetes service connection.
+<!-- 10. When it's finished, the KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, NO PARA SERVICE CONNECTION PERO SI PARA TOCAR KUBECTL A MANO DESDE LOCAL we'll need it to create the Kubernetes service connection. -->
 
 <br>
+
+#### Configure AWS CLI and EKS Cluster
+To check that everything went OK we will connect to our cluster from our local machine. Use the following commands, you'll need to input your AWS info. When prompted for "Default output format" just press enter.
+```bash
+aws configure
+aws eks update-kubeconfig --name <your-app-name>-cluster --region <your-aws-region>
+```
+**REMEMBER**: This is only to SEE our resources, creating or deleting resources is strictly prohibited. We are not some cavemen using kubectl create/delete. We're gentlemen, we modify our infrastrucure with GitOps. 
+
+To visualize our resource we can now use
+```bash
+kubectl get all --all-namespaces
+```
+
+INSTERT WINNIE POOH MEME
+<br>
+
+
+#### Create AWS-Keys Variable Group
+These are needed for Helm to be able to connect to our EKS Cluster and deploy ArgoCD.
+
+1. On the left side menu under "Pipelines" go to "Library"
+2. Click on "+ Variable group".
+3. Under "Variable group name" write "aws-keys".
+4. Add the following variables pasting on each the same keys you used to create the AWS service connection:
+- aws_access_key_id 
+- aws_secret_access_key
+5. Click on the lock icon on each variable so that they are treated as secrets.
+6. Save.
+
 
 <!-- #### Create K8S Service Connection
 
@@ -304,13 +335,17 @@ pool:
 6. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/02-deploy-argocd.yml". Click "Continue".
 11. Click on "Run".
-<!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
+12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit".
 <!-- 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
-10. The kubeconfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
 
 <br/>
 <p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
 <br/>
+
+CONFIGURAR AWS LOCALMENTE PARA VISUALIZAR EL CLUSTER. DECIR Q ES SOLO PARA MIRAR PORQ SOMOS GENTE Q USA GITOPS!!!
+install aws cli
+aws configure
+aws eks update-kubeconfig --name <your-app-name>-cluster --region <your-aws-region>
 
 ESCONDER LLAVES, Agregar tfvars a gitignore
 
