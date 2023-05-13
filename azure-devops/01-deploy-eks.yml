@@ -65,17 +65,6 @@ steps:
 #   workingDirectory: './terraform/aws/'
 #   displayName: 'Save outputs'
 
-- script: terraform output kubeconfig
-  workingDirectory: './terraform/aws/'
-  displayName: 'BORRAR'
-  condition: always()
-
-
-
-- script: terraform output -json kubeconfig
-  workingDirectory: './terraform/aws/'
-  displayName: 'BORRAR 2'
-  condition: always()
 
 
 - script: terraform output -raw kubeconfig > $(System.DefaultWorkingDirectory)/python/kubeconfig-data
@@ -94,11 +83,11 @@ steps:
 #   displayName: 'pwd'
 
 
-- task: PythonScript@0
-  displayName: 'Format kubeconfig'
-  inputs:
-    scriptSource: 'filePath'
-    scriptPath: 'python/azure-devops/00-format-kubeconfig.py'
+# - task: PythonScript@0
+#   displayName: 'Format kubeconfig'
+#   inputs:
+#     scriptSource: 'filePath'
+#     scriptPath: 'python/azure-devops/00-format-kubeconfig.py'
 
 
 - script: |
