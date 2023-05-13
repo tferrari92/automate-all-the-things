@@ -32,15 +32,32 @@ steps:
     dockerVersion: '17.09.0-ce'
 
 - task: Docker@2
+  inputs:
+    containerRegistry: 'dockerhub'
+    repository: 'cafe'
+    command: 'build'
+    Dockerfile: 'my-app/Dockerfile'
+    
+
+
+
+
+- task: Docker@2
   displayName: Login To DockerHub
   inputs:
     containerRegistry: 'dockerhub'
     command: 'login'
-  
+
 - task: Docker@2
-  displayName: Build And Push Image
   inputs:
     containerRegistry: 'dockerhub'
     repository: 'cafe'
-    command: 'buildAndPush'
-    Dockerfile: 'my-app/Dockerfile'
+    command: 'push'
+  
+# - task: Docker@2
+#   displayName: Build And Push Image
+#   inputs:
+#     containerRegistry: 'dockerhub'
+#     repository: 'cafe'
+#     command: 'buildAndPush'
+#     Dockerfile: 'my-app/Dockerfile'
