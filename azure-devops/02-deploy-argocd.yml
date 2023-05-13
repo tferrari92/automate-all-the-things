@@ -34,7 +34,7 @@ steps:
 - task: AWSCLI@1
   inputs:
     awsCredentials: 'aws'
-    regionName: 'us-east-2'
+    regionName: 'us-east-2' # This value was modified by the initial-setup python script
     awsCommand: 'eks'
     awsSubCommand: 'update-kubeconfig'
     awsArguments: '--name cafe-cluster --region us-east-2' # This value was modified by the initial-setup python script
@@ -51,9 +51,9 @@ steps:
   workingDirectory: './helm/argocd/'
   displayName: 'Build dependencies'
 
-- script: helm install .
+- script: helm install argocd .
   workingDirectory: './helm/argocd/'
-  displayName: 'Build dependencies'
+  displayName: 'Helm Install'
 
 # - task: HelmDeploy@0
 #   displayName: Deploy argocd
