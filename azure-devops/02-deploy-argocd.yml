@@ -32,7 +32,7 @@ steps:
     installKubectl: true
 
 - script: |
-    helm repo add .
+    helm repo add dandydev https://dandydeveloper.github.io/charts
     helm dependency build .
   workingDirectory: './helm/argocd/'
   displayName: 'Build dependencies'
