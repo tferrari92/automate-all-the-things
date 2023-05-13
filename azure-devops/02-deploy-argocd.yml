@@ -69,15 +69,24 @@ steps:
 # - script: cat config view --minify
 #   displayName: 'Verify KubeConfig'
 
-- script: |
-    helm repo add dandydev https://dandydeveloper.github.io/charts
-    helm dependency build .
-  workingDirectory: './helm/argocd/'
-  displayName: 'Build dependencies'
+# - script: |
+#     helm repo add dandydev https://dandydeveloper.github.io/charts
+#     helm dependency build .
+#   workingDirectory: './helm/argocd/'
+#   displayName: 'Build dependencies'
 
-- script: helm install argocd . -n argocd
-  workingDirectory: './helm/argocd/'
-  displayName: 'Helm Install'
+# - script: helm install argocd . -n argocd
+#   workingDirectory: './helm/argocd/'
+#   displayName: 'Helm Install'
+
+- task: HelmDeploy@0
+  inputs:
+    connectionType: 'None'
+    namespace: 'argocd'
+    command: 'install'
+    chartType: 'FilePath'
+    chartPath: 'helm/argocd'
+    releaseName: 'argocd'
 
 # - task: HelmDeploy@0
 #   displayName: Deploy argocd
