@@ -90,10 +90,10 @@ steps:
 #     scriptPath: 'python/azure-devops/00-format-kubeconfig.py'
 
 
-- script: |
-    echo "Structure of work folder of this pipeline:"
-    tree $(System.DefaultWorkingDirectory)
-  displayName: 'tree'
+# - script: |
+#     echo "Structure of work folder of this pipeline:"
+#     tree $(System.DefaultWorkingDirectory)
+#   displayName: 'tree'
 
 
 # Save KubeConfig

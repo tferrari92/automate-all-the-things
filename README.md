@@ -297,14 +297,13 @@ pool:
 
 ## ArgoCD Deployment Pipeline
 
-1. Go to Pipelines
-2. Select Pipelines on the left side menu
-3. Click on Create/New pipeline
-4. Select Github
-5. Give access to repo if it's the first time connecting to GitHub. Else select the repository.
-6. Select Existing Azure Pipelines YAML file
-7. Select Branch and Path to the pipeline YAML file and click Continue
-8. Click on Save & Run
+2. Go to "Pipelines" under "Pipelines" on the left side menu.
+3. Click on "New pipeline".
+4. Select "GitHub".
+6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+6. Select "Existing Azure Pipelines YAML file".
+9. Under "Branch" select "main" and under "Path" select "/azure-devops/02-deploy-argocd.yml". Click "Continue".
+11. Click on "Run".
 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
 10. The kubeconfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
 

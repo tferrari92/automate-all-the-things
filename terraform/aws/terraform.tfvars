@@ -7,7 +7,7 @@ availability_zones_count = 2
 vpc_cidr         = "10.0.0.0/16"
 subnet_cidr_bits = 8
 tags = {
-    Project     = "AATT_APP_NAME"
+    Project     = "AATT_APP_NAME" # This value was modified by the initial-setup python script
     Environment = "Development"
-    Owner       = "AATT_FULL_NAME"
+    Owner       = "AATT_FULL_NAME" # This value was modified by the initial-setup python script
 }
