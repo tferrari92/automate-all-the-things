@@ -54,3 +54,5 @@ steps:
     PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
     ArtifactName: 'TerraformState'
     publishLocation: 'Container'
+    condition: always()
+

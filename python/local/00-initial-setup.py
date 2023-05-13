@@ -81,8 +81,8 @@ github_username = input()
 print_gradually("In what AWS region will you be deploying your resources? (e.g. 'us-east-2'): ")
 aws_region = input()
 
-# print_gradually("Ok. What's your DockerHub username?: ")
-# dockerhub_username = input()
+print_gradually("Ok. What's your DockerHub username?: ")
+dockerhub_username = input()
 
 # print_gradually("I'm gonna need you to get me your AWS Access Keys:\n")
 # aws_access_key = getpass.getpass("- Access Key: ")
@@ -97,7 +97,7 @@ data = {
     "AATT_AZ_DEVOPS_ORG": az_devops_org,
     "AATT_GITHUB_USERNAME": github_username,
     "AATT_AWS_REGION": aws_region,
-    # "AATT_DOCKERHUB_USERNAME": dockerhub_username,
+    "AATT_DOCKERHUB_USERNAME": dockerhub_username,
     # "AATT_AWS_ACCESS_KEY": aws_access_key,
     # "AATT_AWS_SECRET_ACCESS_KEY": aws_secret_access_key
 }
@@ -126,7 +126,8 @@ def search_and_replace(directory, replacements):
                              'terraform.tfvars',
                              '00-deploy-backend.yml',
                              '01-deploy-eks.yml',
-                             '02-deploy-argocd.yml']:
+                             '02-deploy-argocd.yml',
+                             'index.html']:
                 replace_keys_in_file(file_path, replacements)
 
 
