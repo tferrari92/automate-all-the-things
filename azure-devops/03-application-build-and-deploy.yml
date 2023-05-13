@@ -63,7 +63,7 @@ jobs:
   #   displayName: Update Tag In values.yaml
 
 
-  - script: |
-      echo $(Build.BuildId)
-      cat helm/my-app/values.yaml
-    displayName: Verify
+  # - script: |
+  #     echo $(Build.BuildId)
+  #     cat helm/my-app/values.yaml
+  #   displayName: Verify
