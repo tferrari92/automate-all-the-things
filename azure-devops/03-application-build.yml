@@ -51,7 +51,7 @@ jobs:
   dependsOn: BuildJob
   steps:
   - script: |
-      sed 's/tag:.*/tag: gaturro/g' helm/my-app/values.yaml
+      sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml
     displayName: Update Tag In values.yaml
 
 
