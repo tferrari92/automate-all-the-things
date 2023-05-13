@@ -40,4 +40,5 @@ steps:
     chartType: 'FilePath'
     chartPath: 'helm/argocd'
     releaseName: 'argocd'
+    updatedependency: true
 
