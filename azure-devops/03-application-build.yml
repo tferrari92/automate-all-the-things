@@ -34,13 +34,13 @@ jobs:
     inputs:
       dockerVersion: '17.09.0-ce'
     
-  - task: Docker@2
-    displayName: Build And Push Image
-    inputs:
-      containerRegistry: 'dockerhub'
-      repository: 'tferrari92/cafe' # This value was modified by the initial-setup python script
-      command: 'buildAndPush'
-      Dockerfile: 'my-app/Dockerfile'
+  # - task: Docker@2
+  #   displayName: Build And Push Image
+  #   inputs:
+  #     containerRegistry: 'dockerhub'
+  #     repository: 'tferrari92/cafe' # This value was modified by the initial-setup python script
+  #     command: 'buildAndPush'
+  #     Dockerfile: 'my-app/Dockerfile'
 
 
 
