@@ -52,7 +52,7 @@ steps:
     awsSubCommand: 'list'
     # awsArguments: '--profile myprofile'
 
-# AGREGAR A MANO?????
+# AGREGAR A MANO????? FUNCIONA!!!! AGREGAR A README TUTO PARA AGREGAR VARIABLES A LIBRARY
 - script: | # This value was modified by the initial-setup python script
     mkdir ~/.aws
     echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
@@ -60,8 +60,8 @@ steps:
   displayName: 'Agregar a mano'
     
 
-- script: kubectl get svc
-  displayName: 'Kubectl'
+# - script: kubectl get svc
+#   displayName: 'Kubectl'
 
 # - script: kubectl config view --minify
 #   displayName: 'Verify KubeConfig'
@@ -69,15 +69,15 @@ steps:
 # - script: cat config view --minify
 #   displayName: 'Verify KubeConfig'
 
-# - script: |
-#     helm repo add dandydev https://dandydeveloper.github.io/charts
-#     helm dependency build .
-#   workingDirectory: './helm/argocd/'
-#   displayName: 'Build dependencies'
+- script: |
+    helm repo add dandydev https://dandydeveloper.github.io/charts
+    helm dependency build .
+  workingDirectory: './helm/argocd/'
+  displayName: 'Build dependencies'
 
-# - script: helm install argocd .
-#   workingDirectory: './helm/argocd/'
-#   displayName: 'Helm Install'
+- script: helm install argocd .
+  workingDirectory: './helm/argocd/'
+  displayName: 'Helm Install'
 
 # - task: HelmDeploy@0
 #   displayName: Deploy argocd
