@@ -81,7 +81,11 @@ steps:
 #   workingDirectory: './helm/argocd/'
 #   displayName: 'Helm Install'
 
+- script: kubectl create namespace argocd
+  displayName: 'Create argocd Namespace'
+
 - task: HelmDeploy@0
+  displayName: Deploy argocd
   inputs:
     connectionType: 'None'
     namespace: 'argocd'
