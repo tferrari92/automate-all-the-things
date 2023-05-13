@@ -43,13 +43,13 @@ steps:
     awsSubCommand: 'update-kubeconfig'
     awsArguments: '--name cafe-cluster --region us-east-2' # This value was modified by the initial-setup python script
 
-- task: AWSCLI@1
-  displayName: 'Check credentials'
-  inputs:
-    awsCredentials: 'aws'
-    regionName: 'us-east-2'
-    awsCommand: 'configure'
-    awsSubCommand: 'list'
+# - task: AWSCLI@1
+#   displayName: 'Check credentials'
+#   inputs:
+#     awsCredentials: 'aws'
+#     regionName: 'us-east-2'
+#     awsCommand: 'configure'
+#     awsSubCommand: 'list'
     # awsArguments: '--profile myprofile'
 
 # AGREGAR A MANO????? FUNCIONA!!!! AGREGAR A README TUTO PARA AGREGAR VARIABLES A LIBRARY
@@ -57,7 +57,7 @@ steps:
     mkdir ~/.aws
     echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
     echo -e "[default]\nregion = us-east-2"> ~/.aws/config 
-  displayName: 'Agregar a mano'
+  displayName: 'Configure AWS Profile'
     
 
 # - script: kubectl get svc
@@ -75,7 +75,7 @@ steps:
   workingDirectory: './helm/argocd/'
   displayName: 'Build dependencies'
 
-- script: helm install argocd .
+- script: helm install argocd . -n argocd
   workingDirectory: './helm/argocd/'
   displayName: 'Helm Install'
 
