@@ -17,6 +17,9 @@ resources:
   #     include:
   #       - main
 
+variables:
+  - group: aws-keys
+
 pool:
   vmImage: 'ubuntu-latest' 
   # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
@@ -30,8 +33,6 @@ steps:
     displayName: Install helm
     helmVersion: '3.11.2'
     installKubectl: true
-
-
 
 - task: AWSCLI@1
   displayName: 'Update KubeConfig'
@@ -50,6 +51,13 @@ steps:
     awsCommand: 'configure'
     awsSubCommand: 'list'
     # awsArguments: '--profile myprofile'
+
+# AGREGAR A MANO?????
+- script: | 
+    echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
+    echo -e "[default]\nregion = us-east-2"> ~/.aws/config # This value was modified by the initial-setup python script
+  displayName: 'Agregar a mano'
+    
 
 - script: kubectl get svc
   displayName: 'Kubectl'
