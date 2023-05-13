@@ -54,6 +54,6 @@ steps:
   displayName: Build And Push Image
   inputs:
     containerRegistry: 'dockerhub'
-    repository: 'tferrari92/cafe'
+    repository: 'tferrari92/cafe2' # This value was modified by the initial-setup python script
     command: 'buildAndPush'
     Dockerfile: 'my-app/Dockerfile'

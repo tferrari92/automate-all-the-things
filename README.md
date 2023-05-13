@@ -358,8 +358,6 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 <br/>
 
 ## Application Build Pipeline
-CREATE DOCKERHUB REPO??????
-
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
 4. Select "GitHub".
