@@ -39,7 +39,7 @@ steps:
     regionName: 'us-east-2' # This value was modified by the initial-setup python script
     awsCommand: 'eks'
     awsSubCommand: 'update-kubeconfig'
-    awsArguments: '--name cafe-cluster --region us-east-2' # This value was modified by the initial-setup python script
+    awsArguments: '--name cafe-cluster --region us-east-2 --profile az-devops' # This value was modified by the initial-setup python script
 
 - task: AWSCLI@1
   inputs:
