@@ -359,6 +359,7 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 <br/>
 
 ## Application Build Pipeline
+CREATE DOCKERHUB REPO??????
 
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
@@ -405,6 +406,36 @@ https://mylearn.oracle.com/ou/component/-/108432/165507
 <br/>
 <p title="Wolverine & Nana" align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
 <br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

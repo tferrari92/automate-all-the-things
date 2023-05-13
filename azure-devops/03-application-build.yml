@@ -27,10 +27,12 @@ pool:
 
 steps:
 - task: DockerInstaller@0
+  displayName: Install Docker
   inputs:
     dockerVersion: '17.09.0-ce'
   
 - task: Docker@2
+  displayName: Build And Push Image
   inputs:
     containerRegistry: 'dockerhub'
     repository: 'cafe'
