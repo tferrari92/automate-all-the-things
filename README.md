@@ -278,6 +278,7 @@ pool:
 <!-- 9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
 10. The KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, we'll need it to create the Kubernetes service connection.
 
+<br>
 
 #### Create K8S Service Connection
 For the next step to work, we need to create a K8S service connection with the KubeConfig we've just downloaded.
