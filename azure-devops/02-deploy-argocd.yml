@@ -34,6 +34,12 @@ steps:
 - task: AWSCLI@1
   inputs:
     awsCredentials: 'aws'
+    regionName: 'us-east-2'
+    awsCommand: 'configure'
+
+- task: AWSCLI@1
+  inputs:
+    awsCredentials: 'aws'
     regionName: 'us-east-2' # This value was modified by the initial-setup python script
     awsCommand: 'eks'
     awsSubCommand: 'update-kubeconfig'
