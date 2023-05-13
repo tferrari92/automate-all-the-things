@@ -39,8 +39,8 @@ steps:
     awsSubCommand: 'update-kubeconfig'
     awsArguments: '--name cafe-cluster --region us-east-2' # This value was modified by the initial-setup python script
 
-- script: kubectl config view --minify
-  displayName: 'Verify KubeConfig'
+# - script: kubectl config view --minify
+#   displayName: 'Verify KubeConfig'
 
 # - script: cat config view --minify
 #   displayName: 'Verify KubeConfig'
@@ -51,14 +51,18 @@ steps:
   workingDirectory: './helm/argocd/'
   displayName: 'Build dependencies'
 
-- task: HelmDeploy@0
-  displayName: Deploy argocd
-  inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceConnection: 'k8s'
-    command: 'install'
-    chartType: 'FilePath'
-    chartPath: 'helm/argocd'
-    releaseName: 'argocd'
+- script: helm install .
+  workingDirectory: './helm/argocd/'
+  displayName: 'Build dependencies'
+
+# - task: HelmDeploy@0
+#   displayName: Deploy argocd
+#   inputs:
+#     connectionType: 'Kubernetes Service Connection'
+#     kubernetesServiceConnection: 'k8s'
+#     command: 'install'
+#     chartType: 'FilePath'
+#     chartPath: 'helm/argocd'
+#     releaseName: 'argocd'
 
 
