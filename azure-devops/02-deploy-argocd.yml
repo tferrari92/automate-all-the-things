@@ -36,6 +36,8 @@ steps:
     awsCredentials: 'aws'
     regionName: 'us-east-2'
     awsCommand: 'configure'
+    awsSubCommand: ''
+    awsArguments: '--profile myprofile'
 
 - task: AWSCLI@1
   inputs:
