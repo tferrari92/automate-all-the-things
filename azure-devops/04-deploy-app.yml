@@ -1,4 +1,4 @@
-name: application-build
+name: application-deploy
 
 trigger: none
 
@@ -26,15 +26,3 @@ pool:
   #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
 
 steps:
-- task: DockerInstaller@0
-  displayName: Install Docker
-  inputs:
-    dockerVersion: '17.09.0-ce'
-  
-- task: Docker@2
-  displayName: Build And Push Image
-  inputs:
-    containerRegistry: 'dockerhub'
-    repository: 'tferrari92/cafe' # This value was modified by the initial-setup python script
-    command: 'buildAndPush'
-    Dockerfile: 'my-app/Dockerfile'
