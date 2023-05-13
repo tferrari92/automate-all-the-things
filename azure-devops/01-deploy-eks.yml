@@ -95,12 +95,23 @@ steps:
     tree $(System.DefaultWorkingDirectory)
   displayName: 'tree'
 
-# Save terraform state file
+
+# Save KubeConfig
 - task: PublishBuildArtifacts@1
   displayName: 'Export kubeconfig'
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/kubeconfig.yaml'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/python/kubeconfig.yaml'
     # PathtoPublish: '$(Pipeline.Workspace)'
     ArtifactName: 'Kubeconfig'
     publishLocation: 'Container'
     # condition: always()
+
+# # Save KubeConfig
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Export kubeconfig'
+#   inputs:
+#     PathtoPublish: '$(System.DefaultWorkingDirectory)/kubeconfig.yaml'
+#     # PathtoPublish: '$(Pipeline.Workspace)'
+#     ArtifactName: 'Kubeconfig'
+#     publishLocation: 'Container'
+#     # condition: always()
