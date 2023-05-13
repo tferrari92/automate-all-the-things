@@ -379,6 +379,8 @@ Ok this is the only command
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/04-application-deploy.yml". Click "Continue".
 11. Click on "Run".
 
+CONFIGURAR REPO PRIVADO EN ARGOCD??
+
 CREAR INGRESS PARA ARGOCD. IP PUBLICA TAMBIEN!!!!!
 
 CAMBIAR KEYS DE AWS!!!

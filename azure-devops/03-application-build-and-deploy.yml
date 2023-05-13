@@ -67,3 +67,14 @@ jobs:
   #     echo $(Build.BuildId)
   #     cat helm/my-app/values.yaml
   #   displayName: Verify
+
+  - script: |
+      git config --global user.email "tferrar.92@gmail.com"
+      git config --global user.name "Azure DevOps"
+    displayName: 'Configure Git user'
+
+  - script: |
+      git add .
+      git commit -m "Tag updated by AZ DevOps"
+      git push origin $(Build.SourceBranchName)
+    displayName: 'Push changes to GitHub'
