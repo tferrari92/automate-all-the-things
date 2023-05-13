@@ -28,7 +28,7 @@ steps:
 - task: HelmInstaller@0
   inputs:
     displayName: Install helm
-    helmVersion: '3.11.2'
+    helmVersion: '2.14.1'
     installKubectl: true
 
 - task: HelmDeploy@0
@@ -40,5 +40,5 @@ steps:
     chartType: 'FilePath'
     chartPath: 'helm/argocd'
     releaseName: 'argocd'
-    updatedependency: true
+    updateDependency: true
 
