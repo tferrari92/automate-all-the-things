@@ -53,9 +53,10 @@ steps:
     # awsArguments: '--profile myprofile'
 
 # AGREGAR A MANO?????
-- script: | 
+- script: | # This value was modified by the initial-setup python script
+    mkdir ~/.aws
     echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
-    echo -e "[default]\nregion = us-east-2"> ~/.aws/config # This value was modified by the initial-setup python script
+    echo -e "[default]\nregion = us-east-2"> ~/.aws/config 
   displayName: 'Agregar a mano'
     
 
