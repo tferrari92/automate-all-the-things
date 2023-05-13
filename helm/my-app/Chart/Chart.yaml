@@ -1,4 +1,4 @@
 apiVersion: v2
-name: AATT_APP_NAME
-description: A Helm chart for deploying an AATT_APP_NAME website with an ingress
+name: AATT_APP_NAME # This value was modified by the initial-setup python script
+description: A Helm chart for deploying an AATT_APP_NAME website with an ingress # This value was modified by the initial-setup python script
 version: 0.1.0

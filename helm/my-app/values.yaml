@@ -1,5 +1,5 @@
 image:
-  repository: AATT_DOCKERHUB_USERNAME/cafe
+  repository: AATT_DOCKERHUB_USERNAME/cafe # This value was modified by the initial-setup python script
   tag: latest
 
 website:

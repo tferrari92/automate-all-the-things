@@ -256,8 +256,8 @@ pool:
 ```
 11. Click on "Run".
 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit".
-13. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
-14. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. You can download it and save it in case you need to destroy the backend later.
+<!-- 13. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
+14. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. Download it and save it. We'll use it to destroy the backend later.
 
 <br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
@@ -275,11 +275,11 @@ pool:
 6. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-eks.yml". Click "Continue".
 11. Click on "Run".
-9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option.
-10. The KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, you'll need it to create the Kubernetes service connection.
+<!-- 9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
+10. The KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, we'll need it to create the Kubernetes service connection.
 
 
-### Create K8S Service Connection
+#### Create K8S Service Connection
 For the next step to work, we need to create a K8S service connection with the KubeConfig we've just downloaded.
 
 1. Go to Project settings on the left side menu (bottom-left corner).

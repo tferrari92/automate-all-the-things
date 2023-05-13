@@ -6,8 +6,8 @@ resources:
   repositories:
   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
     type: github
-    endpoint: tferrari92 # Name of the service connection  #AATT_GITHUB_USERNAME
-    name: tferrari92/automate-all-the-things #AATT_GITHUB_USERNAME
+    endpoint: tferrari92 # Name of the service connection # This value was modified by the initial-setup python script
+    name: tferrari92/automate-all-the-things # This value was modified by the initial-setup python script
 
 pool:
   vmImage: 'ubuntu-latest' 
@@ -30,7 +30,7 @@ steps:
     command: init
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required #AATT_AWS_REGION
+    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
 - task: TerraformCLI@0
   displayName: 'Terraform plan'
@@ -38,7 +38,7 @@ steps:
     command: plan
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required #AATT_AWS_REGION
+    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
 - task: TerraformCLI@0
   displayName: 'Terraform apply'
@@ -46,7 +46,7 @@ steps:
     command: apply
     workingDirectory: './terraform/backend/'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # Required #AATT_AWS_REGION
+    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
 - task: PublishBuildArtifacts@1
   displayName: 'Save terraform state file'
@@ -54,5 +54,3 @@ steps:
     PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
     ArtifactName: 'TerraformState'
     publishLocation: 'Container'
-    # condition: always()
-
