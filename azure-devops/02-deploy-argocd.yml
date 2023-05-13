@@ -34,14 +34,16 @@ steps:
 
 
 - task: AWSCLI@1
+  displayName: 'Update KubeConfig'
   inputs:
     awsCredentials: 'aws'
     regionName: 'us-east-2' # This value was modified by the initial-setup python script
     awsCommand: 'eks'
     awsSubCommand: 'update-kubeconfig'
-    awsArguments: '--name cafe-cluster --region us-east-2 --profile az-devops' # This value was modified by the initial-setup python script
+    awsArguments: '--name cafe-cluster --region us-east-2' # This value was modified by the initial-setup python script
 
 - task: AWSCLI@1
+  displayName: 'Check credentials'
   inputs:
     awsCredentials: 'aws'
     regionName: 'us-east-2'
@@ -49,21 +51,24 @@ steps:
     awsSubCommand: 'list'
     # awsArguments: '--profile myprofile'
 
+- script: kubectl get svc
+  displayName: 'Kubectl'
+
 # - script: kubectl config view --minify
 #   displayName: 'Verify KubeConfig'
 
 # - script: cat config view --minify
 #   displayName: 'Verify KubeConfig'
 
-- script: |
-    helm repo add dandydev https://dandydeveloper.github.io/charts
-    helm dependency build .
-  workingDirectory: './helm/argocd/'
-  displayName: 'Build dependencies'
+# - script: |
+#     helm repo add dandydev https://dandydeveloper.github.io/charts
+#     helm dependency build .
+#   workingDirectory: './helm/argocd/'
+#   displayName: 'Build dependencies'
 
-- script: helm install argocd .
-  workingDirectory: './helm/argocd/'
-  displayName: 'Helm Install'
+# - script: helm install argocd .
+#   workingDirectory: './helm/argocd/'
+#   displayName: 'Helm Install'
 
 # - task: HelmDeploy@0
 #   displayName: Deploy argocd
