@@ -56,15 +56,15 @@ steps:
 #     publishLocation: 'Container'
 #     condition: always()
 
-- script: cp terraform/backend/terraform.tfstate terraform/aws
-  displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
+# - script: cp terraform/backend/terraform.tfstate terraform/aws
+#   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
 
 
 - task: TerraformCLI@0
-  displayName: 'Terraform Init Backend'
+  displayName: 'Terraform Init EKS'
   inputs:
     command: init
-    workingDirectory: './terraform/aws/'
+    workingDirectory: 'terraform/aws'
     backendType: aws # set to `aws` to use aws backend
     backendServiceAws: aws # service connection name, required if backendType = aws
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
