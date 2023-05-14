@@ -79,7 +79,7 @@ jobs:
   - script: |
       git checkout -b main
       tree
-      git add . 
+      git add helm/my-app/values.yaml 
       git commit -m "Tag updated to $(Build.BuildId) by Azure DevOps"
       git push --set-upstream origin main
     displayName: 'Push changes to GitHub'
