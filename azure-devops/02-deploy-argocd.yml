@@ -60,8 +60,21 @@ steps:
     echo -e "[default]\nregion = us-east-2"> ~/.aws/config 
   displayName: 'Configure AWS Profile'
 
-- script: kubectl create namespace argocd
-  displayName: 'Create argocd Namespace'
+  # helm upgrade --install ingress-nginx ingress-nginx \
+  # --repo https://kubernetes.github.io/ingress-nginx \
+  # --namespace ingress-nginx --create-namespace
+
+- task: HelmDeploy@0
+  displayName: Deploy argocd
+  inputs:
+    connectionType: 'None'
+    namespace: 'argocd'
+    command: 'install'
+    chartType: 'FilePath'
+    chartPath: 'helm/ingress-controller'
+    releaseName: 'argocd'
+    arguments: '--dependency-update --create-namespace'
+
 
 - task: HelmDeploy@0
   displayName: Deploy argocd
@@ -72,7 +85,7 @@ steps:
     chartType: 'FilePath'
     chartPath: 'helm/argocd'
     releaseName: 'argocd'
-    arguments: '--dependency-update'
+    arguments: '--dependency-update --create-namespace'
 
 
 - script: kubectl create -f argocd/application.yaml
