@@ -43,9 +43,6 @@ jobs:
   #     Dockerfile: 'my-app/Dockerfile'
 
 
-
-
-
 - job: DeployJob
   displayName: 'Deploy Job'
   dependsOn: BuildJob
@@ -74,12 +71,14 @@ jobs:
   #   displayName: Verify
 
   - script: |
-      git config --global user.email "tferrar.92@gmail.com"
-      git config --global user.name "Azure DevOps"
+      git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
+      git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
     displayName: 'Configure Git user'
 
+# CAMBIAR ADD A SPECIFICLY VALUES>YAML
   - script: |
-      git add .
-      git commit -m "Tag updated by AZ DevOps"
+      tree
+      git add . 
+      git commit -m "Tag updated to $(Build.BuildId) by Azure DevOps"
       git push origin $(Build.SourceBranchName)
     displayName: 'Push changes to GitHub'

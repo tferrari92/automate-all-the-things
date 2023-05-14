@@ -361,7 +361,7 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 
 Chekear si es necesario lo de project setting > Repos > Repositories > cafe > Users > cafe Build Service (tomasferrari) > Contribute set to Allow
 https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/git-commands?view=azure-devops&tabs=yaml
-
+https://www.programmingwithwolfgang.com/create-git-commits-in-azure-devops-yaml-pipeline/
 
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
