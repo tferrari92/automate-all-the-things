@@ -80,5 +80,5 @@ jobs:
       tree
       git add . 
       git commit -m "Tag updated to $(Build.BuildId) by Azure DevOps"
-      git push origin main
+      git push --set-upstream origin main
     displayName: 'Push changes to GitHub'
