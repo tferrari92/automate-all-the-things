@@ -235,7 +235,9 @@ To install a self-hosted agent on your machine, you can follow the official docu
 
 # **PIPELINES**
 
-## Terraform Backend Deployment Pipeline
+## EKS Deployment Pipeline
+
+EXPLICAR COMO FUNCIONA LO DE DEPOY BACKEND, MOVER EL STATE, Y DEPLOYAR EKS. EXPLICAR LO QUE HACE ESTE PIPELINE
 
 Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on AWS with Terraform. These two resources will allow us to store our terraform state remotely and lock it.<br/>
 
@@ -272,7 +274,7 @@ pool:
 
 <br/>
 
-## EKS Deployment Pipeline
+## EKS Deployment Pipeline VIEJO
 
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
@@ -393,6 +395,8 @@ uncomment vars
 complete values in .tfvars
 tf init
 tf destroy
+
+Will fail cause bucket and dynamo dont excist any more
 
 CONFIGURAR REPO PRIVADO EN ARGOCD??
 
