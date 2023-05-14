@@ -349,28 +349,27 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 
 ## Application Build & Deploy Pipeline
 
-#### Configure the Pipeline to bypass Pull Request Policies
+#### Configure The Pipeline To Allow Push To GitHub
 This pipeline will need to push changes on the repo to GitHub. By default, repositories are allowed to be read but not written, so we need to do a little extra configuration.
 
-1. Go to Project setting > Repositories (under Repos) > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
-2. Set to "Allow" these parameters: Contribute, Create Tag and Read.
+1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
+CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
+2. Set to "Allow" these parameters: Bypass policies when pushing, Contribute, Create Tag and Read.
 
-
-
-# HACE FALTA???? Select your Build Service and set Bypass policies when pushing Contribute to allowed.
 
 <br/>
 <p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/NzYh5KJ.png"> </p>
 <br/>
 
+Now we can proceed with our pipeline:
 
-2. Go to "Pipelines" under "Pipelines" on the left side menu.
-3. Click on "New pipeline".
-4. Select "GitHub".
-6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
-6. Select "Existing Azure Pipelines YAML file".
-9. Under "Branch" select "main" and under "Path" select "/azure-devops/03-build-and-deploy-app.yml". Click "Continue".
-11. Click on "Run".
+1. Go to "Pipelines" under "Pipelines" on the left side menu.
+2. Click on "New pipeline".
+3. Select "GitHub".
+4. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+5. Select "Existing Azure Pipelines YAML file".
+6. Under "Branch" select "main" and under "Path" select "/azure-devops/03-build-and-deploy-app.yml". Click "Continue".
+7. Click on "Run".
 
 ## Create ArgoCD Application
 Ok this is the only command 
