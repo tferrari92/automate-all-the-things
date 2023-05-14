@@ -25,10 +25,10 @@ steps:
 # - checkout: automate-all-the-things
 
 - task: TerraformCLI@0
-  displayName: 'Terraform init'
+  displayName: 'Terraform Init Backend'
   inputs:
     command: init
-    workingDirectory: './terraform/backend/'
+    workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
@@ -41,10 +41,10 @@ steps:
 #     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
 - task: TerraformCLI@0
-  displayName: 'Terraform apply'
+  displayName: 'Terraform Apply Backend'
   inputs:
     command: apply
-    workingDirectory: './terraform/backend/'
+    workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
@@ -57,13 +57,22 @@ steps:
 #     condition: always()
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
-  displayName: 'Configure AWS Profile'
+  displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
 
 
 - task: TerraformCLI@0
-  displayName: 'Terraform apply'
+  displayName: 'Terraform Apply EKS'
+  inputs:
+    command: init
+    workingDirectory: 'terraform/aws'
+    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
+
+
+- task: TerraformCLI@0
+  displayName: 'Deploy EKS'
   inputs:
     command: apply
-    workingDirectory: './terraform/aws/'
+    workingDirectory: 'terraform/aws'
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
