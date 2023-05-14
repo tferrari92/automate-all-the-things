@@ -61,7 +61,7 @@ steps:
 
 
 - task: TerraformCLI@0
-  displayName: 'Terraform Apply EKS'
+  displayName: 'Terraform Init EKS'
   inputs:
     command: init
     workingDirectory: 'terraform/aws'
@@ -70,7 +70,7 @@ steps:
 
 
 - task: TerraformCLI@0
-  displayName: 'Deploy EKS'
+  displayName: 'Terraform Apply EKS'
   inputs:
     command: apply
     workingDirectory: 'terraform/aws'
