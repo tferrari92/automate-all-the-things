@@ -77,8 +77,10 @@ jobs:
 
 # CAMBIAR ADD A SPECIFICLY VALUES>YAML
   - script: |
+      git checkout -b main
       tree
       git add . 
       git commit -m "Tag updated to $(Build.BuildId) by Azure DevOps"
       git push --set-upstream origin main
     displayName: 'Push changes to GitHub'
+      # git push --set-upstream origin main
