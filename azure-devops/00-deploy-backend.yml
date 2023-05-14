@@ -69,7 +69,7 @@ steps:
     backendServiceAws: aws # service connection name, required if backendType = aws
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
-    commandOptions: '-force-copy' # PROBAR ESTO SI ES QUE ES NECESARIO HACE EL COPY DEL TFSTATE
+    commandOptions: '-force-copy' # This overides the propt question with a yes
 
 
 - task: TerraformCLI@0
