@@ -32,13 +32,13 @@ steps:
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
-- task: TerraformCLI@0
-  displayName: 'Terraform plan'
-  inputs:
-    command: plan
-    workingDirectory: './terraform/backend/'
-    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
+# - task: TerraformCLI@0
+#   displayName: 'Terraform plan'
+#   inputs:
+#     command: plan
+#     workingDirectory: './terraform/backend/'
+#     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+#     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
 - task: TerraformCLI@0
   displayName: 'Terraform apply'
@@ -48,11 +48,22 @@ steps:
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Save terraform state file'
-  inputs:
-    PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
-    ArtifactName: 'TerraformState'
-    publishLocation: 'Container'
-    condition: always()
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Save terraform state file'
+#   inputs:
+#     PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
+#     ArtifactName: 'TerraformState'
+#     publishLocation: 'Container'
+#     condition: always()
 
+- script: cp terraform/backend/terraform.tfstate terraform/aws
+  displayName: 'Configure AWS Profile'
+
+
+- task: TerraformCLI@0
+  displayName: 'Terraform apply'
+  inputs:
+    command: apply
+    workingDirectory: './terraform/aws/'
+    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script

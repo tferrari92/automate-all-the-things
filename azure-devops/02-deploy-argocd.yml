@@ -60,24 +60,25 @@ steps:
     echo -e "[default]\nregion = us-east-2"> ~/.aws/config 
   displayName: 'Configure AWS Profile'
 
-  # helm upgrade --install ingress-nginx ingress-nginx \
-  # --repo https://kubernetes.github.io/ingress-nginx \
-  # --namespace ingress-nginx --create-namespace
+
+# CON ESTSA OPCION SE VA A CREAR EN AWS UN LOAD BALANCER QUE NO VA A ESATR DENTRO DEL TERRAFORM POR LO  Q HABRA Q BORRARLO ANUALMENTE
+# - task: HelmDeploy@0
+#   displayName: Deploy Ingress
+#   inputs:
+#     connectionType: 'None'
+#     namespace: 'ingress-nginx'
+#     command: 'install'
+#     chartType: 'FilePath'
+#     chartPath: 'helm/ingress-controller'
+#     releaseName: 'ingress-nginx'
+#     arguments: '--dependency-update --create-namespace'
+
+# TEST IT
+  # kubectl get service ingress-nginx-controller --namespace=ingress-nginx
+
 
 - task: HelmDeploy@0
-  displayName: Deploy argocd
-  inputs:
-    connectionType: 'None'
-    namespace: 'argocd'
-    command: 'install'
-    chartType: 'FilePath'
-    chartPath: 'helm/ingress-controller'
-    releaseName: 'argocd'
-    arguments: '--dependency-update --create-namespace'
-
-
-- task: HelmDeploy@0
-  displayName: Deploy argocd
+  displayName: Deploy ArgoCD
   inputs:
     connectionType: 'None'
     namespace: 'argocd'
