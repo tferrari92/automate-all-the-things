@@ -367,6 +367,7 @@ roject setting > Repos > Repositories > cafe > Users > cafe Build Service (tomas
 2. Set to "Allow": Contribute, Create Tag and Read.
 
 
+
 # HACE FALTA???? Select your Build Service and set Bypass policies when pushing Contribute to allowed.
 
 <br/>
