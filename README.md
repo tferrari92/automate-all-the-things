@@ -11,8 +11,7 @@
     <a  href="/docs/readme_es.md">Versión en Español</a>
 </p>
 
-<p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
-<br>
+<p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p><br>
 
 # **INDEX**
 
