@@ -56,8 +56,8 @@ steps:
 #     publishLocation: 'Container'
 #     condition: always()
 
-# - script: cp terraform/backend/terraform.tfstate terraform/aws
-#   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
+- script: cp terraform/backend/terraform.tfstate terraform/aws
+  displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
 
 
 - task: TerraformCLI@0
@@ -69,7 +69,7 @@ steps:
     backendServiceAws: aws # service connection name, required if backendType = aws
     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
-    # commandOptions: '-migrate-state' # PROBAR ESTO SI ES QUE ES NECESARIO HACE EL COPY DEL TFSTATE
+    commandOptions: '-migrate-state' # PROBAR ESTO SI ES QUE ES NECESARIO HACE EL COPY DEL TFSTATE
 
 
 - task: TerraformCLI@0
