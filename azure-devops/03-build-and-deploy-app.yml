@@ -75,12 +75,9 @@ jobs:
       git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
     displayName: 'Configure Git user'
 
-# CAMBIAR ADD A SPECIFICLY VALUES>YAML
   - script: |
       git checkout -b main
-      tree
       git add helm/my-app/values.yaml 
-      git commit -m "Tag updated to $(Build.BuildId) by Azure DevOps"
+      git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
       git push --set-upstream origin main
     displayName: 'Push changes to GitHub'
-      # git push --set-upstream origin main

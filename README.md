@@ -359,9 +359,20 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 
 ## Application Build & Deploy Pipeline
 
-Chekear si es necesario lo de project setting > Repos > Repositories > cafe > Users > cafe Build Service (tomasferrari) > Contribute set to Allow
-https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/git-commands?view=azure-devops&tabs=yaml
-https://www.programmingwithwolfgang.com/create-git-commits-in-azure-devops-yaml-pipeline/
+#### Configure the Pipeline to bypass Pull Request Policies
+This pipeline will need to push changes on the repo to GitHub. By default repositories are allowed to be read but not written, so we need to do a little extra configuration.
+
+roject setting > Repos > Repositories > cafe > Users > cafe Build Service (tomasferrari) > Contribute set to Allow
+1. Go to Project setting > Repositories (under Repos) > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
+2. Set to "Allow": Contribute, Create Tag and Read.
+
+
+# HACE FALTA???? Select your Build Service and set Bypass policies when pushing Contribute to allowed.
+
+<br/>
+<p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/NzYh5KJ.png"> </p>
+<br/>
+
 
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
