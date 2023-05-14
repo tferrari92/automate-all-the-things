@@ -32,17 +32,7 @@
     -   [EKS Deployment Pipeline](#eks-deployment-pipeline)
          -   [Create K8S Service Connection](#create-k8s-service-connection)
     -   [ArgoCD Deployment Pipeline](#argocd-deployment-pipeline)
--   [Themes](#themes)
--   [Customization](#customization)
-    -   [Common Options](#common-options)
-    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
-    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
-    -   [Language Card Exclusive Options](#language-card-exclusive-options)
-    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
--   [Deploy Yourself](#deploy-on-your-own)
-    -   [On Vercel](#on-vercel)
-    -   [On other platforms](#on-other-platforms)
-    -   [Keep your fork up to date](#keep-your-fork-up-to-date)
+
 <br/>
 
 
@@ -360,11 +350,10 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 ## Application Build & Deploy Pipeline
 
 #### Configure the Pipeline to bypass Pull Request Policies
-This pipeline will need to push changes on the repo to GitHub. By default repositories are allowed to be read but not written, so we need to do a little extra configuration.
+This pipeline will need to push changes on the repo to GitHub. By default, repositories are allowed to be read but not written, so we need to do a little extra configuration.
 
-roject setting > Repos > Repositories > cafe > Users > cafe Build Service (tomasferrari) > Contribute set to Allow
 1. Go to Project setting > Repositories (under Repos) > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
-2. Set to "Allow": Contribute, Create Tag and Read.
+2. Set to "Allow" these parameters: Contribute, Create Tag and Read.
 
 
 
