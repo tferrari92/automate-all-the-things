@@ -1,1 +1,0 @@
-http://k8s-argocd-argocd16-1dffefd5a7-1670714224.us-east-2.elb.amazonaws.com
