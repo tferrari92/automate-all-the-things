@@ -116,14 +116,16 @@ steps:
 
 
 - script: |
-    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > argocd-admin-pass.txt
-  displayName: 'Save ArgoCD Admin Password'
+    kubectl get ingress argocd-ingress -n argocd -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > argocd-access.txt
+    echo "admin" >> argocd-access.txt
+    echo $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d) >> argocd-access.txt
+  displayName: 'Save Access'
 
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Export ArgoCD Admin Password'
+  displayName: 'Export Access'
   inputs:
-    PathtoPublish: 'argocd-admin-pass.txt'
+    PathtoPublish: 'argocd-access.txt'
     # PathtoPublish: '$(Pipeline.Workspace)'
     ArtifactName: 'AdminPass'
     publishLocation: 'Container'
