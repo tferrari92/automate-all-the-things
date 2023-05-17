@@ -24,7 +24,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: argo-cd-1684347748-argocd-server
+                name: argo-cd-1684352300-argocd-server
                 port:
                   number: 80
 

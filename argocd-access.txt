@@ -1,3 +1,1 @@
-http://k8s-argocd-argocdin-3cf572e113-413260434.us-east-2.elb.amazonaws.com
-admin
-9bU0Kqt8vHbvvYsC
+http://k8s-argocd-argocd16-1dffefd5a7-1670714224.us-east-2.elb.amazonaws.com

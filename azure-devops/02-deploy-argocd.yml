@@ -106,14 +106,37 @@ steps:
     command: 'install'
     chartType: 'FilePath'
     chartPath: 'helm/argo-cd'
-    valueFile: 'helm/argo-cd/values-custom.yaml'
+    # valueFile: 'helm/argo-cd/values-custom.yaml'
     # releaseName: 'argocd'
     arguments: '--dependency-update --create-namespace'
   continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
-# - script: |
-#     kubectl apply -f ./ingress/argocd-ingress.yaml
-#   displayName: 'Create Ingress'
+- script: |
+    kubectl apply -f ./ingress/argocd-ingress.yaml
+  displayName: 'Create Ingress'
+
+# RUN PYTHON SCRIPT THAT CHECKS FOR LB STATUS TO BE ACTIVE
+# aws elbv2 describe-load-balancers
+- script: |
+    echo "false" > is-active.txt
+    while [ "$(cat is-active.txt)" != "true" ]; do
+        sleep 5
+        aws elbv2 describe-load-balancers > lb-status.json
+        json_data=$(cat lb-status.json)
+        state_code=$(echo "$json_data" | jq -r '.LoadBalancers[0].State.Code')
+        if [[ "$state_code" == "active" ]]; then
+          echo "true" > is-active.txt
+        else
+          echo "Load balancer is not ready yet..."
+        fi
+    done
+  displayName: 'Wait for Load Balancer Status'
+
+# - task: PythonScript@0
+#   displayName: 'Format kubeconfig'
+#   inputs:
+#     scriptSource: 'filePath'
+#     scriptPath: 'python/azure-devops/00-format-kubeconfig.py'
 
 
 - script: |
