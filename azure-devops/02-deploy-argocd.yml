@@ -111,9 +111,9 @@ steps:
     arguments: '--dependency-update --create-namespace'
   continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
-- script: |
-    kubectl apply -f ./ingress/argocd-ingress.yaml
-  displayName: 'Create Ingress'
+# - script: |
+#     kubectl apply -f ./ingress/argocd-ingress.yaml
+#   displayName: 'Create Ingress'
 
 # RUN PYTHON SCRIPT THAT CHECKS FOR LB STATUS TO BE ACTIVE
 # aws elbv2 describe-load-balancers
