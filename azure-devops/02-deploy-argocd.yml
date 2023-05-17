@@ -110,6 +110,19 @@ steps:
     arguments: '--dependency-update --create-namespace'
 
 
+- script: |
+    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d > argocd-admin-pass.txt
+  displayName: 'Save ArgoCD Admin Password'
+
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Export ArgoCD Admin Password'
+  inputs:
+    PathtoPublish: 'argocd-admin-pass.txt'
+    # PathtoPublish: '$(Pipeline.Workspace)'
+    ArtifactName: 'AdminPass'
+    publishLocation: 'Container'
+
 # - task: HelmDeploy@0
 #   inputs:
 #     connectionType: 'None'
