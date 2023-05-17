@@ -106,7 +106,7 @@ steps:
     command: 'install'
     chartType: 'FilePath'
     chartPath: 'helm/argo-cd'
-    releaseName: 'argocd'
+    # releaseName: 'argocd'
     arguments: '--dependency-update --create-namespace'
   continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
