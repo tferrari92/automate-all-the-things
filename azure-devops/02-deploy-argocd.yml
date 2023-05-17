@@ -85,29 +85,29 @@ steps:
   # kubectl get service ingress-nginx-controller --namespace=ingress-nginx
 
 
-- task: HelmDeploy@0
-  displayName: Deploy ArgoCD
-  inputs:
-    connectionType: 'None'
-    namespace: 'argocd'
-    command: 'upgrade'
-    chartType: 'Name'
-    chartName: 'argo/argo-cd'
-    chartVersion: '5.34.1'
-    releaseName: 'argocd'
-    arguments: '--dependency-update --create-namespace'
-
-
 # - task: HelmDeploy@0
 #   displayName: Deploy ArgoCD
 #   inputs:
 #     connectionType: 'None'
 #     namespace: 'argocd'
-#     command: 'install'
-#     chartType: 'FilePath'
-#     chartPath: 'helm/argocd'
+#     command: 'upgrade'
+#     chartType: 'Name'
+#     chartName: 'argo/argo-cd'
+#     chartVersion: '5.34.1'
 #     releaseName: 'argocd'
 #     arguments: '--dependency-update --create-namespace'
+
+
+- task: HelmDeploy@0
+  displayName: Deploy ArgoCD
+  inputs:
+    connectionType: 'None'
+    namespace: 'argocd'
+    command: 'install'
+    chartType: 'FilePath'
+    chartPath: 'helm/argocd'
+    releaseName: 'argocd'
+    arguments: '--dependency-update --create-namespace'
 
 
 # - task: HelmDeploy@0
