@@ -380,6 +380,7 @@ Now we can proceed with our pipeline:
  kubectl logs -f -n kube-system \
  -l app.kubernetes.io/name=aws-load-balancer-controller
  kubectl apply -f color-app.yaml
+ kubectl get ingress argocd-ingress -n argocd -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
  kubectl get ingress color-app-ingress -n color-app -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
 
  Go to:

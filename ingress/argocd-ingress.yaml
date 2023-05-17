@@ -26,7 +26,7 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 443                        
+                  number: 80  
           # - path: /green
           #   pathType: Prefix
           #   backend:
