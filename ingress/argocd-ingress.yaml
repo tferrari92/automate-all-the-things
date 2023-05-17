@@ -27,12 +27,4 @@ spec:
                 name: argo-cd-1684347748-argocd-server
                 port:
                   number: 80
-                  # name: http
 
-          # - path: /green
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: green-service
-          #       port:
-          #         number: 80

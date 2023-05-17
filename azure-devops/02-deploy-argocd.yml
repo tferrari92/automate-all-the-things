@@ -110,9 +110,9 @@ steps:
     arguments: '--dependency-update --create-namespace'
   continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
-- script: |
-    kubectl apply -f ./ingress/argocd-ingress.yaml
-  displayName: 'Create Ingress'
+# - script: |
+#     kubectl apply -f ./ingress/argocd-ingress.yaml
+#   displayName: 'Create Ingress'
 
 
 - script: |
@@ -127,7 +127,7 @@ steps:
   inputs:
     PathtoPublish: 'argocd-access.txt'
     # PathtoPublish: '$(Pipeline.Workspace)'
-    ArtifactName: 'AdminPass'
+    ArtifactName: 'Access'
     publishLocation: 'Container'
 
 # - task: HelmDeploy@0
