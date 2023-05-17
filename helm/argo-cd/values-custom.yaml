@@ -1,3 +1,11 @@
+## Argo Configs
+configs:
+  # General Argo CD configuration
+  params:
+    ## Server properties
+    # -- Run server without TLS
+    server.insecure: true
+
 ## Server
 server:
   ingress:

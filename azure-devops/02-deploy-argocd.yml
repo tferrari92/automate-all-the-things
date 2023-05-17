@@ -106,7 +106,7 @@ steps:
     command: 'install'
     chartType: 'FilePath'
     chartPath: 'helm/argo-cd'
-    # valueFile: 'helm/argo-cd/values-custom.yaml'
+    valueFile: 'helm/argo-cd/values-custom.yaml'
     # releaseName: 'argocd'
     arguments: '--dependency-update --create-namespace'
   continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
@@ -131,12 +131,6 @@ steps:
         fi
     done
   displayName: 'Wait for Load Balancer Status'
-
-# - task: PythonScript@0
-#   displayName: 'Format kubeconfig'
-#   inputs:
-#     scriptSource: 'filePath'
-#     scriptPath: 'python/azure-devops/00-format-kubeconfig.py'
 
 
 - script: |
