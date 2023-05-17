@@ -61,62 +61,21 @@ steps:
   displayName: 'Configure AWS Profile'
 
 
-# CON ESTSA OPCION SE VA A CREAR EN AWS UN LOAD BALANCER QUE NO VA A ESATR DENTRO DEL TERRAFORM POR LO  Q HABRA Q BORRARLO ANUALMENTE
-
-# helm repo add eks https://aws.github.io/eks-charts
-# helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
-#   --set autoDiscoverAwsRegion=true \
-#   --set autoDiscoverAwsVpcID=true \
-#   --set clusterName=learnk8s
-
-
-# - task: HelmDeploy@0
-#   displayName: Deploy Ingress
-#   inputs:
-#     connectionType: 'None'
-#     namespace: 'ingress-nginx'
-#     command: 'install'
-#     chartType: 'FilePath'
-#     chartPath: 'helm/ingress-controller'
-#     releaseName: 'ingress-nginx'
-#     arguments: '--dependency-update --create-namespace'
-
-# TEST IT
-  # kubectl get service ingress-nginx-controller --namespace=ingress-nginx
-
-
-# - task: HelmDeploy@0
-#   displayName: Deploy ArgoCD
-#   inputs:
-#     connectionType: 'None'
-#     namespace: 'argocd'
-#     command: 'upgrade'
-#     chartType: 'Name'
-#     chartName: 'argo/argo-cd'
-#     chartVersion: '5.34.1'
-#     releaseName: 'argocd'
-#     arguments: '--dependency-update --create-namespace'
-
-
 - task: HelmDeploy@0
   displayName: Deploy ArgoCD
   inputs:
     connectionType: 'None'
     namespace: 'argocd'
+    chartVersion: '5.34.1'
     command: 'install'
     chartType: 'FilePath'
     chartPath: 'helm/argo-cd'
     valueFile: 'helm/argo-cd/values-custom.yaml'
     # releaseName: 'argocd'
     arguments: '--dependency-update --create-namespace'
-  continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+  # continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
-# - script: |
-#     kubectl apply -f ./ingress/argocd-ingress.yaml
-#   displayName: 'Create Ingress'
 
-# RUN PYTHON SCRIPT THAT CHECKS FOR LB STATUS TO BE ACTIVE
-# aws elbv2 describe-load-balancers
 - script: |
     echo "false" > is-active.txt
     while [ "$(cat is-active.txt)" != "true" ]; do
@@ -134,7 +93,7 @@ steps:
 
 
 - script: |
-    kubectl get ingress argocd-ingress -n argocd -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > argocd-access.txt
+    kubectl get ingress $(kubectl get ingress | awk 'NR>1{print $1}') -n argocd -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > argocd-access.txt
     echo "admin" >> argocd-access.txt
     echo $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d) >> argocd-access.txt
   displayName: 'Save Access'
