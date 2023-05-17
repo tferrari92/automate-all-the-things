@@ -391,6 +391,8 @@ Ok this is the only command
 
 
 ## Destroy Pipeline
+
+PRIMERO BORRAR TODOS LOS INGRESS!!!!!!!
 uncomment vars
 complete values in .tfvars
 tf init

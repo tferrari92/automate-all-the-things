@@ -90,13 +90,35 @@ steps:
   inputs:
     connectionType: 'None'
     namespace: 'argocd'
-    command: 'install'
-    chartType: 'FilePath'
-    chartPath: 'helm/argocd'
+    command: 'upgrade'
+    chartType: 'Name'
+    chartName: 'argo/argo-cd'
+    chartVersion: '5.34.1'
     releaseName: 'argocd'
     arguments: '--dependency-update --create-namespace'
 
 
-- script: kubectl create -f argocd/application.yaml
-  displayName: 'Create ArgoCD Application'
+# - task: HelmDeploy@0
+#   displayName: Deploy ArgoCD
+#   inputs:
+#     connectionType: 'None'
+#     namespace: 'argocd'
+#     command: 'install'
+#     chartType: 'FilePath'
+#     chartPath: 'helm/argocd'
+#     releaseName: 'argocd'
+#     arguments: '--dependency-update --create-namespace'
+
+
+# - task: HelmDeploy@0
+#   inputs:
+#     connectionType: 'None'
+#     namespace: 'argocd'
+#     command: 'upgrade'
+#     chartType: 'Name'
+#     chartName: 'argocd'
+#     arguments: '--dependency-update --create-namespace'
+
+# - script: kubectl create -f argocd/application.yaml
+#   displayName: 'Create ArgoCD Application'
 
