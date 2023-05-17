@@ -62,6 +62,14 @@ steps:
 
 
 # CON ESTSA OPCION SE VA A CREAR EN AWS UN LOAD BALANCER QUE NO VA A ESATR DENTRO DEL TERRAFORM POR LO  Q HABRA Q BORRARLO ANUALMENTE
+
+# helm repo add eks https://aws.github.io/eks-charts
+# helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+#   --set autoDiscoverAwsRegion=true \
+#   --set autoDiscoverAwsVpcID=true \
+#   --set clusterName=learnk8s
+
+
 # - task: HelmDeploy@0
 #   displayName: Deploy Ingress
 #   inputs:
