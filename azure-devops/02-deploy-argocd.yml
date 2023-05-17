@@ -108,7 +108,7 @@ steps:
     chartPath: 'helm/argo-cd'
     # releaseName: 'argocd'
     arguments: '--dependency-update --create-namespace'
-  continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+  # continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
 - script: |
     kubectl apply -f ./ingress/argocd-ingress.yaml
