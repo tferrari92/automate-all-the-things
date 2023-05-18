@@ -1,22 +1,44 @@
-image:
-  repository: tferrari92/cafe # This value was modified by the initial-setup python script
-tag: 300
+appName: cafe
 
-website:
-  repository: your-website-repo
-tag: 300
-  config:
-    index.html: |
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>Welcome to my website</title>
-      </head>
-      <body>
-        <h1>Hello, world!</h1>
-      </body>
-      </html>
+deployment:
+  image:
+    repository: tferrari92/cafe # This value was modified by the initial-setup python script
+    tag: 286
+  replicas: 1
+
+configmap:
+  memes: |-
+    {
+      "urls": [
+        "https://i.imgur.com/yjpOvlM.jpg",
+        "https://i.imgur.com/y3I39FA.jpg",
+        "https://i.imgur.com/akNhnrh.jpg",
+        "https://i.imgur.com/VA0ctyO.jpg",
+        "https://i.imgur.com/wNANxNw.jpg",
+        "https://i.imgur.com/eqpDlh5.jpg",
+        "https://i.imgur.com/ARqnwlQ.jpg",
+        "https://i.imgur.com/2lJ6xLl.jpg",
+        "https://i.imgur.com/kGQUUTw.jpg",
+        "https://i.imgur.com/o4LuRu7.jpg",
+        "https://i.imgur.com/NTD8sBQ.jpg",
+        "https://i.imgur.com/Mn1sb0s.jpg",
+        "https://i.imgur.com/CnDPSpV.png",
+        "https://i.imgur.com/E0s8TW6.png",
+        "https://i.imgur.com/xSmJv0k.png"
+      ]
+    }
+
 
 ingress:
-  enabled: true
-  host: yourdomain.com
+  annotations: {    
+    kubernetes.io/ingress.class: alb,
+    alb.ingress.kubernetes.io/scheme: internet-facing,
+    alb.ingress.kubernetes.io/target-type: ip,
+    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP,
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port,
+    alb.ingress.kubernetes.io/healthcheck-interval-seconds: '15',
+    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: '5',
+    alb.ingress.kubernetes.io/success-codes: '200',
+    alb.ingress.kubernetes.io/healthy-threshold-count: '2',
+    alb.ingress.kubernetes.io/unhealthy-threshold-count: '2'
+  }
