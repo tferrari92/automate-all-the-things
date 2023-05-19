@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        img {
+            display: none;
+            height: auto;
+            max-width: 30%;
+            max-height: 600px;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: center;
+
+        }
+    </style>
+    <script src="image.js"></script>
+    <script>
+        function getRandomImage() {
+            var index = Math.floor(Math.random() * images.length);
+            var image = images[index];
+            var displayImage = document.getElementById("display");
+            displayImage.src = image;
+            displayImage.style.display = "block";
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Image Display</h1>
+    <button onclick="getRandomImage()">Show Random Image</button>
+    <br><br>
+    <img id="display" src="" alt="Random Image">
+</body>
+
+</html>
+
+
+
+#display {
+display: none;
+margin-top: 20px;
+max-width: 30%;
+max-height: 600px;
+border: 1px solid #ddd;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

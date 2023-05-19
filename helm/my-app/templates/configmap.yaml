@@ -4,4 +4,4 @@ metadata:
   namespace: {{ .Values.appName }}
   name: {{ .Values.appName }}-configmap
 data:
-  image-urls.json: {{ .Values.configmap.memes | toYaml | indent 1 }}
+  memes.js: {{ .Values.configmap.memes | toYaml | indent 1 }}
