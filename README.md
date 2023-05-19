@@ -54,8 +54,9 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## Prerequisites
-- [Python3 installed on your machine](https://www.python.org/downloads/)
-- [AWS CLI installed on your machine](https://aws.amazon.com/cli/)
+- [Git installed](https://www.python.org/downloads/)
+- [Python3 installed](https://www.python.org/downloads/)
+- [AWS CLI installed](https://aws.amazon.com/cli/) NECESARIO???
 - [Active DockerHub account](https://hub.docker.com/)
 - [Active AWS account](https://aws.amazon.com/)
 - [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
@@ -88,10 +89,10 @@ Ok, now that that's out of the way...
 
 <p title="Logos Banner" align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
-## **Disclaimer**
+## Disclaimer
 
-Some things could have been further automatized but I prioritized the separation of concerns.<br>
-For example, the EKS cluster could have been deployed with ArgoCD installed in one go, but I wanted to have them separated so that each module is focused on it's specific task, increasing it's recyclability.
+Some things could have been further automatized but I prioritized modularization and separation of concerns.<br>
+For example, the EKS cluster could have been deployed with ArgoCD installed in one go, but I wanted to have them separated so that each module is focused on it's specific task, which makes them more recyclable.
 
 Let's begin...
 
@@ -175,6 +176,8 @@ This service connection is required for our Azure DevOps pipelines to interact w
 8. Select the "Grant access permission to all pipelines" option.
 9. Save.
 
+<br/>
+
 ## Create DockerHub Service Connections
 This service connection is required for our Azure DevOps pipelines to interact with other AWS.
 
@@ -211,7 +214,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 
 <br/>
 
-## (OPTIONAL) Create An Azure Self-Hosted Agent
+## (Optional) Create An Azure Self-Hosted Agent
 ***If you have a hosted parallelism, you can skip this step.***<br/>
 
 A hosted parallelism basically means that Azure will spin up a server in which to run your pipelines. You can purchase one or you can request a free parallelism by filling out [this form](https://aka.ms/azpipelines-parallelism-request).<br/>
@@ -387,8 +390,6 @@ Now we can proceed with our pipeline:
  http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/green
  http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/yellow
 
-# Para borrar:
-# Primero borrar ingress o directamente namespace
 
 ## Create ArgoCD Application
 Ok this is the only command 
