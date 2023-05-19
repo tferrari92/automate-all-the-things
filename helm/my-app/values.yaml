@@ -3,7 +3,7 @@ appName: cafe
 deployment:
   image:
     repository: tferrari92/cafe # This value was modified by the initial-setup python script
-    tag: 339
+    tag: 342
   replicas: 1
 
 configmap:

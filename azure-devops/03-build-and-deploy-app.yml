@@ -49,19 +49,19 @@ jobs:
       Dockerfile: 'my-app/Dockerfile'
 
 
-# - job: DeployJob
-#   displayName: 'Deploy Job'
-#   dependsOn: BuildJob
-#   steps:
+- job: DeployJob
+  displayName: 'Deploy Job'
+  dependsOn: BuildJob
+  steps:
 
-#   # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo
-#   - checkout: self
-#     persistCredentials: true
+  # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo
+  - checkout: self
+    persistCredentials: true
 
-#   - script: |
-#       sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml > helm/my-app/values.temp
-#       mv helm/my-app/values.temp helm/my-app/values.yaml
-#     displayName: Update Tag In values.yaml
+  - script: |
+      sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml > helm/my-app/values.temp
+      mv helm/my-app/values.temp helm/my-app/values.yaml
+    displayName: Update Tag In values.yaml
 
 
   # - script: |
