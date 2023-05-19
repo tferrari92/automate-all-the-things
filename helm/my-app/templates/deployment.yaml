@@ -44,7 +44,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.appName }}
-          image: 741971cc8f71
+          image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
           ports:
             - containerPort: 80
           env:
@@ -63,5 +63,4 @@ spec:
 
        
 
-          # image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
           # command: ["/bin/sh", "-c", "echo \"$(cat /config/index.html | sed 's/${MY_VARIABLE}/new-value/g')\" > /config/index.html"]

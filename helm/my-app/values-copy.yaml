@@ -2,8 +2,8 @@ appName: cafe
 
 deployment:
   image:
-    repository: 741971cc8f71 # This value was modified by the initial-setup python script
-    # tag: ""
+    repository: tferrari92/cafe # This value was modified by the initial-setup python script
+    tag: 335
   replicas: 1
 
 # configmap:
