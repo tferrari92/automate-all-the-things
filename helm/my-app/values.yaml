@@ -27,7 +27,6 @@ configmap:
     ];
 
 
-
 ingress:
   annotations: {    
     kubernetes.io/ingress.class: alb,
