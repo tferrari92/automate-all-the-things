@@ -26,7 +26,6 @@ configmap:
         "https://i.imgur.com/xSmJv0k.png"
     ];
 
-
 ingress:
   annotations: {    
     kubernetes.io/ingress.class: alb,
