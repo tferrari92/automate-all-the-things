@@ -1,6 +1,12 @@
 name: application-build
 
-trigger: none
+trigger:
+  branches:
+    include:
+      - main  # Include the branches where you want the trigger to apply
+  paths:
+    include:
+      - my-app/*
 # A ESTE HAY Q AGREGARLE UN WEBHOOK CON GITHUB PA Q BUILDEE CADA Q HAY UN CAMBIO EN EL CODIGO DE LA APP!!!!!!!!!!!!!!!!!!!!!!!!!!
 # resources:
 #   repositories:
