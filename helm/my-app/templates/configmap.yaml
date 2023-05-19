@@ -1,10 +1,7 @@
-
-
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: {{ .Values.appName }}
   name: {{ .Values.appName }}-configmap
 data:
-  memes: "https://i.imgur.com/yjpOvlM.jpg"
+  image-urls.json: {{ .Values.configmap.memes | toYaml | indent 1 }}
