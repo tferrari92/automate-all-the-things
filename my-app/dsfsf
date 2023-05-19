@@ -2,7 +2,7 @@
 FROM nginx
 
 # Copy the index.html file into the container
-COPY index3.html /usr/share/nginx/html/
+COPY index.html /usr/share/nginx/html/
 
 # Expose port 80 to the outside world
 EXPOSE 80

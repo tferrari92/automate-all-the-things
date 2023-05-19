@@ -1,3 +1,32 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   namespace: {{ .Values.appName }}
+#   name: {{ .Values.appName }}-deployment
+# spec:
+#   replicas: {{ .Values.deployment.replicas }}
+#   selector:
+#     matchLabels:
+#       app: {{ .Values.appName }}
+#   template:
+#     metadata:
+#       labels:
+#         app: {{ .Values.appName }}
+#     spec:
+#       containers:
+#         - name: {{ .Values.appName }}
+#           image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
+#           ports:
+#             - containerPort: 80
+#           volumeMounts:
+#             - name: configmap
+#               mountPath: /usr/share/nginx/html/resources/
+#       volumes:
+#         - name: configmap
+#           configMap:
+#             name: {{ .Values.appName }}-configmap
+
+       
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,9 +44,15 @@ spec:
     spec:
       containers:
         - name: {{ .Values.appName }}
-          image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
+          image: 741971cc8f71
           ports:
             - containerPort: 80
+          env:
+            - name: MY_VARIABLE
+              valueFrom:
+                 configMapKeyRef:
+                   name: {{ .Values.appName }}-configmap
+                   key: memes
           volumeMounts:
             - name: configmap
               mountPath: /usr/share/nginx/html/resources/
@@ -27,3 +62,6 @@ spec:
             name: {{ .Values.appName }}-configmap
 
        
+
+          # image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
+          # command: ["/bin/sh", "-c", "echo \"$(cat /config/index.html | sed 's/${MY_VARIABLE}/new-value/g')\" > /config/index.html"]
