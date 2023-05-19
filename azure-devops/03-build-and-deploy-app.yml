@@ -63,19 +63,6 @@ jobs:
       mv helm/my-app/values.temp helm/my-app/values.yaml
     displayName: Update Tag In values.yaml
 
-
-  # - script: |
-  #     new_tag=${{ $(Build.BuildId) }}
-  #     echo $new_tag
-  #     sed 's/tag:*/tag: $new_tag/g' helm/my-app/values.yaml
-  #   displayName: Update Tag In values.yaml
-
-
-  # - script: |
-  #     echo $(Build.BuildId)
-  #     cat helm/my-app/values.yaml
-  #   displayName: Verify
-
   - script: |
       git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
       git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
