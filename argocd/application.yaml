@@ -9,10 +9,10 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    helm:
-      valueFiles:
-        - ../values.yaml
-    path: helm/my-app/Chart
+    # helm:
+    #   valueFiles:
+    #     - ../values.yaml
+    path: helm/my-app
     repoURL: https://github.com/tferrari92/automate-all-the-things.git
   syncPolicy:
     automated:

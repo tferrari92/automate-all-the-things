@@ -7,7 +7,6 @@ trigger:
   paths:
     include:
       - my-app/*
-# A ESTE HAY Q AGREGARLE UN WEBHOOK CON GITHUB PA Q BUILDEE CADA Q HAY UN CAMBIO EN EL CODIGO DE LA APP!!!!!!!!!!!!!!!!!!!!!!!!!!
 # resources:
 #   repositories:
 #   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
@@ -54,7 +53,7 @@ jobs:
   dependsOn: BuildJob
   steps:
 
-  # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo
+  # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
   - checkout: self
     persistCredentials: true
 
