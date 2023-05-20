@@ -20,7 +20,7 @@ spec:
             - containerPort: 80
           volumeMounts:
             - name: configmap
-              mountPath: /usr/share/nginx/html/memes.js
+              mountPath: /usr/share/nginx/html/resources
       volumes:
         - name: configmap
           configMap:
