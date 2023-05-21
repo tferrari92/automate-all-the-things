@@ -30,7 +30,6 @@ pool:
 
 - job: DeleteK8SResources
   displayName: 'Delete Kubernetes Resources'
-  dependsOn: BuildJob
   steps:
   - task: KubectlInstaller@0
     inputs:
