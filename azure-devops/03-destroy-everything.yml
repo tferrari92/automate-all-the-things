@@ -69,6 +69,17 @@ jobs:
       terraformVersion: '1.4.6'
 
   - task: TerraformCLI@0
+    displayName: 'Terraform Init'
+    inputs:
+      command: init
+      workingDirectory: 'terraform/aws'
+      backendType: aws # set to `aws` to use aws backend
+      backendServiceAws: aws # service connection name, required if backendType = aws
+      providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+      providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
+      # commandOptions: '-force-copy' # This overides the propt question with a yes
+
+  - task: TerraformCLI@0
     displayName: 'Terraform Destroy AWS Infra'
     inputs:
       command: destroy
