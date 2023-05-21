@@ -160,7 +160,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 3. On the IAM dashboard, select "Users" on the left side menu. *If you are root user and haven't created any users, you'll find the "Create access key" option on IAM > My security credentials. You should know that ***creating Access Keys for the root user is a bad security practice***. If you choose to proceed anyway, click on "Create access key" and skip to point 6*.
 4. Choose your IAM user name (not the check box).
 5. Open the Security credentials tab, and then choose "Create access key".
-6. To see the new access key, choose Show. Your credentials resemble the following:<br>
+6. To see the new access key, choose Show. Your credentials resemble the following:
 - Access key ID: AKIAIOSFODNN7EXAMPLE<br>
 - Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 7. Copy and save these somewhere safe.
@@ -196,7 +196,9 @@ This service connection is required for our Azure DevOps pipelines to be able to
 8. Select the "Grant access permission to all pipelines" option.
 9. Click on "Verify and save".
 
-<!-- ## Create AWS-Keys Variable Group
+<br/>
+
+## Create AWS-Keys Variable Group
 These are needed for Terraform to be able to deploy our AWS infrastructure.
 1. On the left side menu under "Pipelines" go to "Library"
 2. Click on "+ Variable group".
@@ -205,7 +207,11 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 - aws_access_key_id 
 - aws_secret_access_key
 5. Click on the lock icon on each variable.
-6. Save. -->
+6. Click on "Pipeline permissions" and give it "Open access". This means all our pipelines will be able to use these variables.
+<br/>
+<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/aMzTx49.jpg"> </p>
+<br/>
+6. Click on "Save".
 
 <!-- NO HACE FALTA PORQ SE CREA SOLA CON EL NOMBRE DE USERNEAME DE GITHUB -->
 <!-- ### GitHub
@@ -221,38 +227,41 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 ## (Optional) Create An Azure Self-Hosted Agent
 ***If you have a hosted parallelism, you can skip this step.***<br/>
 
-A hosted parallelism basically means that Azure will spin up a server in which to run your pipelines. You can purchase one or you can request a free parallelism by filling out [this form](https://aka.ms/azpipelines-parallelism-request).<br/>
+A hosted parallelism basically means that Azure will spin up a server in which to run your pipelines. You can purchase one or you can request a free parallelism by filling out [this form](https://aka.ms/azpipelines-parallelism-request).
 
 If you don't have a hosted parallelism, you will have to run the pipeline in a **self-hosted agent**. 
-This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.<br/>
+This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
 
 To install a self-hosted agent on your machine, you can follow the official documentation [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install).
-
-
 
 <br/>
 <p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <br/>
 
-
 * * *
-
 
 <br/>
 
 # **PIPELINES**
 
-## EKS Deployment Pipeline
+## AWS Infrastructure Deployment Pipeline
+
+### **Explanation**
 
 Our first pipeline, the one that will provide us with all the AWS infrastucture.
 
-What does this pipeline do? If you take a look at the azure-devops/00-deploy-infra.yml file, you'll see that the first
-
-
-Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on AWS with Terraform. These two resources will allow us to store our terraform state remotely and lock it.<br/>
+What does this pipeline do? If you take a look at the azure-devops/00-deploy-infra.yml file, you'll see that the first thing we do is use the Terraform plugin we previously installed to deploy a S3 Bucket and DynamoDB table. These two resources will allow us to store our terraform state remotely and give it locking functionality.<br/>
 
 Why do we need to store our tf state remotely and locking it? Well, this is probably not necessary for this excercise but it's a best practice when working on a team.<br>
-Storing it remotely means that everyone on the team can access the same state file, and locking it means that only one person can access it at a time, this prevents state conflicts.
+Storing it remotely means that everyone on the team can access and work with the same state file, and locking it means that only one person can access it at a time, this prevents state conflicts.
+
+Before we proceed with deploying out actual infrastructure., we'll move the state file to the /terraform/aws/ directory, so our backend resources (the Bucket and DynamoDB Table) will also be tracked as part of our whole infrastructure. If you want to understand how this works, I suggest you watch [this video](https://youtu.be/7xngnjfIlK4?t=2483) where Sid from [DevOps Directive](https://www.youtube.com/@DevOpsDirective) explains it better than I ever could...
+
+Now that's everything is set, we will finally deploy our infra! 
+
+It's mainly the networking resources and the EKS cluster. If you want to know exactly what is being deployed, you can check the [terraform files](/terraform/aws).
+
+### **Instructions**
 
 1. On your Azure DevOps project, go to Pipelines on the left side menu.
 2. Select Pipelines under Pipelines on the left side menu.
