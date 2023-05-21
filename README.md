@@ -41,7 +41,7 @@
 
 # **INTRODUCTION**
 
-I believe in a world where all that's required of me is to enjoy life, lay on the couch, play COD and have exitential crises.
+I believe in a world where all that's expected of me is to enjoy life, lay on the couch, play COD and have exitential crises.
 <br/>
 If I could, I'd automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.
 <br/>
@@ -56,22 +56,25 @@ Here's my attempt at making the world a better place. People in the future will 
 ## Prerequisites
 - [Git installed](https://www.python.org/downloads/)
 - [Python3 installed](https://www.python.org/downloads/)
-- [AWS CLI installed](https://aws.amazon.com/cli/) NECESARIO???
+- [Active GitHub account](https://github.com/)
 - [Active DockerHub account](https://hub.docker.com/)
 - [Active AWS account](https://aws.amazon.com/)
 - [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
+<!-- - [AWS CLI installed](https://aws.amazon.com/cli/) NECESARIO??? -->
 
 <br/>
 
 ## What we'll be doing
-The purpose of this repo is not to guive you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infra and how the tools can interact with each other to make them as efficient as posible. To show good practices and how to provide your devs, ops, and devops teams with guides on how to perfmmorm their specific. tasks . Demonstrate the power of infrastructure as code (IaC) and CI/CD (cont interg cont deplo)
+The purpose of this repo is not to give you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infrastructure and how the tools can interact with each other to make them as efficient as posible.
+<br/>
+
+I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be integrated. 
 
 <br/>
 
 ## Tools we'll be using
 
-For each step of the process, I’ve chosen to use the best tool in its field.<br>
-And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!!
+For each step of the process, I’ve chosen to use the best tool in its field. And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!!
 <br/>
 
 Ok, now that that's out of the way...
@@ -92,7 +95,8 @@ Ok, now that that's out of the way...
 ## Disclaimer
 
 Some things could have been further automatized but I prioritized modularization and separation of concerns.<br>
-For example, the EKS cluster could have been deployed with ArgoCD installed in one go, but I wanted to have them separated so that each module is focused on it's specific task, which makes them more recyclable.
+
+For example, the EKS cluster could have been deployed with ArgoCD installed in one pipeline, but I wanted to have them separated so that each module is focused on it's specific task, making each of them more recyclable.
 
 Let's begin...
 
@@ -115,11 +119,11 @@ cd automate-all-the-things
 ```
 2. Run the initial setup script. Come back when you are done:
 ```bash
-python3 python/local/00-initial-setup.py
+python3 python/initial-setup.py
 ``` 
-4. Hope you enjoyed the welcome script! Now push the customized repo to GitHub:
+4. Hope you enjoyed the welcome script! Now push your customized repo to GitHub:
 ```bash
-git add .
+git add -A
 git commit -m "customized repo"
 git push
 ```
@@ -164,7 +168,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 <br/>
 
 ## Create AWS Service Connections
-This service connection is required for our Azure DevOps pipelines to interact with other AWS.
+This service connection is required for our Azure DevOps pipelines to interact with AWS.
 
 1. Go back to Azure DevOps and open your project.
 2. Go to Project settings on the left side menu (bottom-left corner).
@@ -179,7 +183,7 @@ This service connection is required for our Azure DevOps pipelines to interact w
 <br/>
 
 ## Create DockerHub Service Connections
-This service connection is required for our Azure DevOps pipelines to interact with other AWS.
+This service connection is required for our Azure DevOps pipelines to be able to push images to your DockerHub registry.
 
 1. Go back to Azure DevOps and open your project.
 2. Go to Project settings on the left side menu (bottom-left corner).
@@ -240,7 +244,10 @@ To install a self-hosted agent on your machine, you can follow the official docu
 
 ## EKS Deployment Pipeline
 
-EXPLICAR COMO FUNCIONA LO DE DEPOY BACKEND, MOVER EL STATE, Y DEPLOYAR EKS. EXPLICAR LO QUE HACE ESTE PIPELINE
+Our first pipeline, the one that will provide us with all the AWS infrastucture.
+
+What does this pipeline do? If you take a look at the azure-devops/00-deploy-infra.yml file, you'll see that the first
+
 
 Before deploying our whole infrastructure, we will create an Amazon S3 Bucket and DynamoDB table on AWS with Terraform. These two resources will allow us to store our terraform state remotely and lock it.<br/>
 
