@@ -213,6 +213,20 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 <br/>
 6. Click on "Save".
 
+<br/>
+
+## Allow Pushes To GitHub
+We will need to push changes to the GitHub repo. By default, repositories are allowed to be read from but not written to, so we need to do a little extra configuration.
+
+1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
+CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
+2. "Bypass policies when pushing", "Contribute", "Create Tag" and "Read" should be set to "Allow".
+
+
+<br/>
+<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/NzYh5KJ.png"> </p>
+<br/>
+
 <!-- NO HACE FALTA PORQ SE CREA SOLA CON EL NOMBRE DE USERNEAME DE GITHUB -->
 <!-- ### GitHub
 4. On the Service connectionlick on "New service connection" .
@@ -286,7 +300,7 @@ pool:
 11. Click on "Run".
 
 <br/>
-<p title="Guy Behind Tree" align="center"> <img width="460" src="https://i.imgur.com/y3I39FA.jpg"> </p>
+<p title="Pleasure" align="center"> <img width="460" src="https://i.imgur.com/n5lNz3z.jpg"> </p>
 <br/>
 
 <!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
@@ -385,19 +399,6 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 
 
 ### **Instructions**
-
-#### Configure The Pipeline To Allow Push To GitHub
-This pipeline will need to push changes on the repo to GitHub. By default, repositories are allowed to be read but not written, so we need to do a little extra configuration.
-
-1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
-CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
-2. Set to "Allow" these parameters: Bypass policies when pushing, Contribute, Create Tag and Read.
-
-
-<br/>
-<p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/NzYh5KJ.png"> </p>
-<br/>
-
 Now we can proceed with our pipeline:
 
 1. Go to "Pipelines" under "Pipelines" on the left side menu.
@@ -408,22 +409,27 @@ Now we can proceed with our pipeline:
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/03-build-and-deploy-app.yml". Click "Continue".
 7. Click on "Run".
 
- CHECK!!!!
- aws eks update-kubeconfig --name demo2 --region us-east-2
- helm list -n kube-system
- kubectl logs -f -n kube-system \
- -l app.kubernetes.io/name=aws-load-balancer-controller
- kubectl apply -f color-app.yaml
- kubectl get ingress argocd-ingress -n argocd -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
- kubectl get ingress color-app-ingress -n color-app -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
+<br/>
+<p title="Momoa & Cavill" align="center"> <img width="460" src="https://i.imgur.com/2lJ6xLl.jpg"> </p>
+<br/>
 
- Go to:
- http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/green
- http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/yellow
+<!-- 
+CHECK!!!!
+aws eks update-kubeconfig --name demo2 --region us-east-2
+helm list -n kube-system
+kubectl logs -f -n kube-system \
+-l app.kubernetes.io/name=aws-load-balancer-controller
+kubectl apply -f color-app.yaml
+kubectl get ingress argocd-ingress -n argocd -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
+kubectl get ingress color-app-ingress -n color-app -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
+
+Go to:
+http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/green
+http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/yellow -->
 
 
-## Create ArgoCD Application
-Ok this is the only command 
+<!-- ## Create ArgoCD Application
+Ok this is the only command  -->
 
 
 <!-- ## Application Deployment Pipeline
@@ -482,9 +488,7 @@ https://mylearn.oracle.com/ou/component/-/108432/165507
 <br/>
 <p title="Thinking About Another Woman" align="center"> <img width="460" src="https://i.imgur.com/akNhnrh.jpg"> </p>
 <br/>
-<br/>
-<p title="Momoa & Cavill" align="center"> <img width="460" src="https://i.imgur.com/2lJ6xLl.jpg"> </p>
-<br/>
+
 <br/>
 <p title="Wolverine & Nana" align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
 <br/>
