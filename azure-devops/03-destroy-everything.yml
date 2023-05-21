@@ -56,6 +56,7 @@ jobs:
         kubectl delete ingress -n cafe $(kubectl get ingress -n cafe | awk 'NR>1{print $1}')
         kubectl delete ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}')
     displayName: 'Delete Ingresses'
+    continueOnError: true
 
 
 - job: DeleteAWSInfrastructure
