@@ -73,3 +73,14 @@ jobs:
       git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
       git push --set-upstream origin main
     displayName: 'Push changes to GitHub'
+
+  - script: |
+      kubectl get ingress -n cafe $(kubectl get ingress -n cafe | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
+    displayName: 'Save URL'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Export URL'
+    inputs:
+      PathtoPublish: 'my-app-url.txt'
+      ArtifactName: 'URL'
+      publishLocation: 'Container'

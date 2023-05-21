@@ -1,0 +1,77 @@
+name: destroy
+
+trigger: none
+
+# resources:
+#   repositories:
+#   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
+#     type: github
+#     endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
+#     name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
+  # pipelines:
+  # - pipeline: deploy-eks # any arbitrary name
+  #   source: deploy-eks   # name of the pipeline shown on azure UI portal
+  #   # source: "AATT_GITHUB_USERNAME.automate-all-the-things (2)"   # Name of the pipeline that needs to succeed for this pipeline to run # AATT_GITHUB_USERNAME
+  #   trigger:
+  #   branches:
+  #     include:
+  #       - main
+
+variables:
+  - group: aws-keys
+
+pool:
+  vmImage: 'ubuntu-latest' 
+  # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
+  # name: <agent-pool-name> # Insert here the name of the agent pool you created
+  # demands:
+  #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
+
+
+- job: DeleteK8SResources
+  displayName: 'Delete Kubernetes Resources'
+  dependsOn: BuildJob
+  steps:
+  - task: KubectlInstaller@0
+    inputs:
+      kubectlVersion: '1.27.1'
+
+  - task: AWSCLI@1
+    displayName: 'Update KubeConfig'
+    inputs:
+      awsCredentials: 'aws'
+      regionName: 'us-east-2' # This value was modified by the initial-setup python script
+      awsCommand: 'eks'
+      awsSubCommand: 'update-kubeconfig'
+      awsArguments: '--name cafe-cluster --region us-east-2' # This value was modified by the initial-setup python script
+
+
+  - script: | # This value was modified by the initial-setup python script
+      mkdir ~/.aws
+      echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
+      echo -e "[default]\nregion = us-east-2"> ~/.aws/config 
+    displayName: 'Configure AWS Profile'
+
+  # We delete the ingresses first so that no ingress-created load balancers are active during terraform destroy
+  - script: |
+        kubectl delete ingress -n cafe $(kubectl get ingress -n cafe | awk 'NR>1{print $1}')
+        kubectl delete ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}')
+      displayName: 'Delete Ingresses'
+
+
+- job: DeleteAWSInfrastructure
+  displayName: 'Delete AWS Infrastructure'
+  dependsOn: DeleteK8SResources
+  steps:
+  - task: TerraformInstaller@0
+    displayName: Install terraform
+    inputs:
+      terraformVersion: '1.4.6'
+
+  - task: TerraformCLI@0
+    displayName: 'Terraform Destroy AWS Infra'
+    inputs:
+      command: destroy
+      workingDirectory: 'terraform/aws'
+      providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
+      providerAwsRegion: us-east-2
