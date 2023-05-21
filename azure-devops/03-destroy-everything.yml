@@ -27,7 +27,7 @@ pool:
   # demands:
   #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
 
-
+jobs:
 - job: DeleteK8SResources
   displayName: 'Delete Kubernetes Resources'
   steps:
