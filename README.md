@@ -259,7 +259,9 @@ Before we proceed with deploying out actual infrastructure., we'll move the stat
 
 Now that's everything is set, we will finally deploy our infra! 
 
-It's mainly the networking resources and the EKS cluster. If you want to know exactly what is being deployed, you can check the [terraform files](/terraform/aws).
+It's mainly the networking resources and the EKS cluster. 
+EXPLICAR LO DEL AWS LOAD BALANCER Y COMO FUNCIONA COMO INGRESS
+If you want to know exactly what is being deployed, you can check the [terraform files](/terraform/aws).
 
 ### **Instructions**
 
@@ -282,18 +284,21 @@ pool:
     - agent.name -equals <agent-name> # Insert here the name of the agent you created
 ```
 11. Click on "Run".
-12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit".
-<!-- 13. Rename the pipeline to "deploy-backend". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
-14. The terraform state file will be exported as an artifact. You'll find it in the pipeline run screen. Download it and save it. We'll use it to destroy the backend later.
 
 <br/>
+<p title="Guy Behind Tree" align="center"> <img width="460" src="https://i.imgur.com/y3I39FA.jpg"> </p>
+<br/>
+
+<!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
+
+<!-- <br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
-<br/>
+<br/> -->
 
 
 <br/>
 
-## EKS Deployment Pipeline VIEJO
+<!-- ## EKS Deployment Pipeline VIEJO
 
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
@@ -301,11 +306,11 @@ pool:
 6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
 6. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-eks.yml". Click "Continue".
-11. Click on "Run".
+11. Click on "Run". -->
 <!-- 9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
 <!-- 10. When it's finished, the KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, NO PARA SERVICE CONNECTION PERO SI PARA TOCAR KUBECTL A MANO DESDE LOCAL we'll need it to create the Kubernetes service connection. -->
 
-<br>
+<!-- <br>
 
 #### Configure AWS CLI and EKS Cluster
 To check that everything went OK we will connect to our cluster from our local machine. Use the following commands, you'll need to input your AWS info. When prompted for "Default output format" just press enter.
@@ -321,10 +326,10 @@ kubectl get all --all-namespaces
 ```
 
 INSTERT WINNIE POOH MEME
-<br>
+<br> -->
 
 
-#### Create AWS-Keys Variable Group
+<!-- #### Create AWS-Keys Variable Group
 These are needed for Helm to be able to connect to our EKS Cluster and deploy ArgoCD.
 
 1. On the left side menu under "Pipelines" go to "Library"
@@ -334,7 +339,7 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 - aws_access_key_id 
 - aws_secret_access_key
 5. Click on the lock icon on each variable so that they are treated as secrets.
-6. Save.
+6. Save. -->
 
 
 <!-- #### Create K8S Service Connection
@@ -350,9 +355,14 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 8. Select "Grant access permission to all pipelines".
 8. Click on "Verify and save". -->
   
-<br/>
+
 
 ## ArgoCD Deployment Pipeline
+
+### **Explanation**
+
+
+### **Instructions**
 
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
@@ -370,6 +380,11 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 <br/>
 
 ## Application Build & Deploy Pipeline
+
+### **Explanation**
+
+
+### **Instructions**
 
 #### Configure The Pipeline To Allow Push To GitHub
 This pipeline will need to push changes on the repo to GitHub. By default, repositories are allowed to be read but not written, so we need to do a little extra configuration.
@@ -463,9 +478,7 @@ https://mylearn.oracle.com/ou/component/-/108432/165507
 <br/>
 <p title="Scroll Of Truth" align="center"> <img width="460" src="https://i.imgur.com/yjpOvlM.jpg"> </p>
 <br/>
-<br/>
-<p title="Guy Behind Tree" align="center"> <img width="460" src="https://i.imgur.com/y3I39FA.jpg"> </p>
-<br/>
+
 <br/>
 <p title="Thinking About Another Woman" align="center"> <img width="460" src="https://i.imgur.com/akNhnrh.jpg"> </p>
 <br/>
