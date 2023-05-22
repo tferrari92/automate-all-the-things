@@ -114,7 +114,6 @@ Let's begin...
 <br/>
 <p title="Automation Everywhere" align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
 <br/>
-<br/>
 
 * * *
 
