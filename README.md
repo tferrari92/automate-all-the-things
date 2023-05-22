@@ -514,11 +514,8 @@ Will fail cause bucket and dynamo dont excist any more
 <br/>
 
 # EPILOGUE
-CONFIGURAR REPO PRIVADO EN ARGOCD??
 
-CREAR INGRESS PARA ARGOCD. IP PUBLICA TAMBIEN!!!!!
 
-CAMBIAR KEYS DE AWS!!!
 
 DOCKER BEST PRACTICES
 
@@ -533,11 +530,9 @@ EXPLICAR PORQ USAMOS REMOTE BACKEDN PARA TFSTATE.
 
 EL NOMBRE DEL BACKEND S3 y DYNAMODB ESTAN HARDCODEADOS EN EL BACKEND DE aws-resources, HAY Q GUARDARLOS EN VARIABLE DE ALGUNA FORMA
 
- sudo apt install ntpdate
-ntpdate pool.ntp.org
 
 
-https://mylearn.oracle.com/ou/component/-/108432/165507
+
 <br/>
 <p title="Anakin" align="center"> <img width="460" src="https://i.imgur.com/tup8Ocu.jpg"> </p>
 <br/>
