@@ -220,9 +220,8 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 - aws_secret_access_key
 5. Click on the lock icon on each variable.
 6. Click on "Pipeline permissions" and give it "Open access". This means all our pipelines will be able to use these variables.
-<br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/aMzTx49.jpg"> </p>
-<br/>
+
 6. Click on "Save".
 
 <br/>
@@ -233,11 +232,8 @@ We will need to push changes to the GitHub repo. By default, repositories are al
 1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
 CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
 2. "Bypass policies when pushing", "Contribute", "Create Tag" and "Read" should be set to "Allow".
-
-
-
-<br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/NzYh5KJ.png"> </p>
+
 <br/>
 
 <!-- NO HACE FALTA PORQ SE CREA SOLA CON EL NOMBRE DE USERNEAME DE GITHUB -->
@@ -248,9 +244,6 @@ CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
 7. Under "Service connection name", write "aws".
 8. Select the "Grant access permission to all pipelines" option.
 9. Save. -->
-
-<br/>
-
 ## (Optional) Create An Azure Self-Hosted Agent
 ***If you have a hosted parallelism, you can skip this step.***<br/>
 
@@ -263,6 +256,7 @@ To install a self-hosted agent on your machine, you can follow the official docu
 
 <br/>
 <p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<br/>
 <br/>
 
 * * *
