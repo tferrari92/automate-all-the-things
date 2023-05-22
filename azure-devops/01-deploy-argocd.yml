@@ -52,7 +52,6 @@ steps:
 #     awsSubCommand: 'list'
     # awsArguments: '--profile myprofile'
 
-# AGREGAR A MANO????? FUNCIONA!!!! AGREGAR A README TUTO PARA AGREGAR VARIABLES A LIBRARY
 # Couldn't find a way to create profile with the AWS Toolkit Plugin for Azure DevOps so I had to do it this way
 - script: | # This value was modified by the initial-setup python script
     mkdir ~/.aws
@@ -71,9 +70,8 @@ steps:
     chartType: 'FilePath'
     chartPath: 'helm/argo-cd'
     valueFile: 'helm/argo-cd/values-custom.yaml'
-    # releaseName: 'argocd'
     arguments: '--dependency-update --create-namespace'
-  # continueOnError: true # SACARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+  # continueOnError: true 
 
 
 - script: |

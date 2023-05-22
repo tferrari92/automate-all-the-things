@@ -256,28 +256,36 @@ To install a self-hosted agent on your machine, you can follow the official docu
 
 <br/>
 
-# **PIPELINES**
+<!-- # **PIPELINES** -->
+<!-- # AWS Infrastructure Deployment Pipeline -->
+# AWS INFRASTRUCTURE DEPLOYMENT PIPELINE
 
-## AWS Infrastructure Deployment Pipeline
+<!-- ### **Explanation** -->
+## Explanation
 
-### **Explanation**
+Our first pipeline, the one that will provide us with all the necessary infrastucture.
 
-Our first pipeline, the one that will provide us with all the AWS infrastucture.
-
-What does this pipeline do? If you take a look at the azure-devops/00-deploy-infra.yml file, you'll see that the first thing we do is use the Terraform plugin we previously installed to deploy a S3 Bucket and DynamoDB table. These two resources will allow us to store our terraform state remotely and give it locking functionality.<br/>
+What does this pipeline do? If you take a look at the [00-deploy-infra.yml](azure-devops/00-deploy-infra.yml) file, you'll see that the first thing we do is use the Terraform plugin we previously installed to deploy a S3 Bucket and DynamoDB table. These two resources will allow us to store our terraform state remotely and give it locking functionality.<br/>
 
 Why do we need to store our tf state remotely and locking it? Well, this is probably not necessary for this excercise but it's a best practice when working on a team.<br>
 Storing it remotely means that everyone on the team can access and work with the same state file, and locking it means that only one person can access it at a time, this prevents state conflicts.
 
-Before we proceed with deploying out actual infrastructure., we'll move the state file to the /terraform/aws/ directory, so our backend resources (the Bucket and DynamoDB Table) will also be tracked as part of our whole infrastructure. If you want to understand how this works, I suggest you watch [this video](https://youtu.be/7xngnjfIlK4?t=2483) where Sid from [DevOps Directive](https://www.youtube.com/@DevOpsDirective) explains it better than I ever could...
+Before we proceed with deploying out actual infrastructure, we'll move the state file to the /terraform/aws/ directory, so our backend resources (the Bucket and DynamoDB Table) will also be tracked as part of our whole infrastructure. If you want to understand how this works, I suggest you watch [this video](https://youtu.be/7xngnjfIlK4?t=2483) where Sid from [DevOps Directive](https://www.youtube.com/@DevOpsDirective) explains it better than I ever could.
 
 Now that's everything is set, we will finally deploy our infra! 
 
-It's mainly the networking resources and the EKS cluster. 
-EXPLICAR LO DEL AWS LOAD BALANCER Y COMO FUNCIONA COMO INGRESS
-If you want to know exactly what is being deployed, you can check the [terraform files](/terraform/aws).
+So what is our infra? It's mainly the networking resources and the EKS cluster, along with an AWS Load Balancer Controller which will act as our Kubernetes Ingress Controller.
 
-### **Instructions**
+Having this AWS Load Balancer Controller means that for every Ingress resource we create in our cluster, an AWS Application Load Balancer will be automatically  created. This is the native way to do it in EKS and it has a lot to benefits, but it creates an issue for us.<br>
+We want to track everything in our infra as IaC, but these automatically created Application Load Balancers won't be tracked in our Terraform... No worries, we'll take care of this issue in the Destroy Everything Pipeline.<br>
+For more info on the AWS Load Balancer Controller you can watch [this excellent video](https://youtu.be/ZfjpWOC5eoE) by [Anton Putra](https://www.youtube.com/@AntonPutra).
+
+If you want to know exactly what is being deployed, you can check out the [terraform files](/terraform/aws).
+
+<br/>
+
+<!-- ### **Instructions** -->
+## Instructions
 
 1. On your Azure DevOps project, go to Pipelines on the left side menu.
 2. Select Pipelines under Pipelines on the left side menu.
@@ -288,7 +296,7 @@ If you want to know exactly what is being deployed, you can check the [terraform
 7. You might need to click more green buttons to allow Azure DevOps to interact with GitHub, go ahead.
 8. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/00-deploy-backend.yml". Click "Continue".
-10. If you have hosted parallelism skip to point 11. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the azure-devops/00-deploy-backend.yml file.<br>
+10. If you have hosted parallelism skip to point 11. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the [00-deploy-infra.yml](azure-devops/00-deploy-infra.yml) file.<br>
 Under "pool" you need to edit it so that it looks like this:
 ```yaml
 pool:
@@ -371,21 +379,40 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
   
 
 
-## ArgoCD Deployment Pipeline
+<!-- ## ArgoCD Deployment Pipeline -->
+# ARGOCD DEPLOYMENT PIPELINE
 
-### **Explanation**
+<!-- ### **Explanation** -->
+## Explanation
+We won't go into what ArgoCD is, for that you have [this video](https://youtu.be/MeU5_k9ssrs) by the #1 DevOps youtuber, Nana from [TechWorld ith Nana](https://www.youtube.com/@TechWorldwithNana).
 
+So, this pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our cluster.<br>
+The first thing it will do is run the necessary tasks to connect to our EKS cluster. After this, ArgoCD will be install, along with it's Ingress. 
 
-### **Instructions**
+As I explained before, this will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so our pipeline will wait until it is ready.
+When it's ready, the pipeline will get it's URL and admin account password. These will be exported as an artifact.
 
-2. Go to "Pipelines" under "Pipelines" on the left side menu.
-3. Click on "New pipeline".
-4. Select "GitHub".
-6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
-6. Select "Existing Azure Pipelines YAML file".
-9. Under "Branch" select "main" and under "Path" select "/azure-devops/02-deploy-argocd.yml". Click "Continue".
+Finally, it will create the ArgoCD [application resource](argo-cd/application.yaml) which will be watching the [/helm/my-app](helm/my-app) directory in our repo, and automatically create all the resources it finds and apply any future changes me make there.
+
+<br/>
+<!-- ### **Instructions** -->
+
+## Instructions
+
+1. Go to "Pipelines" under "Pipelines" on the left side menu.
+2. Click on "New pipeline".
+3. Select "GitHub".
+4. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+5. Select "Existing Azure Pipelines YAML file".
+6. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-argocd.yml". Click "Continue".
+7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the previous pipeline.
 11. Click on "Run".
-12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit".
+11. When it's done, the access file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL and credentials.
+<br/>
+<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
+<br/>
+
+<!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
 <!-- 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
 
 
@@ -393,12 +420,15 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 <p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
 <br/>
 
-## Application Build & Deploy Pipeline
+<!-- ## Application Build & Deploy Pipeline -->
+# APPLICATION BUILD & DEPLOY PIPELINE
 
-### **Explanation**
+<!-- ### **Explanation** -->
+## Explanation
 
 
-### **Instructions**
+<!-- ### **Instructions** -->
+## Instructions
 Now we can proceed with our pipeline:
 
 1. Go to "Pipelines" under "Pipelines" on the left side menu.
