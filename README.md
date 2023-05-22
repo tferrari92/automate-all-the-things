@@ -102,6 +102,8 @@ Ok, now that that's out of the way...
 
 <p title="Logos Banner" align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
+<br/>
+
 ## Disclaimer
 
 Some things could have been further automatized but I prioritized modularization and separation of concerns.<br>
@@ -231,6 +233,7 @@ We will need to push changes to the GitHub repo. By default, repositories are al
 1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
 CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
 2. "Bypass policies when pushing", "Contribute", "Create Tag" and "Read" should be set to "Allow".
+
 
 
 <br/>
