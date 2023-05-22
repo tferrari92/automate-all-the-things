@@ -47,8 +47,6 @@
 <br/>
 
 
-<br/>
-
 # **INTRODUCTION**
 
 I believe in a world where all that's expected of me is to enjoy life, lay on the couch, play COD and have exitential crises.
@@ -113,8 +111,10 @@ For example, the EKS cluster could have been deployed with ArgoCD installed in o
 Let's begin...
 
 <br/>
+
 * * *
 
+<br/>
 <br/>
 
 # **LOCAL SETUP**
@@ -260,8 +260,10 @@ To install a self-hosted agent on your machine, you can follow the official docu
 <p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <br/>
 <br/>
+
 * * *
 
+<br/>
 <br/>
 
 <!-- # **PIPELINES** -->
