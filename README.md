@@ -448,25 +448,19 @@ On the Build part we will use Docker to build a container image from the Dockerf
 On the Deploy part, we will checkout the repo and modify the [values.yaml file](helm/my-app/values.yaml) on the [helm/my-app](helm/my-app) directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
 Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version is available and should be deployed. We modify the image.tag value in the values.yaml file and wait for ArgoCD to apply the changes.
 
-This is how a gentlemen manage their K8S resources. We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
+[This is how a gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
 
 If you need to modify other things, let's say, the contents of the ConfigMap, then you'd clone the repo, make your changes, push to GitHub, and again, wait for ArgoCD to apply the changes.
 
 <br/>
-<p title="Winnie Pooh" align="center"> <img width="460" src="https://i.imgur.com/2Xntz2P.jpg"> </p>
-<br/>
-
-
 
 ## Instructions
-Now we can proceed with our pipeline:
-
 1. Go to "Pipelines" under "Pipelines" on the left side menu.
 2. Click on "New pipeline".
 3. Select "GitHub".
 4. Select the repo, it should be "<your-github-username>/automate-all-the-things"
 5. Select "Existing Azure Pipelines YAML file".
-6. Under "Branch" select "main" and under "Path" select "/azure-devops/03-build-and-deploy-app.yml". Click "Continue".
+6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-app.yml". Click "Continue".
 7. Click on "Run".
 
 <br/>
@@ -506,6 +500,10 @@ tf destroy
 
 Will fail cause bucket and dynamo dont excist any more
 
+<br/>
+<br/>
+<p title="Seagull" align="center"> <img width="460" src="https://i.imgur.com/2Z8qEvC.png"> </p>
+<br/>
 <br/>
 
 * * *
