@@ -43,6 +43,7 @@
 -   [Destroy Everything Pipeline](#destroy-everything-pipeline)
     -   [Description](#description-3)
     -   [Instructions](#instructions-3)
+-   [Epilogue](#epilogue)
 
 <br/>
 
@@ -406,7 +407,6 @@ When it's ready, the pipeline will get it's URL and admin account password. Thes
 Finally, it will create the ArgoCD [application resource](argo-cd/application.yaml) for our app, which will be watching the [/helm/my-app](helm/my-app) directory in our repo, and automatically create all the resources it finds and apply any future changes me make there.
 
 <br/>
-<!-- ### **Instructions** -->
 
 ## Instructions
 
@@ -437,9 +437,22 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 
 <!-- ### **Explanation** -->
 ## Description
+We are almost there! In this pipeline we will build and deploy our app.
 
+The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the code files and it's corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
 
-<!-- ### **Instructions** -->
+There's two parts to this pipeline:
+
+On the Build part we will use Docker to build a container image from the Dockerfile, tag it with the number of the pipeline run and push it to your DockerHub registry.
+
+On the Deploy part, the pipeline will checkout the repo and modify the values.yaml file on the helm/my-app directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif) Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version is available and should be deployed. We modify the image.tag value in the values.yaml file and wait for ArgoCD to apply the changes.
+
+This is how a gentlemen manage their K8S resources. We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
+
+If you need to modify other things, let's say, the contents of the ConfigMap, then you'd clone the repo, make your changes, push to GitHub, and again, wait for ArgoCD to apply the changes.
+
+<br/>
+
 ## Instructions
 Now we can proceed with our pipeline:
 
@@ -457,23 +470,7 @@ Now we can proceed with our pipeline:
 <br/>
 <br/>
 
-<!-- 
-CHECK!!!!
-aws eks update-kubeconfig --name demo2 --region us-east-2
-helm list -n kube-system
-kubectl logs -f -n kube-system \
--l app.kubernetes.io/name=aws-load-balancer-controller
-kubectl apply -f color-app.yaml
-kubectl get ingress argocd-ingress -n argocd -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
-kubectl get ingress color-app-ingress -n color-app -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
 
-Go to:
-http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/green
-http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/yellow -->
-
-
-<!-- ## Create ArgoCD Application
-Ok this is the only command  -->
 
 
 <!-- ## Application Deployment Pipeline
