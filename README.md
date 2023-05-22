@@ -118,7 +118,6 @@ Let's begin...
 * * *
 
 <br/>
-<br/>
 
 # **LOCAL SETUP**
 In order to turn this whole deployment into your own thing, we need to do some initial setup:
@@ -145,7 +144,7 @@ git push
 
 <br/>
 <br/>
-<p title="Evil Kermit" align="center"> <img width="650" src="https://i.imgur.com/YNSypGR.jpg"> </p>
+<p title="Evil Kermit" align="center"> <img width="650" src="https://i.imgur.com/pIGcI2d.jpg"> </p>
 <br/>
 <br/>
 
