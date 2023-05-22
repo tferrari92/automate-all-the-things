@@ -439,7 +439,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 ## Description
 We are almost there! In this pipeline we will build and deploy our app.
 
-The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the code files and it's corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
+The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
 
 There's two parts to this pipeline:
 
