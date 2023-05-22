@@ -418,9 +418,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the previous pipeline.
 8. Click on "Run".
 9. When it's done, the access file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL and credentials.
-<br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
-<br/>
 
 10. You can now access the ArgoCD UI, where you should find one application running but in an "unhealthy" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
 
