@@ -396,13 +396,13 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 ## Description
 We won't go into what ArgoCD is, for that you have [this video](https://youtu.be/MeU5_k9ssrs) by the #1 DevOps youtuber, Nana from [TechWorld ith Nana](https://www.youtube.com/@TechWorldwithNana).
 
-So, this pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our cluster.<br>
-The first thing it will do is run the necessary tasks to connect to our EKS cluster. After this, ArgoCD will be install, along with it's Ingress. 
+This pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our EKS.<br>
+The first thing it will do is run the necessary tasks to connect to our the cluster. After this, ArgoCD will be installed, along with it's Ingress. 
 
-As I explained before, this will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so our pipeline will wait until it is ready.
+As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so our pipeline will wait until it is ready.
 When it's ready, the pipeline will get it's URL and admin account password. These will be exported as an artifact.
 
-Finally, it will create the ArgoCD [application resource](argo-cd/application.yaml) which will be watching the [/helm/my-app](helm/my-app) directory in our repo, and automatically create all the resources it finds and apply any future changes me make there.
+Finally, it will create the ArgoCD [application resource](argo-cd/application.yaml) for our app, which will be watching the [/helm/my-app](helm/my-app) directory in our repo, and automatically create all the resources it finds and apply any future changes me make there.
 
 <br/>
 <!-- ### **Instructions** -->
@@ -416,11 +416,13 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 5. Select "Existing Azure Pipelines YAML file".
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-argocd.yml". Click "Continue".
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the previous pipeline.
-11. Click on "Run".
-11. When it's done, the access file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL and credentials.
+8. Click on "Run".
+9. When it's done, the access file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL and credentials.
 <br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 <br/>
+
+10. You can now access the ArgoCD UI, where you should find one application running but in an "unhealthy" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
 
 <!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
 <!-- 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
@@ -484,7 +486,13 @@ Ok this is the only command  -->
 
 
 
-## Destroy Pipeline
+# DESTROY EVERYTHING PIPELINE
+
+## Description
+
+
+<!-- ### **Instructions** -->
+## Instructions
 
 PRIMERO BORRAR TODOS LOS INGRESS!!!!!!!
 uncomment vars
@@ -494,6 +502,13 @@ tf destroy
 
 Will fail cause bucket and dynamo dont excist any more
 
+<br/>
+
+* * *
+
+<br/>
+
+# EPILOGUE
 CONFIGURAR REPO PRIVADO EN ARGOCD??
 
 CREAR INGRESS PARA ARGOCD. IP PUBLICA TAMBIEN!!!!!
