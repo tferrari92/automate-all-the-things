@@ -145,10 +145,9 @@ git push
 
 <br/>
 <br/>
-<p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
+<p title="Evil Kermit" align="center"> <img width="650" src="https://i.imgur.com/YNSypGR.jpg"> </p>
 <br/>
 <br/>
-
 
 # **AZURE DEVOPS SETUP**
 
@@ -261,7 +260,7 @@ To install a self-hosted agent on your machine, you can follow the official docu
 
 <br/>
 <br/>
-<p title="Evil Kermit" align="center"> <img width="460" src="https://i.imgur.com/YNSypGR.jpg"> </p>
+<p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <br/>
 <br/>
 
