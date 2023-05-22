@@ -445,13 +445,18 @@ There's two parts to this pipeline:
 
 On the Build part we will use Docker to build a container image from the Dockerfile, tag it with the number of the pipeline run and push it to your DockerHub registry.
 
-On the Deploy part, the pipeline will checkout the repo and modify the values.yaml file on the helm/my-app directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif) Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version is available and should be deployed. We modify the image.tag value in the values.yaml file and wait for ArgoCD to apply the changes.
+On the Deploy part, we will checkout the repo and modify the [values.yaml file](helm/my-app/values.yaml) on the [helm/my-app](helm/my-app) directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
+Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version is available and should be deployed. We modify the image.tag value in the values.yaml file and wait for ArgoCD to apply the changes.
 
 This is how a gentlemen manage their K8S resources. We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
 
 If you need to modify other things, let's say, the contents of the ConfigMap, then you'd clone the repo, make your changes, push to GitHub, and again, wait for ArgoCD to apply the changes.
 
 <br/>
+<p title="Winnie Pooh" align="center"> <img width="460" src="https://i.imgur.com/2Xntz2P.jpg"> </p>
+<br/>
+
+
 
 ## Instructions
 Now we can proceed with our pipeline:
