@@ -142,7 +142,9 @@ git push
 5. Awesome! You can now proceed with the Azure DevOps setup.
 
 <br/>
+<br/>
 <p title="Automation Everywhere" align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
+<br/>
 <br/>
 
 # **AZURE DEVOPS SETUP**
@@ -255,6 +257,7 @@ This means you'll install an Azure DevOps Agent on your local machine, which wil
 To install a self-hosted agent on your machine, you can follow the official documentation [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install).
 
 <br/>
+<br/>
 <p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <br/>
 <br/>
@@ -314,6 +317,7 @@ pool:
 ```
 11. Click on "Run".
 
+<br/>
 <br/>
 <p title="Pleasure" align="center"> <img width="460" src="https://i.imgur.com/n5lNz3z.jpg"> </p>
 <br/>
@@ -423,7 +427,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 <!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
 <!-- 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
 
-
+<br/>
 <br/>
 <p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
 <br/>
@@ -449,7 +453,9 @@ Now we can proceed with our pipeline:
 7. Click on "Run".
 
 <br/>
+<br/>
 <p title="Momoa & Cavill" align="center"> <img width="460" src="https://i.imgur.com/2lJ6xLl.jpg"> </p>
+<br/>
 <br/>
 
 <!-- 
