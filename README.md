@@ -51,7 +51,7 @@
 
 I believe in a world where all that's expected of me is to enjoy life, lay on the couch, play COD and have exitential crises.
 <br/>
-If I could, I'd automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.
+I wish I could automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.
 <br/>
 
 But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
@@ -68,13 +68,11 @@ Here's my attempt at making the world a better place. People in the future will 
 - [Active DockerHub account](https://hub.docker.com/)
 - [Active AWS account](https://aws.amazon.com/)
 - [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
-<!-- - [AWS CLI installed](https://aws.amazon.com/cli/) NECESARIO??? -->
 
 <br/>
 
 ## What we'll be doing
 The purpose of this repo is not to give you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infrastructure and how the tools can interact with each other to make them as efficient as posible.
-<br/>
 
 I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be integrated. 
 
@@ -83,7 +81,6 @@ I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (
 ## Tools we'll be using
 
 For each step of the process, I’ve chosen to use the best tool in its field. And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!!
-<br/>
 
 Ok, now that that's out of the way...
 
