@@ -320,6 +320,7 @@ pool:
 <br/>
 <p title="Pleasure" align="center"> <img width="460" src="https://i.imgur.com/n5lNz3z.jpg"> </p>
 <br/>
+<br/>
 
 <!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
 
@@ -328,7 +329,7 @@ pool:
 <br/> -->
 
 
-<br/>
+
 
 <!-- ## EKS Deployment Pipeline VIEJO
 
@@ -428,6 +429,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 
 <br/>
 <p title="Gitops Chills" align="center"> <img width="460" src="https://i.imgur.com/kGQUUTw.jpg"> </p>
+<br/>
 <br/>
 
 <!-- ## Application Build & Deploy Pipeline -->
