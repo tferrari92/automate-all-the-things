@@ -113,7 +113,6 @@ For example, the EKS cluster could have been deployed with ArgoCD installed in o
 Let's begin...
 
 <br/>
-
 * * *
 
 <br/>
@@ -261,7 +260,6 @@ To install a self-hosted agent on your machine, you can follow the official docu
 <p title="We Are Not The Same" align="center"> <img width="460" src="https://i.imgur.com/E0s8TW6.png"> </p>
 <br/>
 <br/>
-
 * * *
 
 <br/>
