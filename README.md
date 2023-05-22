@@ -32,9 +32,17 @@
     -   [Allow Pushed To GitHub](#allow-pushes-to-github)
     -   [Create An Azure Self-Hosted Agent](#optional-create-an-azure-self-hosted-agent)
 -   [AWS Infrastructure Deployment Pipeline](#aws-infrastructure-deployment-pipeline)
+    -   [Description](#description)
+    -   [Instructions](#instructions)
 -   [ArgoCD Deployment Pipeline](#argocd-deployment-pipeline)
+    -   [Description](#description-1)
+    -   [Instructions](#instructions-1)
 -   [Application Build & Deploy Pipeline](#application-build--deploy-pipeline)
+    -   [Description](#description-2)
+    -   [Instructions](#instruction2)
 -   [Destroy Everything Pipeline](#destroy-everything-pipeline)
+    -   [Description](#description-3)
+    -   [Instructions](#instructions-3)
 
 <br/>
 
@@ -263,7 +271,7 @@ To install a self-hosted agent on your machine, you can follow the official docu
 # AWS INFRASTRUCTURE DEPLOYMENT PIPELINE
 
 <!-- ### **Explanation** -->
-## Explanation
+## Description
 
 Our first pipeline, the one that will provide us with all the necessary infrastucture.
 
@@ -385,7 +393,7 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 # ARGOCD DEPLOYMENT PIPELINE
 
 <!-- ### **Explanation** -->
-## Explanation
+## Description
 We won't go into what ArgoCD is, for that you have [this video](https://youtu.be/MeU5_k9ssrs) by the #1 DevOps youtuber, Nana from [TechWorld ith Nana](https://www.youtube.com/@TechWorldwithNana).
 
 So, this pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our cluster.<br>
@@ -426,7 +434,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 # APPLICATION BUILD & DEPLOY PIPELINE
 
 <!-- ### **Explanation** -->
-## Explanation
+## Description
 
 
 <!-- ### **Instructions** -->
