@@ -233,11 +233,9 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 1. On the left side menu under "Pipelines" go to "Library"
 2. Click on "+ Variable group".
 3. Under "Variable group name" write "aws-keys".
-4. Add the following variables pasting on each the same keys you used to create the AWS service connection:
-
+4. Add the following variables pasting on the "Value" field the keys you used to create the AWS service connection:
 - aws_access_key_id
 - aws_secret_access_key
-
 5. Click on the lock icon on each variable.
 6. Click on "Pipeline permissions" and give it "Open access". This means all our pipelines will be able to use these variables.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/aMzTx49.jpg"> </p>
