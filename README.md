@@ -40,7 +40,7 @@
 -   [Application Build & Deploy Pipeline](#application-build--deploy-pipeline)
     -   [Description](#description-2)
     -   [Instructions](#instruction2)
--   [Destroy Everything Pipeline](#destroy-everything-pipeline)
+-   [Destroy All The Things Pipeline](#destroy-all-the-things-pipeline)
     -   [Description](#description-3)
     -   [Instructions](#instructions-3)
 -   [Epilogue](#epilogue)
@@ -245,7 +245,7 @@ CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
 7. Under "Service connection name", write "aws".
 8. Select the "Grant access permission to all pipelines" option.
 9. Save. -->
-## (Optional) Create An Azure Self-Hosted Agent
+## (Optional) Create an Azure self-hosted agent
 ***If you have a hosted parallelism, you can skip this step.***<br/>
 
 A hosted parallelism basically means that Azure will spin up a server in which to run your pipelines. You can purchase one or you can request a free parallelism by filling out [this form](https://aka.ms/azpipelines-parallelism-request).
@@ -484,7 +484,7 @@ If you need to modify other things, let's say, the contents of the ConfigMap, th
 
 
 
-# DESTROY EVERYTHING PIPELINE
+# DESTROY ALL THE THINGS PIPELINE
 
 ## Description
 
