@@ -204,7 +204,7 @@ This service connection is required for our Azure DevOps pipelines to interact w
 2. Go to Project settings on the left side menu (bottom-left corner).
 3. On the left side menu, under "Pipelines", select "Service connections".
 4. Click on "Create service connection".
-5. Select AWS.
+5. Select AWS, click "Next".
 6. Paste your Access Key ID and Secret Access Key.
 7. Under "Service connection name", write "aws".
 8. Select the "Grant access permission to all pipelines" option.
@@ -216,11 +216,8 @@ This service connection is required for our Azure DevOps pipelines to interact w
 
 This service connection is required for our Azure DevOps pipelines to be able to push images to your DockerHub registry.
 
-1. Go back to Azure DevOps and open your project.
-2. Go to Project settings on the left side menu (bottom-left corner).
-3. On the left side menu, under "Pipelines", select "Service connections".
-4. Click on "Create service connection".
-5. Select "Docker Registry".
+1. While on the "Service connections" screen, click on "New service connection" on the top-right.
+5. Select "Docker Registry", click "Next".
 6. Under "Registry type" select "Docker Hub".
 7. Input your Docker ID and Password.
 8. Under "Service connection name", write "dockerhub".
