@@ -95,7 +95,7 @@ dockerhub_username = input()
 
 # Create a dictionary with the variable names and their values
 data = {
-    "AATT_FULL_NAME": full_name,
+    # "AATT_FULL_NAME": full_name,
     "AATT_APP_NAME": app_name,
     "AATT_GITHUB_USERNAME": github_username,
     "AATT_AWS_REGION": aws_region,
