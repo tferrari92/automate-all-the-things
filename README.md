@@ -49,12 +49,10 @@
 # **INTRODUCTION**
 
 I believe in a world where all that's expected of me is to enjoy life, lay on the couch, play COD and have exitential crises.
-<br/>
+
 I wish I could automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.
-<br/>
 
 But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
-<br/>
 
 Here's my attempt at making the world a better place. People in the future will look back at heros like me and enjoy their time playing video games and fighting the war against AI, in peace.
 
@@ -74,6 +72,7 @@ Here's my attempt at making the world a better place. People in the future will 
 ## What we'll be doing
 
 INCLUIR DIAGRAMA?????
+
 The purpose of this repo is not to give you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infrastructure and how the tools can interact with each other to make them as efficient as posible.
 
 I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be merged for unlimited power.
@@ -122,7 +121,7 @@ Let's begin...
 
 In order to turn this whole deployment into your own thing, we need to do some initial setup:
 
-1. Fork this repo.
+1. Fork this repo. Keep the repository name "automate-all-the-things".
 1. Clone the repo from your fork:
 
 ```bash
