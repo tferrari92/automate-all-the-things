@@ -223,7 +223,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 6. Click on "Pipeline permissions" and give it "Open access". This means all our pipelines will be able to use these variables.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/aMzTx49.jpg"> </p>
 
-6. Click on "Save".
+7. Click on "Save".
 
 <br/>
 
