@@ -271,7 +271,7 @@ To install a self-hosted agent on your machine, you can follow the official docu
 # PIPELINE DE IMPLEMENTACIÓN DE INFRAESTRUCTURA DE AWS
 
 <!-- ### **Explanation** -->
-## Description
+## Descripción
 
 Our first pipeline, the one that will provide us with all the necessary infrastucture.
 
@@ -295,7 +295,7 @@ If you want to know exactly what is being deployed, you can check out the [terra
 <br/>
 
 <!-- ### **Instructions** -->
-## Instructions
+## Instrucciones
 
 1. On your Azure DevOps project, go to Pipelines on the left side menu.
 2. Select Pipelines under Pipelines on the left side menu.
@@ -395,7 +395,7 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 # ARGOCD DEPLOYMENT PIPELINE
 
 <!-- ### **Explanation** -->
-## Description
+## Descripción
 We won't go into what ArgoCD is, for that you have [this video](https://youtu.be/MeU5_k9ssrs) by the #1 DevOps youtuber, Nana from [TechWorld with Nana](https://www.youtube.com/@TechWorldwithNana).
 
 This pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our EKS.<br>
@@ -408,7 +408,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 
 <br/>
 
-## Instructions
+## Instrucciones
 
 1. Go to "Pipelines" under "Pipelines" on the left side menu.
 2. Click on "New pipeline".
@@ -436,7 +436,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 # APPLICATION BUILD & DEPLOY PIPELINE
 
 <!-- ### **Explanation** -->
-## Description
+## Descripción
 We are almost there! In this pipeline we will build and deploy our app.
 
 The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
@@ -454,7 +454,7 @@ If you need to modify other things, let's say, the contents of the ConfigMap, th
 
 <br/>
 
-## Instructions
+## Instrucciones
 1. Go to "Pipelines" under "Pipelines" on the left side menu.
 2. Click on "New pipeline".
 3. Select "GitHub".
@@ -486,11 +486,11 @@ If you need to modify other things, let's say, the contents of the ConfigMap, th
 
 # DESTROY EVERYTHING PIPELINE
 
-## Description
+## Descripción
 
 
 <!-- ### **Instructions** -->
-## Instructions
+## Instrucciones
 
 PRIMERO BORRAR TODOS LOS INGRESS!!!!!!!
 uncomment vars
