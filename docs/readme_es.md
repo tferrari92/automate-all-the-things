@@ -8,7 +8,7 @@
     <img align="right" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
 </a>
 <p align="right">
-    <a  href="/docs/readme_es.md">Versión en Español</a>
+    <a  href="README.md">English Version</a>
 </p>
 
 <p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
@@ -18,14 +18,14 @@
 
 -   [Introducción](#Introduccion)
     -   [Requisitos previos](#requisitos-previos)
-    -   [What we'll be doing](#what-well-be-doing)
-    -   [Tools we'll be using](#tools-well-be-using)
-    -   [Disclaimer](#disclaimer)
--   [Local Setup](#local-setup)
--   [Azure DevOps Setup](#azure-devops-setup)
-    -   [Create project](#create-project)
-    -   [Install Required Plugins](#install-required-plugins)
-    -   [Get Your AWS Keys](#get-your-aws-keys)
+    -   [Que haremos](#que-haremos)
+    -   [Que herramientas usaremos](#que-herramientas-usaremos)
+    -   [Descargo de responsabilidad](#descargo-de-responsabilidad)
+-   [Configuración local](#configuración-local)
+-   [Configuración de Azure DevOps](#configuración-de-azure-devops)
+    -   [Crear proyecto](#crear-proyecto)
+    -   [Instalar plugins necesarios](#instalar-plugins-necesarios)
+    -   [Obtenga sus llaves de AWS](#obtenga-sus-llaves-de-aws)
     -   [Create AWS Service Connection](#create-aws-service-connection)
     -   [Create DockerHub Service Connection](#create-dockerhub-service-connection)
     -   [Create AWS-Keys Variable Group](#create-aws-keys-variable-group)
