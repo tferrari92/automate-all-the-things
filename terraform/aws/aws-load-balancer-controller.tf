@@ -74,18 +74,3 @@ resource "helm_release" "aws-load-balancer-controller" {
     aws_iam_role_policy_attachment.aws_load_balancer_controller_attach
   ]
 }
-
-# CHECK!!!!
-# aws eks update-kubeconfig --name demo2 --region us-east-2
-# helm list -n kube-system
-# kubectl logs -f -n kube-system \
-# -l app.kubernetes.io/name=aws-load-balancer-controller
-# kubectl apply -f color-app.yaml
-# kubectl get ingress color-app-ingress -n color-app -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}"
-
-# Go to:
-# http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/green
-# http://k8s-colorapp-colorapp-4b4bc103d9-1179737566.us-east-2.elb.amazonaws.com/yellow
-
-# Para borrar:
-# Primero borrar ingress o directamente namespace

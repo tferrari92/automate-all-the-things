@@ -1,7 +1,7 @@
 # ----------------- IAM Role -----------------
 
 resource "aws_iam_role" "eks-cluster" {
-  name = "${var.project}"
+  name = var.project
 
   assume_role_policy = <<POLICY
 {
@@ -39,10 +39,10 @@ resource "aws_eks_cluster" "cluster" {
 
   vpc_config {
     subnet_ids = [
-      aws_subnet.private-us-east-2a.id,
-      aws_subnet.private-us-east-2b.id,
-      aws_subnet.public-us-east-2a.id,
-      aws_subnet.public-us-east-2b.id
+      aws_subnet.private-subnet-a.id,
+      aws_subnet.private-subnet-b.id,
+      aws_subnet.public-subnet-a.id,
+      aws_subnet.public-subnet-b.id
     ]
   }
 
@@ -90,8 +90,8 @@ resource "aws_eks_node_group" "private-nodes" {
   node_role_arn   = aws_iam_role.nodes.arn
 
   subnet_ids = [
-    aws_subnet.private-us-east-2a.id,
-    aws_subnet.private-us-east-2b.id
+    aws_subnet.private-subnet-a.id,
+    aws_subnet.private-subnet-b.id
   ]
 
   capacity_type  = "ON_DEMAND"

@@ -2,21 +2,6 @@ name: deploy-argocd
 
 trigger: none
 
-# resources:
-#   repositories:
-#   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
-#     type: github
-#     endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
-#     name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
-  # pipelines:
-  # - pipeline: deploy-eks # any arbitrary name
-  #   source: deploy-eks   # name of the pipeline shown on azure UI portal
-  #   # source: "AATT_GITHUB_USERNAME.automate-all-the-things (2)"   # Name of the pipeline that needs to succeed for this pipeline to run # AATT_GITHUB_USERNAME
-  #   trigger:
-  #   branches:
-  #     include:
-  #       - main
-
 variables:
   - group: aws-keys
 
@@ -26,6 +11,7 @@ pool:
   # name: <agent-pool-name> # Insert here the name of the agent pool you created
   # demands:
   #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
+
 
 steps:
 - task: HelmInstaller@0
@@ -38,27 +24,16 @@ steps:
   displayName: 'Update KubeConfig'
   inputs:
     awsCredentials: 'aws'
-    regionName: 'us-east-2' # This value was modified by the initial-setup python script
+    regionName: 'AATT_AWS_REGION' # This value was modified by the initial-setup python script
     awsCommand: 'eks'
     awsSubCommand: 'update-kubeconfig'
-    awsArguments: '--name cafe-cluster --region us-east-2' # This value was modified by the initial-setup python script
+    awsArguments: '--name AATT_APP_NAME-cluster --region AATT_AWS_REGION' # This value was modified by the initial-setup python script
 
-# - task: AWSCLI@1
-#   displayName: 'Check credentials'
-#   inputs:
-#     awsCredentials: 'aws'
-#     regionName: 'us-east-2'
-#     awsCommand: 'configure'
-#     awsSubCommand: 'list'
-    # awsArguments: '--profile myprofile'
-
-# Couldn't find a way to create profile with the AWS Toolkit Plugin for Azure DevOps so I had to do it this way
 - script: | # This value was modified by the initial-setup python script
     mkdir ~/.aws
     echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
-    echo -e "[default]\nregion = us-east-2"> ~/.aws/config 
+    echo -e "[default]\nregion = AATT_AWS_REGION"> ~/.aws/config 
   displayName: 'Configure AWS Profile'
-
 
 - task: HelmDeploy@0
   displayName: Deploy ArgoCD
@@ -72,7 +47,6 @@ steps:
     valueFile: 'helm/argo-cd/values-custom.yaml'
     arguments: '--dependency-update --create-namespace'
   # continueOnError: true 
-
 
 - script: |
     echo "false" > is-active.txt
@@ -89,13 +63,11 @@ steps:
     done
   displayName: 'Wait for Load Balancer Status'
 
-
 - script: |
     kubectl get ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > argocd-access.txt
     echo "admin" >> argocd-access.txt
     echo $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d) >> argocd-access.txt
   displayName: 'Save Access'
-
 
 - task: PublishBuildArtifacts@1
   displayName: 'Export Access'
@@ -103,15 +75,6 @@ steps:
     PathtoPublish: 'argocd-access.txt'
     ArtifactName: 'Access'
     publishLocation: 'Container'
-
-# - task: HelmDeploy@0
-#   inputs:
-#     connectionType: 'None'
-#     namespace: 'argocd'
-#     command: 'upgrade'
-#     chartType: 'Name'
-#     chartName: 'argocd'
-#     arguments: '--dependency-update --create-namespace'
 
 - script: kubectl create -n argocd -f argocd/application.yaml
   displayName: 'Create ArgoCD Application'

@@ -7,21 +7,6 @@ trigger:
   paths:
     include:
       - my-app/*
-# resources:
-#   repositories:
-#   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
-#     type: github
-#     endpoint: tferrari92 # Name of the service connection # AATT_GITHUB_USERNAME # This value was modified by the initial-setup python script
-#     name: tferrari92/automate-all-the-things # AATT_GITHUB_USERNAME
-  # pipelines:
-  # - pipeline: deploy-eks # any arbitrary name
-  #   source: deploy-eks   # name of the pipeline shown on azure UI portal
-  #   # source: "AATT_GITHUB_USERNAME.automate-all-the-things (2)"   # Name of the pipeline that needs to succeed for this pipeline to run # AATT_GITHUB_USERNAME
-  #   trigger:
-  #   branches:
-  #     include:
-  #       - main
-
 
 pool:
   vmImage: 'ubuntu-latest' 
@@ -43,10 +28,9 @@ jobs:
     displayName: Build And Push Image
     inputs:
       containerRegistry: 'dockerhub'
-      repository: 'tferrari92/cafe' # This value was modified by the initial-setup python script
+      repository: 'AATT_GITHUB_USERNAME/AATT_APP_NAME' # This value was modified by the initial-setup python script
       command: 'buildAndPush'
       Dockerfile: 'my-app/Dockerfile'
-
 
 - job: DeployJob
   displayName: 'Deploy Job'
@@ -74,8 +58,8 @@ jobs:
       git push --set-upstream origin main
     displayName: 'Push changes to GitHub'
 
-  - script: |
-      kubectl get ingress -n cafe $(kubectl get ingress -n cafe | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
+  - script: | # This value was modified by the initial-setup python script
+      kubectl get ingress -n AATT_APP_NAME $(kubectl get ingress -n AATT_APP_NAME | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
     displayName: 'Save URL'
 
   - task: PublishBuildArtifacts@1

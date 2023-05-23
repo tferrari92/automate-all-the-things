@@ -1,19 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cafe-argocd-application
+  name: AATT_APP_NAME-argocd-application # This value was modified by the initial-setup python script
   namespace: argocd
 spec:
   destination:
-    namespace: cafe
+    namespace: AATT_APP_NAME # This value was modified by the initial-setup python script
     server: https://kubernetes.default.svc
   project: default
   source:
-    # helm:
-    #   valueFiles:
-    #     - ../values.yaml
     path: helm/my-app
-    repoURL: https://github.com/tferrari92/automate-all-the-things.git
+    repoURL: https://github.com/AATT_GITHUB_USERNAME/automate-all-the-things.git # This value was modified by the initial-setup python script
   syncPolicy:
     automated:
       prune: true

@@ -13,40 +13,38 @@
 
 <p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
-
 # **INDEX**
 
--   [Introduction](#introduction)
-    -   [Prerequisites](#prerequisites)
-    -   [What we'll be doing](#what-well-be-doing)
-    -   [Tools we'll be using](#tools-well-be-using)
-    -   [Disclaimer](#disclaimer)
--   [Local Setup](#local-setup)
--   [Azure DevOps Setup](#azure-devops-setup)
-    -   [Create project](#create-project)
-    -   [Install required plugins](#install-required-plugins)
-    -   [Get your AWS keys](#get-your-aws-keys)
-    -   [Create AWS service connection](#create-aws-service-connection)
-    -   [Create DockerHub service connection](#create-dockerhub-service-connection)
-    -   [Create AWS-keys variable group](#create-aws-keys-variable-group)
-    -   [Allow push to GitHub](#allow-pushes-to-github)
-    -   [Create an Azure self-hosted agent](#optional-create-an-azure-self-hosted-agent)
--   [AWS Infrastructure Deployment Pipeline](#aws-infrastructure-deployment-pipeline)
-    -   [Description](#description)
-    -   [Instructions](#instructions)
--   [ArgoCD Deployment Pipeline](#argocd-deployment-pipeline)
-    -   [Description](#description-1)
-    -   [Instructions](#instructions-1)
--   [Application Build & Deploy Pipeline](#application-build--deploy-pipeline)
-    -   [Description](#description-2)
-    -   [Instructions](#instruction2)
--   [Destroy All The Things Pipeline](#destroy-all-the-things-pipeline)
-    -   [Description](#description-3)
-    -   [Instructions](#instructions-3)
--   [Epilogue](#epilogue)
+- [Introduction](#introduction)
+  - [Prerequisites](#prerequisites)
+  - [What we'll be doing](#what-well-be-doing)
+  - [Tools we'll be using](#tools-well-be-using)
+  - [Disclaimer](#disclaimer)
+- [Local Setup](#local-setup)
+- [Azure DevOps Setup](#azure-devops-setup)
+  - [Create project](#create-project)
+  - [Install required plugins](#install-required-plugins)
+  - [Get your AWS keys](#get-your-aws-keys)
+  - [Create AWS service connection](#create-aws-service-connection)
+  - [Create DockerHub service connection](#create-dockerhub-service-connection)
+  - [Create AWS-keys variable group](#create-aws-keys-variable-group)
+  - [Allow push to GitHub](#allow-pushes-to-github)
+  - [Create an Azure self-hosted agent](#optional-create-an-azure-self-hosted-agent)
+- [AWS Infrastructure Deployment Pipeline](#aws-infrastructure-deployment-pipeline)
+  - [Description](#description)
+  - [Instructions](#instructions)
+- [ArgoCD Deployment Pipeline](#argocd-deployment-pipeline)
+  - [Description](#description-1)
+  - [Instructions](#instructions-1)
+- [Application Build & Deploy Pipeline](#application-build--deploy-pipeline)
+  - [Description](#description-2)
+  - [Instructions](#instruction2)
+- [Destroy All The Things Pipeline](#destroy-all-the-things-pipeline)
+  - [Description](#description-3)
+  - [Instructions](#instructions-3)
+- [Epilogue](#epilogue)
 
 <br/>
-
 
 # **INTRODUCTION**
 
@@ -63,6 +61,7 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## Prerequisites
+
 - [Git installed](https://www.python.org/downloads/)
 - [Python3 installed](https://www.python.org/downloads/)
 - [Active GitHub account](https://github.com/)
@@ -73,9 +72,10 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## What we'll be doing
+
 The purpose of this repo is not to give you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infrastructure and how the tools can interact with each other to make them as efficient as posible.
 
-I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be merged for unlimited power. 
+I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be merged for unlimited power.
 
 <br/>
 
@@ -94,7 +94,7 @@ Ok, now that that's out of the way...
 - Continuous Integration -> Azure DevOps
 - Continuous Deployment -> Helm & ArgoCD
 - Scripting -> Python
-<br/>
+  <br/>
 
 <p title="Logos Banner" align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
@@ -113,31 +113,41 @@ Let's begin...
 <p title="Automation Everywhere" align="center"> <img width="460" src="https://i.imgur.com/xSmJv0k.png"> </p>
 <br/>
 
-* * *
+---
 
 <br/>
 
 # **LOCAL SETUP**
+
 In order to turn this whole deployment into your own thing, we need to do some initial setup:
+
 1. Fork this repo.
 1. Clone the repo from your fork:
+
 ```bash
 git clone https://github.com/<your-username>/automate-all-the-things.git
 ```
+
 2. Move into the directory:
+
 ```bash
 cd automate-all-the-things
 ```
+
 2. Run the initial setup script. Come back when you are done:
+
 ```bash
 python3 python/initial-setup.py
-``` 
+```
+
 4. Hope you enjoyed the welcome script! Now push your customized repo to GitHub:
+
 ```bash
 git add -A
 git commit -m "customized repo"
 git push
 ```
+
 5. Awesome! You can now proceed with the Azure DevOps setup.
 
 <br/>
@@ -151,6 +161,7 @@ git push
 Before creating our pipelines we need to get a few things set up:<br>
 
 ## Create project
+
 1. Sign in [Azure DevOps](https://dev.azure.com/).
 2. Go to "New project" on the top-right.
 3. Write the name for your project and under "Visibility" select "Private".
@@ -159,28 +170,34 @@ Before creating our pipelines we need to get a few things set up:<br>
 <br/>
 
 ## Install required plugins
+
 These plugins are required for the pipelines we'll be creating. Click on "Get it free" and then "Install".
+
 1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
-1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines 
+1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines
 
 <br/>
 
 ## Get your AWS keys
+
 These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
 2. On the search bar look up "IAM".
-3. On the IAM dashboard, select "Users" on the left side menu. *If you are root user and haven't created any users, you'll find the "Create access key" option on IAM > My security credentials. You should know that ***creating Access Keys for the root user is a bad security practice***. If you choose to proceed anyway, click on "Create access key" and skip to point 6*.
+3. On the IAM dashboard, select "Users" on the left side menu. \*If you are root user and haven't created any users, you'll find the "Create access key" option on IAM > My security credentials. You should know that **_creating Access Keys for the root user is a bad security practice_**. If you choose to proceed anyway, click on "Create access key" and skip to point 6\*.
 4. Choose your IAM user name (not the check box).
 5. Open the Security credentials tab, and then choose "Create access key".
 6. To see the new access key, choose Show. Your credentials resemble the following:
+
 - Access key ID: AKIAIOSFODNN7EXAMPLE<br>
 - Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
 7. Copy and save these somewhere safe.
 
 <br/>
 
 ## Create AWS service connection
+
 This service connection is required for our Azure DevOps pipelines to interact with AWS.
 
 1. Go back to Azure DevOps and open your project.
@@ -196,6 +213,7 @@ This service connection is required for our Azure DevOps pipelines to interact w
 <br/>
 
 ## Create DockerHub service connection
+
 This service connection is required for our Azure DevOps pipelines to be able to push images to your DockerHub registry.
 
 1. Go back to Azure DevOps and open your project.
@@ -205,20 +223,24 @@ This service connection is required for our Azure DevOps pipelines to be able to
 5. Select "Docker Registry".
 6. Under "Registry type" select "Docker Hub".
 7. Input your Docker ID and Password.
-7. Under "Service connection name", write "dockerhub".
-8. Select the "Grant access permission to all pipelines" option.
-9. Click on "Verify and save".
+8. Under "Service connection name", write "dockerhub".
+9. Select the "Grant access permission to all pipelines" option.
+10. Click on "Verify and save".
 
 <br/>
 
 ## Create AWS keys variable group
+
 These are needed for Terraform to be able to deploy our AWS infrastructure.
+
 1. On the left side menu under "Pipelines" go to "Library"
 2. Click on "+ Variable group".
 3. Under "Variable group name" write "aws-keys".
 4. Add the following variables pasting on each the same keys you used to create the AWS service connection:
-- aws_access_key_id 
+
+- aws_access_key_id
 - aws_secret_access_key
+
 5. Click on the lock icon on each variable.
 6. Click on "Pipeline permissions" and give it "Open access". This means all our pipelines will be able to use these variables.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/aMzTx49.jpg"> </p>
@@ -228,10 +250,11 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 <br/>
 
 ## Allow push to GitHub
+
 We will need to push changes to the GitHub repo. By default, repositories are allowed to be read from but not written to, so we need to do a little extra configuration.
 
 1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
-CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
+   CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
 2. "Bypass policies when pushing", "Contribute", "Create Tag" and "Read" should be set to "Allow".
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/NzYh5KJ.png"> </p>
 
@@ -245,12 +268,14 @@ CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
 7. Under "Service connection name", write "aws".
 8. Select the "Grant access permission to all pipelines" option.
 9. Save. -->
+
 ## (Optional) Create an Azure self-hosted agent
-***If you have a hosted parallelism, you can skip this step.***<br/>
+
+**_If you have a hosted parallelism, you can skip this step._**<br/>
 
 A hosted parallelism basically means that Azure will spin up a server in which to run your pipelines. You can purchase one or you can request a free parallelism by filling out [this form](https://aka.ms/azpipelines-parallelism-request).
 
-If you don't have a hosted parallelism, you will have to run the pipeline in a **self-hosted agent**. 
+If you don't have a hosted parallelism, you will have to run the pipeline in a **self-hosted agent**.
 This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
 
 To install a self-hosted agent on your machine, you can follow the official documentation [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install).
@@ -261,16 +286,18 @@ To install a self-hosted agent on your machine, you can follow the official docu
 <br/>
 <br/>
 
-* * *
+---
 
 <br/>
 <br/>
 
 <!-- # **PIPELINES** -->
 <!-- # AWS Infrastructure Deployment Pipeline -->
+
 # AWS INFRASTRUCTURE DEPLOYMENT PIPELINE
 
 <!-- ### **Explanation** -->
+
 ## Description
 
 Our first pipeline, the one that will provide us with all the necessary infrastucture.
@@ -282,11 +309,11 @@ Storing it remotely means that everyone on the team can access and work with the
 
 Before we proceed with deploying out actual infrastructure, we'll move the state file to the /terraform/aws/ directory, so our backend resources (the Bucket and DynamoDB Table) will also be tracked as part of our whole infrastructure. If you want to understand how this works, I suggest you watch [this video](https://youtu.be/7xngnjfIlK4?t=2483) where Sid from [DevOps Directive](https://www.youtube.com/@DevOpsDirective) explains it better than I ever could.
 
-Now that's everything is set, we will finally deploy our infra! 
+Now that's everything is set, we will finally deploy our infra!
 
 So what is our infra? It's mainly the networking resources and the EKS cluster, along with an AWS Load Balancer Controller which will act as our Kubernetes Ingress Controller.
 
-Having this AWS Load Balancer Controller means that for every Ingress resource we create in our cluster, an AWS Application Load Balancer will be automatically  created. This is the native way to do it in EKS and it has a lot to benefits, but it creates an issue for us.<br>
+Having this AWS Load Balancer Controller means that for every Ingress resource we create in our cluster, an AWS Application Load Balancer will be automatically created. This is the native way to do it in EKS and it has a lot to benefits, but it creates an issue for us.<br>
 We want to track everything in our infra as IaC, but these automatically created Application Load Balancers won't be tracked in our Terraform... No worries, we'll take care of this issue in the Destroy Everything Pipeline.<br>
 For more info on the AWS Load Balancer Controller you can watch [this excellent video](https://youtu.be/ZfjpWOC5eoE) by [Anton Putra](https://www.youtube.com/@AntonPutra).
 
@@ -295,6 +322,7 @@ If you want to know exactly what is being deployed, you can check out the [terra
 <br/>
 
 <!-- ### **Instructions** -->
+
 ## Instructions
 
 1. On your Azure DevOps project, go to Pipelines on the left side menu.
@@ -307,7 +335,8 @@ If you want to know exactly what is being deployed, you can check out the [terra
 8. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/00-deploy-backend.yml". Click "Continue".
 10. If you have hosted parallelism skip to point 11. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the [00-deploy-infra.yml](azure-devops/00-deploy-infra.yml) file.<br>
-Under "pool" you need to edit it so that it looks like this:
+    Under "pool" you need to edit it so that it looks like this:
+
 ```yaml
 pool:
   # vmImage: 'ubuntu-latest'
@@ -315,6 +344,7 @@ pool:
   demands:
     - agent.name -equals <agent-name> # Insert here the name of the agent you created
 ```
+
 11. Click on "Run".
 
 <br/>
@@ -328,9 +358,6 @@ pool:
 <!-- <br/>
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 <br/> -->
-
-
-
 
 <!-- ## EKS Deployment Pipeline VIEJO
 
@@ -352,7 +379,7 @@ To check that everything went OK we will connect to our cluster from our local m
 aws configure
 aws eks update-kubeconfig --name <your-app-name>-cluster --region <your-aws-region>
 ```
-**REMEMBER**: This is only to SEE our resources. Creating or deleting resources is strictly prohibited. We're not some cavemen using kubectl create/delete. We are gentlemen, we modify our infrastrucure with **GitOps**. 
+**REMEMBER**: This is only to SEE our resources. Creating or deleting resources is strictly prohibited. We're not some cavemen using kubectl create/delete. We are gentlemen, we modify our infrastrucure with **GitOps**.
 
 To visualize our resource we can now use:
 ```bash
@@ -362,7 +389,6 @@ kubectl get all --all-namespaces
 INSTERT WINNIE POOH MEME
 <br> -->
 
-
 <!-- #### Create AWS-Keys Variable Group
 These are needed for Helm to be able to connect to our EKS Cluster and deploy ArgoCD.
 
@@ -370,11 +396,10 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 2. Click on "+ Variable group".
 3. Under "Variable group name" write "aws-keys".
 4. Add the following variables pasting on each the same keys you used to create the AWS service connection:
-- aws_access_key_id 
+- aws_access_key_id
 - aws_secret_access_key
 5. Click on the lock icon on each variable so that they are treated as secrets.
 6. Save. -->
-
 
 <!-- #### Create K8S Service Connection
 
@@ -388,18 +413,19 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 7. Under "Service connection name", write "k8s".
 8. Select "Grant access permission to all pipelines".
 8. Click on "Verify and save". -->
-  
-
 
 <!-- ## ArgoCD Deployment Pipeline -->
+
 # ARGOCD DEPLOYMENT PIPELINE
 
 <!-- ### **Explanation** -->
+
 ## Description
+
 We won't go into what ArgoCD is, for that you have [this video](https://youtu.be/MeU5_k9ssrs) by the #1 DevOps youtuber, Nana from [TechWorld with Nana](https://www.youtube.com/@TechWorldwithNana).
 
 This pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our EKS.<br>
-The first thing it will do is run the necessary tasks to connect to our the cluster. After this, ArgoCD will be installed, along with it's Ingress. 
+The first thing it will do is run the necessary tasks to connect to our the cluster. After this, ArgoCD will be installed, along with it's Ingress.
 
 As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so our pipeline will wait until it is ready.
 When it's ready, the pipeline will get it's URL and admin account password. These will be exported as an artifact.
@@ -433,10 +459,14 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 <br/>
 
 <!-- ## Application Build & Deploy Pipeline -->
+
 # APPLICATION BUILD & DEPLOY PIPELINE
 
 <!-- ### **Explanation** -->
+
 ## Description
+
+AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
 We are almost there! In this pipeline we will build and deploy our app.
 
 The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
@@ -455,6 +485,7 @@ If you need to modify other things, let's say, the contents of the ConfigMap, th
 <br/>
 
 ## Instructions
+
 1. Go to "Pipelines" under "Pipelines" on the left side menu.
 2. Click on "New pipeline".
 3. Select "GitHub".
@@ -469,9 +500,6 @@ If you need to modify other things, let's say, the contents of the ConfigMap, th
 <br/>
 <br/>
 
-
-
-
 <!-- ## Application Deployment Pipeline
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "New pipeline".
@@ -481,15 +509,12 @@ If you need to modify other things, let's say, the contents of the ConfigMap, th
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/04-dep-and-deploy-app.yml". Click "Continue".
 11. Click on "Run". -->
 
-
-
-
 # DESTROY ALL THE THINGS PIPELINE
 
 ## Description
 
-
 <!-- ### **Instructions** -->
+
 ## Instructions
 
 PRIMERO BORRAR TODOS LOS INGRESS!!!!!!!
@@ -506,19 +531,19 @@ Will fail cause bucket and dynamo dont excist any more
 <br/>
 <br/>
 
-* * *
+---
 
 <br/>
 
 # EPILOGUE
-Our journey has come to an end...
 
+Our journey has come to an end...
 
 DOCKER BEST PRACTICES
 
 TF BEST PRACTICES
 
-AGREGAR CHEKEO DE Q INPUTS EN PYTHON SCRIPT SEAN VALIDOS, SOLO TEXTO, NROS y - y _
+AGREGAR CHEKEO DE Q INPUTS EN PYTHON SCRIPT SEAN VALIDOS, SOLO TEXTO, NROS y - y \_
 
 12 FACTOR APP
 PASAR TODO A PYTHON SCRIPT
@@ -526,9 +551,6 @@ PASAR TODO A PYTHON SCRIPT
 EXPLICAR PORQ USAMOS REMOTE BACKEDN PARA TFSTATE.
 
 EL NOMBRE DEL BACKEND S3 y DYNAMODB ESTAN HARDCODEADOS EN EL BACKEND DE aws-resources, HAY Q GUARDARLOS EN VARIABLE DE ALGUNA FORMA
-
-
-
 
 <br/>
 <p title="Anakin" align="center"> <img width="460" src="https://i.imgur.com/tup8Ocu.jpg"> </p>
@@ -545,46 +567,16 @@ EL NOMBRE DEL BACKEND S3 y DYNAMODB ESTAN HARDCODEADOS EN EL BACKEND DE aws-reso
 <p title="Wolverine & Nana" align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
 <br/>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 DESCARTADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # (Optional) GET GITHUB PERSONAL ACCESS TOKEN
-***If the repo you are using is public skip this step.***<br/>
+
+**_If the repo you are using is public skip this step._**<br/>
 
 In your Github account:
+
 1. In the upper-right corner of any page, click your profile photo, then click Settings.
-2. In the left sidebar, click  Developer settings.
+2. In the left sidebar, click Developer settings.
 3. In the left sidebar, click Personal access tokens.
 4. Click Generate new token.
 5. In the "Note" field, give your token a descriptive name.
@@ -594,6 +586,7 @@ In your Github account:
 9. Copy the new token to your clipboard, click.
 
 Set as environment variable
+
 ```bash
 export AZURE_DEVOPS_EXT_GITHUB_PAT=<your-github-pat>
 ```
@@ -603,16 +596,18 @@ export AZURE_DEVOPS_EXT_GITHUB_PAT=<your-github-pat>
 ## 1.1 Azure CLI
 
 a. Install [azure cli](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
+
 ```bash
 sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
 
 b. Sign in:
+
 ```bash
-az login 
+az login
 ```
 
-## 1.2 Azure DevOps CLI 
+## 1.2 Azure DevOps CLI
 
 a. Add the [Azure DevOps extension](https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops)
 
@@ -620,24 +615,28 @@ a. Add the [Azure DevOps extension](https://learn.microsoft.com/en-us/azure/devo
 az extension add --name azure-devops
 ```
 
+## 1.3 Project & Pipeline
 
-## 1.3 Project & Pipeline 
 a. Create project
+
 ```bash
 az devops project create --name automate-all-the-things --org https://dev.azure.com/tomasferrari --verbose
 ```
 
 b. Set organization and project as defaults
+
 ```bash
-az devops configure --defaults  organization=https://dev.azure.com/tomasferrari project=automate-all-the-things 
+az devops configure --defaults  organization=https://dev.azure.com/tomasferrari project=automate-all-the-things
 ```
 
 c. Create service-connection to github
+
 ```bash
 az devops service-endpoint github create --name github-sc --github-url https://github.com/tferrari92/automate-all-the-things.git
 ```
 
 d. Create pipeline
+
 ```bash
 az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
 ```

@@ -2,13 +2,6 @@ name: deploy-backend
 
 trigger: none
 
-# resources:
-#   repositories:
-#   - repository: automate-all-the-things # The name used to reference this repository in the checkout step
-#     type: github
-#     endpoint: tferrari92 # Name of the service connection # This value was modified by the initial-setup python script
-#     name: tferrari92/automate-all-the-things # This value was modified by the initial-setup python script
-
 pool:
   vmImage: 'ubuntu-latest' 
   # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
@@ -16,67 +9,48 @@ pool:
   # demands:
   #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
 
+
 steps:
 - task: TerraformInstaller@0
   displayName: Install terraform
   inputs:
     terraformVersion: '1.4.6'
 
-# - checkout: automate-all-the-things
-
 - task: TerraformCLI@0
   displayName: 'Terraform Init Backend'
   inputs:
     command: init
     workingDirectory: 'terraform/backend'
-    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
-
-# - task: TerraformCLI@0
-#   displayName: 'Terraform plan'
-#   inputs:
-#     command: plan
-#     workingDirectory: './terraform/backend/'
-#     providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-#     providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
+    providerServiceAws: 'aws' 
+    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
 
 - task: TerraformCLI@0
   displayName: 'Terraform Apply Backend'
   inputs:
     command: apply
     workingDirectory: 'terraform/backend'
-    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
+    providerServiceAws: 'aws' 
+    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
   # continueOnError: true
-
-# - task: PublishBuildArtifacts@1
-#   displayName: 'Save terraform state file'
-#   inputs:
-#     PathtoPublish: '$(Pipeline.Workspace)/s/terraform/backend/terraform.tfstate'
-#     ArtifactName: 'TerraformState'
-#     publishLocation: 'Container'
-#     condition: always()
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
-
 
 - task: TerraformCLI@0
   displayName: 'Terraform Init EKS'
   inputs:
     command: init
     workingDirectory: 'terraform/aws'
-    backendType: aws # set to `aws` to use aws backend
-    backendServiceAws: aws # service connection name, required if backendType = aws
-    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
-    commandOptions: '-force-copy' # This overides the propt question with a yes
-
+    backendType: aws 
+    backendServiceAws: aws 
+    providerServiceAws: 'aws' 
+    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
+    commandOptions: '-force-copy'
 
 - task: TerraformCLI@0
   displayName: 'Terraform Apply EKS'
   inputs:
     command: apply
     workingDirectory: 'terraform/aws'
-    providerServiceAws: 'aws' # This depends on the AWS Service Connection included with the AWS Toolkit. It uses a sevice connection created on the project called 'aws' so we dont't have to include the access_key and secret_key values.
-    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
+    providerServiceAws: 'aws' 
+    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script

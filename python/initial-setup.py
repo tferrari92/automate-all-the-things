@@ -67,7 +67,8 @@ else:
 # Function to check that input is only alphanumeric + "-" + "_"
 def check_if_valid(input_string):
     while not input_string.replace("-", "").replace("_", "").isalnum():
-        print_gradually("This value can only contain alphanumeric characters, hyphens(-) and underscores(_).\nPlease provide a valid name: ")
+        print_gradually(
+            "This value can only contain alphanumeric characters, hyphens(-) and underscores(_).\nPlease provide a valid name: ")
         input_string = input()
     return input_string
 
@@ -76,18 +77,19 @@ print_gradually(
     "Alright, let's get the necessary details. What will be the name of your app?: ")
 app_name = check_if_valid(input())
 
-print_gradually(
-    "Great name! What's the name of your Azure DevOps Organization?: ")
-az_devops_org = input()
+# print_gradually(
+#     "Great name! What's the name of your Azure DevOps Organization?: ")
+# az_devops_org = input()
 
-print_gradually("Nice! Sounds professional! What's your GitHub username?: ")
+print_gradually(
+    "Great name! Sounds professional! What's your GitHub username?: ")
 github_username = input()
 
 print_gradually(
-    "In what AWS region will you be deploying your resources? (e.g. 'us-east-2'): ")
+    "Got it! In what AWS region will you be deploying your resources? (e.g. 'us-east-2'): ")
 aws_region = input()
 
-print_gradually("Ok. What's your DockerHub username?: ")
+print_gradually("Good choice! Last thing... What's your DockerHub username?: ")
 dockerhub_username = input()
 
 
@@ -95,10 +97,10 @@ dockerhub_username = input()
 data = {
     "AATT_FULL_NAME": full_name,
     "AATT_APP_NAME": app_name,
-    "AATT_AZ_DEVOPS_ORG": az_devops_org,
     "AATT_GITHUB_USERNAME": github_username,
     "AATT_AWS_REGION": aws_region,
     "AATT_DOCKERHUB_USERNAME": dockerhub_username,
+    # "AATT_AZ_DEVOPS_ORG": az_devops_org,
 }
 
 

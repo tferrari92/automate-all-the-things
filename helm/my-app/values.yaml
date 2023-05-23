@@ -1,9 +1,9 @@
-appName: cafe
+appName: AATT_APP_NAME # This value was modified by the initial-setup python script
 
 deployment:
   image:
-    repository: tferrari92/cafe # This value was modified by the initial-setup python script
-    tag: 352
+    repository: AATT_GITHUB_USERNAME/AATT_APP_NAME # This value was modified by the initial-setup python script
+    tag: 0
   replicas: 1
 
 configmap:
