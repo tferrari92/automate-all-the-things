@@ -34,7 +34,7 @@
 -   [Pipeline de Implementación de Infraestructura de AWS](#pipeline-de-implementación-de-infraestructura-de-aws)
     -   [Descripción](#descripción)
     -   [Instrucciones](#instrucciones)
--   [Pipeline de Implementación de ArgoCD](#pipeline-ded-implementación-de-argocd)
+-   [Pipeline de Implementación de ArgoCD](#pipeline-de-implementación-de-argocd)
     -   [Descripción](#descripción-1)
     -   [Instrucciones](#instrucciones-1)
 -   [Pipeline de Creación e Implementación de la Aplicación](#pipeline-de-creación-e-implementación-de-la-aplicación)
