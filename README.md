@@ -511,7 +511,7 @@ Will fail cause bucket and dynamo dont excist any more
 <br/>
 
 # EPILOGUE
-
+Our journey has come to an end...
 
 
 DOCKER BEST PRACTICES
