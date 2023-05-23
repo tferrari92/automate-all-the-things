@@ -48,7 +48,7 @@
 <br/>
 
 
-# **INTRODUCTION**
+# **INTRODUCCIÓN**
 
 I believe in a world where all that's expected of me is to enjoy life, lay on the couch, play COD and have exitential crises.
 <br/>
@@ -62,24 +62,24 @@ Here's my attempt at making the world a better place. People in the future will 
 
 <br/>
 
-## Prerequisites
-- [Git installed](https://www.python.org/downloads/)
-- [Python3 installed](https://www.python.org/downloads/)
-- [Active GitHub account](https://github.com/)
-- [Active DockerHub account](https://hub.docker.com/)
-- [Active AWS account](https://aws.amazon.com/)
-- [Active Azure DevOps account](https://azure.microsoft.com/en-us/free/)
+## Requisitos previos
+- [Git instalado](https://www.python.org/downloads/)
+- [Python3 instalado](https://www.python.org/downloads/)
+- [Cuenta de GitHub activa](https://github.com/)
+- [Cuenta de DockerHub activa](https://hub.docker.com/)
+- [Cuenta de AWS activa](https://aws.amazon.com/)
+- [Cuenta de Azure DevOps activa](https://azure.microsoft.com/en-us/free/)
 
 <br/>
 
-## What we'll be doing
+## Que haremos
 The purpose of this repo is not to give you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infrastructure and how the tools can interact with each other to make them as efficient as posible.
 
 I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be merged for unlimited power. 
 
 <br/>
 
-## Tools we'll be using
+## Que herramientas usaremos
 
 For each step of the process, I’ve chosen to use the best tool in its field. And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!!
 
@@ -100,7 +100,7 @@ Ok, now that that's out of the way...
 
 <br/>
 
-## Disclaimer
+## Descargo de responsabilidad
 
 Some things could have been further automatized but I prioritized modularization and separation of concerns.<br>
 
@@ -117,7 +117,7 @@ Let's begin...
 
 <br/>
 
-# **LOCAL SETUP**
+# **CONFIGURACIÓN LOCAL**
 In order to turn this whole deployment into your own thing, we need to do some initial setup:
 1. Fork this repo.
 1. Clone the repo from your fork:
@@ -146,11 +146,11 @@ git push
 <br/>
 <br/>
 
-# **AZURE DEVOPS SETUP**
+# **CONFIGURACIÓN DE AZURE DEVOPS**
 
 Before creating our pipelines we need to get a few things set up:<br>
 
-## Create project
+## Crear proyecto
 1. Sign in [Azure DevOps](https://dev.azure.com/).
 2. Go to "New project" on the top-right.
 3. Write the name for your project and under "Visibility" select "Private".
@@ -158,14 +158,14 @@ Before creating our pipelines we need to get a few things set up:<br>
 
 <br/>
 
-## Install Required Plugins
+## Instalar plugins necesarios
 These plugins are required for the pipelines we'll be creating. Click on "Get it free" and then "Install".
 1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
 1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines 
 
 <br/>
 
-## Get Your AWS Keys
+## Obtenga sus llaves de AWS
 These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
@@ -180,7 +180,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 <br/>
 
-## Create AWS Service Connections
+## Crear conexión de servicio de AWS
 This service connection is required for our Azure DevOps pipelines to interact with AWS.
 
 1. Go back to Azure DevOps and open your project.
@@ -195,7 +195,7 @@ This service connection is required for our Azure DevOps pipelines to interact w
 
 <br/>
 
-## Create DockerHub Service Connections
+## Crear conexión de servicio de DockerHub
 This service connection is required for our Azure DevOps pipelines to be able to push images to your DockerHub registry.
 
 1. Go back to Azure DevOps and open your project.
@@ -211,7 +211,7 @@ This service connection is required for our Azure DevOps pipelines to be able to
 
 <br/>
 
-## Create AWS-Keys Variable Group
+## Crear grupo de variables de llaves de AWS
 These are needed for Terraform to be able to deploy our AWS infrastructure.
 1. On the left side menu under "Pipelines" go to "Library"
 2. Click on "+ Variable group".
@@ -227,7 +227,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 
 <br/>
 
-## Allow Pushes To GitHub
+## Permitir push a GitHub
 We will need to push changes to the GitHub repo. By default, repositories are allowed to be read from but not written to, so we need to do a little extra configuration.
 
 1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
@@ -245,7 +245,7 @@ CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
 7. Under "Service connection name", write "aws".
 8. Select the "Grant access permission to all pipelines" option.
 9. Save. -->
-## (Optional) Create An Azure Self-Hosted Agent
+## (Opcional) Crear un agente self-hosted de Azure
 ***If you have a hosted parallelism, you can skip this step.***<br/>
 
 A hosted parallelism basically means that Azure will spin up a server in which to run your pipelines. You can purchase one or you can request a free parallelism by filling out [this form](https://aka.ms/azpipelines-parallelism-request).
@@ -268,7 +268,7 @@ To install a self-hosted agent on your machine, you can follow the official docu
 
 <!-- # **PIPELINES** -->
 <!-- # AWS Infrastructure Deployment Pipeline -->
-# AWS INFRASTRUCTURE DEPLOYMENT PIPELINE
+# PIPELINE DE IMPLEMENTACIÓN DE INFRAESTRUCTURA DE AWS
 
 <!-- ### **Explanation** -->
 ## Description
