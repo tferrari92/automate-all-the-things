@@ -16,7 +16,7 @@
 
 # **ÍNDICE**
 
--   [Introducción](#Introduccion)
+-   [Introducción](#Introducción)
     -   [Requisitos previos](#requisitos-previos)
     -   [Que haremos](#que-haremos)
     -   [Que herramientas usaremos](#que-herramientas-usaremos)
