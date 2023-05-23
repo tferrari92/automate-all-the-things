@@ -24,13 +24,13 @@
 -   [Local Setup](#local-setup)
 -   [Azure DevOps Setup](#azure-devops-setup)
     -   [Create project](#create-project)
-    -   [Install Required Plugins](#install-required-plugins)
-    -   [Get Your AWS Keys](#get-your-aws-keys)
-    -   [Create AWS Service Connection](#create-aws-service-connection)
-    -   [Create DockerHub Service Connection](#create-dockerhub-service-connection)
-    -   [Create AWS-Keys Variable Group](#create-aws-keys-variable-group)
-    -   [Allow Pushed To GitHub](#allow-pushes-to-github)
-    -   [Create An Azure Self-Hosted Agent](#optional-create-an-azure-self-hosted-agent)
+    -   [Install required plugins](#install-required-plugins)
+    -   [Get your AWS keys](#get-your-aws-keys)
+    -   [Create AWS service connection](#create-aws-service-connection)
+    -   [Create DockerHub service connection](#create-dockerhub-service-connection)
+    -   [Create AWS-keys variable group](#create-aws-keys-variable-group)
+    -   [Allow push to GitHub](#allow-pushes-to-github)
+    -   [Create an Azure self-hosted agent](#optional-create-an-azure-self-hosted-agent)
 -   [AWS Infrastructure Deployment Pipeline](#aws-infrastructure-deployment-pipeline)
     -   [Description](#description)
     -   [Instructions](#instructions)
@@ -158,14 +158,14 @@ Before creating our pipelines we need to get a few things set up:<br>
 
 <br/>
 
-## Install Required Plugins
+## Install required plugins
 These plugins are required for the pipelines we'll be creating. Click on "Get it free" and then "Install".
 1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
 1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines 
 
 <br/>
 
-## Get Your AWS Keys
+## Get your AWS keys
 These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
@@ -180,7 +180,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 <br/>
 
-## Create AWS Service Connections
+## Create AWS service connection
 This service connection is required for our Azure DevOps pipelines to interact with AWS.
 
 1. Go back to Azure DevOps and open your project.
@@ -195,7 +195,7 @@ This service connection is required for our Azure DevOps pipelines to interact w
 
 <br/>
 
-## Create DockerHub Service Connections
+## Create DockerHub service connection
 This service connection is required for our Azure DevOps pipelines to be able to push images to your DockerHub registry.
 
 1. Go back to Azure DevOps and open your project.
@@ -211,7 +211,7 @@ This service connection is required for our Azure DevOps pipelines to be able to
 
 <br/>
 
-## Create AWS-Keys Variable Group
+## Create AWS keys variable group
 These are needed for Terraform to be able to deploy our AWS infrastructure.
 1. On the left side menu under "Pipelines" go to "Library"
 2. Click on "+ Variable group".
@@ -227,7 +227,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 
 <br/>
 
-## Allow Pushes To GitHub
+## Allow push to GitHub
 We will need to push changes to the GitHub repo. By default, repositories are allowed to be read from but not written to, so we need to do a little extra configuration.
 
 1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
