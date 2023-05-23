@@ -324,7 +324,7 @@ If you want to know exactly what is being deployed, you can check out the [terra
 3. Click on "Create Pipeline".
 4. Select "Github".
 5. You might need to go through the GitHub authorization process, go ahead and click the green button.
-6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+6. Select the repo, it should be "your-github-username/automate-all-the-things"
 7. You might need to click more green buttons to allow Azure DevOps to interact with GitHub, go ahead.
 8. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/00-deploy-infra.yml". Click "Continue".
@@ -434,7 +434,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 1. Go to "Pipelines" under "Pipelines" on the left side menu.
 2. Click on "New pipeline".
 3. Select "GitHub".
-4. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+4. Select the repo, it should be "your-github-username/automate-all-the-things"
 5. Select "Existing Azure Pipelines YAML file".
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-argocd.yml". Click "Continue".
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the previous pipeline.
@@ -484,7 +484,7 @@ If you need to modify other things, let's say, the contents of the ConfigMap, th
 1. Go to "Pipelines" under "Pipelines" on the left side menu.
 2. Click on "New pipeline".
 3. Select "GitHub".
-4. Select the repo, it should be "<your-github-username>/automate-all-the-things"
+4. Select the repo, it should be "your-github-username/automate-all-the-things"
 5. Select "Existing Azure Pipelines YAML file".
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-app.yml". Click "Continue".
 7. Click on "Run".
@@ -535,6 +535,8 @@ Will fail cause bucket and dynamo dont excist any more
 Our journey has come to an end...
 
 DOCKER BEST PRACTICES
+
+AGREGAR AMBIENTES PARA MY APP
 
 TF BEST PRACTICES
 
