@@ -67,7 +67,7 @@ else:
 # Function to check that input is only alphanumeric + "-" + "_"
 def check_if_valid(input_string):
     while not input_string.replace("-", "").replace("_", "").isalnum():
-        print_gradually_fast("This value can only contain alphanumeric characters, hyphens(-) and underscores(_). Please provide a valid input:")
+        print_gradually("This value can only contain alphanumeric characters, hyphens(-) and underscores(_). Please provide a valid input: ")
         input_string = input()
     return input_string
 
