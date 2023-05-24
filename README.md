@@ -328,7 +328,7 @@ If you want to know exactly what is being deployed, you can check out the [terra
 7. You might need to click more green buttons to allow Azure DevOps to interact with GitHub, go ahead.
 8. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/00-deploy-infra.yml". Click "Continue".
-10. *If you have hosted parallelism skip to point 11*. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the [00-deploy-infra.yml](azure-devops/00-deploy-infra.yml) file.<br>
+10. *If you have hosted parallelism skip to point 11*. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the [00-deploy-infra.yml file](azure-devops/00-deploy-infra.yml).<br>
     Under "pool" you need to edit it so that it looks like this:
 
 ```yaml
