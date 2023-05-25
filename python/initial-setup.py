@@ -125,7 +125,8 @@ def search_and_replace(directory, replacements):
                              '02-build-and-deploy-app.yml',
                              '03-destroy-everything.yml',
                              'values.yaml',
-                             'terraform.tfvars']:
+                             'terraform.tfvars',
+                             'provider.tf']:
                 replace_keys_in_file(file_path, replacements)
 
 
