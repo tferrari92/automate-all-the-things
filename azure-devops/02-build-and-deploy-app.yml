@@ -28,7 +28,7 @@ jobs:
     displayName: Build And Push Image
     inputs:
       containerRegistry: 'dockerhub'
-      repository: 'AATT_GITHUB_USERNAME/AATT_APP_NAME' # This value was modified by the initial-setup python script
+      repository: 'AATT_DOCKERHUB_USERNAME/AATT_APP_NAME' # This value was modified by the initial-setup python script
       command: 'buildAndPush'
       Dockerfile: 'my-app/Dockerfile'
 

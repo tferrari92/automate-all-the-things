@@ -443,7 +443,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 9. When it's done, the access file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL and credentials.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
-10. You can now access the ArgoCD UI, where you should find one application running but in an "unhealthy" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
+10. You can now access the ArgoCD UI, where you should find one application running but in an "Progressing/Unhealthy" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
 
 <!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
 <!-- 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
@@ -462,7 +462,6 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 
 ## Description
 
-AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
 We are almost there! In this pipeline we will build and deploy our app.
 
 The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
@@ -478,6 +477,10 @@ Remember how we just pushed the image to DockerHub with the new tag? And remembe
 
 If you need to modify other things, let's say, the contents of the ConfigMap, then you'd clone the repo, make your changes, push to GitHub, and again, wait for ArgoCD to apply the changes.
 
+
+AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
+
+
 <br/>
 
 ## Instructions
@@ -489,6 +492,8 @@ If you need to modify other things, let's say, the contents of the ConfigMap, th
 5. Select "Existing Azure Pipelines YAML file".
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-app.yml". Click "Continue".
 7. Click on "Run".
+
+AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP
 
 <br/>
 <br/>

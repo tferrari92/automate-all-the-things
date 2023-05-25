@@ -2,7 +2,7 @@ appName: AATT_APP_NAME # This value was modified by the initial-setup python scr
 
 deployment:
   image:
-    repository: AATT_GITHUB_USERNAME/AATT_APP_NAME # This value was modified by the initial-setup python script
+    repository: AATT_DOCKERHUB_USERNAME/AATT_APP_NAME # This value was modified by the initial-setup python script
     tag: 0
   replicas: 1
 
