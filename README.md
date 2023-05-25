@@ -243,7 +243,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 
 <br/>
 
-## Allow push to GitHub
+## Allow push to GitHub HACE FALTA???!!!!
 
 We will need to push changes to the GitHub repo. By default, repositories are allowed to be read from but not written to, so we need to do a little extra configuration.
 
