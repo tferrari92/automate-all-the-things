@@ -8,6 +8,9 @@ trigger:
     include:
       - my-app/*
 
+variables:
+  - group: aws-keys
+
 pool:
   vmImage: 'ubuntu-latest' 
   # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
@@ -57,6 +60,36 @@ jobs:
       git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
       git push --set-upstream origin main
     displayName: 'Push changes to GitHub'
+
+  - script: | # This value was modified by the initial-setup python script
+      mkdir ~/.aws
+      echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
+      echo -e "[default]\nregion = AATT_AWS_REGION"> ~/.aws/config 
+    displayName: 'Configure AWS Profile'
+    
+  - script: |
+      echo "false" > is-active.txt
+      while [ "$(cat is-active.txt)" != "true" ]; do
+          sleep 5
+          aws elbv2 describe-load-balancers > lb-status.json
+          json_data=$(cat lb-status.json)
+          state_code=$(echo "$json_data" | jq -r '.LoadBalancers[1].State.Code')
+          if [[ "$state_code" == "active" ]]; then
+            echo "true" > is-active.txt
+          else
+            echo "Load balancer is not ready yet..."
+          fi
+      done
+    displayName: 'Wait for Load Balancer Status'
+
+  - task: AWSCLI@1
+    displayName: 'Update KubeConfig'
+    inputs:
+      awsCredentials: 'aws'
+      regionName: 'AATT_AWS_REGION' # This value was modified by the initial-setup python script
+      awsCommand: 'eks'
+      awsSubCommand: 'update-kubeconfig'
+      awsArguments: '--name AATT_APP_NAME-cluster --region AATT_AWS_REGION' # This value was modified by the initial-setup python script
 
   - script: | # This value was modified by the initial-setup python script
       kubectl get ingress -n AATT_APP_NAME $(kubectl get ingress -n AATT_APP_NAME | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt

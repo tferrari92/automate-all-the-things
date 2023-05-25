@@ -462,6 +462,8 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 
 ## Description
 
+!!! AGREGAR LO DE Q HAY Q ESPERAR AL LOAD BALANCER COMO ANTES
+
 We are almost there! In this pipeline we will build and deploy our app.
 
 The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
@@ -493,7 +495,7 @@ AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-app.yml". Click "Continue".
 7. Click on "Run".
 
-AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP
+AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP (EL ARTIFACT Q NOS DA EL URL)
 
 <br/>
 <br/>
@@ -542,11 +544,15 @@ Our journey has come to an end...
 
 DOCKER BEST PRACTICES
 
+ACTUALIZAR URLS DE LOS MEMES EN VALUES>YAML!!!!!!
+
 AGREGAR AMBIENTES PARA MY APP
 
 TF BEST PRACTICES
 
 AGREGAR CHEKEO DE Q INPUTS EN PYTHON SCRIPT SEAN VALIDOS, SOLO TEXTO, NROS y - y \_
+
+SACAR LO DE Q ARGOCD CONSERVE LOS REPLICA SET! Q SOLO CONSERVE UNO!
 
 12 FACTOR APP
 PASAR TODO A PYTHON SCRIPT
