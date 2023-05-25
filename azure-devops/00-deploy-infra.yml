@@ -37,7 +37,7 @@ steps:
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
 
 - task: TerraformCLI@0
-  displayName: 'Terraform Init EKS'
+  displayName: 'Terraform Init Infra'
   inputs:
     command: init
     workingDirectory: 'terraform/aws'
@@ -48,7 +48,7 @@ steps:
     commandOptions: '-force-copy'
 
 - task: TerraformCLI@0
-  displayName: 'Terraform Apply EKS'
+  displayName: 'Terraform Apply Infra'
   inputs:
     command: apply
     workingDirectory: 'terraform/aws'

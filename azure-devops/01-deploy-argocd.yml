@@ -76,7 +76,7 @@ steps:
     ArtifactName: 'Access'
     publishLocation: 'Container'
 
-- script: kubectl create -n argocd -f argocd/application.yaml
+- script: kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/application.yaml
   displayName: 'Create ArgoCD Application'
 
 
