@@ -301,14 +301,14 @@ What does this pipeline do? If you take a look at the [00-deploy-infra.yml](azur
 Why do we need to store our tf state remotely and locking it? Well, this is probably not necessary for this excercise but it's a best practice when working on a team.<br>
 Storing it remotely means that everyone on the team can access and work with the same state file, and locking it means that only one person can access it at a time, this prevents state conflicts.
 
-Before we proceed with deploying out actual infrastructure, we'll move the state file to the /terraform/aws/ directory, so our backend resources (the Bucket and DynamoDB Table) will also be tracked as part of our whole infrastructure. If you want to understand how this works, I suggest you watch [this video](https://youtu.be/7xngnjfIlK4?t=2483) where Sid from [DevOps Directive](https://www.youtube.com/@DevOpsDirective) explains it better than I ever could.
+Before we proceed with deploying out actual infrastructure, the pipeline will move the state file to the /terraform/aws/ directory, so our backend resources (the Bucket and DynamoDB Table) will also be tracked as part of our whole infrastructure. If you want to understand how this works, I suggest you watch [this video](https://youtu.be/7xngnjfIlK4?t=2483) where Sid from [DevOps Directive](https://www.youtube.com/@DevOpsDirective) explains it better than I ever could.
 
-Now that's everything is set, we will finally deploy our infra!
+Now that the backend is set, we will deploy our actual infrastructure!
 
-So what is our infra? It's mainly the networking resources and the EKS cluster, along with an AWS Load Balancer Controller which will act as our Kubernetes Ingress Controller.
+So, what is our infra? It's mainly the networking resources and the EKS cluster, along with an AWS Load Balancer Controller which will act as our Kubernetes Ingress Controller.
 
 Having this AWS Load Balancer Controller means that for every Ingress resource we create in our cluster, an AWS Application Load Balancer will be automatically created. This is the native way to do it in EKS and it has a lot to benefits, but it creates an issue for us.<br>
-We want to track everything in our infra as IaC, but these automatically created Application Load Balancers won't be tracked in our Terraform... No worries, we'll take care of this issue in the Destroy Everything Pipeline.<br>
+We want to track everything in our infra as IaC, but these automatically created Application Load Balancers won't be tracked in our Terraform... No worries, we'll take care of this issue in the Destroy All The Things Pipeline.<br>
 For more info on the AWS Load Balancer Controller you can watch [this excellent video](https://youtu.be/ZfjpWOC5eoE) by [Anton Putra](https://www.youtube.com/@AntonPutra).
 
 If you want to know exactly what is being deployed, you can check out the [terraform files](/terraform/aws).
@@ -513,7 +513,16 @@ AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP (EL ARTIFACT Q NOS 
 
 ## Description
 
-<!-- ### **Instructions** -->
+NO SE ESTA BORRANDO EL LB DEL INGRESS DE LA APP!!!??
+Let's burn it all to the ground.
+
+Remember how the AWS Load Balancer Controller created this problem for us where some Applications Load Balancers were created automatically in AWS but were not tracked by our Terraform? Well, in this pipeline, the first thing we need to do it take care of this.
+The pipeline will first connect to our cluster and delete all Ingress resources. This wil automatically deletes the Application Load Balancers.
+
+After this, the pipeline will be able to run terraform destroy with no issues. Our infra will be obliteradted and we wont be giving any more of our precious money to Bezos.
+
+Will fail cause bucket and dynamo dont excist any more
+
 
 ## Instructions
 
@@ -523,7 +532,6 @@ complete values in .tfvars
 tf init
 tf destroy
 
-Will fail cause bucket and dynamo dont excist any more
 
 <br/>
 <br/>
