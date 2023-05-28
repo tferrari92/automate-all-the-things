@@ -123,7 +123,7 @@ def search_and_replace(directory, replacements):
                              '00-deploy-infra.yml',
                              '01-deploy-argocd.yml',
                              '02-build-and-deploy-app.yml',
-                             '03-destroy-everything.yml',
+                             '03-destroy-all-the-things.yml',
                              'values.yaml',
                              'terraform.tfvars',
                              'provider.tf']:

@@ -28,7 +28,7 @@
   - [Create AWS service connection](#create-aws-service-connection)
   - [Create DockerHub service connection](#create-dockerhub-service-connection)
   - [Create AWS-keys variable group](#create-aws-keys-variable-group)
-  - [Allow push to GitHub](#allow-pushes-to-github)
+  <!-- - [Allow push to GitHub](#allow-pushes-to-github) -->
   - [Create an Azure self-hosted agent](#optional-create-an-azure-self-hosted-agent)
 - [AWS Infrastructure Deployment Pipeline](#aws-infrastructure-deployment-pipeline)
   - [Description](#description)
@@ -75,7 +75,7 @@ INCLUIR DIAGRAMA?????
 
 The purpose of this repo is not to give you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infrastructure and how the tools can interact with each other to make them as efficient as posible.
 
-I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be merged for unlimited power.
+I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be merged for [unlimited power](https://www.youtube.com/watch?v=Sg14jNbBb-8).
 
 <br/>
 
@@ -233,7 +233,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 1. On the left side menu under "Pipelines" go to "Library"
 2. Click on "+ Variable group".
 3. Under "Variable group name" write "aws-keys".
-4. Add the following variables pasting on the "Value" field the keys you used to create the AWS service connection:
+4. Add the following variables pasting on the "Value" field your AWS keys:
 - aws_access_key_id
 - aws_secret_access_key
 5. Click on the lock icon on each variable.
@@ -243,7 +243,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 
 <br/>
 
-## Allow push to GitHub HACE FALTA???!!!!
+<!-- ## Allow push to GitHub
 
 We will need to push changes to the GitHub repo. By default, repositories are allowed to be read from but not written to, so we need to do a little extra configuration.
 
@@ -252,7 +252,7 @@ We will need to push changes to the GitHub repo. By default, repositories are al
 2. "Bypass policies when pushing", "Contribute", "Create Tag" and "Read" should be set to "Allow".
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/NzYh5KJ.png"> </p>
 
-<br/>
+<br/> -->
 
 <!-- NO HACE FALTA PORQ SE CREA SOLA CON EL NOMBRE DE USERNEAME DE GITHUB -->
 <!-- ### GitHub
@@ -323,9 +323,9 @@ If you want to know exactly what is being deployed, you can check out the [terra
 2. Select "Pipelines" under "Pipelines" on the left side menu.
 3. Click on "Create Pipeline".
 4. Select "Github".
-5. You might get a screen to authorize Azure Pipelines to access GitHub account, if so, go ahead and click the green button.
+5. You might get a screen to authorize Azure Pipelines to access your GitHub account, if so, go ahead and click the green button.
 6. Select the repo, it should be "your-github-username/automate-all-the-things"
-7. You might also get a screen to install the Azure Pipelines App on your GitHub account, if so, go ahead and click the green button.
+7. You might also get a screen to install the Azure Pipelines App on your GitHub account, if so, go ahead and click the green button and follow the instructions.
 8. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/00-deploy-infra.yml". Click "Continue".
 10. *If you have hosted parallelism skip to point 11*. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the [00-deploy-infra.yml file](azure-devops/00-deploy-infra.yml).<br>
@@ -416,8 +416,6 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 
 ## Description
 
-CHEKEAR SI ES NECESARIO EL PASO EN EL PIPELINE DE CREAR EL .aws/config
-
 We won't go into what ArgoCD is, for that you have [this video](https://youtu.be/MeU5_k9ssrs) by the #1 DevOps youtuber, Nana from [TechWorld with Nana](https://www.youtube.com/@TechWorldwithNana).
 
 This pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our EKS.<br>
@@ -462,8 +460,6 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 
 ## Description
 
-!!! AGREGAR LO DE Q HAY Q ESPERAR AL LOAD BALANCER COMO ANTES
-
 We are almost there! In this pipeline we will build and deploy our app.
 
 The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
@@ -493,7 +489,8 @@ AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
 4. Select the repo, it should be "your-github-username/automate-all-the-things"
 5. Select "Existing Azure Pipelines YAML file".
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-app.yml". Click "Continue".
-7. Click on "Run".
+7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the infrastructure deployment pipeline.
+8. Click on "Run".
 
 AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP (EL ARTIFACT Q NOS DA EL URL)
 
@@ -544,6 +541,8 @@ Our journey has come to an end...
 
 DOCKER BEST PRACTICES
 
+CHEKEAR LO DE Allow push to GitHub
+
 ACTUALIZAR URLS DE LOS MEMES EN VALUES>YAML!!!!!!
 
 AGREGAR AMBIENTES PARA MY APP
@@ -561,7 +560,7 @@ EXPLICAR PORQ USAMOS REMOTE BACKEDN PARA TFSTATE.
 
 EL NOMBRE DEL BACKEND S3 y DYNAMODB ESTAN HARDCODEADOS EN EL BACKEND DE aws-resources, HAY Q GUARDARLOS EN VARIABLE DE ALGUNA FORMA
 
-<br/>
+<!-- <br/>
 <p title="Anakin" align="center"> <img width="460" src="https://i.imgur.com/tup8Ocu.jpg"> </p>
 <br/>
 <br/>
@@ -574,9 +573,9 @@ EL NOMBRE DEL BACKEND S3 y DYNAMODB ESTAN HARDCODEADOS EN EL BACKEND DE aws-reso
 
 <br/>
 <p title="Wolverine & Nana" align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
-<br/>
+<br/> -->
 
-DESCARTADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+<!-- DESCARTADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # (Optional) GET GITHUB PERSONAL ACCESS TOKEN
 
@@ -650,4 +649,4 @@ d. Create pipeline
 az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
 ```
 
-<a href="https://www.youtube.com/watch?v=EzWNBmjyv7Y" target="_blank">"Fine... I'll do it myself"</a>.
+<a href="https://www.youtube.com/watch?v=EzWNBmjyv7Y" target="_blank">"Fine... I'll do it myself"</a>. -->
