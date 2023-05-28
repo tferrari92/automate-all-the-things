@@ -521,7 +521,7 @@ The pipeline will first connect to our cluster and delete all Ingress resources.
 
 After this, the pipeline will be able to run terraform destroy with no issues. Our infra will be obliteradted and we wont be giving any more of our precious money to Bezos.
 
-Will fail cause bucket and dynamo dont excist any more
+Will finish with a Partially Successful, worry not, this is because wi the tf destroy we have also deleted our backend, the bucket and the dyamo, so the we wont be able to push the state cocuase therte is no backed,. we can ignore this warning cause bucket and dynamo dont excist any more
 
 
 ## Instructions
@@ -546,6 +546,8 @@ tf destroy
 # EPILOGUE
 
 Our journey has come to an end...
+
+COSAS Q NO SE ELIMINAN CON TF DSTROY: DHCP OPTIONS, NAT GATEWAY, 
 
 DOCKER BEST PRACTICES
 

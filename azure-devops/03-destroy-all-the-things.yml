@@ -35,9 +35,9 @@ jobs:
       echo -e "[default]\nregion = AATT_AWS_REGION"> ~/.aws/config 
     displayName: 'Configure AWS Profile'
 
+
   - script: | # This value was modified by the initial-setup python script
-        kubectl delete ingress -n AATT_APP_NAME $(kubectl get ingress -n AATT_APP_NAME | awk 'NR>1{print $1}')
-        kubectl delete ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}')
+        kubectl delete ingress --all --all-namespaces
     displayName: 'Delete Ingresses'
     # continueOnError: true
 
