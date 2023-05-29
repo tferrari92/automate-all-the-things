@@ -92,7 +92,7 @@ aws_region = input()
 print_gradually("Good choice! Last thing... What's your DockerHub username?: ")
 dockerhub_username = input()
 
-print_gradually("Give me a sec...")
+print_gradually("Give me a sec... ")
 
 # Create a dictionary with the variable names and their values
 data = {

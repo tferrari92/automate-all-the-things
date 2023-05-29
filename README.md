@@ -475,7 +475,7 @@ Remember how we just pushed the image to DockerHub with the new tag? And remembe
 
 If you need to modify other things, let's say, the contents of the ConfigMap, then you'd clone the repo, make your changes, push to GitHub, and again, wait for ArgoCD to apply the changes.
 
-
+AGREGAR You wont see anything at hte url the artifact gave until argocd refrese. it does this every three minutes. you can either wait like a sensei or go into the argocd ui and hit refresh on the application
 AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
 
 
@@ -547,7 +547,7 @@ tf destroy
 
 Our journey has come to an end...
 
-COSAS Q NO SE ELIMINAN CON TF DSTROY: DHCP OPTIONS, NAT GATEWAY, 
+COSAS Q NO SE ELIMINAN CON TF DSTROY: DHCP OPTIONS, NAT GATEWAY, AutoScalingManagedRule
 
 DOCKER BEST PRACTICES
 
