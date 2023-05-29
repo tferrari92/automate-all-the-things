@@ -492,7 +492,7 @@ AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the infrastructure deployment pipeline.
 8. Click on "Run".
 
-AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP (EL ARTIFACT Q NOS DA EL URL)
+AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP (EL ARTIFACT Q NOS DA EL URL) and let me know what you think of the site I made for you.
 
 <br/>
 <br/>
@@ -521,7 +521,7 @@ The pipeline will first connect to our cluster and delete all Ingress resources.
 
 After this, the pipeline will be able to run terraform destroy with no issues. Our infra will be obliteradted and we wont be giving any more of our precious money to Bezos.
 
-Will finish with a Partially Successful, worry not, this is because wi the tf destroy we have also deleted our backend, the bucket and the dyamo, so the we wont be able to push the state cocuase therte is no backed,. we can ignore this warning cause bucket and dynamo dont excist any more
+Will finish with a Partially Successful, worry not, this is because wi the tf destroy we have also deleted our backend, the bucket and the dyamo, so the we wont be able to push the state cocuase therte is no backed,. we can ignore this warning cause bucket and dynamo dont excist any more. I wish there was a more elegant way of finishing the  by=ut theres not so deal with it
 
 
 ## Instructions
