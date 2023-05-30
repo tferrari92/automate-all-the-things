@@ -515,7 +515,7 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-destroy-all-the-things.yml". Click "Continue".
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
 8. Click on "Run".
-9. There's two AWS resources that for some reason don't get destroyed: a DHCP Option Set and an Auto Scaling Managed Rule. I'm pretty sure these don't generate any expenses but you can go and delete them manually just in case.
+9. There's two AWS resources that for some reason don't get destroyed: a DHCP Option Set and an Auto Scaling Managed Rule. I'm pretty sure these don't generate any expenses but you can go and delete them manually just in case. I'm really sorry about this... I have brought [shame](https://i.imgur.com/PIm1apF.gifv) upon my family...
 
 <br/>
 <br/>
@@ -530,6 +530,8 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 # EPILOGUE
 
 Our journey has come to an end...
+
+
 
 DOCKER BEST PRACTICES
 
