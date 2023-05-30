@@ -515,7 +515,7 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-destroy-all-the-things.yml". Click "Continue".
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
 8. Click on "Run".
-
+9. There's two AWS resources that for some reason don't get destroyed: a DHCP Option Set and an Auto Scaling Managed Rule. I'm pretty sure these don't generate any expenses but you can go and delete them manually just in case.
 
 <br/>
 <br/>
@@ -531,13 +531,9 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 
 Our journey has come to an end...
 
-COSAS Q NO SE ELIMINAN CON TF DSTROY: DHCP OPTIONS, NAT GATEWAY, AutoScalingManagedRule
-
 DOCKER BEST PRACTICES
 
 CHEKEAR LO DE Allow push to GitHub
-
-ACTUALIZAR URLS DE LOS MEMES EN VALUES>YAML!!!!!!
 
 AGREGAR AMBIENTES PARA MY APP
 
@@ -548,9 +544,6 @@ AGREGAR CHEKEO DE Q INPUTS EN PYTHON SCRIPT SEAN VALIDOS, SOLO TEXTO, NROS y - y
 SACAR LO DE Q ARGOCD CONSERVE LOS REPLICA SET! Q SOLO CONSERVE UNO!
 
 12 FACTOR APP
-PASAR TODO A PYTHON SCRIPT
-
-EXPLICAR PORQ USAMOS REMOTE BACKEDN PARA TFSTATE.
 
 EL NOMBRE DEL BACKEND S3 y DYNAMODB ESTAN HARDCODEADOS EN EL BACKEND DE aws-resources, HAY Q GUARDARLOS EN VARIABLE DE ALGUNA FORMA
 
