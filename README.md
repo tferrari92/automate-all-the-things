@@ -285,12 +285,7 @@ To install a self-hosted agent on your machine, you can follow the official docu
 <br/>
 <br/>
 
-<!-- # **PIPELINES** -->
-<!-- # AWS Infrastructure Deployment Pipeline -->
-
 # AWS INFRASTRUCTURE DEPLOYMENT PIPELINE
-
-<!-- ### **Explanation** -->
 
 ## Description
 
@@ -314,8 +309,6 @@ For more info on the AWS Load Balancer Controller you can watch [this excellent 
 If you want to know exactly what is being deployed, you can check out the [terraform files](/terraform/aws).
 
 <br/>
-
-<!-- ### **Instructions** -->
 
 ## Instructions
 
@@ -380,7 +373,6 @@ To visualize our resource we can now use:
 kubectl get all --all-namespaces
 ```
 
-INSTERT WINNIE POOH MEME
 <br> -->
 
 <!-- #### Create AWS-Keys Variable Group
@@ -408,11 +400,7 @@ These are needed for Helm to be able to connect to our EKS Cluster and deploy Ar
 8. Select "Grant access permission to all pipelines".
 8. Click on "Verify and save". -->
 
-<!-- ## ArgoCD Deployment Pipeline -->
-
 # ARGOCD DEPLOYMENT PIPELINE
-
-<!-- ### **Explanation** -->
 
 ## Description
 
@@ -424,7 +412,7 @@ The first thing it will do is run the necessary tasks to connect to our the clus
 As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so our pipeline will wait until it is ready.
 When it's ready, the pipeline will get it's URL and admin account password. These will be exported as an artifact.
 
-Finally, it will create the ArgoCD [application resource](argo-cd/application.yaml) for our app, which will be watching the [/helm/my-app](helm/my-app) directory in our repo, and automatically create all the resources it finds and apply any future changes me make there.
+Finally, it will create the ArgoCD [application resource](argo-cd/application.yaml) for our app, which will be watching the [/helm/my-app directory](helm/my-app) in our repo, and automatically create all the resources it finds and apply any future changes me make there. The [/helm/my-app directory](helm/my-app) simulates what would be our k8s infrastructure repository.
 
 <br/>
 
@@ -436,7 +424,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 4. Select the repo, it should be "your-github-username/automate-all-the-things"
 5. Select "Existing Azure Pipelines YAML file".
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-argocd.yml". Click "Continue".
-7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the previous pipeline.
+7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
 8. Click on "Run".
 9. When it's done, the access file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL and credentials.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
@@ -452,17 +440,13 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 <br/>
 <br/>
 
-<!-- ## Application Build & Deploy Pipeline -->
-
 # APPLICATION BUILD & DEPLOY PIPELINE
-
-<!-- ### **Explanation** -->
 
 ## Description
 
 We are almost there! In this pipeline we will build and deploy our app.
 
-The [my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
+The [/my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
 
 There's two parts to this pipeline:
 
@@ -473,10 +457,11 @@ Remember how we just pushed the image to DockerHub with the new tag? And remembe
 
 [This is how gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
 
-If you need to modify other things, let's say, the contents of the ConfigMap, then you'd clone the repo, make your changes, push to GitHub, and again, wait for ArgoCD to apply the changes.
+This pipeline is automatically triggered everytime there are any changes commited inside the "application code repository" (meaning the [/my-app directory](my-app)). In this manner, if the developers commit any changes to the app, they will be automatically built and deployed to the cluster. That's some delicious CI/CD for you baby.
 
-AGREGAR You wont see anything at hte url the artifact gave until argocd refrese. it does this every three minutes. you can either wait like a sensei or go into the argocd ui and hit refresh on the application
-AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
+Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "k8s infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas, then they'd change the value of deployment.replicas in the [values.yaml file](helm/my-app/values.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. And there's some tasty Gitops for you too. 
+
+Follow the following instructions You wont see anything at hte url the artifact gave until argocd refrese. it does this every three minutes. you can either wait like a sensei or go into the argocd ui and hit refresh on the application
 
 
 <br/>
@@ -489,10 +474,14 @@ AGREGAR Q SE CORRE CADA COMMIT AUTOMTICAMENTE!!!!!!
 4. Select the repo, it should be "your-github-username/automate-all-the-things"
 5. Select "Existing Azure Pipelines YAML file".
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-app.yml". Click "Continue".
-7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the infrastructure deployment pipeline.
+7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
 8. Click on "Run".
+9. When it's done, the URL file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL for the app.
+<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
-AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP (EL ARTIFACT Q NOS DA EL URL) and let me know what you think of the site I made for you.
+10. If you go to the URL too quickly you won't see the app. We need to give ArgoCD a little time to notice the changes in the [/helm/my-app directory](helm/my-app). By default ArgoCD pulls for changes every three minutes. You can either wait like an adult or go into the ArgoCD web UI and hit "Refresh Apps" like the impatient child that you are.
+11. Go to the URL again.
+12. That's it! Hope you like the web I made for you. If you did, go give a star to [my repo](https://github.com/tferrari92/automate-all-the-things). 
 
 <br/>
 <br/>
@@ -500,37 +489,32 @@ AGREGAR ALGO DE Q YA TERMINAMOS Y A DONDE PODEMOS VER LA APP (EL ARTIFACT Q NOS 
 <br/>
 <br/>
 
-<!-- ## Application Deployment Pipeline
-2. Go to "Pipelines" under "Pipelines" on the left side menu.
-3. Click on "New pipeline".
-4. Select "GitHub".
-6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
-6. Select "Existing Azure Pipelines YAML file".
-9. Under "Branch" select "main" and under "Path" select "/azure-devops/04-dep-and-deploy-app.yml". Click "Continue".
-11. Click on "Run". -->
 
 # DESTROY ALL THE THINGS PIPELINE
 
 ## Description
 
-NO SE ESTA BORRANDO EL LB DEL INGRESS DE LA APP!!!??
 Let's burn it all to the ground.
 
 Remember how the AWS Load Balancer Controller created this problem for us where some Applications Load Balancers were created automatically in AWS but were not tracked by our Terraform? Well, in this pipeline, the first thing we need to do it take care of this.
-The pipeline will first connect to our cluster and delete all Ingress resources. This wil automatically deletes the Application Load Balancers.
 
-After this, the pipeline will be able to run terraform destroy with no issues. Our infra will be obliteradted and we wont be giving any more of our precious money to Bezos.
+The pipeline will first uninstall ArgoCD in our cluster and then delete all Ingress resources. This will automatically delete any Application Load Balancers in AWS.
 
-Will finish with a Partially Successful, worry not, this is because wi the tf destroy we have also deleted our backend, the bucket and the dyamo, so the we wont be able to push the state cocuase therte is no backed,. we can ignore this warning cause bucket and dynamo dont excist any more. I wish there was a more elegant way of finishing the  by=ut theres not so deal with it
+After this, the pipeline will be able to run terraform destroy with no issues. Our infra will be obliterated and we won't be giving any more of our precious money to Bezos.
+
+The pipeline will finish with a warning, worry not, this is because the "terraform destroy" command will have also deleted our terraform backend (the Bucket and DyamoDB Table), so Terraform won't be able to push the updated state back there. We can ignore this warning. I wish there was a more elegant way of finishing the project but I couldn't find any so deal with it.
 
 
 ## Instructions
 
-PRIMERO BORRAR TODOS LOS INGRESS!!!!!!!
-uncomment vars
-complete values in .tfvars
-tf init
-tf destroy
+1. Go to "Pipelines" under "Pipelines" on the left side menu.
+2. Click on "New pipeline".
+3. Select "GitHub".
+4. Select the repo, it should be "your-github-username/automate-all-the-things"
+5. Select "Existing Azure Pipelines YAML file".
+6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-destroy-all-the-things.yml". Click "Continue".
+7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
+8. Click on "Run".
 
 
 <br/>

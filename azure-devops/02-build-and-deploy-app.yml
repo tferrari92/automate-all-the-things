@@ -1,4 +1,4 @@
-name: application-build
+name: app-build-and-deploy
 
 trigger:
   branches:

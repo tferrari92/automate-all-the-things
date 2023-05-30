@@ -1,4 +1,4 @@
-name: deploy-backend
+name: deploy-infra
 
 trigger: none
 
