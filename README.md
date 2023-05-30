@@ -498,7 +498,7 @@ Let's burn it all to the ground.
 
 Remember how the AWS Load Balancer Controller created this problem for us where some Applications Load Balancers were created automatically in AWS but were not tracked by our Terraform? Well, in this pipeline, the first thing we need to do it take care of this.
 
-The pipeline will first uninstall ArgoCD in our cluster and then delete all Ingress resources. This will automatically delete any Application Load Balancers in AWS.
+The pipeline will first eliminate ArgoCD from our cluster and then delete all Ingress resources. This will automatically get rid of any Application Load Balancers in AWS.
 
 After this, the pipeline will be able to run terraform destroy with no issues. Our infra will be obliterated and we won't be giving any more of our precious money to Bezos.
 
