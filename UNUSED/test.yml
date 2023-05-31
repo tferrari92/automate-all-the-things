@@ -19,6 +19,6 @@ steps:
   displayName: 'Step 1'
   continueOnError: true
 
-- script: echo 'this is Step 1'
+- script: echo 'this is Step 2'
   displayName: 'Step 2'
-  condition: succeeded()
+  condition: failed()
