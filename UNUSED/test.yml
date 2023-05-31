@@ -22,3 +22,7 @@ steps:
 - script: echo 'this is Step 2'
   displayName: 'Step 2'
   condition: failed()
+
+- script: echo 'this is Step 3'
+  displayName: 'Step 3'
+  condition: succeeded()
