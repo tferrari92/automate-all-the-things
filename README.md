@@ -529,7 +529,31 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 
 # EPILOGUE
 
-Our journey has come to an end...
+Our journey comes to an end... Congratulations! You have survived the treacherous seas of CI/CD, braved the perilous peaks of Gitops, and conquered the enchanted valleys of Infrastructure as Code. Take a moment to bask in your glory and revel in your newfound DevOps prowess!
+
+So, dear reader, go forth and conquer the DevOps universe! May your Git repositories be forever green, your Kubernetes clusters forever stable, and your microservices forever... micro-y. Remember, the DevOps community is a lively and vibrant one, filled with brilliant minds, innovative tools, and an endless supply of GIFs and memes to keep us sane in times of technical turbulence.
+
+With this knowledge, we bid you adieu. And if all else fails, remember the wise words of our patron saint, "Have you tried turning it off and on again?"
+As you emerge from the abyss of YAML files and bash scripts
+
+In conclusion, welcome to the wondrous world of DevOps, where we strive to automate everything until the robots take over and we're left with nothing but snacks and a strong desire to binge-watch cat videos. This repository is your survival guide, your ticket to navigating the treacherous seas of CI/CD, GitOps, and Infrastructure as Code.
+
+So buckle up, fellow adventurer, and let this repository be your trusty sidekick on your DevOps journey. Now, go forth, automate like there's no tomorrow, and may your deployments be as flawless as your wit.
+
+ is your ultimate guide to surrendering your control to the machines and watching chaos unfold with a grim smile on your face.
+
+Embrace the constant adrenaline rush of troubleshooting, fighting against the very tools that were meant to make your life easier.
+
+Special thanks to all these YouTube people. This wouldn't have been possible without them:
+- [Anton Putra](https://www.youtube.com/@AntonPutra)
+- Marcer Dempers from [That DevOps Guy](https://www.youtube.com/@MarcelDempers)
+- Sid Palas from [DevOps Directive](https://www.youtube.com/@DevOpsDirective)
+- Viktor Farcic from [DevOps Toolkit](https://www.youtube.com/@DevOpsToolkit)
+- Mumshad Mannambeth and his guys from [KodeKloud](https://www.youtube.com/@KodeKloud)
+- Nana Janashia from [Techworld With Nana](https://www.youtube.com/@TechWorldwithNana)
+
+Happy automating!
+
 
 
 
