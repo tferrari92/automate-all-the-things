@@ -23,19 +23,19 @@ steps:
 
 
 - script: |
-    echo 'this is ${VARIABLE1}'
+    echo 'this is $(VARIABLE1)'
     echo "fdgsdfgsg" > ~/.aws/credentials
   displayName: 'Step 1'
   continueOnError: true
 
-- script: echo 'this is ${VARIABLE2}'
+- script: echo 'this is $(VARIABLE2)'
   displayName: 'Step 2'
   condition: failed()
 
-- script: echo 'this is ${VARIABLE3}'
+- script: echo 'this is $(VARIABLE3)'
   displayName: 'Step 3'
   condition: succeeded()
 
-- script: echo 'this is ${STORM}'
+- script: echo 'this is $(STORM)'
   displayName: 'Step 3'
   condition: succeeded()
