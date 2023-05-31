@@ -22,38 +22,35 @@ steps:
     command: init
     workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' 
-    providerAwsRegion: us-east-2 # This value was modified by the initial-setup python script
+    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
 
 - task: TerraformCLI@0
   displayName: 'Terraform Apply Backend'
-  name: tf-apply-backend
   inputs:
     command: apply
     workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' 
     providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
-  continueOnError: true
+  # continueOnError: true
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
-  dependsOn: tf-apply-backend
-  condition: failed()
 
-# - task: TerraformCLI@0
-#   displayName: 'Terraform Init Infra'
-#   inputs:
-#     command: init
-#     workingDirectory: 'terraform/aws'
-#     backendType: aws 
-#     backendServiceAws: aws 
-#     providerServiceAws: 'aws' 
-#     providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
-#     commandOptions: '-force-copy'
+- task: TerraformCLI@0
+  displayName: 'Terraform Init Infra'
+  inputs:
+    command: init
+    workingDirectory: 'terraform/aws'
+    backendType: aws 
+    backendServiceAws: aws 
+    providerServiceAws: 'aws' 
+    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
+    commandOptions: '-force-copy'
 
-# - task: TerraformCLI@0
-#   displayName: 'Terraform Apply Infra'
-#   inputs:
-#     command: apply
-#     workingDirectory: 'terraform/aws'
-#     providerServiceAws: 'aws' 
-#     providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
+- task: TerraformCLI@0
+  displayName: 'Terraform Apply Infra'
+  inputs:
+    command: apply
+    workingDirectory: 'terraform/aws'
+    providerServiceAws: 'aws' 
+    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
