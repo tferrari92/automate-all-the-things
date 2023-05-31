@@ -9,9 +9,9 @@ pool:
   # demands:
   #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
 variables:
-  VARIABLE1: "HOLA1"
-  VARIABLE2: "HOLA2"
-  VARIABLE3: "HOLA3"
+    VARIABLE1: "HOLA1"
+    VARIABLE2: "HOLA2"
+    VARIABLE3: "HOLA3"
   - group: group
 
 
