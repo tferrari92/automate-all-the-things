@@ -31,7 +31,7 @@ steps:
     workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' 
     providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
-  # continueOnError: true
+  continueOnError: true
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
