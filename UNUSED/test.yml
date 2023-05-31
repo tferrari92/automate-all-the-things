@@ -12,6 +12,7 @@ variables:
     VARIABLE1: "HOLA1"
     VARIABLE2: "HOLA2"
     VARIABLE3: "HOLA3"
+variables:
   - group: group
 
 
