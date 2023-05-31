@@ -9,27 +9,30 @@ pool:
   # demands:
   #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
 variables:
-    VARIABLE1: "HOLA1"
-    VARIABLE2: "HOLA2"
-    VARIABLE3: "HOLA3"
-variables:
+  - name: VARIABLE1
+    value: "HOLA1"
+  - name: VARIABLE2
+    value: "HOLA2"
+  - name: VARIABLE3
+    value: "HOLA3"
   - group: group
+
 
 
 steps:
 
 
 - script: |
-    echo 'this is ${VARABLE1}'
+    echo 'this is ${VARIABLE1}'
     echo "fdgsdfgsg" > ~/.aws/credentials
   displayName: 'Step 1'
   continueOnError: true
 
-- script: echo 'this is ${VARABLE2}'
+- script: echo 'this is ${VARIABLE2}'
   displayName: 'Step 2'
   condition: failed()
 
-- script: echo 'this is ${VARABLE3}'
+- script: echo 'this is ${VARIABLE3}'
   displayName: 'Step 3'
   condition: succeeded()
 
