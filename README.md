@@ -316,8 +316,6 @@ resource "aws_instance" "ec2_instance" {
 ```
 Commit the changes and run the pipeline again. The backend deployment step will fail, so the pipeline will finish with a warning, you can ignore it.
 
-AGREGAR LO DE Q SI QUIERO SUMAR POR EJ UN EC2 PUEDO MODIFICAL LOS TF Y CORRER EL PPL. EL BACKEND VA A FALLAR PORQ YA ESTA DEPLOYADO, PODEMOS IGNORARLO.
-
 <br/>
 
 ## Instructions
