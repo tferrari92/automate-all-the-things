@@ -26,6 +26,7 @@ steps:
     providerServiceAws: 'aws' 
     providerAwsRegion: $(AWS_REGION) 
 
+# This step will fail if the infrastructure was successfully deployed in a prevous build
 - task: TerraformCLI@0
   displayName: 'Terraform Apply Backend'
   inputs:
@@ -37,6 +38,7 @@ steps:
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
+  condition: failed() # This will make this step be skipped if the previous step failed
 
 - task: TerraformCLI@0
   displayName: 'Terraform Init Infra'

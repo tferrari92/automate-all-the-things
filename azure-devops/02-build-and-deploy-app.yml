@@ -3,7 +3,7 @@ name: app-build-and-deploy
 trigger:
   branches:
     include:
-      - main  # Include the branches where you want the trigger to apply
+      - main  
   paths:
     include:
       - my-app/*
@@ -11,11 +11,11 @@ trigger:
 variables:
   - group: aws-keys
   - name: AWS_REGION
-    value: "AATT_AWS_REGION" # This value was modified by the initial-setup python script
+    value: AATT_AWS_REGION # This value was modified by the initial-setup python script
   - name: APP_NAME
-    value: "AATT_APP_NAME" # This value was modified by the initial-setup python script
+    value: AATT_APP_NAME # This value was modified by the initial-setup python script
   - name: DOCKERHUB_USERNAME
-    value: "AATT_DOCKERHUB_USERNAME" # This value was modified by the initial-setup python script
+    value: AATT_DOCKERHUB_USERNAME # This value was modified by the initial-setup python script
 
 pool:
   vmImage: 'ubuntu-latest' 

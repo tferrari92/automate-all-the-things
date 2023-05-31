@@ -5,9 +5,9 @@ trigger: none
 variables:
   - group: aws-keys
   - name: AWS_REGION
-    value: "AATT_AWS_REGION" # This value was modified by the initial-setup python script
+    value: AATT_AWS_REGION # This value was modified by the initial-setup python script
   - name: APP_NAME
-    value: "AATT_APP_NAME" # This value was modified by the initial-setup python script
+    value: AATT_APP_NAME # This value was modified by the initial-setup python script
     
 
 pool:

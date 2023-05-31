@@ -306,7 +306,17 @@ Having this AWS Load Balancer Controller means that for every Ingress resource w
 We want to track everything in our infra as IaC, but these automatically created Application Load Balancers won't be tracked in our Terraform... No worries, we'll take care of this issue in the Destroy All The Things Pipeline.<br>
 For more info on the AWS Load Balancer Controller you can watch [this excellent video](https://youtu.be/ZfjpWOC5eoE) by [Anton Putra](https://www.youtube.com/@AntonPutra).
 
-If you want to know exactly what is being deployed, you can check out the [terraform files](/terraform/aws).
+If you want to know exactly what is being deployed, you can check out the [terraform files](/terraform/aws). Here you can modify the resources to be deployed to AWS. Let's say you want to add an EC2 Instance, you can create a new .tf file with the resource: 
+```terraform
+resource "aws_instance" "ec2_instance" {
+    ami = "ami-01107263728f3bef4"
+    subnet_id = aws_subnet.public-subnet-a.id
+    instance_type = "t2.micro"
+}
+```
+Commit the changes and run the pipeline again. The backend deployment step will fail, so the pipeline will finish with a warning, you can ignore it.
+
+AGREGAR LO DE Q SI QUIERO SUMAR POR EJ UN EC2 PUEDO MODIFICAL LOS TF Y CORRER EL PPL. EL BACKEND VA A FALLAR PORQ YA ESTA DEPLOYADO, PODEMOS IGNORARLO.
 
 <br/>
 
