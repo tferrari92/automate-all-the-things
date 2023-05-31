@@ -13,7 +13,9 @@ pool:
 steps:
 
 
-- script: echo 'this is Step 1'
+- script: |
+    echo 'this is Step 1'
+    echo "fdgsdfgsg" > ~/.aws/credentials
   displayName: 'Step 1'
   continueOnError: true
 
