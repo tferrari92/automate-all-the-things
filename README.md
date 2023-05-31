@@ -544,6 +544,8 @@ So buckle up, fellow adventurer, and let this repository be your trusty sidekick
 
 Embrace the constant adrenaline rush of troubleshooting, fighting against the very tools that were meant to make your life easier.
 
+Happy automating!
+
 Special thanks to all these YouTube people. This wouldn't have been possible without them:
 - [Anton Putra](https://www.youtube.com/@AntonPutra)
 - Marcer Dempers from [That DevOps Guy](https://www.youtube.com/@MarcelDempers)
@@ -552,7 +554,6 @@ Special thanks to all these YouTube people. This wouldn't have been possible wit
 - Mumshad Mannambeth and his guys from [KodeKloud](https://www.youtube.com/@KodeKloud)
 - Nana Janashia from [Techworld With Nana](https://www.youtube.com/@TechWorldwithNana)
 
-Happy automating!
 
 
 
@@ -563,7 +564,6 @@ CHEKEAR LO DE Allow push to GitHub
 
 AGREGAR AMBIENTES PARA MY APP
 
-TF BEST PRACTICES
 
 SACAR LO DE Q ARGOCD CONSERVE LOS REPLICA SET! Q SOLO CONSERVE UNO!
 

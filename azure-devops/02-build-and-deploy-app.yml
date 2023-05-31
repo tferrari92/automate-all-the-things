@@ -10,6 +10,12 @@ trigger:
 
 variables:
   - group: aws-keys
+  - name: AWS_REGION
+    value: "AATT_AWS_REGION" # This value was modified by the initial-setup python script
+  - name: APP_NAME
+    value: "AATT_APP_NAME" # This value was modified by the initial-setup python script
+  - name: DOCKERHUB_USERNAME
+    value: "AATT_DOCKERHUB_USERNAME" # This value was modified by the initial-setup python script
 
 pool:
   vmImage: 'ubuntu-latest' 
@@ -31,7 +37,7 @@ jobs:
     displayName: Build And Push Image
     inputs:
       containerRegistry: 'dockerhub'
-      repository: 'AATT_DOCKERHUB_USERNAME/AATT_APP_NAME' # This value was modified by the initial-setup python script
+      repository: '$(DOCKERHUB_USERNAME)/$(APP_NAME)'
       command: 'buildAndPush'
       Dockerfile: 'my-app/Dockerfile'
 
@@ -41,8 +47,8 @@ jobs:
   steps:
 
   # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
-  - checkout: self
-    persistCredentials: true
+  # - checkout: self
+  #   persistCredentials: true
 
   - script: |
       sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml > helm/my-app/values.temp
@@ -61,10 +67,10 @@ jobs:
       git push --set-upstream origin main
     displayName: 'Push changes to GitHub'
 
-  - script: | # This value was modified by the initial-setup python script
+  - script: |
       mkdir ~/.aws
       echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
-      echo -e "[default]\nregion = AATT_AWS_REGION"> ~/.aws/config 
+      echo -e "[default]\nregion = $(AWS_REGION)"> ~/.aws/config 
     displayName: 'Configure AWS Profile'
     
   - script: |
@@ -86,13 +92,13 @@ jobs:
     displayName: 'Update KubeConfig'
     inputs:
       awsCredentials: 'aws'
-      regionName: 'AATT_AWS_REGION' # This value was modified by the initial-setup python script
+      regionName: '$(AWS_REGION)' 
       awsCommand: 'eks'
       awsSubCommand: 'update-kubeconfig'
-      awsArguments: '--name AATT_APP_NAME-cluster --region AATT_AWS_REGION' # This value was modified by the initial-setup python script
+      awsArguments: '--name $(APP_NAME)-cluster --region $(AWS_REGION)' 
 
-  - script: | # This value was modified by the initial-setup python script
-      kubectl get ingress -n AATT_APP_NAME $(kubectl get ingress -n AATT_APP_NAME | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
+  - script: |
+      kubectl get ingress -n $(APP_NAME) $(kubectl get ingress -n $(APP_NAME) | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
     displayName: 'Save URL'
 
   - task: PublishBuildArtifacts@1

@@ -4,6 +4,11 @@ trigger: none
 
 variables:
   - group: aws-keys
+  - name: AWS_REGION
+    value: "AATT_AWS_REGION" # This value was modified by the initial-setup python script
+  - name: APP_NAME
+    value: "AATT_APP_NAME" # This value was modified by the initial-setup python script
+    
 
 pool:
   vmImage: 'ubuntu-latest' 
@@ -24,15 +29,15 @@ steps:
   displayName: 'Update KubeConfig'
   inputs:
     awsCredentials: 'aws'
-    regionName: 'AATT_AWS_REGION' # This value was modified by the initial-setup python script
+    regionName: '$(AWS_REGION)' 
     awsCommand: 'eks'
     awsSubCommand: 'update-kubeconfig'
-    awsArguments: '--name AATT_APP_NAME-cluster --region AATT_AWS_REGION' # This value was modified by the initial-setup python script
+    awsArguments: '--name $(APP_NAME)-cluster --region $(AWS_REGION)' 
 
-- script: | # This value was modified by the initial-setup python script
+- script: | 
     mkdir ~/.aws
     echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
-    echo -e "[default]\nregion = AATT_AWS_REGION"> ~/.aws/config 
+    echo -e "[default]\nregion = $(AWS_REGION)"> ~/.aws/config 
   displayName: 'Configure AWS Profile'
 
 - task: HelmDeploy@0
@@ -46,7 +51,6 @@ steps:
     chartPath: 'helm/argo-cd'
     valueFile: 'helm/argo-cd/values-custom.yaml'
     arguments: '--dependency-update --create-namespace'
-  # continueOnError: true 
 
 - script: |
     echo "false" > is-active.txt

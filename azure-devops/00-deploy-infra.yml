@@ -9,6 +9,8 @@ pool:
   # demands:
   #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
 
+variables:
+  AWS_REGION: AATT_AWS_REGION # This value was modified by the initial-setup python script
 
 steps:
 - task: TerraformInstaller@0
@@ -22,7 +24,7 @@ steps:
     command: init
     workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' 
-    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
+    providerAwsRegion: $(AWS_REGION) 
 
 - task: TerraformCLI@0
   displayName: 'Terraform Apply Backend'
@@ -30,7 +32,7 @@ steps:
     command: apply
     workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' 
-    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
+    providerAwsRegion: $(AWS_REGION) 
   continueOnError: true
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
@@ -44,7 +46,7 @@ steps:
     backendType: aws 
     backendServiceAws: aws 
     providerServiceAws: 'aws' 
-    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
+    providerAwsRegion: $(AWS_REGION) 
     commandOptions: '-force-copy'
 
 - task: TerraformCLI@0
@@ -53,4 +55,4 @@ steps:
     command: apply
     workingDirectory: 'terraform/aws'
     providerServiceAws: 'aws' 
-    providerAwsRegion: AATT_AWS_REGION # This value was modified by the initial-setup python script
+    providerAwsRegion: $(AWS_REGION) 
