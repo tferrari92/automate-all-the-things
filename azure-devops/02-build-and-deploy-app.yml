@@ -47,8 +47,8 @@ jobs:
   steps:
 
   # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
-  # - checkout: self
-  #   persistCredentials: true
+  - checkout: self
+    persistCredentials: true
 
   - script: |
       sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values.yaml > helm/my-app/values.temp

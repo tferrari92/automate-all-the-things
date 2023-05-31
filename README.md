@@ -243,7 +243,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 
 <br/>
 
-<!-- ## Allow push to GitHub
+<!-- ## Allow push to GitHub NOT NECESSARY!!!
 
 We will need to push changes to the GitHub repo. By default, repositories are allowed to be read from but not written to, so we need to do a little extra configuration.
 
@@ -381,32 +381,6 @@ To visualize our resource we can now use:
 kubectl get all --all-namespaces
 ```
 
-<br> -->
-
-<!-- #### Create AWS-Keys Variable Group
-These are needed for Helm to be able to connect to our EKS Cluster and deploy ArgoCD.
-
-1. On the left side menu under "Pipelines" go to "Library"
-2. Click on "+ Variable group".
-3. Under "Variable group name" write "aws-keys".
-4. Add the following variables pasting on each the same keys you used to create the AWS service connection:
-- aws_access_key_id
-- aws_secret_access_key
-5. Click on the lock icon on each variable so that they are treated as secrets.
-6. Save. -->
-
-<!-- #### Create K8S Service Connection
-
-1. Go to "Project settings" on the left side menu (bottom-left corner).
-2. On the left side menu, under "Pipelines", select "Service connections".
-3. Click on "New service connection" (top-right).
-4. Select "Kubernetes" and click "Next".
-5. Under "Authentication method" select "KubeConfig".
-6. Paste the contents of the kubeconfig previously downloaded inside the box.
-7. Select "Accept untrusted certificates".
-7. Under "Service connection name", write "k8s".
-8. Select "Grant access permission to all pipelines".
-8. Click on "Verify and save". -->
 
 # ARGOCD DEPLOYMENT PIPELINE
 
@@ -487,7 +461,7 @@ Follow the following instructions You wont see anything at hte url the artifact 
 9. When it's done, the URL file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL for the app.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
-10. If you go to the URL too quickly you won't see the app. We need to give ArgoCD a little time to notice the changes in the [/helm/my-app directory](helm/my-app). By default ArgoCD pulls for changes every three minutes. You can either wait like an adult or go into the ArgoCD web UI and hit "Refresh Apps" like the impatient child that you are.
+10. If you go to the URL too quickly you will get a "503 Service Temporarily Unavailable". We need to give ArgoCD a little time to notice the changes in the [/helm/my-app directory](helm/my-app). By default ArgoCD pulls for changes every three minutes. You can either wait like an adult or go into the ArgoCD web UI and hit "Refresh Apps" like the impatient child that you are.
 11. Go to the URL again.
 12. That's it! Hope you like the web I made for you. If you did, go give a star to [my repo](https://github.com/tferrari92/automate-all-the-things). 
 
@@ -568,12 +542,8 @@ Special thanks to all these YouTube people. This wouldn't have been possible wit
 
 DOCKER BEST PRACTICES
 
-CHEKEAR LO DE Allow push to GitHub
-
 AGREGAR AMBIENTES PARA MY APP
 
-
-SACAR LO DE Q ARGOCD CONSERVE LOS REPLICA SET! Q SOLO CONSERVE UNO!
 
 12 FACTOR APP
 
