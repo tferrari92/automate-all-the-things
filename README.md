@@ -539,11 +539,9 @@ Special thanks to all these YouTube people. This wouldn't have been possible wit
 
 
 
-
 DOCKER BEST PRACTICES
 
 AGREGAR AMBIENTES PARA MY APP
-
 
 12 FACTOR APP
 
