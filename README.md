@@ -541,6 +541,11 @@ Special thanks to all these YouTube people. This wouldn't have been possible wit
 
 SOLUCIONAR LO DEL PASO DE COPIAR EL STATE FILE DE UNA CARPETA A LA OTRA
 
+application.yaml
+values.yaml
+deploy-argocd-yml
+app-build.yml
+
 DOCKER BEST PRACTICES
 
 AGREGAR AMBIENTES PARA MY APP
