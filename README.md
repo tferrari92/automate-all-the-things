@@ -73,9 +73,9 @@ Here's my attempt at making the world a better place. People in the future will 
 
 INCLUIR DIAGRAMA?????
 
-The purpose of this repo is not to give you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infrastructure and how the tools can interact with each other to make them as efficient as posible.
+The purpose of this repo is not to give you an in depth explanation of the tools we'll be using, but to demonstrate how they can interact with each other to make the deployment of a whole infrastructure (with an application) as efficient and streamlined as possible.
 
-I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be merged for [unlimited power](https://www.youtube.com/watch?v=Sg14jNbBb-8).
+I want to show how IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment) can be merged for [unlimited power](https://www.youtube.com/watch?v=Sg14jNbBb-8).
 
 <br/>
 
@@ -105,6 +105,8 @@ Ok, now that that's out of the way...
 Some things could have been further automatized but I prioritized modularization and separation of concerns.<br>
 
 For example, the EKS cluster could have been deployed with ArgoCD installed in one pipeline, but I wanted to have them separated so that each module is focused on it's specific task, making each of them more recyclable.
+
+I also wanted to keep it simple, so not every security best practice will be followed. You can use this as a starting point and from here build something larger and more secure. You can, for exmple, add multiple environments.
 
 Let's begin...
 
