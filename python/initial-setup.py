@@ -89,8 +89,11 @@ print_gradually(
     "Got it! In what AWS region will you be deploying your resources? (e.g. 'us-east-2'): ")
 aws_region = input()
 
-print_gradually("Good choice! Last thing... What's your DockerHub username?: ")
+print_gradually("Good choice! We're almost done. What's your DockerHub username?: ")
 dockerhub_username = input()
+
+print_gradually("Perfect! Last thing... you'll recieve just one pipeline notification through email. On what email would you like to recieve this?: ")
+user_email = input()
 
 print_gradually("Give me a sec... ")
 
@@ -101,6 +104,7 @@ data = {
     "AATT_GITHUB_USERNAME": github_username,
     "AATT_AWS_REGION": aws_region,
     "AATT_DOCKERHUB_USERNAME": dockerhub_username,
+    "AATT_USER_EMAIL": user_email,
     # "AATT_AZ_DEVOPS_ORG": az_devops_org,
 }
 
