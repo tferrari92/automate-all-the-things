@@ -545,6 +545,10 @@ application.yaml
 values.yaml
 deploy-argocd-yml
 app-build.yml
+service.yaml -  sacar namespace
+deployment.yaml
+ingreee.yaml
+config.yaml
 
 DOCKER BEST PRACTICES
 
