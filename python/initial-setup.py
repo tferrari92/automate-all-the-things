@@ -92,7 +92,7 @@ aws_region = input()
 print_gradually("Good choice! We're almost done. What's your DockerHub username?: ")
 dockerhub_username = input()
 
-print_gradually("Perfect! Last thing... you'll recieve just one pipeline notification through email. On what email would you like to recieve this?: ")
+print_gradually("Perfect! Last thing... You'll recieve just one pipeline notification through email. On what email would you like to recieve this?: ")
 user_email = input()
 
 print_gradually("Give me a sec... ")
