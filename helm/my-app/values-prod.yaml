@@ -1,4 +1,4 @@
-appName: AATT_APP_NAME # This value was modified by the initial-setup python script
+appName: AATT_APP_NAME-prod # This value was modified by the initial-setup python script
 
 deployment:
   image:

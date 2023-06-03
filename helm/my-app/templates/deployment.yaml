@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: {{ .Values.appName }}
   name: {{ .Values.appName }}-deployment
 spec:
   replicas: {{ .Values.deployment.replicas }}
