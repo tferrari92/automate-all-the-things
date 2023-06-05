@@ -539,8 +539,6 @@ Special thanks to all these YouTube people. This wouldn't have been possible wit
 - Nana Janashia from [Techworld With Nana](https://www.youtube.com/@TechWorldwithNana)
 
 
-SOLUCIONAR LO DEL PASO DE COPIAR EL STATE FILE DE UNA CARPETA A LA OTRA
-
 EXPLICAR EN DEPLOY APP LO NUEVO DE LOS AMBIRENTES
 
 DOCKER BEST PRACTICES
