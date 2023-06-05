@@ -29,13 +29,13 @@ steps:
   continueOnError: true
 
 - script: echo 'this is $(VARIABLE2)'
-  displayName: 'Step 2'
+  displayName: 'Step 2 should not run'
   condition: failed()
 
 - script: echo 'this is $(VARIABLE3)'
   displayName: 'Step 3'
-  condition: succeeded()
+  #condition: succeeded()
 
 - script: echo 'this is $(STORM)'
-  displayName: 'Step 3'
+  displayName: 'Step 4'
   condition: succeeded()
