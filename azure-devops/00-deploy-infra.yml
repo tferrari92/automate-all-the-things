@@ -34,14 +34,14 @@ steps:
     workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' 
     providerAwsRegion: $(AWS_REGION) 
-  continueOnError: true
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
-  condition: failed() # This will make this step be skipped if the previous step failed
+  condition: succeeded() # This will make this step be skipped if the previous step failed
 
 - task: TerraformCLI@0
   displayName: 'Terraform Init Infra'
+  condition: always()
   inputs:
     command: init
     workingDirectory: 'terraform/aws'
@@ -53,6 +53,7 @@ steps:
 
 - task: TerraformCLI@0
   displayName: 'Terraform Apply Infra'
+  condition: always()
   inputs:
     command: apply
     workingDirectory: 'terraform/aws'
