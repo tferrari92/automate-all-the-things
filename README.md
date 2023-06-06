@@ -472,7 +472,7 @@ Now, if the infrastrucure team needs to make changes to the cluster resources, t
 
 <br/>
 <br/>
-<p title="Momoa & Cavill" align="center"> <img width="460" src="https://i.imgur.com/2lJ6xLl.jpg"> </p>
+<p title="Momoa & Cavill" align="center"> <img width="460" src="https://i.imgur.com/pCjM1d6.jpg"> </p>
 <br/>
 <br/>
 
