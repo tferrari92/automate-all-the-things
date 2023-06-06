@@ -413,7 +413,7 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 9. When it's done, the access file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL and credentials.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
-10. You can now access the ArgoCD UI, where you should find one application running but in a "Progressing/Degraded" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
+10. You can now access the ArgoCD UI, where you should find three applications running but in a "Progressing/Degraded" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
 
 <!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
 <!-- 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
@@ -432,21 +432,24 @@ We are almost there! In this pipeline we will build and deploy our app.
 
 The [/my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
 
-There's two parts to this pipeline:
+There's four stages on this pipeline:
 
-On the Build part we will use Docker to build a container image from the Dockerfile, tag it with the number of the pipeline run and push it to your DockerHub registry.
+On the Build stage we will use Docker to build a container image from the Dockerfile, tag it with the number of the pipeline run and push it to your DockerHub registry.
 
-On the Deploy part, we will checkout the repo and modify the [values.yaml file](helm/my-app/values.yaml) on the [helm/my-app](helm/my-app) directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
-Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version is available and should be deployed. We modify the image.tag value in the values.yaml file and wait for ArgoCD to apply the changes.
+On the Deploy Dev stage, we will checkout the repo and modify the [values-dev.yaml file](helm/my-app/values-dev.yaml) on the [helm/my-app](helm/my-app) directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
+Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version is available and should be deployed. We modify the image.tag value in the values-dev.yaml file and wait for ArgoCD to apply the changes.
 
 [This is how gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
 
+After the Deploy Dev stage is done and only if it was successful, the Deploy Test stage will commence. It will do the same thing as the previous, but this time modifying the [values-test.yaml](helm/my-app/values-dev.yaml) of course.
+
+We'll repeat the same process for Prod, but since Prod should be a more delicate environment, the Deploy Prod stage will require authorization from the top level excecutives (in this case it's you) to be executed. You'll recieve an email with a link asking you to verify and approve the deployment to Prod. Go ahead and approve it. Or don't, I don't really care...
+
+That's it! Your app was deployed to all environments! Good job!
+
 This pipeline is automatically triggered everytime there are any changes commited inside the "application code repository" (meaning the [/my-app directory](my-app)). In this manner, if the developers commit any changes to the app, they will be automatically built and deployed to the cluster. That's some delicious CI/CD for you baby.
 
-Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "k8s infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas, then they'd change the value of deployment.replicas in the [values.yaml file](helm/my-app/values.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. And there's some tasty Gitops for you too. 
-
-Follow the following instructions You wont see anything at hte url the artifact gave until argocd refrese. it does this every three minutes. you can either wait like a sensei or go into the argocd ui and hit refresh on the application
-
+Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "k8s infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas in the prod environment, then they'd change the value of deployment.replicas in the [values-prod.yaml file](helm/my-app/values-prod.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. And there's some tasty Gitops for you too. 
 
 <br/>
 
@@ -460,12 +463,12 @@ Follow the following instructions You wont see anything at hte url the artifact 
 6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-app.yml". Click "Continue".
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
 8. Click on "Run".
-9. When it's done, the URL file will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the URL for the app.
+9. Each deployment stage will export an artifact file with the URL of each environment. You'll find them in the pipeline run screen. Download them to see the URLs.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
-10. If you go to the URL too quickly you will get a "503 Service Temporarily Unavailable". We need to give ArgoCD a little time to notice the changes in the [/helm/my-app directory](helm/my-app). By default ArgoCD pulls for changes every three minutes. You can either wait like an adult or go into the ArgoCD web UI and hit "Refresh Apps" like the impatient child that you are.
-11. Go to the URL again.
-12. That's it! Hope you like the web I made for you. If you did, go give a star to [my repo](https://github.com/tferrari92/automate-all-the-things). 
+10. If you go to the URLs too quickly you will get a "503 Service Temporarily Unavailable". We need to give ArgoCD a little time to notice the changes in the [/helm/my-app directory](helm/my-app). By default ArgoCD pulls for changes every three minutes. You can either wait like an adult or go into the ArgoCD web UI and hit "Refresh Apps" like the impatient child that you are.
+11. Check the URLs again.
+12. That's it! Hope you like the web I made for you. If you did, go give me a star on [my repo](https://github.com/tferrari92/automate-all-the-things). If you didn't, also go give me a star on [my repo](https://github.com/tferrari92/automate-all-the-things). 
 
 <br/>
 <br/>
