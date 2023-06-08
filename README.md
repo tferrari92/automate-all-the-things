@@ -518,11 +518,9 @@ I hope this proved useful (and fun). You now have the power of of CI/CD, GitOps,
 
 
 <br/>
-<p title="Thanos" align="center"> <img width="460" src="https://i.imgur.com/dgB9Olt.jpg"> </p>
+<p title="Thanos" align="center"> <img width="500" src="https://i.imgur.com/dgB9Olt.jpg"> </p>
 <br/>
 <br/>
-
-
 
 Special thanks to all these wonderful YouTube people. This wouldn't have been possible without them:
 - [Anton Putra](https://www.youtube.com/@AntonPutra)
