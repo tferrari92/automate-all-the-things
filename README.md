@@ -517,6 +517,13 @@ Our journey comes to an end... Congratulations! You made it!
 I hope this proved useful (and fun). You now have the power of of CI/CD, GitOps, and Infrastructure as Code. You know what [this means](https://www.youtube.com/watch?v=b23wrRfy7SM). 
 
 
+<br/>
+<br/>
+<p title="Thanos" align="center"> <img width="460" src="https://i.imgur.com/dgB9Olt.jpg"> </p>
+<br/>
+<br/>
+
+
 
 Special thanks to all these wonderful YouTube people. This wouldn't have been possible without them:
 - [Anton Putra](https://www.youtube.com/@AntonPutra)
