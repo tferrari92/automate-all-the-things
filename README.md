@@ -514,8 +514,9 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 
 Our journey comes to an end... Congratulations! You made it!
 
-I hope this proved useful (and fun). You now have the power of of CI/CD, GitOps, and Infrastructure as Code. You know what [this means](https://www.youtube.com/watch?v=b23wrRfy7SM). 
+I hope this proved useful (and fun), that you learned something and that you can take some pieces of this to use in your own projects.
 
+You now possess the power of of CI/CD, GitOps, and Infrastructure as Code. You know what [this means](https://www.youtube.com/watch?v=b23wrRfy7SM), use it carefully.
 
 <br/>
 <p title="Thanos" align="center"> <img width="500" src="https://i.imgur.com/dgB9Olt.jpg"> </p>
