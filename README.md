@@ -518,7 +518,6 @@ I hope this proved useful (and fun). You now have the power of of CI/CD, GitOps,
 
 
 <br/>
-<br/>
 <p title="Thanos" align="center"> <img width="460" src="https://i.imgur.com/dgB9Olt.jpg"> </p>
 <br/>
 <br/>
