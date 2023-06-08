@@ -42,7 +42,7 @@
 - [Destroy All The Things Pipeline](#destroy-all-the-things-pipeline)
   - [Description](#description-3)
   - [Instructions](#instructions-3)
-- [Epilogue](#epilogue)
+- [Conclusion](#conclusion)
 
 <br/>
 
