@@ -70,8 +70,11 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## What we'll be doing
+<br/>
 
-INCLUIR DIAGRAMA?????
+<p title="Diagram" align="center"> <img img width="460" src="https://i.imgur.com/kxcffJs.jpg"> </p>
+
+<br/>
 
 The purpose of this repo is not to give you an in depth explanation of the tools we'll be using, but to demonstrate how they can interact with each other to make the deployment of a whole infrastructure (with an application) as efficient and streamlined as possible.
 
@@ -94,7 +97,7 @@ Ok, now that that's out of the way...
 - Continuous Integration -> Azure DevOps
 - Continuous Deployment -> Helm & ArgoCD
 - Scripting -> Python
-  <br/>
+<br/>
 
 <p title="Logos Banner" align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
@@ -445,7 +448,7 @@ After the Deploy Dev stage is done and only if it was successful, the Deploy Tes
 
 We'll repeat the same process for Prod, but since Prod should be a more delicate environment, the Deploy Prod stage will require authorization from the top level excecutives (in this case it's you) to be executed. You'll recieve an email with a link asking you to verify and approve the deployment to Prod. Go ahead and approve it. Or don't, I don't really care...
 
-That's it! Your app was deployed to all environments! Good job!
+That's it! Your app was deployed to all environments! Good job buddy!
 
 This pipeline is automatically triggered everytime there are any changes commited inside the "application code repository" (meaning the [/my-app directory](my-app)). In this manner, if the developers commit any changes to the app, they will be automatically built and deployed to the cluster. That's some delicious CI/CD for you baby.
 
