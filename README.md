@@ -110,7 +110,7 @@ Some things could have been further automatized but I prioritized modularization
 
 For example, the EKS cluster could have been deployed with ArgoCD installed in one pipeline, but I wanted to have them separated so that each module is focused on it's specific task, making each of them more recyclable.
 
-I also wanted to keep it simple, so not every security best practice will be followed. You can use this as a starting point and from here build something larger and more secure. You can, for exmple, add multiple environments.
+I also wanted to keep it simple, so not every security best practice will be followed. You can use this as a starting point and from here build something larger and more secure.
 
 Let's begin...
 
@@ -131,7 +131,7 @@ In order to turn this whole deployment into your own thing, we need to do some i
 1. Clone the repo from your fork:
 
 ```bash
-git clone https://github.com/<your-username>/automate-all-the-things.git
+git clone https://github.com/<your-github-username>/automate-all-the-things.git
 ```
 
 2. Move into the directory:
@@ -149,7 +149,7 @@ python3 python/initial-setup.py
 4. Hope you enjoyed the welcome script! Now push your customized repo to GitHub:
 
 ```bash
-git add -A
+git add .
 git commit -m "customized repo"
 git push
 ```
@@ -354,12 +354,6 @@ pool:
 <br/>
 <br/>
 
-<!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
-
-<!-- <br/>
-<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
-<br/> -->
-
 <!-- ## EKS Deployment Pipeline VIEJO
 
 2. Go to "Pipelines" under "Pipelines" on the left side menu.
@@ -380,7 +374,6 @@ To check that everything went OK we will connect to our cluster from our local m
 aws configure
 aws eks update-kubeconfig --name <your-app-name>-cluster --region <your-aws-region>
 ```
-**REMEMBER**: This is only to SEE our resources. Creating or deleting resources is strictly prohibited. We're not some cavemen using kubectl create/delete. We are gentlemen, we modify our infrastrucure with **GitOps**.
 
 To visualize our resource we can now use:
 ```bash
@@ -400,7 +393,7 @@ The first thing it will do is run the necessary tasks to connect to our the clus
 As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so our pipeline will wait until it is ready.
 When it's ready, the pipeline will get it's URL and admin account password. These will be exported as an artifact.
 
-Finally, it will create the ArgoCD [application resource](argo-cd/application.yaml) for our app, which will be watching the [/helm/my-app directory](helm/my-app) in our repo, and automatically create all the resources it finds and apply any future changes me make there. The [/helm/my-app directory](helm/my-app) simulates what would be our k8s infrastructure repository.
+Finally, it will create the ArgoCD [application resources](argo-cd/) for our app, which will be watching the [/helm/my-app directory](helm/my-app) in our repo, and automatically create all the resources it finds and apply any future changes me make there. The [/helm/my-app directory](helm/my-app) simulates what would be our K8S infrastructure repository.
 
 <br/>
 
@@ -418,9 +411,6 @@ Finally, it will create the ArgoCD [application resource](argo-cd/application.ya
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
 10. You can now access the ArgoCD UI, where you should find three applications running but in a "Progressing/Degraded" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
-
-<!-- 12. You might get a warning saying "This pipeline needs permission to access a resource before this run can continue". Click on "View" and "Permit". -->
-<!-- 9. Rename the pipeline to "deploy-argocd". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
 
 <br/>
 <br/>
@@ -445,15 +435,15 @@ Remember how we just pushed the image to DockerHub with the new tag? And remembe
 
 [This is how gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
 
-After the Deploy Dev stage is done and only if it was successful, the Deploy Test stage will commence. It will do the same thing as the previous, but this time modifying the [values-test.yaml](helm/my-app/values-dev.yaml) of course.
+After the Deploy Dev stage is done and only if it was successful, the Deploy Test stage will commence. It will do the same thing as the previous stage, but this time modifying the [values-test.yaml](helm/my-app/values-dev.yaml) of course.
 
-We'll repeat the same process for Prod, but since Prod should be a more delicate environment, the Deploy Prod stage will require authorization from the top level excecutives (in this case it's you) to be executed. You'll recieve an email with a link asking you to verify and approve the deployment to Prod. Go ahead and approve it. Or don't, I don't really care...
+We'll repeat the same process for Prod, but since Prod should be a more delicate environment, the Deploy Prod stage will require authorization from the top level excecutives (in this case it's you, congrats boss) to be executed. You'll recieve an email with a link asking you to verify and approve the deployment to Prod. Go ahead and approve it. Or don't, I don't really care...
 
 That's it! Your app was deployed to all environments! Good job buddy!
 
 This pipeline is automatically triggered everytime there are any changes commited inside the "application code repository" (meaning the [/my-app directory](my-app)). In this manner, if the developers commit any changes to the app, they will be automatically built and deployed to the cluster. That's some delicious CI/CD for you baby.
 
-Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "k8s infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas in the prod environment, then they'd change the value of deployment.replicas in the [values-prod.yaml file](helm/my-app/values-prod.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. And there's some tasty Gitops for you too. 
+Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "K8S infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas in the prod environment, then they'd change the value of deployment.replicas in the [values-prod.yaml file](helm/my-app/values-prod.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. And there's some tasty Gitops for you too. 
 
 <br/>
 
@@ -491,7 +481,7 @@ Remember how the AWS Load Balancer Controller created this problem for us where 
 
 The pipeline will first eliminate ArgoCD from our cluster and then delete all Ingress resources. This will automatically get rid of any Application Load Balancers in AWS.
 
-After this, the pipeline will be able to run terraform destroy with no issues. Our infra will be obliterated and we won't be giving any more of our precious money to Bezos.
+After this, the pipeline will be able to run "terraform destroy" with no issues. Our infra will be obliterated and we won't be giving any more of our precious money to Bezos.
 
 The pipeline will finish with a warning, worry not, this is because the "terraform destroy" command will have also deleted our terraform backend (the Bucket and DyamoDB Table), so Terraform won't be able to push the updated state back there. We can ignore this warning. I wish there was a more elegant way of finishing the project but I couldn't find any so deal with it.
 
@@ -535,8 +525,6 @@ So buckle up, fellow adventurer, and let this repository be your trusty sidekick
 
 Embrace the constant adrenaline rush of troubleshooting, fighting against the very tools that were meant to make your life easier.
 
-Happy automating!
-
 Special thanks to all these YouTube people. This wouldn't have been possible without them:
 - [Anton Putra](https://www.youtube.com/@AntonPutra)
 - Marcer Dempers from [That DevOps Guy](https://www.youtube.com/@MarcelDempers)
@@ -545,27 +533,8 @@ Special thanks to all these YouTube people. This wouldn't have been possible wit
 - Mumshad Mannambeth and his guys from [KodeKloud](https://www.youtube.com/@KodeKloud)
 - Nana Janashia from [Techworld With Nana](https://www.youtube.com/@TechWorldwithNana)
 
+Happy automating!
 
-EXPLICAR EN DEPLOY APP LO NUEVO DE LOS AMBIRENTES
-
-DOCKER BEST PRACTICES
-
-12 FACTOR APP
-
-<!-- <br/>
-<p title="Anakin" align="center"> <img width="460" src="https://i.imgur.com/tup8Ocu.jpg"> </p>
-<br/>
-<br/>
-<p title="Scroll Of Truth" align="center"> <img width="460" src="https://i.imgur.com/yjpOvlM.jpg"> </p>
-<br/>
-
-<br/>
-<p title="Thinking About Another Woman" align="center"> <img width="460" src="https://i.imgur.com/akNhnrh.jpg"> </p>
-<br/>
-
-<br/>
-<p title="Wolverine & Nana" align="center"> <img width="460" src="https://i.imgur.com/dz0RdX5.png"> </p>
-<br/> -->
 
 <!-- DESCARTADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -641,4 +610,3 @@ d. Create pipeline
 az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
 ```
 
-<a href="https://www.youtube.com/watch?v=EzWNBmjyv7Y" target="_blank">"Fine... I'll do it myself"</a>. -->
