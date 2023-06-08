@@ -79,6 +79,8 @@ The purpose of this repo is not to give you an in depth explanation of the tools
 
 I want to show how IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment) can be merged for [unlimited power](https://www.youtube.com/watch?v=Sg14jNbBb-8).
 
+As you can see in the diagram, we'll be deploying an EKS Kubernetes cluster in AWS. Inside the cluster we'll have three environments where our app will be deployed with it's required K8S resources. The app in each environment will be accesible to the public internet through a Load Balancer.
+
 <br/>
 
 ## Tools we'll be using
