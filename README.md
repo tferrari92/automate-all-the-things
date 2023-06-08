@@ -81,6 +81,8 @@ I want to show how IaC (Infrastructure as Code), Gitops and CI/CD (Continuous In
 
 As you can see in the diagram, we'll be deploying an EKS Kubernetes cluster in AWS. Inside the cluster we'll have three environments where our app will be deployed with it's required K8S resources. The app in each environment will be accesible to the public internet through a Load Balancer.
 
+Our app is a very simple static website, but I'm not spoiling it for you. You'll have to deploy it to see it.
+
 <br/>
 
 ## Tools we'll be using
@@ -508,24 +510,15 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 
 <br/>
 
-# EPILOGUE
+# CONCLUSON
 
-Our journey comes to an end... Congratulations! You have survived the treacherous seas of CI/CD, braved the perilous peaks of Gitops, and conquered the enchanted valleys of Infrastructure as Code. Take a moment to bask in your glory and revel in your newfound DevOps prowess!
+Our journey comes to an end... Congratulations! You made it!
 
-So, dear reader, go forth and conquer the DevOps universe! May your Git repositories be forever green, your Kubernetes clusters forever stable, and your microservices forever... micro-y. Remember, the DevOps community is a lively and vibrant one, filled with brilliant minds, innovative tools, and an endless supply of GIFs and memes to keep us sane in times of technical turbulence.
+I hope this proved useful (and fun). You now have the power of of CI/CD, GitOps, and Infrastructure as Code. You know what [this means](https://www.youtube.com/watch?v=b23wrRfy7SM). 
 
-With this knowledge, we bid you adieu. And if all else fails, remember the wise words of our patron saint, "Have you tried turning it off and on again?"
-As you emerge from the abyss of YAML files and bash scripts
 
-In conclusion, welcome to the wondrous world of DevOps, where we strive to automate everything until the robots take over and we're left with nothing but snacks and a strong desire to binge-watch cat videos. This repository is your survival guide, your ticket to navigating the treacherous seas of CI/CD, GitOps, and Infrastructure as Code.
 
-So buckle up, fellow adventurer, and let this repository be your trusty sidekick on your DevOps journey. Now, go forth, automate like there's no tomorrow, and may your deployments be as flawless as your wit.
-
- is your ultimate guide to surrendering your control to the machines and watching chaos unfold with a grim smile on your face.
-
-Embrace the constant adrenaline rush of troubleshooting, fighting against the very tools that were meant to make your life easier.
-
-Special thanks to all these YouTube people. This wouldn't have been possible without them:
+Special thanks to all these wonderful YouTube people. This wouldn't have been possible without them:
 - [Anton Putra](https://www.youtube.com/@AntonPutra)
 - Marcer Dempers from [That DevOps Guy](https://www.youtube.com/@MarcelDempers)
 - Sid Palas from [DevOps Directive](https://www.youtube.com/@DevOpsDirective)
