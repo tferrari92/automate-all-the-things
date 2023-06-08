@@ -523,12 +523,12 @@ I hope this proved useful (and fun). You now have the power of of CI/CD, GitOps,
 <br/>
 
 Special thanks to all these wonderful YouTube people. This wouldn't have been possible without them:
-- [Anton Putra](https://www.youtube.com/@AntonPutra)
+- Nana Janashia from [Techworld With Nana](https://www.youtube.com/@TechWorldwithNana)
+- Viktor Farcic from [DevOps Toolkit](https://www.youtube.com/@DevOpsToolkit)
 - Marcer Dempers from [That DevOps Guy](https://www.youtube.com/@MarcelDempers)
 - Sid Palas from [DevOps Directive](https://www.youtube.com/@DevOpsDirective)
-- Viktor Farcic from [DevOps Toolkit](https://www.youtube.com/@DevOpsToolkit)
 - Mumshad Mannambeth and his guys from [KodeKloud](https://www.youtube.com/@KodeKloud)
-- Nana Janashia from [Techworld With Nana](https://www.youtube.com/@TechWorldwithNana)
+- [Anton Putra](https://www.youtube.com/@AntonPutra)
 
 Happy automating!
 
