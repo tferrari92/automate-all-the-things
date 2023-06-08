@@ -70,9 +70,8 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## What we'll be doing
-<br/>
 
-<p title="Diagram" align="center"> <img  src="https://i.imgur.com/kxcffJs.jpg"> </p>
+<p title="Diagram" align="center"> <img img width="800" src="https://i.imgur.com/7rUCvz9.jpg"> </p>
 
 <br/>
 
