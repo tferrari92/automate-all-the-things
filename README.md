@@ -510,7 +510,7 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 
 <br/>
 
-# CONCLUSON
+# CONCLUSION
 
 Our journey comes to an end... Congratulations! You made it!
 
