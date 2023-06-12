@@ -7,9 +7,9 @@
 <a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
     <img align="right" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
 </a>
-<p align="right">
+<!-- <p align="right">
     <a  href="/docs/readme_es.md">Versión en Español</a>
-</p>
+</p> -->
 
 <p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
