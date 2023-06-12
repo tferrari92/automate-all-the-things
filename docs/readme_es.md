@@ -50,15 +50,13 @@
 
 # **INTRODUCCIÓN**
 
-I believe in a world where all that's expected of me is to enjoy life, lay on the couch, play COD and have exitential crises.
-<br/>
-I wish I could automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.
-<br/>
+Yo creo en un mundo donde lo único que se espera de mí es disfrutar de la vida, estar tirado en el sillón, jugar a COD y tener crisis existenciales.
 
-But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
-<br/>
+Desearía poder automatizar cocinar, limpiar, trabajar, hacer impuestos, hacer amigos, salir en citas, escribir READMEs... Dios.. automatizaría hasta jugar con mis estúpidos hijos si pudiera.
 
-Here's my attempt at making the world a better place. People in the future will look back at heros like me and enjoy their time playing video games and fighting the war against AI, in peace.
+Pero la tecnología todavia no alcanzo mi nivel de vagancia, así que tome algo de inspiración de Thanos y dije [""Bien... lo haré yo mismo"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
+
+Aquí está mi intento de hacer del mundo un lugar mejor. Las personas del futuro mirarán hacia atrás a héroes como yo y disfrutarán de su tiempo jugando videojuegos y luchando en la guerra contra la inteligencia artificial, en paz.
 
 <br/>
 
@@ -73,27 +71,31 @@ Here's my attempt at making the world a better place. People in the future will 
 <br/>
 
 ## Que haremos
-The purpose of this repo is not to give you an in depth explanation of the tools we are using, but to demonstrate how easy it can be to deploy a whole infrastructure and how the tools can interact with each other to make them as efficient as posible.
+El propósito de este repositorio no es brindarte una explicación detallada de las herramientas que utilizaremos, sino demostrar cómo pueden interactuar entre sí para lograr que la implementación de una infraestructura completa (con una aplicación) sea lo más eficiente y fluida posible.
 
-I want to show you the power of IaC (Infrastructure as Code), Gitops and CI/CD (Continuous Integration/Continuous Deployment), while providing some ideas on how all of these methodologies can be merged for unlimited power. 
+Quiero mostrar cómo IaC (Infraestructura como Código), Gitops y CI/CD (Integración Continua/Implementación Continua) pueden fusionarse para obtener un [poder ilimitado](https://www.youtube.com/watch?v=Sg14jNbBb-8).
+
+Como puedes ver en el diagrama, implementaremos un clúster de Kubernetes EKS en AWS. Dentro del clúster tendremos tres entornos donde se implementará nuestra aplicación con sus recursos de K8S necesarios. La aplicación en cada entorno estará accesible al público a través de un balanceador de carga.
+
+Nuestra aplicación es un sitio web estático muy sencillo, pero no te lo voy a arruinar. Tendrás que implementarla para verla. 
 
 <br/>
 
 ## Que herramientas usaremos
 
-For each step of the process, I’ve chosen to use the best tool in its field. And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!!
+Para cada paso del proceso, he elegido usar la mejor herramienta en su campo. Y sí... puede que estés pensando, "mejor" es un término subjetivo, ¿verdad? Bueno... NO, aca no. ¡Este es MI repositorio! ¡Mis opiniones aca son VERDADES!
 
-Ok, now that that's out of the way...
+Ok, ahora que eso está fuera del camino...
 
-- Code Versioning -> Git
-- Source Code Managment -> GitHub
-- Cloud Infrastructure -> Amazon Web Services
-- Infrastructure as Code -> Terraform
-- Containerization -> Docker
-- Container Orchestration -> Kubernetes
-- Continuous Integration -> Azure DevOps
-- Continuous Deployment -> Helm & ArgoCD
-- Scripting -> Python
+Versionado de código -> Git
+Gestión de código fuente -> GitHub
+Infraestructura en la nube -> Amazon Web Services
+Infraestructura como código -> Terraform
+Contenedorización -> Docker
+Orquestación de contenedores -> Kubernetes
+Integración continua -> Azure DevOps
+Implementación continua -> Helm y ArgoCD
+Scripting -> Python
 <br/>
 
 <p title="Logos Banner" align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
@@ -102,11 +104,13 @@ Ok, now that that's out of the way...
 
 ## Descargo de responsabilidad
 
-Some things could have been further automatized but I prioritized modularization and separation of concerns.<br>
+Algunas cosas podrían haber sido automatizadas aún más, pero prioricé la modularización y la separación de responsabilidades.
 
-For example, the EKS cluster could have been deployed with ArgoCD installed in one pipeline, but I wanted to have them separated so that each module is focused on it's specific task, making each of them more recyclable.
+Por ejemplo, el clúster EKS podría haberse implementado con ArgoCD instalado en un solo pipeline, pero preferí tenerlos separados para que cada módulo se enfoque en su tarea específica, haciéndolos más reutilizables.
 
-Let's begin...
+También quería mantenerlo simple, por lo que no se seguirán todas las mejores prácticas de seguridad. Pode’es usar esto como punto de partida y a partir de aquí construir algo más grande y seguro.
+
+Comencemos...
 
 <br/>
 <br/>
