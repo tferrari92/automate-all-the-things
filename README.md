@@ -1,20 +1,22 @@
-<div>
-    <div style="padding-bottom: 20px;">
-        <a href="https://www.instagram.com/ttomasferrari/" style="margin-bottom: 10px;">
-            <img align="right" alt="Abhishek's Instagram" width="22px" style="margin-bottom: 10px;" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
-        </a>
-        <a href="https://twitter.com/tomasferrari" style="margin-bottom: 10px;">
-            <img align="right" alt="Abhishek Naidu | Twitter" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
-        </a>
-        <a href="https://www.linkedin.com/in/tomas-ferrari-devops/" style="margin-bottom: 10px;">
-            <img align="right" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
-        </a>
-    </div>
-    <!-- <p align="right">
-        <a  href="/docs/readme_es.md">Versión en Español</a>
-    </p> -->
-    <p style="padding-top: 10px;" title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>     
-</div>
+<a href="https://www.instagram.com/ttomasferrari/">
+    <img align="right" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
+</a>
+<a href="https://twitter.com/tomasferrari">
+    <img align="right" alt="Abhishek Naidu | Twitter" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
+</a>
+<a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
+    <img align="right" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
+</a>
+<p align="right">
+    <a >Look me up: </a>
+</p>
+<!-- <p align="right">
+    <a  href="/docs/readme_es.md">Versión en Español</a>
+</p> -->
+
+<p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
+
+
 # **INDEX**
 
 - [Introduction](#introduction)
