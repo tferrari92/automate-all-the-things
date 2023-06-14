@@ -13,7 +13,7 @@
     <a  href="/docs/readme_es.md">Versión en Español</a>
 </p> -->
 
-<p style="margin-top: 10px;" title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
+<p style="padding-top: 10px;" title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
 # **INDEX**
 
