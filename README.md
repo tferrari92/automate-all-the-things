@@ -58,6 +58,8 @@ I wish I could automate cooking, cleaning, working, doing taxes, making friends,
 
 But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
 
+But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said <a href="https://www.youtube.com/watch?v=EzWNBmjyv7Y" target="_blank">"Fine... I'll do it myself"</a>.
+
 Here's my attempt at making the world a better place. People in the future will look back at heros like me and enjoy their time playing video games and fighting the war against AI, in peace.
 
 <br/>
