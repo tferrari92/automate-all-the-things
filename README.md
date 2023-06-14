@@ -1,4 +1,4 @@
-<div style="margin-bottom: 10px;">
+<div style="padding-bottom: 20px;">
     <a href="https://www.instagram.com/ttomasferrari/" style="margin-bottom: 10px;">
         <img align="right" alt="Abhishek's Instagram" width="22px" style="margin-bottom: 10px;" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
     </a>
