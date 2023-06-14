@@ -1,18 +1,17 @@
-<a href="https://www.instagram.com/ttomasferrari/">
+<a href="https://www.instagram.com/ttomasferrari/" style="margin-bottom: 10px;">
     <img align="right" alt="Abhishek's Instagram" width="22px" src="https://raw.githubusercontent.com/hussainweb/hussainweb/main/icons/instagram.png" />
 </a>
-<a href="https://twitter.com/tomasferrari">
+<a href="https://twitter.com/tomasferrari" style="margin-bottom: 10px;">
     <img align="right" alt="Abhishek Naidu | Twitter" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg" />
 </a>
-<a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
+<a href="https://www.linkedin.com/in/tomas-ferrari-devops/" style="margin-bottom: 10px;">
     <img align="right" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
 </a>
-<p align="right">
-    <!-- <a  href="/docs/readme_es.md">Versión en Español</a> -->
-    <a> </a>
-</p>
+<!-- <p align="right">
+    <a  href="/docs/readme_es.md">Versión en Español</a>
+</p> -->
 
-<p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
+<p title="All The Things" align="center" margin-bottom: 1em> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
 # **INDEX**
 
