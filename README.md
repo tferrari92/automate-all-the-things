@@ -8,7 +8,7 @@
     <img align="right" alt="Abhishek's LinkedIN" width="22px" src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
 </a>
 <p align="right">
-    <a >Look me up: </a>
+    <a >Find me here: </a>
 </p>
 <!-- <p align="right">
     <a  href="/docs/readme_es.md">Versión en Español</a>
