@@ -1,4 +1,4 @@
 apiVersion: v2
-name: cafe # This value was modified by the initial-setup python script
-description: A Helm chart for deploying an cafe website with an ingress # This value was modified by the initial-setup python script
+name: AATT_APP_NAME # This value was modified by the initial-setup python script
+description: A Helm chart for deploying AATT_APP_NAME website. # This value was modified by the initial-setup python script
 version: 1.0
