@@ -1,0 +1,8 @@
+environment: dev
+
+deployment:
+  image:  
+    tag: 0
+  replicas: 1
+  env:
+    redis_host: redis-service # This is the database URL

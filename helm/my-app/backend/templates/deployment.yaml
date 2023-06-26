@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}-{{ .Values.environment }}-deployment
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}-{{ .Values.environment }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}-{{ .Values.environment }}
+    spec:
+      containers:
+        - name: {{ .Values.appName }}-{{ .Values.environment }}
+          image: {{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REDIS_HOST
+              value: {{ .Values.deployment.env.redis_host }} 

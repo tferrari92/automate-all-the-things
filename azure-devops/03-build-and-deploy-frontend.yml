@@ -18,7 +18,7 @@ variables:
     value: AATT_DOCKERHUB_USERNAME # This value was modified by the initial-setup python script
   - name: USER_EMAIL
     value: AATT_USER_EMAIL # This value was modified by the initial-setup python script
- 
+    
 pool:
   vmImage: 'ubuntu-latest' 
   # If you are using a self-hosted agent, comment out the previous line and uncomment the following three

@@ -1,0 +1,28 @@
+environment: stage
+
+deployment:
+  image:
+    tag: 0
+  replicas: 1
+
+configmap: 
+  nginxConf: |-
+    server {
+        listen       80;
+        listen  [::]:80;
+        server_name  localhost;
+    
+        location / {
+            root   /usr/share/nginx/html;
+            index  index.html index.htm;
+        }
+    
+        location /api {
+            proxy_pass http://AATT_APP_NAME-backend-stage-service:3000/; # This value was modified by the initial-setup python script
+        }
+        
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+    }

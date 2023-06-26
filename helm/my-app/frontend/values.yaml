@@ -1,13 +1,11 @@
-appName: AATT_APP_NAME-test # This value was modified by the initial-setup python script
+appName: AATT_APP_NAME-frontend # This value was modified by the initial-setup python script
 
 deployment:
   image:
-    repository: AATT_DOCKERHUB_USERNAME/AATT_APP_NAME # This value was modified by the initial-setup python script
-    tag: 0
-  replicas: 1
+    repository: AATT_DOCKERHUB_USERNAME/AATT_APP_NAME-frontend # This value was modified by the initial-setup python script
 
 configmap:
-  memes: |-
+  images: |-
     var images = [
         "https://i.imgur.com/2Z8qEvC.png",
         "https://i.imgur.com/2Xntz2P.jpg",
@@ -18,7 +16,7 @@ configmap:
         "https://i.imgur.com/akNhnrh.jpg",
         "https://i.imgur.com/eqpDlh5.jpg",
         "https://i.imgur.com/ARqnwlQ.jpg",
-        "https://i.imgur.com/pCjM1d6.jpg",
+        "https://i.imgur.com/2lJ6xLl.jpg",
         "https://i.imgur.com/kGQUUTw.jpg",
         "https://i.imgur.com/o4LuRu7.jpg",
         "https://i.imgur.com/CnDPSpV.png",

@@ -11,13 +11,13 @@ trigger:
 variables:
   - group: aws-keys
   - name: AWS_REGION
-    value: us-east-2 # This value was modified by the initial-setup python script
+    value: AATT_AWS_REGION # This value was modified by the initial-setup python script
   - name: APP_NAME
-    value: viola # This value was modified by the initial-setup python script
+    value: AATT_APP_NAME # This value was modified by the initial-setup python script
   - name: DOCKERHUB_USERNAME
-    value: tferrari92 # This value was modified by the initial-setup python script
+    value: AATT_DOCKERHUB_USERNAME # This value was modified by the initial-setup python script
   - name: USER_EMAIL
-    value: tomas.ferrari@sendati.com # This value was modified by the initial-setup python script
+    value: AATT_USER_EMAIL # This value was modified by the initial-setup python script
     
 pool:
   vmImage: 'ubuntu-latest' 
@@ -74,11 +74,11 @@ stages:
 
 
 
-- stage: DeployTest
+- stage: DeployStage
   condition: succeeded()
   # dependsOn: DeployDev
   jobs:
-  - job: DeployTestJob
+  - job: DeployStageJob
     steps:
 
     # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
@@ -92,15 +92,15 @@ stages:
       displayName: Update repo
       
     - script: |
-        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/backend/environments/values-test.yaml > helm/my-app/backend/environments/values-test.temp
-        mv helm/my-app/backend/environments/values-test.temp helm/my-app/backend/environments/values-test.yaml
-      displayName: Update Tag In values-test.yaml
+        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/backend/environments/values-stage.yaml > helm/my-app/backend/environments/values-stage.temp
+        mv helm/my-app/backend/environments/values-stage.temp helm/my-app/backend/environments/values-stage.yaml
+      displayName: Update Tag In values-stage.yaml
 
     - script: |
         git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
         git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
         git checkout -b main
-        git add helm/my-app/backend/environments/values-test.yaml 
+        git add helm/my-app/backend/environments/values-stage.yaml 
         git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
         git push --set-upstream origin main
       displayName: 'Push changes to GitHub'
@@ -111,7 +111,7 @@ stages:
 
 - stage: DeployProd
   condition: succeeded()
-  # dependsOn: DeployDev
+  # dependsOn: DeployStage
   jobs:
   - job: ApproveRelease
     timeoutInMinutes: 1440 # Job times out in 24hs
