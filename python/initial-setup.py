@@ -77,10 +77,6 @@ print_gradually(
     "Alright, let's get the necessary details. What will be the name of your app?: ")
 app_name = check_if_valid(input())
 
-# print_gradually(
-#     "Great name! What's the name of your Azure DevOps Organization?: ")
-# az_devops_org = input()
-
 print_gradually(
     "Great name! Sounds professional! What's your GitHub username?: ")
 github_username = input()
@@ -105,7 +101,6 @@ data = {
     "AATT_AWS_REGION": aws_region,
     "AATT_DOCKERHUB_USERNAME": dockerhub_username,
     "AATT_USER_EMAIL": user_email,
-    # "AATT_AZ_DEVOPS_ORG": az_devops_org,
 }
 
 
