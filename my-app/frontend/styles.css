@@ -33,3 +33,10 @@ button {
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+#visitorCount {
+    font-size: 14px;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}

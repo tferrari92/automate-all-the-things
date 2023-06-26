@@ -127,10 +127,14 @@ def search_and_replace(directory, replacements):
             if file_name in ['application.yaml',
                              '00-deploy-infra.yml',
                              '01-deploy-argocd.yml',
-                             '02-build-and-deploy-app.yml',
-                             '03-destroy-all-the-things.yml',
+                             '02-build-and-deploy-backend.yml',
+                             '03-build-and-deploy-frontend.yml',
+                             '04-destroy-all-the-things.yml',
                              'Chart.yaml'
                              'values.yaml',
+                             'values-dev.yaml',
+                             'values-stage.yaml',
+                             'values-prod.yaml',
                              'terraform.tfvars',
                              'provider.tf']:
                 replace_keys_in_file(file_path, replacements)
