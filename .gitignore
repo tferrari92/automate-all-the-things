@@ -2,5 +2,3 @@
 *.tfstate
 *.tfvars
 *.tfstate.backup
-UNUSED
-docs
