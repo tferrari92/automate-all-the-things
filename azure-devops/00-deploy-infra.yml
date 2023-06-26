@@ -34,6 +34,7 @@ steps:
     workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' 
     providerAwsRegion: $(AWS_REGION) 
+  continueOnError: true
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'

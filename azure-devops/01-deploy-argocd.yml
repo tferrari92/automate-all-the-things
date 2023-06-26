@@ -81,8 +81,11 @@ steps:
     publishLocation: 'Container'
 
 - script: |
-    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/application-dev.yaml 
-    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/application-test.yaml 
-    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/application-prod.yaml 
+    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/backend/application-dev.yaml
+    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/backend/application-stage.yaml
+    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/backend/application-prod.yaml
+    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/frontend/application-dev.yaml
+    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/frontend/application-stage.yaml
+    kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/frontend/application-prod.yaml
   displayName: 'Create ArgoCD Application'
 

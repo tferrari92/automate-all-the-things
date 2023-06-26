@@ -1,0 +1,151 @@
+name: build-and-deploy-backend
+
+trigger:
+  branches:
+    include:
+      - main  
+  paths:
+    include:
+      - my-app/backend/*
+
+variables:
+  - group: aws-keys
+  - name: AWS_REGION
+    value: us-east-2 # This value was modified by the initial-setup python script
+  - name: APP_NAME
+    value: viola # This value was modified by the initial-setup python script
+  - name: DOCKERHUB_USERNAME
+    value: tferrari92 # This value was modified by the initial-setup python script
+  - name: USER_EMAIL
+    value: tomas.ferrari@sendati.com # This value was modified by the initial-setup python script
+    
+pool:
+  vmImage: 'ubuntu-latest' 
+  # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
+  # name: <agent-pool-name> # Insert here the name of the agent pool you created
+  # demands:
+  #   - agent.name -equals <agent-name> # Insert here the name of the agent you created
+
+stages:
+- stage: BuildApp
+  jobs:
+  - job: BuildJob
+    displayName: 'Build Job'
+    steps:
+    - task: DockerInstaller@0
+      displayName: Install Docker
+      inputs:
+        dockerVersion: '17.09.0-ce'
+
+    - task: Docker@2
+      displayName: Build And Push Image
+      inputs:
+        containerRegistry: 'dockerhub'
+        repository: '$(DOCKERHUB_USERNAME)/$(APP_NAME)-backend'
+        command: 'buildAndPush'
+        Dockerfile: 'my-app/backend/Dockerfile'
+        
+
+
+- stage: DeployDev
+  condition: succeeded()
+  jobs:
+  - job: DeployDevJob
+    steps:
+
+    # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
+    - checkout: self
+      persistCredentials: true
+
+    - script: |
+        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/backend/environments/values-dev.yaml > helm/my-app/backend/environments/values-dev.temp
+        mv helm/my-app/backend/environments/values-dev.temp helm/my-app/backend/environments/values-dev.yaml
+      displayName: Update Tag In values-dev.yaml
+
+    - script: |
+        git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
+        git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
+        git checkout -b main
+        git add helm/my-app/backend/environments/values-dev.yaml 
+        git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
+        git push --set-upstream origin main
+      displayName: 'Push changes to GitHub'
+        
+
+
+
+- stage: DeployTest
+  condition: succeeded()
+  # dependsOn: DeployDev
+  jobs:
+  - job: DeployTestJob
+    steps:
+
+    # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
+    - checkout: self
+      persistCredentials: true
+      #clean: true
+  
+    # Every time the pipeline performs a "checkout" step it will checkout the same commit, so we need this step to pull for the changes commited in the previous stage   
+    - script: |
+        git pull origin main
+      displayName: Update repo
+      
+    - script: |
+        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/backend/environments/values-test.yaml > helm/my-app/backend/environments/values-test.temp
+        mv helm/my-app/backend/environments/values-test.temp helm/my-app/backend/environments/values-test.yaml
+      displayName: Update Tag In values-test.yaml
+
+    - script: |
+        git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
+        git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
+        git checkout -b main
+        git add helm/my-app/backend/environments/values-test.yaml 
+        git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
+        git push --set-upstream origin main
+      displayName: 'Push changes to GitHub'
+ 
+        
+
+
+
+- stage: DeployProd
+  condition: succeeded()
+  # dependsOn: DeployDev
+  jobs:
+  - job: ApproveRelease
+    timeoutInMinutes: 1440 # Job times out in 24hs
+    pool: server
+    steps:
+    - task: ManualValidation@0
+      inputs:
+        notifyUsers: '$(USER_EMAIL)'
+        instructions: 'Please validate and approve deployment to prod.'
+
+  - job: DeployProdJob
+    steps:
+
+    # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
+    - checkout: self
+      persistCredentials: true
+      #clean: true
+      
+    # Every time the pipeline performs a "checkout" step it will checkout the same commit, so we need this step to pull for the changes commited in the previous stage   
+    - script: |
+        git pull origin main
+      displayName: Update repo
+
+    - script: |
+        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/backend/environments/values-prod.yaml > helm/my-app/backend/environments/values-prod.temp
+        mv helm/my-app/backend/environments/values-prod.temp helm/my-app/backend/environments/values-prod.yaml
+      displayName: Update Tag In values-prod.yaml
+
+    - script: |
+        git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
+        git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
+        git checkout -b main
+        git add helm/my-app/backend/environments/values-prod.yaml 
+        git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
+        git push --set-upstream origin main
+      displayName: 'Push changes to GitHub'
+      
