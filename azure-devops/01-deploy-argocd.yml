@@ -87,5 +87,5 @@ steps:
     kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/frontend/application-dev.yaml
     kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/frontend/application-stage.yaml
     kubectl create -n argocd -f $(Agent.BuildDirectory)/s/argo-cd/frontend/application-prod.yaml
-  displayName: 'Create ArgoCD Application'
+  displayName: 'Create ArgoCD application resources'
 
