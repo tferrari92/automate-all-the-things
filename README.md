@@ -435,13 +435,13 @@ Time to actually start the deployment of our app.
 
 Our app is made of two microservices (backend and frontend) and a database. Let's start with the backend (which also includes the db).
 
-The [/my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile for each microservice.
+The [/my-app/backend directory](my-app/backend) on the repo is meant to represent the backend microservice application code repository. Here you'll find the code files and the corresponding Dockerfile for the backend service.
 
 There's four stages on this pipeline:
 
 On the Build stage we will use Docker to build a container image from the Dockerfile, tag it with the number of the pipeline run and push it to your DockerHub registry.
 
-On the Deploy Dev stage, we will checkout the repo and modify the [values-dev.yaml file](helm/my-app/backend/environments/values-dev.yaml) on the [helm/my-app/backend/environments](helm/my-app/backend) directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
+On the Deploy Dev stage, we will checkout the repo and modify the [helm/my-app/backend/environments/values-dev.yaml file](helm/my-app/backend/environments/values-dev.yaml) and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
 Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version of the backend microservice is available and should be deployed. We modify the image.tag value in the values-dev.yaml file and wait for ArgoCD to apply the changes.
 
 [This is how gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
@@ -475,32 +475,26 @@ Now, if the infrastrucure team needs to make changes to the cluster resources, t
 <br/>
 <br/>
 
-# APPLICATION FRONTEND BUILD & DEPLOY PIPELINE
+# FRONTEND SERVICE BUILD & DEPLOY PIPELINE
 
 ## Description
 
-We are almost there! In this pipeline we will build and deploy our app.
+We are almost there! In this pipeline we will build and deploy our frontend.
 
-The [/my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile. You could theoretically replace the contents of the my-app directory with the code and Dockerfile for any other app and it should still work.
+The [/my-app/frontend directory](my-app) on the repo is meant to represent the frontend microservice code repository. Here you'll find the code files and the corresponding Dockerfile for the frontend service. 
 
-There's four stages on this pipeline:
+Just as in the backend pipeline, there's four stages on this pipeline:
 
-On the Build stage we will use Docker to build a container image from the Dockerfile, tag it with the number of the pipeline run and push it to your DockerHub registry.
+1. We build and push our frontend image to DockerHub.
+2. We deploy to Dev environment in the same manner we did with the backend (modifying the image.tag value in the [helm/my-app/frontend/environments/values-dev.yaml file](helm/my-app/frontend/environments/values-dev.yaml)).
+3. If deployment to Dev was OK, we deploy to Stage.
+4. If deployment to Stage was OK, we'll get an email requesting authorization for deployment to Prod. Give it the thumbs up and our app will be deployed to Prod.
 
-On the Deploy Dev stage, we will checkout the repo and modify the [values-dev.yaml file](helm/my-app/values-dev.yaml) on the [helm/my-app](helm/my-app) directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
-Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version is available and should be deployed. We modify the image.tag value in the values-dev.yaml file and wait for ArgoCD to apply the changes.
+That's it! Your entire app was deployed to all environments! Good job buddy!
 
-[This is how gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
+Just as with the backend, this pipeline is automatically triggered everytime there are any changes commited inside the "frontend service application code repository" (meaning the [/my-app/frontend directory](my-app/frontend)). In this manner, if the frontend developers commit any changes to the frontend service, they will be automatically built and deployed to the cluster.
 
-After the Deploy Dev stage is done and only if it was successful, the Deploy Test stage will commence. It will do the same thing as the previous stage, but this time modifying the [values-test.yaml](helm/my-app/values-dev.yaml) of course.
-
-We'll repeat the same process for Prod, but since Prod should be a more delicate environment, the Deploy Prod stage will require authorization from the top level excecutives (in this case it's you, congrats boss) to be executed. You'll recieve an email with a link asking you to verify and approve the deployment to Prod. Go ahead and approve it. Or don't, I don't really care...
-
-That's it! Your app was deployed to all environments! Good job buddy!
-
-This pipeline is automatically triggered everytime there are any changes commited inside the "application code repository" (meaning the [/my-app directory](my-app)). In this manner, if the developers commit any changes to the app, they will be automatically built and deployed to the cluster. That's some delicious CI/CD for you baby.
-
-Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "K8S infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas in the prod environment, then they'd change the value of deployment.replicas in the [values-prod.yaml file](helm/my-app/values-prod.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. And there's some tasty Gitops for you too. 
+For the infrastructure, same as before. If the infrastrucure team needs to, for example, change the number of pod replicas for the frontend service in the dev environment, then they'd change the value of deployment.replicas in the [helm/my-app/frontend/environments/values-dev.yaml file](helm/my-app/frontend/environments/values-dev.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster.
 
 <br/>
 
@@ -517,13 +511,13 @@ Now, if the infrastrucure team needs to make changes to the cluster resources, t
 9. Each deployment stage will export an artifact file with the URL of each environment. You'll find them in the pipeline run screen. Download them to see the URLs.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
-10. If you go to the URLs too quickly you will get a "503 Service Temporarily Unavailable". We need to give ArgoCD a little time to notice the changes in the [/helm/my-app directory](helm/my-app). By default ArgoCD pulls for changes every three minutes. You can either wait like an adult or go into the ArgoCD web UI and hit "Refresh Apps" like the impatient child that you are.
+10. If you go to the URLs too quickly you will get a "503 Service Temporarily Unavailable". We need to give ArgoCD a little time to notice the changes in the [/helm/my-app/frontend directory](helm/my-app/frontend). By default ArgoCD pulls for changes every three minutes. You can either wait like an adult or go into the ArgoCD web UI and hit "Refresh Apps" like the impatient child that you are.
 11. Check the URLs again.
-12. That's it! Hope you like the web I made for you. If you did, go give me a star on [my repo](https://github.com/tferrari92/automate-all-the-things). If you didn't, also go give me a star on [my repo](https://github.com/tferrari92/automate-all-the-things). 
+12. That's it! Hope you like the web I made for you. If you did, go give me a star on [my repo](https://github.com/tferrari92/automate-all-the-things).
 
 <br/>
 <br/>
-<p title="Momoa & Cavill" align="center"> <img width="460" src="https://i.imgur.com/pCjM1d6.jpg"> </p>
+<p title="Anakin" align="center"> <img width="460" src="https://i.imgur.com/tup8Ocu.jpg"> </p>
 <br/>
 <br/>
 
