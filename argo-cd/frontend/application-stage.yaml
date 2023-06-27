@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: AATT_APP_NAME-front-stage-app # This value was modified by the initial-setup python script
+  namespace: argocd
+spec:
+  destination:
+    namespace: AATT_APP_NAME-stage # This value was modified by the initial-setup python script
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: helm/my-app/frontend
+    helm:
+      valueFiles:
+        - environments/values-stage.yaml
+    repoURL: https://github.com/AATT_GITHUB_USERNAME/automate-all-the-things.git # This value was modified by the initial-setup python script
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

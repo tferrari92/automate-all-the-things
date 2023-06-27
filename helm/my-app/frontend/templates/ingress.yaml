@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Values.appName }}-ingress
+  name: {{ .Values.appName }}-{{ .Values.environment }}-ingress
   annotations:
     {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key }}: {{ $value | quote }}
@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ .Values.appName }}-service
+                name: {{ .Values.appName }}-{{ .Values.environment }}-service
                 port:
                   number: 80  

@@ -1,4 +1,0 @@
-apiVersion: v1
-name: AATT_APP_NAME # This value was modified by the initial-setup python script
-description: A Helm chart for deploying AATT_APP_NAME website. # This value was modified by the initial-setup python script
-version: 1.0

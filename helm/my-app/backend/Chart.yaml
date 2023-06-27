@@ -1,0 +1,4 @@
+apiVersion: v2
+name: AATT_APP_NAME-backend # This value was modified by the initial-setup python script
+description: A Helm chart for deploying AATT_APP_NAME-backend # This value was modified by the initial-setup python script
+version: 1.0

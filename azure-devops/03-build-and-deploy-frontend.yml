@@ -1,4 +1,4 @@
-name: app-build-and-deploy
+name: build-and-deploy-frontend
 
 trigger:
   branches:
@@ -6,7 +6,7 @@ trigger:
       - main  
   paths:
     include:
-      - my-app/*
+      - my-app/frontend/*
 
 variables:
   - group: aws-keys
@@ -18,7 +18,7 @@ variables:
     value: AATT_DOCKERHUB_USERNAME # This value was modified by the initial-setup python script
   - name: USER_EMAIL
     value: AATT_USER_EMAIL # This value was modified by the initial-setup python script
- 
+    
 pool:
   vmImage: 'ubuntu-latest' 
   # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
@@ -41,9 +41,9 @@ stages:
       displayName: Build And Push Image
       inputs:
         containerRegistry: 'dockerhub'
-        repository: '$(DOCKERHUB_USERNAME)/$(APP_NAME)'
+        repository: '$(DOCKERHUB_USERNAME)/$(APP_NAME)-frontend'
         command: 'buildAndPush'
-        Dockerfile: 'my-app/Dockerfile'
+        Dockerfile: 'my-app/frontend/Dockerfile'
 
 
 
@@ -58,22 +58,18 @@ stages:
       persistCredentials: true
 
     - script: |
-        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values-dev.yaml > helm/my-app/values-dev.temp
-        mv helm/my-app/values-dev.temp helm/my-app/values-dev.yaml
+        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/frontend/environments/values-dev.yaml > helm/my-app/frontend/environments/values-dev.temp
+        mv helm/my-app/frontend/environments/values-dev.temp helm/my-app/frontend/environments/values-dev.yaml
       displayName: Update Tag In values-dev.yaml
 
     - script: |
         git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
         git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
         git checkout -b main
-        git add helm/my-app/values-dev.yaml 
+        git add helm/my-app/frontend/environments/values-dev.yaml 
         git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
         git push --set-upstream origin main
       displayName: 'Push changes to GitHub'
-      
-    - script: |
-        echo "##vso[task.setvariable variable=latestCommit]$(git rev-parse HEAD)"
-      displayName: 'Output the latest commit SHA to a variable'
 
     - script: |
         mkdir ~/.aws
@@ -113,17 +109,17 @@ stages:
       displayName: 'Export URL'
       inputs:
         PathtoPublish: 'my-app-url.txt'
-        ArtifactName: 'URL'
+        ArtifactName: 'DEV-URL'
         publishLocation: 'Container'
         
 
 
 
-- stage: DeployTest
+- stage: DeployStage
   condition: succeeded()
   # dependsOn: DeployDev
   jobs:
-  - job: DeployTestJob
+  - job: DeployStageJob
     steps:
 
     # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
@@ -137,15 +133,15 @@ stages:
       displayName: Update repo
       
     - script: |
-        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values-test.yaml > helm/my-app/values-test.temp
-        mv helm/my-app/values-test.temp helm/my-app/values-test.yaml
-      displayName: Update Tag In values-test.yaml
+        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/frontend/environments/values-stage.yaml > helm/my-app/frontend/environments/values-stage.temp
+        mv helm/my-app/frontend/environments/values-stage.temp helm/my-app/frontend/environments/values-stage.yaml
+      displayName: Update Tag In values-stage.yaml
 
     - script: |
         git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
         git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
         git checkout -b main
-        git add helm/my-app/values-test.yaml 
+        git add helm/my-app/frontend/environments/values-stage.yaml 
         git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
         git push --set-upstream origin main
       displayName: 'Push changes to GitHub'
@@ -181,14 +177,14 @@ stages:
         awsArguments: '--name $(APP_NAME)-cluster --region $(AWS_REGION)' 
 
     - script: |
-        kubectl get ingress -n $(APP_NAME)-test $(kubectl get ingress -n $(APP_NAME)-test | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
+        kubectl get ingress -n $(APP_NAME)-stage $(kubectl get ingress -n $(APP_NAME)-stage | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
       displayName: 'Save URL'
 
     - task: PublishBuildArtifacts@1
       displayName: 'Export URL'
       inputs:
         PathtoPublish: 'my-app-url.txt'
-        ArtifactName: 'URL'
+        ArtifactName: 'STAGE-URL'
         publishLocation: 'Container' 
         
 
@@ -196,7 +192,7 @@ stages:
 
 - stage: DeployProd
   condition: succeeded()
-  # dependsOn: DeployDev
+  # dependsOn: DeployStage
   jobs:
   - job: ApproveRelease
     timeoutInMinutes: 1440 # Job times out in 24hs
@@ -221,15 +217,15 @@ stages:
       displayName: Update repo
 
     - script: |
-        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/values-prod.yaml > helm/my-app/values-prod.temp
-        mv helm/my-app/values-prod.temp helm/my-app/values-prod.yaml
+        sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/frontend/environments/values-prod.yaml > helm/my-app/frontend/environments/values-prod.temp
+        mv helm/my-app/frontend/environments/values-prod.temp helm/my-app/frontend/environments/values-prod.yaml
       displayName: Update Tag In values-prod.yaml
 
     - script: |
         git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
         git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
         git checkout -b main
-        git add helm/my-app/values-prod.yaml 
+        git add helm/my-app/frontend/environments/values-prod.yaml 
         git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
         git push --set-upstream origin main
       displayName: 'Push changes to GitHub'
@@ -272,5 +268,5 @@ stages:
       displayName: 'Export URL'
       inputs:
         PathtoPublish: 'my-app-url.txt'
-        ArtifactName: 'URL'
+        ArtifactName: 'PROD-URL'
         publishLocation: 'Container'

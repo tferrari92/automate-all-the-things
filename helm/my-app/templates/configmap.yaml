@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.appName }}-configmap
-data:
-  memes.js: {{ .Values.configmap.memes | toYaml | indent 1 }}
