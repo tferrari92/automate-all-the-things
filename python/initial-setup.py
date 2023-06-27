@@ -127,7 +127,7 @@ def search_and_replace(directory, replacements):
                              '02-build-and-deploy-backend.yml',
                              '03-build-and-deploy-frontend.yml',
                              '04-destroy-all-the-things.yml',
-                             'Chart.yaml'
+                             'Chart.yaml',
                              'values.yaml',
                              'values-dev.yaml',
                              'values-stage.yaml',
