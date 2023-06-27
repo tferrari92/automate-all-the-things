@@ -123,6 +123,7 @@ stages:
         instructions: 'Please validate and approve deployment to prod.'
 
   - job: DeployProdJob
+    dependsOn: ApproveRelease
     steps:
 
     # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
