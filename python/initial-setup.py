@@ -119,7 +119,9 @@ def search_and_replace(directory, replacements):
     for root, _, files in os.walk(directory):
         for file_name in files:
             file_path = os.path.join(root, file_name)
-            if file_name in ['application.yaml',
+            if file_name in ['application-dev.yaml',
+                             'application-stage.yaml',
+                             'application-prod.yaml',
                              '00-deploy-infra.yml',
                              '01-deploy-argocd.yml',
                              '02-build-and-deploy-backend.yml',
