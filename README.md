@@ -40,12 +40,15 @@
 - [ArgoCD Deployment Pipeline](#argocd-deployment-pipeline)
   - [Description](#description-1)
   - [Instructions](#instructions-1)
-- [Application Build & Deploy Pipeline](#application-build--deploy-pipeline)
+- [Backend Service Build & Deploy Pipeline](#backend-service-build--deploy-pipeline)
   - [Description](#description-2)
   - [Instructions](#instructions-2)
-- [Destroy All The Things Pipeline](#destroy-all-the-things-pipeline)
+- [Frontend Service Build & Deploy Pipeline](#frontend-service-build--deploy-pipeline)
   - [Description](#description-3)
   - [Instructions](#instructions-3)
+- [Destroy All The Things Pipeline](#destroy-all-the-things-pipeline)
+  - [Description](#description-4)
+  - [Instructions](#instructions-4)
 - [Conclusion](#conclusion)
 
 <br/>
@@ -424,7 +427,7 @@ Finally, it will create the ArgoCD [application resources](argo-cd/) for our app
 <br/>
 <br/>
 
-# APPLICATION BACKEND BUILD & DEPLOY PIPELINE
+# BACKEND SERVICE BUILD & DEPLOY PIPELINE
 
 ## Description
 
@@ -508,7 +511,7 @@ Now, if the infrastrucure team needs to make changes to the cluster resources, t
 3. Select "GitHub".
 4. Select the repo, it should be "your-github-username/automate-all-the-things"
 5. Select "Existing Azure Pipelines YAML file".
-6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-app.yml". Click "Continue".
+6. Under "Branch" select "main" and under "Path" select "/azure-devops/03-build-and-deploy-frontend.yml". Click "Continue".
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
 8. Click on "Run".
 9. Each deployment stage will export an artifact file with the URL of each environment. You'll find them in the pipeline run screen. Download them to see the URLs.
@@ -547,7 +550,7 @@ The pipeline will finish with a warning, worry not, this is because the "terrafo
 3. Select "GitHub".
 4. Select the repo, it should be "your-github-username/automate-all-the-things"
 5. Select "Existing Azure Pipelines YAML file".
-6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-destroy-all-the-things.yml". Click "Continue".
+6. Under "Branch" select "main" and under "Path" select "/azure-devops/04-destroy-all-the-things.yml". Click "Continue".
 7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
 8. Click on "Run".
 9. There's two AWS resources that for some reason don't get destroyed: a DHCP Option Set and an Auto Scaling Managed Rule. I'm pretty sure these don't generate any expenses but you can go and delete them manually just in case. I'm really sorry about this... I have brought [shame](https://i.imgur.com/PIm1apF.gifv) upon my family...
