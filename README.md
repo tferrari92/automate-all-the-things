@@ -399,7 +399,7 @@ The first thing it will do is run the necessary tasks to connect to our the clus
 As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so our pipeline will wait until it is ready.
 When it's ready, the pipeline will get it's URL and admin account password. These will be exported as an artifact.
 
-Finally, it will create the ArgoCD [application resources](argo-cd/) for our app, which will be watching the [/helm/my-app directory](helm/my-app) in our repo, and automatically create all the resources it finds and apply any future changes me make there. The [/helm/my-app directory](helm/my-app) simulates what would be our K8S infrastructure repository.
+Finally, it will create the ArgoCD [application resources](argo-cd/) for our app, which will be watching the [/helm/my-app/backend](helm/my-app/backend) and [/helm/my-app/frontend](helm/my-app/frontend) directories in our repo, and automatically create all the resources it finds and apply any future changes me make there. The [/helm/my-app directory](helm/my-app) simulates what would be our K8S infrastructure repository.
 
 <br/>
 
@@ -424,7 +424,55 @@ Finally, it will create the ArgoCD [application resources](argo-cd/) for our app
 <br/>
 <br/>
 
-# APPLICATION BUILD & DEPLOY PIPELINE
+# APPLICATION BACKEND BUILD & DEPLOY PIPELINE
+
+## Description
+
+Time to actually start the deployment of our app. 
+
+Our app is made of two microservices (backend and frontend) and a database. Let's start with the backend (which also includes the db).
+
+The [/my-app directory](my-app) on the repo is meant to represent an application code repository. Here you'll find the application code files and the corresponding Dockerfile for each microservice.
+
+There's four stages on this pipeline:
+
+On the Build stage we will use Docker to build a container image from the Dockerfile, tag it with the number of the pipeline run and push it to your DockerHub registry.
+
+On the Deploy Dev stage, we will checkout the repo and modify the [values-dev.yaml file](helm/my-app/backend/environments/values-dev.yaml) on the [helm/my-app/backend/environments](helm/my-app/backend) directory and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
+Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version of the backend microservice is available and should be deployed. We modify the image.tag value in the values-dev.yaml file and wait for ArgoCD to apply the changes.
+
+[This is how gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
+
+After the Deploy Dev stage is done, and only if it was successful, the Deploy Stage stage will commence. It will do the same thing as the previous stage, but this time modifying the [helm/my-app/backend/environments/values-stage.yaml file](helm/my-app/backend/environments/values-stage.yaml).
+
+We'll repeat the same process for Prod, but since Prod should be a more delicate environment, the Deploy Prod stage will require authorization from the top level excecutives (in this case it's you, congrats boss) to be executed. You'll recieve an email with a link asking you to verify and approve the deployment to Prod. Go ahead and approve it.
+
+That's it! Your app was deployed to all environments! Good job buddy!
+
+This pipeline is automatically triggered everytime there are any changes commited inside the "backend service application code repository" (meaning the [/my-app/backend directory](my-app/backend)). In this manner, if the backend developers commit any changes to the backend service, they will be automatically built and deployed to the cluster. That's some delicious CI/CD for you baby.
+
+Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "K8S infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas for the backend service in the prod environment, then they'd change the value of deployment.replicas in the [helm/my-app/backend/environments/values-prod.yaml file](helm/my-app/backend/environments/values-prod.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. There's some tasty Gitops for you too. 
+
+<br/>
+
+## Instructions
+
+1. Go to "Pipelines" under "Pipelines" on the left side menu.
+2. Click on "New pipeline".
+3. Select "GitHub".
+4. Select the repo, it should be "your-github-username/automate-all-the-things"
+5. Select "Existing Azure Pipelines YAML file".
+6. Under "Branch" select "main" and under "Path" select "/azure-devops/02-build-and-deploy-backend.yml". Click "Continue".
+7. If you DON'T have a hosted parallelism, you'll need to do the same thing as in point 10 from the [infrastructure deployment pipeline](#instructions).
+8. Click on "Run".
+
+<br/>
+<br/>
+<p title="Momoa & Cavill" align="center"> <img width="460" src="https://i.imgur.com/pCjM1d6.jpg"> </p>
+<br/>
+<br/>
+
+# APPLICATION FRONTEND BUILD & DEPLOY PIPELINE
 
 ## Description
 
