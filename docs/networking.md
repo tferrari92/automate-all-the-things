@@ -6,8 +6,7 @@ For the creation of the AWS VPC we followed the [recommended VPC for EKS guideli
 
 This VPC has two public and two private subnets. One public and one private subnet are deployed to the same Availability Zone. The other public and private subnets are deployed to a second Availability Zone in the same AWS Region. We recommend this option for most deployments.
 
-
-WE ARE GOING TO USE THE PUBLIC SUBNETS ONLY TO DEPLOT PUBLIC LOAD BALANCERS. NOT ANY NODES
+The nodes will run in private subnets  THE PUBLIC SUBNETS ARE ONLY TO DEPLOT PUBLIC LOAD BALANCERS. NOT ANY NODES
 One NAT Gatewasy in each private sn in each AZ for high availability, if something happens to one AZ we still have the other
 
 
