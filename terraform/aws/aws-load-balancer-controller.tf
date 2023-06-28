@@ -24,7 +24,7 @@ resource "aws_iam_role" "aws_load_balancer_controller" {
 }
 
 resource "aws_iam_policy" "aws_load_balancer_controller" {
-  policy = file("./AWSLoadBalancerController.json")
+  policy = file("./templates/AWSLoadBalancerController.json")
   name   = "AWSLoadBalancerController"
 }
 
