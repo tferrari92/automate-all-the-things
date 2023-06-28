@@ -8,7 +8,8 @@ This VPC has two public and two private subnets. One public and one private subn
 
 
 WE ARE GOING TO USE THE PUBLIC SUBNETS ONLY TO DEPLOT PUBLIC LOAD BALANCERS. NOT ANY NODES
-One NAT Gatewasy in each public sn in each AZ for high availability, if something happens to one AZ we still have the other
+One NAT Gatewasy in each private sn in each AZ for high availability, if something happens to one AZ we still have the other
+
 
 With this option, you can deploy your nodes to private subnets. This option allows Kubernetes to deploy load balancers to the public subnets that can load balance traffic to Pods that run on nodes in the private subnets. Public IPv4 addresses are automatically assigned to nodes that are deployed to public subnets, but public IPv4 addresses aren't assigned to nodes deployed to private subnets.
 
