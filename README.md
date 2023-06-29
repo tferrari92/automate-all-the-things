@@ -356,6 +356,8 @@ pool:
 ```
 
 11. Click on "Run".
+12. When it's done, the EC2 instance public IP address will be exported as an artifact. You'll find it in the pipeline run screen. Download it to see the command needed to access the instance.
+<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
 <br/>
 <br/>
