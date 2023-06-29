@@ -406,6 +406,8 @@ When it's ready, the pipeline will get it's URL and admin account password. Thes
 
 Finally, it will create the ArgoCD [application resources](argo-cd/) for our app, which will be watching the [/helm/my-app/backend](helm/my-app/backend) and [/helm/my-app/frontend](helm/my-app/frontend) directories in our repo, and automatically create all the resources it finds and apply any future changes me make there. The [/helm/my-app directory](helm/my-app) simulates what would be our K8S infrastructure repository.
 
+If you want to know more about Helm, [here's another Nana video](https://youtu.be/-ykwb1d0DXU).
+
 <br/>
 
 ## Instructions
