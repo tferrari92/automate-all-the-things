@@ -517,7 +517,7 @@ For the infrastructure, same as before. If the infrastrucure team needs to, for 
 
 <br/>
 <br/>
-<p title="Anakin" align="center"> <img width="460" src="https://i.imgur.com/tup8Ocu.jpg"> </p>
+<p title="Anakin" align="center"> <img width="460" src="https://i.imgur.com/V1qgXKM.jpg"> </p>
 <br/>
 <br/>
 
