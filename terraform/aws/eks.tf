@@ -34,7 +34,7 @@ resource "aws_iam_role_policy_attachment" "amazon-eks-cluster-policy" {
 
 resource "aws_eks_cluster" "cluster" {
   name     = "${var.project}-cluster"
-  version  = "1.22"
+  version  = "1.27"
   role_arn = aws_iam_role.eks-cluster.arn
 
   vpc_config {
@@ -85,7 +85,7 @@ resource "aws_iam_role_policy_attachment" "amazon-ec2-container-registry-read-on
 
 resource "aws_eks_node_group" "private-nodes" {
   cluster_name    = aws_eks_cluster.cluster.name
-  version         = "1.22"
+  version         = aws_eks_cluster.cluster.version
   node_group_name = "private-nodes"
   node_role_arn   = aws_iam_role.nodes.arn
 
@@ -98,7 +98,7 @@ resource "aws_eks_node_group" "private-nodes" {
   instance_types = ["t3.small"]
 
   scaling_config {
-    desired_size = 3
+    desired_size = 2
     max_size     = 5
     min_size     = 0
   }

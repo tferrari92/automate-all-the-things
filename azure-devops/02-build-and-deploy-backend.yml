@@ -114,10 +114,11 @@ stages:
   # dependsOn: DeployStage
   jobs:
   - job: ApproveRelease
-    timeoutInMinutes: 1440 # Job times out in 24hs
+    timeoutInMinutes: 4320 # Job times out in 3 days
     pool: server
     steps:
     - task: ManualValidation@0
+      timeoutInMinutes: 1440 # Task times out in 1 day
       inputs:
         notifyUsers: '$(USER_EMAIL)'
         instructions: 'Please validate and approve deployment to prod.'
@@ -149,4 +150,3 @@ stages:
         git commit -m "App version tag updated to $(Build.BuildId) by Azure DevOps"
         git push --set-upstream origin main
       displayName: 'Push changes to GitHub'
-      

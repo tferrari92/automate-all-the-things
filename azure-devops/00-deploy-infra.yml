@@ -34,7 +34,7 @@ steps:
     workingDirectory: 'terraform/backend'
     providerServiceAws: 'aws' 
     providerAwsRegion: $(AWS_REGION) 
-  continueOnError: true
+  # continueOnError: true
 
 - script: cp terraform/backend/terraform.tfstate terraform/aws
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
@@ -59,4 +59,19 @@ steps:
     command: apply
     workingDirectory: 'terraform/aws'
     providerServiceAws: 'aws' 
-    providerAwsRegion: $(AWS_REGION) 
+    providerAwsRegion: $(AWS_REGION)
+
+- script: |
+    echo "Assuming you are on the root directory of the automate-all-the-things repo, run this:" > ssh-to-bastion.txt
+    echo "chmod 400 terraform/aws/templates/private-key" >> ssh-to-bastion.txt
+    echo "ssh -i terraform/aws/templates/private-key ubuntu@$(terraform -chdir=terraform/aws output -raw ssh_host)" >> ssh-to-bastion.txt
+  displayName: 'Save SSH command'
+  condition: always()
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Export SSH command'
+  condition: always()
+  inputs:
+    PathtoPublish: 'ssh-to-bastion.txt'
+    ArtifactName: 'SSH to bastion'
+    publishLocation: 'Container'
