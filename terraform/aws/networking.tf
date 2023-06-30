@@ -30,13 +30,11 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_subnet" "public-subnet-a" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.0.0/19"
-  # cidr_block              = "10.0.64.0/19" 0
   availability_zone       = "${var.region}a"
   map_public_ip_on_launch = true
 
   tags = {
     "Name"                                         = "public-${var.region}-a"
-    # "Name"                                         = "public-subnet-a"
     "kubernetes.io/role/elb"                       = "1"
     "kubernetes.io/cluster/${var.project}-cluster" = "owned"
   }
@@ -45,12 +43,10 @@ resource "aws_subnet" "public-subnet-a" {
 resource "aws_subnet" "private-subnet-a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.32.0/19"
-  # cidr_block        = "10.0.0.0/19" 32
   availability_zone = "${var.region}a"
 
   tags = {
     "Name"                                         = "private-${var.region}-a"
-    # "Name"                                         = "private-subnet-a"
     "kubernetes.io/role/internal-elb"              = "1"
     "kubernetes.io/cluster/${var.project}-cluster" = "owned"
   }
@@ -60,13 +56,11 @@ resource "aws_subnet" "private-subnet-a" {
 resource "aws_subnet" "public-subnet-b" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.64.0/19"
-  # cidr_block              = "10.0.96.0/19" 64
   availability_zone       = "${var.region}b"
   map_public_ip_on_launch = true
 
   tags = {
     "Name"                                         = "public-${var.region}-b"
-    # "Name"                                         = "public-subnet-b"
     "kubernetes.io/role/elb"                       = "1"
     "kubernetes.io/cluster/${var.project}-cluster" = "owned"
   }
@@ -75,12 +69,10 @@ resource "aws_subnet" "public-subnet-b" {
 resource "aws_subnet" "private-subnet-b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.96.0/19"
-  # cidr_block        = "10.0.32.0/19" 96
   availability_zone = "${var.region}b"
 
   tags = {
     "Name"                                         = "private-${var.region}-b"
-    # "Name"                                         = "private-subnet-b"
     "kubernetes.io/role/internal-elb"              = "1"
     "kubernetes.io/cluster/${var.project}-cluster" = "owned"
   }

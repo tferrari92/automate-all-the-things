@@ -5,7 +5,6 @@ resource "aws_elasticache_subnet_group" "elasticache_subnet_group" {
 }
 
 
-
 resource "aws_elasticache_replication_group" "elasticache_replication_group" {
   replication_group_id          = "${var.project}-elasticache-replication-group"
   replication_group_description = "Redis cluster for Hashicorp ElastiCache example"
@@ -21,6 +20,7 @@ resource "aws_elasticache_replication_group" "elasticache_replication_group" {
   automatic_failover_enabled = true
 
   security_group_ids          = [aws_security_group.default.id]
+  # security_group_ids          = [aws_security_group.databases.id]
 
   cluster_mode {
     replicas_per_node_group = 1
