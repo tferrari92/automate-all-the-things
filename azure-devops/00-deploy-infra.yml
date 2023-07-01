@@ -13,6 +13,10 @@ variables:
   AWS_REGION: AATT_AWS_REGION # This value was modified by the initial-setup python script
 
 steps:
+# # In this case it's necessary to specify the checkout with the persistCredential options set to true. This will enable us to push the changes to the repo.
+- checkout: self
+  persistCredentials: true
+
 - task: TerraformInstaller@0
   displayName: Install terraform
   inputs:
@@ -60,6 +64,44 @@ steps:
     workingDirectory: 'terraform/aws'
     providerServiceAws: 'aws' 
     providerAwsRegion: $(AWS_REGION)
+
+- script: |
+    echo "$(terraform -chdir=terraform/aws output -raw elasticache_dev_configuration_endpoint_address)" > elasticache_dev_endpoint.txt
+    echo "$(terraform -chdir=terraform/aws output -raw elasticache_stage_configuration_endpoint_address)" > elasticache_stage_endpoint.txt
+    echo "$(terraform -chdir=terraform/aws output -raw elasticache_prod_configuration_endpoint_address)" > elasticache_prod_endpoint.txt
+  displayName: 'Save ElastiCache DBs endpoints'
+  condition: always()
+
+- script: |
+    cat elasticache_dev_endpoint.txt
+    cat elasticache_stage_endpoint.txt
+    cat elasticache_prod_endpoint.txt
+  displayName: 'TEST'
+  condition: always()
+
+- script: |
+    sed -i "s/ELASTICACHE_ENDPOINT/$(cat elasticache_dev_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-dev.yaml
+    sed -i "s/ELASTICACHE_ENDPOINT/$(cat elasticache_stage_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-stage.yaml
+    sed -i "s/ELASTICACHE_ENDPOINT/$(cat elasticache_prod_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-prod.yaml
+  displayName: 'Modify values for each environment'
+  condition: always()
+
+- script: |
+    cat helm/my-app/backend/environments/values-dev.yaml
+    cat helm/my-app/backend/environments/values-stage.yaml
+    cat helm/my-app/backend/environments/values-prod.yaml
+  displayName: 'TEST'
+  condition: always()
+
+- script: |
+    git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
+    git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
+    git checkout -b main
+    git add helm/my-app/backend/environments/
+    git commit -m "ElastiCache endpoints updated in environments values.yaml files by Azure DevOps"
+    git push --set-upstream origin main
+  displayName: 'Push changes to GitHub'
+  condition: always()
 
 - script: |
     echo "Assuming you are on the root directory of the automate-all-the-things repo, run this:" > ssh-to-bastion.txt

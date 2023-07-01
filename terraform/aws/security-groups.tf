@@ -25,7 +25,7 @@ resource "aws_security_group" "databases" {
   ingress {
     from_port   = 22
     to_port     = 22
-    protocol    = "-1"
+    protocol    = "tcp"
     cidr_blocks = [aws_subnet.public-subnet-c.cidr_block]
   }
 
