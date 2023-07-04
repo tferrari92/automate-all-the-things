@@ -16,7 +16,6 @@
 
 <p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
-
 # **INDEX**
 
 - [Introduction](#introduction)
@@ -109,7 +108,7 @@ Ok, now that that's out of the way...
 - Continuous Integration -> Azure DevOps
 - Continuous Deployment -> Helm & ArgoCD
 - Scripting -> Python
-<br/>
+  <br/>
 
 <p title="Logos Banner" align="center"> <img  src="https://i.imgur.com/Jd0Jve8.png"> </p>
 
@@ -201,7 +200,7 @@ These will be required for Azure DevOps to connect to your AWS account.
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/.
 2. On the search bar look up "IAM".
-3. On the IAM dashboard, select "Users" on the left side menu. *If you are root user and haven't created any users, you'll find the "Create access key" option on IAM > My security credentials. You should know that **creating Access Keys for the root user is a bad security practice**. If you choose to proceed anyway, click on "Create access key" and skip to point 6*.
+3. On the IAM dashboard, select "Users" on the left side menu. _If you are root user and haven't created any users, you'll find the "Create access key" option on IAM > My security credentials. You should know that **creating Access Keys for the root user is a bad security practice**. If you choose to proceed anyway, click on "Create access key" and skip to point 6_.
 4. Choose your IAM user name (not the check box).
 5. Open the Security credentials tab, and then choose "Create access key".
 6. To see the new access key, choose Show. Your credentials resemble the following:
@@ -234,12 +233,12 @@ This service connection is required for our Azure DevOps pipelines to interact w
 This service connection is required for our Azure DevOps pipelines to be able to push images to your DockerHub registry.
 
 1. While on the "Service connections" screen, click on "New service connection" on the top-right.
-5. Select "Docker Registry", click "Next".
-6. Under "Registry type" select "Docker Hub".
-7. Input your Docker ID and Password.
-8. Under "Service connection name", write "dockerhub".
-9. Select the "Grant access permission to all pipelines" option.
-10. Click on "Verify and save".
+2. Select "Docker Registry", click "Next".
+3. Under "Registry type" select "Docker Hub".
+4. Input your Docker ID and Password.
+5. Under "Service connection name", write "dockerhub".
+6. Select the "Grant access permission to all pipelines" option.
+7. Click on "Verify and save".
 
 <br/>
 
@@ -251,10 +250,12 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 2. Click on "+ Variable group".
 3. Under "Variable group name" write "aws-keys".
 4. Add the following variables pasting on the "Value" field your AWS keys:
+
 - aws_access_key_id
 - aws_secret_access_key
+
 5. Click on the lock icon on each variable.
-7. Click on "Save".
+6. Click on "Save".
 7. Click on "Pipeline permissions" and give it "Open access". This means all our pipelines will be able to use these variables.
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/aMzTx49.jpg"> </p>
 
@@ -317,13 +318,14 @@ Before we proceed with deploying out actual infrastructure, the pipeline will mo
 
 Now that the backend is set, we will deploy our actual infrastructure!
 
-So, what is our infra? It's mainly the networking resources and the EKS cluster, along with an AWS Load Balancer Controller which will act as our Kubernetes Ingress Controller.
+So, what is our infra? Well, the main parts are the networking resources, the ElastiCache databases, the EC2 instance and the EKS cluster, along with the Cluster Autoscaler and an AWS Load Balancer Controller which will act as our Kubernetes Ingress Controller.
 
 Having this AWS Load Balancer Controller means that for every Ingress resource we create in our cluster, an AWS Application Load Balancer will be automatically created. This is the native way to do it in EKS and it has a lot to benefits, but it creates an issue for us.<br>
 We want to track everything in our infra as IaC, but these automatically created Application Load Balancers won't be tracked in our Terraform... No worries, we'll take care of this issue in the Destroy All The Things Pipeline.<br>
 For more info on the AWS Load Balancer Controller you can watch [this excellent video](https://youtu.be/ZfjpWOC5eoE) by [Anton Putra](https://www.youtube.com/@AntonPutra).
 
-If you want to know exactly what is being deployed, you can check out the [terraform files](/terraform/aws). Here you can modify the resources to be deployed to AWS. Let's say you want to add an EC2 Instance, you can create a new .tf file with the resource: 
+If you want to know exactly what is being deployed, you can check out the [terraform files](/terraform/aws). Here you can modify the resources to be deployed to AWS. Let's say you want to add a second EC2 Instance, you can add the following block in the ec2.tf file:
+
 ```terraform
 resource "aws_instance" "ec2_instance" {
     ami = "ami-01107263728f3bef4"
@@ -331,7 +333,10 @@ resource "aws_instance" "ec2_instance" {
     instance_type = "t2.micro"
 }
 ```
+
 Commit the changes and run the pipeline again. The backend deployment step will fail, so the pipeline will finish with a warning, you can ignore it.
+
+The pipeline will also modify the [/helm/my-app/backend/environments](helm/my-app/backend/environments) files on the repo. It will get the endpoints for each ElastiCache DB from terraform outputs and include them in the values of each environment.
 
 <br/>
 
@@ -346,7 +351,7 @@ Commit the changes and run the pipeline again. The backend deployment step will 
 7. You might also get a screen to install the Azure Pipelines App on your GitHub account, if so, go ahead and click the green button and follow the instructions.
 8. Select "Existing Azure Pipelines YAML file".
 9. Under "Branch" select "main" and under "Path" select "/azure-devops/00-deploy-infra.yml". Click "Continue".
-10. *If you have hosted parallelism skip to point 11*. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the [00-deploy-infra.yml file](azure-devops/00-deploy-infra.yml).<br>
+10. _If you have hosted parallelism skip to point 11_. **If you DON'T have a hosted parallelism**, you need to tell Azure DevOps to use your [**self-hosted agent**](#optional-create-an-azure-self-hosted-agent). In order to do this, you'll need to go to the repo and modify the [00-deploy-infra.yml file](azure-devops/00-deploy-infra.yml).<br>
     Under "pool" you need to edit it so that it looks like this:
 
 ```yaml
@@ -437,7 +442,7 @@ If you want to know more about Helm, [here's another Nana video](https://youtu.b
 
 ## Description
 
-Time to actually start the deployment of our app. 
+Time to actually start the deployment of our app.
 
 Our app is made of two microservices (backend and frontend) and a database. Let's start with the backend (which also includes the db).
 
@@ -460,7 +465,7 @@ That's it! Your app was deployed to all environments! Good job buddy!
 
 This pipeline is automatically triggered everytime there are any changes commited inside the "backend service application code repository" (meaning the [/my-app/backend directory](my-app/backend)). In this manner, if the backend developers commit any changes to the backend service, they will be automatically built and deployed to the cluster. That's some delicious CI/CD for you baby.
 
-Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "K8S infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas for the backend service in the prod environment, then they'd change the value of deployment.replicas in the [helm/my-app/backend/environments/values-prod.yaml file](helm/my-app/backend/environments/values-prod.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. There's some tasty Gitops for you too. 
+Now, if the infrastrucure team needs to make changes to the cluster resources, they would work on the "K8S infrastructure repository" (meaning the [/helm/my-app directory](helm/my-app)). Let's say they need to increase the number of pod replicas for the backend service in the prod environment, then they'd change the value of deployment.replicas in the [helm/my-app/backend/environments/values-prod.yaml file](helm/my-app/backend/environments/values-prod.yaml), commit the change and wait for ArgoCD to apply the changes on the cluster. There's some tasty Gitops for you too.
 
 <br/>
 
@@ -487,7 +492,7 @@ Now, if the infrastrucure team needs to make changes to the cluster resources, t
 
 We are almost there! In this pipeline we will build and deploy our frontend.
 
-The [/my-app/frontend directory](my-app) on the repo is meant to represent the frontend microservice code repository. Here you'll find the code files and the corresponding Dockerfile for the frontend service. 
+The [/my-app/frontend directory](my-app) on the repo is meant to represent the frontend microservice code repository. Here you'll find the code files and the corresponding Dockerfile for the frontend service.
 
 Just as in the backend pipeline, there's four stages on this pipeline:
 
@@ -527,7 +532,6 @@ For the infrastructure, same as before. If the infrastrucure team needs to, for 
 <br/>
 <br/>
 
-
 # DESTROY ALL THE THINGS PIPELINE
 
 ## Description
@@ -541,7 +545,6 @@ The pipeline will first eliminate ArgoCD from our cluster and then delete all In
 After this, the pipeline will be able to run "terraform destroy" with no issues. Our infra will be obliterated and we won't be giving any more of our precious money to Bezos.
 
 The pipeline will finish with a warning, worry not, this is because the "terraform destroy" command will have also deleted our terraform backend (the Bucket and DyamoDB Table), so Terraform won't be able to push the updated state back there. We can ignore this warning. I wish there was a more elegant way of finishing the project but I couldn't find any so deal with it.
-
 
 ## Instructions
 
@@ -579,6 +582,7 @@ You now possess the power of of CI/CD, GitOps, and Infrastructure as Code. You k
 <br/>
 
 Special thanks to all these wonderful YouTube people. This wouldn't have been possible without them:
+
 - Nana Janashia from [Techworld With Nana](https://www.youtube.com/@TechWorldwithNana)
 - Viktor Farcic from [DevOps Toolkit](https://www.youtube.com/@DevOpsToolkit)
 - Marcer Dempers from [That DevOps Guy](https://www.youtube.com/@MarcelDempers)
@@ -587,7 +591,6 @@ Special thanks to all these wonderful YouTube people. This wouldn't have been po
 - [Anton Putra](https://www.youtube.com/@AntonPutra)
 
 Happy automating!
-
 
 <!-- DESCARTADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -662,4 +665,3 @@ d. Create pipeline
 ```bash
 az pipelines create --name create-bucket --repository https://github.com/tferrari92/automate-all-the-things.git --branch main --yml-path azure-devops/deploy-aws-resources.yml --service-connection github-sc
 ```
-
