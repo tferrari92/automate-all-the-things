@@ -1,7 +1,6 @@
 resource "aws_elasticache_subnet_group" "elasticache-subnet-group" {
   name       = "elasticache-subnet-group"
-# subnet_ids = [aws_subnet.private-subnet-c.id] # USAR ESTA AL FINAL, VA A HABER Q GENERARLE UN SECURITY GROUP A ESA SUBNET??? ALLOW INGRESS DESDE public-subnet-c (ec2) y private subnets a y b para los nodos
-  subnet_ids = [aws_subnet.public-subnet-c.id]  # PROBAR ESTA SINO, MAS FACIL PARA CONECTAR CON EC2 POR ESTAR EN MISMA SUBNET
+  subnet_ids = [aws_subnet.private-subnet-c.id]
 }
 
 
@@ -11,20 +10,19 @@ resource "aws_elasticache_replication_group" "elasticache-replication-group-dev"
 
   node_type            = "cache.t4g.micro"
   port                 = 6379
-  parameter_group_name = "default.redis7.cluster.on"
+  parameter_group_name = "default.redis7"
+  engine_version           = "7.0"
 
   snapshot_retention_limit = 5
   snapshot_window          = "00:00-05:00"
 
   subnet_group_name          = "${aws_elasticache_subnet_group.elasticache-subnet-group.name}"
-  automatic_failover_enabled = true
+  automatic_failover_enabled = false  # Disable cluster mode
 
-  security_group_ids          = [aws_security_group.default.id]
-  # security_group_ids          = [aws_security_group.databases.id]
+  security_group_ids          = [aws_security_group.databases.id]
 
   cluster_mode {
     replicas_per_node_group = 1
-    num_node_groups         = 1
   }
 }
 
@@ -34,20 +32,19 @@ resource "aws_elasticache_replication_group" "elasticache-replication-group-stag
 
   node_type            = "cache.t4g.micro"
   port                 = 6379
-  parameter_group_name = "default.redis7.cluster.on"
+  parameter_group_name = "default.redis7"
+  engine_version           = "7.0"
 
   snapshot_retention_limit = 5
   snapshot_window          = "00:00-05:00"
 
   subnet_group_name          = "${aws_elasticache_subnet_group.elasticache-subnet-group.name}"
-  automatic_failover_enabled = true
+  automatic_failover_enabled = false  # Disable cluster mode
 
-  security_group_ids          = [aws_security_group.default.id]
-  # security_group_ids          = [aws_security_group.databases.id]
+  security_group_ids          = [aws_security_group.databases.id]
 
   cluster_mode {
     replicas_per_node_group = 1
-    num_node_groups         = 1
   }
 }
 
@@ -57,32 +54,30 @@ resource "aws_elasticache_replication_group" "elasticache-replication-group-prod
 
   node_type            = "cache.t4g.micro"
   port                 = 6379
-  parameter_group_name = "default.redis7.cluster.on"
+  parameter_group_name = "default.redis7"
+  engine_version           = "7.0"
 
   snapshot_retention_limit = 5
   snapshot_window          = "00:00-05:00"
 
   subnet_group_name          = "${aws_elasticache_subnet_group.elasticache-subnet-group.name}"
-  automatic_failover_enabled = true
+  automatic_failover_enabled = false  # Disable cluster mode
 
-  security_group_ids          = [aws_security_group.default.id]
-  # security_group_ids          = [aws_security_group.databases.id]
+  security_group_ids          = [aws_security_group.databases.id]
 
   cluster_mode {
     replicas_per_node_group = 1
-    num_node_groups         = 1
   }
 }
 
-output "elasticache_dev_configuration_endpoint_address" {
-  value = "${aws_elasticache_replication_group.elasticache-replication-group-dev.configuration_endpoint_address}"
+output "elasticache_dev_primary_endpoint_address" {
+  value = "${aws_elasticache_replication_group.elasticache-replication-group-dev.primary_endpoint_address}"
 }
 
-output "elasticache_stage_configuration_endpoint_address" {
-  value = "${aws_elasticache_replication_group.elasticache-replication-group-stage.configuration_endpoint_address}"
+output "elasticache_stage_primary_endpoint_address" {
+  value = "${aws_elasticache_replication_group.elasticache-replication-group-stage.primary_endpoint_address}"
 }
 
-output "elasticache_prod_configuration_endpoint_address" {
-  value = "${aws_elasticache_replication_group.elasticache-replication-group-prod.configuration_endpoint_address}"
+output "elasticache_prod_primary_endpoint_address" {
+  value = "${aws_elasticache_replication_group.elasticache-replication-group-prod.primary_endpoint_address}"
 }
-  

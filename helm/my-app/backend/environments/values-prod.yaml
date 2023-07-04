@@ -5,4 +5,4 @@ deployment:
     tag: 0
   replicas: 1
   env:
-    redis_host: ELASTICACHE_ENDPOINT # This is the database URL
+    redis_host: # This value was modified by the deploy-infra pipeline

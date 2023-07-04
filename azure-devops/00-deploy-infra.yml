@@ -66,31 +66,17 @@ steps:
     providerAwsRegion: $(AWS_REGION)
 
 - script: |
-    echo "$(terraform -chdir=terraform/aws output -raw elasticache_dev_configuration_endpoint_address)" > elasticache_dev_endpoint.txt
-    echo "$(terraform -chdir=terraform/aws output -raw elasticache_stage_configuration_endpoint_address)" > elasticache_stage_endpoint.txt
-    echo "$(terraform -chdir=terraform/aws output -raw elasticache_prod_configuration_endpoint_address)" > elasticache_prod_endpoint.txt
+    echo "$(terraform -chdir=terraform/aws output -raw elasticache_dev_primary_endpoint_address) # This value was modified by the deploy-infra pipeline" > elasticache_dev_endpoint.txt
+    echo "$(terraform -chdir=terraform/aws output -raw elasticache_stage_primary_endpoint_address) # This value was modified by the deploy-infra pipeline" > elasticache_stage_endpoint.txt
+    echo "$(terraform -chdir=terraform/aws output -raw elasticache_prod_primary_endpoint_address) # This value was modified by the deploy-infra pipeline" > elasticache_prod_endpoint.txt
   displayName: 'Save ElastiCache DBs endpoints'
   condition: always()
 
 - script: |
-    cat elasticache_dev_endpoint.txt
-    cat elasticache_stage_endpoint.txt
-    cat elasticache_prod_endpoint.txt
-  displayName: 'TEST'
-  condition: always()
-
-- script: |
-    sed -i "s/ELASTICACHE_ENDPOINT/$(cat elasticache_dev_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-dev.yaml
-    sed -i "s/ELASTICACHE_ENDPOINT/$(cat elasticache_stage_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-stage.yaml
-    sed -i "s/ELASTICACHE_ENDPOINT/$(cat elasticache_prod_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-prod.yaml
+    sed -i "s/redis_host:.*/redis_host: $(cat elasticache_dev_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-dev.yaml
+    sed -i "s/redis_host:.*/redis_host: $(cat elasticache_stage_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-stage.yaml
+    sed -i "s/redis_host:.*/redis_host: $(cat elasticache_prod_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-prod.yaml
   displayName: 'Modify values for each environment'
-  condition: always()
-
-- script: |
-    cat helm/my-app/backend/environments/values-dev.yaml
-    cat helm/my-app/backend/environments/values-stage.yaml
-    cat helm/my-app/backend/environments/values-prod.yaml
-  displayName: 'TEST'
   condition: always()
 
 - script: |
