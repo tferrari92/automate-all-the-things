@@ -95,10 +95,6 @@ Our app is a very simple static website, but I'm not spoiling it for you. You'll
 
 ## Tools we'll be using
 
-For each step of the process, I’ve chosen to use the best tool in its field. And yeah... you might be thinking, "best" is a subjective term, right? Well... not here. This is MY repo! My opinions here are TRUTHS!!
-
-Ok, now that that's out of the way...
-
 - Code Versioning -> Git
 - Source Code Managment -> GitHub
 - Cloud Infrastructure -> Amazon Web Services
