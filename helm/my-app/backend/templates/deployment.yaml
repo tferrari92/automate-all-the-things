@@ -20,8 +20,3 @@ spec:
           env:
             - name: REDIS_HOST
               value: {{ .Values.deployment.env.redis_host }} 
-            # - name: REDIS_PASS
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: redis-secret
-            #       key: REDIS_PASS
