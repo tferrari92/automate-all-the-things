@@ -7,7 +7,7 @@
     src="https://i.imgur.com/eFVBTVz.png" />
 </a>
 <a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
-    <img align="right" alt="Abhishek's LinkedIN" width="22px" 
+    <img align="right" alt="Abhishek's LinkedIN" width="21px" 
     src="https://i.imgur.com/5Wppv5z.png" />
 </a>
 <p align="right">
