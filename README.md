@@ -8,7 +8,7 @@
 </a>
 <a href="https://www.linkedin.com/in/tomas-ferrari-devops/">
     <img align="right" alt="Abhishek's LinkedIN" width="22px" 
-    src="https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/linkedin.svg" />
+    src="https://i.imgur.com/5Wppv5z.png" />
 </a>
 <p align="right">
     <a >Find me here: </a>
