@@ -39,17 +39,21 @@ steps:
     awsSubCommand: 'update-kubeconfig'
     awsArguments: '--name $(APP_NAME)-cluster --region $(AWS_REGION)' 
 
-- task: HelmDeploy@0
-  displayName: Deploy ArgoCD
-  inputs:
-    connectionType: 'None'
-    releaseName: 'argocd'
-    namespace: 'argocd' # Required
-    command: 'install'
-    chartType: 'FilePath'
-    chartPath: 'helm/argo-cd'
-    valueFile: 'helm/argo-cd/values-custom.yaml'
-    arguments: '--dependency-update --create-namespace'
+- script: | 
+    helm install argocd -n argocd helm/argo-cd --values helm/argo-cd/values-custom.yaml --dependency-update --create-namespace
+  displayName: 'Deploy Argocd'
+
+# - task: HelmDeploy@0
+#   displayName: Deploy ArgoCD
+#   inputs:
+#     connectionType: 'None'
+#     releaseName: 'argocd'
+#     namespace: 'argocd' # Required
+#     command: 'install'
+#     chartType: 'FilePath'
+#     chartPath: 'helm/argo-cd'
+#     valueFile: 'helm/argo-cd/values-custom.yaml'
+#     arguments: '--dependency-update --create-namespace'
 
 - script: |
     echo "false" > is-active.txt
