@@ -43,7 +43,7 @@ steps:
   displayName: Deploy ArgoCD
   inputs:
     connectionType: 'None'
-    releaseName: 'argocd' # Required for self-management to work
+    releaseName: 'argocd'
     namespace: 'argocd' # Required
     command: 'install'
     chartType: 'FilePath'
