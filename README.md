@@ -59,7 +59,7 @@
 
 I believe in a world where all that's expected of me is to enjoy life, lay on the couch, play COD and have exitential crises.
 
-I wish I could automate cooking, cleaning, working, doing taxes, making friends, dating, writing READMEs... Hell, I'd even automate playing with my stupid kids if I could.
+I wish I could automate cooking, cleaning, working, doing taxes, making friends, dating and even writing stupid READMEs.
 
 But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
 
