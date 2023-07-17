@@ -9,7 +9,6 @@ variables:
   - name: APP_NAME
     value: AATT_APP_NAME # This value was modified by the initial-setup python script
     
-
 pool:
   vmImage: 'ubuntu-latest' 
   # If you are using a self-hosted agent, comment out the previous line and uncomment the following three
@@ -25,6 +24,12 @@ steps:
     helmVersion: '3.11.2'
     installKubectl: true
 
+- script: | 
+    mkdir ~/.aws
+    echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
+    echo -e "[default]\nregion = $(AWS_REGION)"> ~/.aws/config 
+  displayName: 'Configure AWS Profile'
+
 - task: AWSCLI@1
   displayName: 'Update KubeConfig'
   inputs:
@@ -34,18 +39,12 @@ steps:
     awsSubCommand: 'update-kubeconfig'
     awsArguments: '--name $(APP_NAME)-cluster --region $(AWS_REGION)' 
 
-- script: | 
-    mkdir ~/.aws
-    echo -e "[default]\naws_access_key_id = $(aws_access_key_id)\naws_secret_access_key = $(aws_secret_access_key)" > ~/.aws/credentials
-    echo -e "[default]\nregion = $(AWS_REGION)"> ~/.aws/config 
-  displayName: 'Configure AWS Profile'
-
 - task: HelmDeploy@0
   displayName: Deploy ArgoCD
   inputs:
     connectionType: 'None'
-    namespace: 'argocd'
-    chartVersion: '5.34.1'
+    releaseName: 'argocd' # Required for self-management to work
+    namespace: 'argocd' # Required
     command: 'install'
     chartType: 'FilePath'
     chartPath: 'helm/argo-cd'
