@@ -39,10 +39,10 @@ jobs:
       echo -e "[default]\nregion = $(AWS_REGION)"> ~/.aws/config 
     displayName: 'Configure AWS Profile'
 
-  # Before deleting all Ingresses we eliminate ArgoCD because if we don't, it will re-deploy the Ingresses, automatically creating untracked AWS Application Load Balancers, which would mess with the terraform destroy  
+  # Before deleting all Ingresses we delete all ArgoCD applications because if we don't, it will re-deploy the Ingresses, automatically creating untracked AWS Application Load Balancers, which would mess with the terraform destroy  
   - script: | 
-        kubectl delete namespace argocd
-    displayName: 'Delete ArgoCD'
+      kubectl delete -n argocd applications.argoproj.io --all
+    displayName: 'Delete all ArgoCD applications'
 
   - script: | 
         kubectl delete ingress --all --all-namespaces
