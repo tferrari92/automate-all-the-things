@@ -4,7 +4,7 @@
 
 For the creation of the AWS VPC we followed the [recommended VPC for EKS guidelines by Amazon](https://docs.aws.amazon.com/eks/latest/userguide/creating-a-vpc.html) for the "Public and private subnets" option. If you don't like reading [watch this](https://www.youtube.com/watch?v=nIIxexG7_a8&list=PLiMWaCMwGJXkeBzos8QuUxiYT6j8JYGE5&index=1&ab_channel=AntonPutra).
 
-<p title="Diagram" align="center"> <img img width="800" src="https://i.imgur.com/8WJ03GV.jpg"> </p>
+<p title="Diagram" align="center"> <img img width="700" src="https://i.imgur.com/8WJ03GV.jpg"> </p>
 
 The VPC has two public and two private subnets. A public subnet's associated route table has a route to an internet gateway. However, the route table of a private subnet doesn't have a route to an internet gateway. One public and one private subnet are deployed to the same Availability Zone. The other public and private subnets are deployed to a second Availability Zone in the same AWS Region.
 
