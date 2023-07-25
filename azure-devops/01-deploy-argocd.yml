@@ -43,26 +43,34 @@ steps:
     helm install argocd -n argocd helm/argo-cd --values helm/argo-cd/values-custom.yaml --dependency-update --create-namespace
   displayName: 'Deploy Argocd'
 
-- script: |
-    echo "false" > is-active.txt
-    while [ "$(cat is-active.txt)" != "true" ]; do
-        sleep 5
-        aws elbv2 describe-load-balancers > lb-status.json
-        json_data=$(cat lb-status.json)
-        state_code=$(echo "$json_data" | jq -r '.LoadBalancers[0].State.Code')
-        if [[ "$state_code" == "active" ]]; then
-          echo "true" > is-active.txt
-        else
-          echo "Load balancer is not ready yet..."
-        fi
-    done
-  displayName: 'Wait for Load Balancer Status'
+# - script: |
+#     echo "false" > is-active.txt
+#     while [ "$(cat is-active.txt)" != "true" ]; do
+#         sleep 5
+#         aws elbv2 describe-load-balancers > lb-status.json
+#         json_data=$(cat lb-status.json)
+#         state_code=$(echo "$json_data" | jq -r '.LoadBalancers[0].State.Code')
+#         if [[ "$state_code" == "active" ]]; then
+#           echo "true" > is-active.txt
+#         else
+#           echo "Load balancer is not ready yet..."
+#         fi
+#     done
+#   displayName: 'Wait for Load Balancer Status'
 
 - script: |
+    while [[ $(kubectl get ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}') -o 'jsonpath={.status.loadBalancer.ingress[0].hostname}') == '' ]]; do
+      echo "Ingress is not ready. Checking again in 5 seconds..."
+      sleep 5
+    done
     kubectl get ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > argocd-access.txt
     echo "admin" >> argocd-access.txt
+    while [[ $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}") == '' ]]; do
+      echo "Secret is not ready. Checking again in 5 seconds..."
+      sleep 5
+    done
     echo $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d) >> argocd-access.txt
-  displayName: 'Save Access'
+  displayName: 'Get Access'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Export Access'
