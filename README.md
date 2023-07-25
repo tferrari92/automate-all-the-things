@@ -362,7 +362,7 @@ We won't go into what ArgoCD is, for that you have [this video](https://youtu.be
 This pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our EKS.<br>
 The first thing it will do is run the necessary tasks to connect to our the cluster. After this, ArgoCD will be installed, along with it's Ingress.
 
-It will get the access info (URL, user and pass) and export them as an artifact. As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so you might have to wait a little bit for the URL to be ready., just hit refresh on the browser every few seconds.
+It will get the access info (URL, user and pass) and export them as an artifact. As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so you might have to wait a little bit for the URL to be ready, just hit refresh on the browser every few seconds.
 
 Finally, it will create the ArgoCD [application resources](argo-cd/) for our app, which will be watching the [/helm/my-app/backend](helm/my-app/backend) and [/helm/my-app/frontend](helm/my-app/frontend) directories in our repo, and automatically create all the resources it finds and apply any future changes me make there. The [/helm/my-app directory](helm/my-app) simulates what would be our K8S infrastructure repository.
 
