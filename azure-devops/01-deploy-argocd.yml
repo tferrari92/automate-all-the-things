@@ -59,11 +59,11 @@ steps:
 #   displayName: 'Wait for Load Balancer Status'
 
 - script: |
-    while [[ $(kubectl get ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}') -o 'jsonpath={.status.loadBalancer.ingress[0].hostname}') == '' ]]; do
+    while [[ $(kubectl -n argocd get ingress argocd-server -o 'jsonpath={.status.loadBalancer.ingress[0].hostname}') == '' ]]; do
       echo "Ingress is not ready. Checking again in 5 seconds..."
       sleep 5
     done
-    kubectl get ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > argocd-access.txt
+    kubectl get ingress -n argocd argocd-server -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > argocd-access.txt
     echo "admin" >> argocd-access.txt
     while [[ $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}") == '' ]]; do
       echo "Secret is not ready. Checking again in 5 seconds..."
