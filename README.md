@@ -317,6 +317,8 @@ Commit the changes and run the pipeline again. The backend deployment step will 
 
 The pipeline will also modify the [/helm/my-app/backend/environments](helm/my-app/backend/environments) files on the repo. It will get the endpoints for each ElastiCache DB from terraform outputs and include them in the values of each environment.
 
+Oh and lastly... it will export an artifact with the instructions on how to connect to the EC2 instance.
+
 <br/>
 
 ## Instructions
@@ -351,33 +353,6 @@ pool:
 <br/>
 <br/>
 
-<!-- ## EKS Deployment Pipeline VIEJO
-
-2. Go to "Pipelines" under "Pipelines" on the left side menu.
-3. Click on "New pipeline".
-4. Select "GitHub".
-6. Select the repo, it should be "<your-github-username>/automate-all-the-things"
-6. Select "Existing Azure Pipelines YAML file".
-9. Under "Branch" select "main" and under "Path" select "/azure-devops/01-deploy-eks.yml". Click "Continue".
-11. Click on "Run". -->
-<!-- 9. Rename the pipeline to "deploy-eks". On the Pipelines screen, click on the three-dot menu to see the Rename/move option. -->
-<!-- 10. When it's finished, the KubeConfig file will be exported as an artifact. You'll find it in the pipeline run screen. Download it, NO PARA SERVICE CONNECTION PERO SI PARA TOCAR KUBECTL A MANO DESDE LOCAL we'll need it to create the Kubernetes service connection. -->
-
-<!-- <br>
-
-#### Configure AWS CLI and EKS Cluster
-To check that everything went OK we will connect to our cluster from our local machine. Use the following commands, you'll need to input your AWS info. When prompted for "Default output format" just press enter.
-```bash
-aws configure
-aws eks update-kubeconfig --name <your-app-name>-cluster --region <your-aws-region>
-```
-
-To visualize our resource we can now use:
-```bash
-kubectl get all --all-namespaces
-```
--->
-
 # ARGOCD DEPLOYMENT PIPELINE
 
 ## Description
@@ -387,8 +362,7 @@ We won't go into what ArgoCD is, for that you have [this video](https://youtu.be
 This pipeline will use the [ArgoCD Helm Chart](helm/argo-cd/) in our repo to deploy ArgoCD into our EKS.<br>
 The first thing it will do is run the necessary tasks to connect to our the cluster. After this, ArgoCD will be installed, along with it's Ingress.
 
-As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so our pipeline will wait until it is ready.
-When it's ready, the pipeline will get it's URL and admin account password. These will be exported as an artifact.
+It will get the access info (URL, user and pass) and export them as an artifact. As I explained before, the Ingress will automatically create an AWS Application Load Balancer. This LB takes a few moments to become active, so you might have to wait a little bit for the URL to be ready., just hit refresh on the browser every few seconds.
 
 Finally, it will create the ArgoCD [application resources](argo-cd/) for our app, which will be watching the [/helm/my-app/backend](helm/my-app/backend) and [/helm/my-app/frontend](helm/my-app/frontend) directories in our repo, and automatically create all the resources it finds and apply any future changes me make there. The [/helm/my-app directory](helm/my-app) simulates what would be our K8S infrastructure repository.
 
