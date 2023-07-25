@@ -57,6 +57,11 @@ stages:
     - checkout: self
       persistCredentials: true
 
+    # We update the local repo with a pull just in case there have been any recent modifications
+    - script: |
+        git pull origin main
+      displayName: Update repo
+
     - script: |
         sed 's/tag:.*/tag: $(Build.BuildId)/g' helm/my-app/backend/environments/values-dev.yaml > helm/my-app/backend/environments/values-dev.temp
         mv helm/my-app/backend/environments/values-dev.temp helm/my-app/backend/environments/values-dev.yaml
