@@ -44,6 +44,7 @@ jobs:
       kubectl delete -n argocd applications.argoproj.io --all
     displayName: 'Delete all ArgoCD applications'
 
+  # Before deleting all infra we make sure there are no existing ingresses so the terraform destroy isn't messed up by the existance of untracked AWS Application Load Balancers
   - script: | 
         kubectl delete ingress --all --all-namespaces
     displayName: 'Delete Ingresses'
