@@ -260,26 +260,6 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 
 <br/>
 
-<!-- ## Allow push to GitHub NOT NECESSARY!!!
-
-We will need to push changes to the GitHub repo. By default, repositories are allowed to be read from but not written to, so we need to do a little extra configuration.
-
-1. Go to Project setting > Repositories (under Repos) > Select your repo > Security tab > Users > <your-project-name> Build Service (<your-org-name>)
-   CHEKEAR CUALES SON REALMENTE NECESARIAS!!!!!!!!!!!!!!!!!!!!!!!!
-2. "Bypass policies when pushing", "Contribute", "Create Tag" and "Read" should be set to "Allow".
-<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/NzYh5KJ.png"> </p>
-
-<br/> -->
-
-<!-- NO HACE FALTA PORQ SE CREA SOLA CON EL NOMBRE DE USERNEAME DE GITHUB -->
-<!-- ### GitHub
-4. On the Service connectionlick on "New service connection" .
-5. Select AWS.
-6. Paste your Access Key ID and Secret Access Key.
-7. Under "Service connection name", write "aws".
-8. Select the "Grant access permission to all pipelines" option.
-9. Save. -->
-
 ## (Optional) Create an Azure self-hosted agent
 
 **If you have a hosted parallelism, you can skip this step.**<br/>
@@ -313,7 +293,7 @@ What does this pipeline do? If you take a look at the [00-deploy-infra.yml](azur
 Why do we need to store our tf state remotely and locking it? Well, this is probably not necessary for this excercise but it's a best practice when working on a team.<br>
 Storing it remotely means that everyone on the team can access and work with the same state file, and locking it means that only one person can access it at a time, this prevents state conflicts.
 
-Before we proceed with deploying out actual infrastructure, the pipeline will move the state file to the /terraform/aws/ directory, so our backend resources (the Bucket and DynamoDB Table) will also be tracked as part of our whole infrastructure. If you want to understand how this works, I suggest you watch [this video](https://youtu.be/7xngnjfIlK4?t=2483) where Sid from [DevOps Directive](https://www.youtube.com/@DevOpsDirective) explains it better than I ever could.
+Before we proceed with deploying out actual infrastructure, the pipeline will move the state file to the [terraform/aws/ directory](/terraform/aws/), so our backend resources (the Bucket and DynamoDB Table) will also be tracked as part of our whole infrastructure. If you want to understand how this works, I suggest you watch [this video](https://youtu.be/7xngnjfIlK4?t=2483) where Sid from [DevOps Directive](https://www.youtube.com/@DevOpsDirective) explains it better than I ever could.
 
 Now that the backend is set, we will deploy our actual infrastructure!
 
