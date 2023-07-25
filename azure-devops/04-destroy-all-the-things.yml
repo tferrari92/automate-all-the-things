@@ -18,7 +18,7 @@ pool:
 
 jobs:
 - job: DeleteK8SResources
-  displayName: 'Delete Kubernetes Resources'
+  displayName: 'Delete ingresses'
   steps:
   - task: KubectlInstaller@0
     inputs:
@@ -51,7 +51,7 @@ jobs:
 
 
 - job: DeleteAWSInfrastructure
-  displayName: 'Delete AWS Infrastructure'
+  displayName: 'Delete AWS infrastructure'
   dependsOn: DeleteK8SResources
   steps:
   - task: TerraformInstaller@0
