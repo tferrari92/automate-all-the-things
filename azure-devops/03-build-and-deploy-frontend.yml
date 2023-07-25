@@ -82,21 +82,6 @@ stages:
         echo -e "[default]\nregion = $(AWS_REGION)"> ~/.aws/config 
       displayName: 'Configure AWS Profile'
 
-    # - script: |
-    #     echo "false" > is-active.txt
-    #     while [ "$(cat is-active.txt)" != "true" ]; do
-    #         sleep 5
-    #         aws elbv2 describe-load-balancers > lb-status.json
-    #         json_data=$(cat lb-status.json)
-    #         state_code=$(echo "$json_data" | jq -r '.LoadBalancers[1].State.Code')
-    #         if [[ "$state_code" == "active" ]]; then
-    #           echo "true" > is-active.txt
-    #         else
-    #           echo "Load balancer is not ready yet..."
-    #         fi
-    #     done
-    #   displayName: Wait for Load Balancer Status
-
     - task: AWSCLI@1
       displayName: Update KubeConfig
       inputs:
@@ -107,7 +92,7 @@ stages:
         awsArguments: '--name $(APP_NAME)-cluster --region $(AWS_REGION)' 
 
     - script: |
-        kubectl get ingress -n $(APP_NAME)-dev $(kubectl get ingress -n $(APP_NAME)-dev | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
+        kubectl get ingress -n $(APP_NAME)-dev $(APP_NAME)-frontend-dev-ingress -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
       displayName: Save URL
 
     - task: PublishBuildArtifacts@1
@@ -157,21 +142,6 @@ stages:
         echo -e "[default]\nregion = $(AWS_REGION)"> ~/.aws/config 
       displayName: 'Configure AWS Profile'
 
-    # - script: |
-    #     echo "false" > is-active.txt
-    #     while [ "$(cat is-active.txt)" != "true" ]; do
-    #         sleep 5
-    #         aws elbv2 describe-load-balancers > lb-status.json
-    #         json_data=$(cat lb-status.json)
-    #         state_code=$(echo "$json_data" | jq -r '.LoadBalancers[1].State.Code')
-    #         if [[ "$state_code" == "active" ]]; then
-    #           echo "true" > is-active.txt
-    #         else
-    #           echo "Load balancer is not ready yet..."
-    #         fi
-    #     done
-    #   displayName: 'Wait for Load Balancer Status'
-
     - task: AWSCLI@1
       displayName: 'Update KubeConfig'
       inputs:
@@ -182,7 +152,7 @@ stages:
         awsArguments: '--name $(APP_NAME)-cluster --region $(AWS_REGION)' 
 
     - script: |
-        kubectl get ingress -n $(APP_NAME)-stage $(kubectl get ingress -n $(APP_NAME)-stage | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
+        kubectl get ingress -n $(APP_NAME)-stage $(APP_NAME)-frontend-stage-ingress -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
       displayName: 'Save URL'
 
     - task: PublishBuildArtifacts@1
@@ -243,21 +213,6 @@ stages:
         echo -e "[default]\nregion = $(AWS_REGION)"> ~/.aws/config 
       displayName: 'Configure AWS Profile'
 
-    # - script: |
-    #     echo "false" > is-active.txt
-    #     while [ "$(cat is-active.txt)" != "true" ]; do
-    #         sleep 5
-    #         aws elbv2 describe-load-balancers > lb-status.json
-    #         json_data=$(cat lb-status.json)
-    #         state_code=$(echo "$json_data" | jq -r '.LoadBalancers[1].State.Code')
-    #         if [[ "$state_code" == "active" ]]; then
-    #           echo "true" > is-active.txt
-    #         else
-    #           echo "Load balancer is not ready yet..."
-    #         fi
-    #     done
-    #   displayName: 'Wait for Load Balancer Status'
-
     - task: AWSCLI@1
       displayName: 'Update KubeConfig'
       inputs:
@@ -268,7 +223,7 @@ stages:
         awsArguments: '--name $(APP_NAME)-cluster --region $(AWS_REGION)' 
 
     - script: |
-        kubectl get ingress -n $(APP_NAME)-prod $(kubectl get ingress -n $(APP_NAME)-prod | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
+        kubectl get ingress -n $(APP_NAME)-prod $(APP_NAME)-frontend-prod-ingress -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-url.txt
       displayName: 'Save URL'
 
     - task: PublishBuildArtifacts@1
