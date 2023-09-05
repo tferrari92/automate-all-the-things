@@ -19,6 +19,16 @@
 
 <p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
+# **REGULAR EDITION**
+This is the Regular Edition. It's the most basic version of Automate All The Things, for more complex features check out the other versions.
+
+### Versions in order of complexity:
+1. [Regular Edition](https://github.com/tferrari92/automate-all-the-things)
+2. [Hardcore Edition](https://github.com/tferrari92/automate-all-the-things-hardcore)
+3. [Insane Edition](https://github.com/tferrari92/automate-all-the-things-insane)
+
+<br/>
+
 # **INDEX**
 
 - [Introduction](#introduction)
