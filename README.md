@@ -20,7 +20,7 @@
 <p title="All The Things" align="center"> <img src="https://i.imgur.com/BbBEFEE.jpg"> </p>
 
 # **REGULAR EDITION**
-This is the Regular Edition. It's the most basic version of Automate All The Things, for more complex features check out the other versions.
+This is the Regular Edition. It's the most basic version of Automate All The Things. For more complex features (logging, monitoring, service mesh, etc.) check out the other versions.
 
 ### Versions in order of complexity:
 1. [Regular Edition](https://github.com/tferrari92/automate-all-the-things)
