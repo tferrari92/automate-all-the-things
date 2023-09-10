@@ -85,6 +85,7 @@ steps:
   condition: always()
 
 - script: |
+    git pull origin main
     git config --global user.email "AzureDevOps@Build&DeployAppPipeline.com"
     git config --global user.name "Azure DevOps - Build & Deploy App Pipeline"
     git checkout -b main
