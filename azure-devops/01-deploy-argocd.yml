@@ -43,21 +43,6 @@ steps:
     helm install argocd -n argocd helm/argo-cd --values helm/argo-cd/values-custom.yaml --dependency-update --create-namespace
   displayName: 'Deploy Argocd'
 
-# - script: |
-#     echo "false" > is-active.txt
-#     while [ "$(cat is-active.txt)" != "true" ]; do
-#         sleep 5
-#         aws elbv2 describe-load-balancers > lb-status.json
-#         json_data=$(cat lb-status.json)
-#         state_code=$(echo "$json_data" | jq -r '.LoadBalancers[0].State.Code')
-#         if [[ "$state_code" == "active" ]]; then
-#           echo "true" > is-active.txt
-#         else
-#           echo "Load balancer is not ready yet..."
-#         fi
-#     done
-#   displayName: 'Wait for Load Balancer Status'
-
 - script: |
     while [[ $(kubectl -n argocd get ingress argocd-server -o 'jsonpath={.status.loadBalancer.ingress[0].hostname}') == '' ]]; do
       echo "Ingress is not ready. Checking again in 5 seconds..."
