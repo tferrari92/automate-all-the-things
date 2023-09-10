@@ -65,11 +65,6 @@ steps:
     providerServiceAws: 'aws' 
     providerAwsRegion: $(AWS_REGION)
 
-# We update the local repo with a pull just in case there have been any recent modifications
-- script: |
-    git pull origin main
-  displayName: Update repo
-
 - script: |
     echo "$(terraform -chdir=terraform/aws output -raw elasticache_dev_primary_endpoint_address) # This value was modified by the deploy-infra pipeline" > elasticache_dev_endpoint.txt
     echo "$(terraform -chdir=terraform/aws output -raw elasticache_stage_primary_endpoint_address) # This value was modified by the deploy-infra pipeline" > elasticache_stage_endpoint.txt
