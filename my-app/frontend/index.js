@@ -13,7 +13,7 @@ memeButton.addEventListener("click", getRandomImage);
 
 async function fetchVisitorCount() {
   try {
-    const response = await fetch('/api');
+    const response = await fetch('./api');
     if (!response.ok) {
       throw new Error("Request failed");
     }
