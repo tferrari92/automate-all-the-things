@@ -488,7 +488,7 @@ For the infrastructure, same as before. If the infrastrucure team needs to, for 
 10. If you go to the URLs too quickly you will get a "503 Service Temporarily Unavailable". We need to give ArgoCD a little time to notice the changes in the [/helm/my-app/frontend directory](helm/my-app/frontend). By default ArgoCD pulls for changes every three minutes. You can either wait like an adult or go into the ArgoCD web UI and hit "Refresh Apps" like the impatient child that you are.
 11. Check the URLs again.
 12. On the top left of the website you'll see the "Visit count". This number is being stored in the ElatiCache DB and accessed through the backend.
-13. That's it! Hope you like the web I made for you. If you did, go give me a star on [my repo](https://github.com/tferrari92/automate-all-the-things).
+13. That's it! Hope you like the web I made for you. If you did, go leave a star on [my repo](https://github.com/tferrari92/automate-all-the-things).
 
 <br/>
 <br/>
