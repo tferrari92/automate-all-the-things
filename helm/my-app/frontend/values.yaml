@@ -7,21 +7,21 @@ deployment:
 configmap:
   images: |-
     var images = [
-        "https://i.imgur.com/2Z8qEvC.png",
-        "https://i.imgur.com/2Xntz2P.jpg",
-        "https://i.imgur.com/pIGcI2d.jpg",
-        "https://i.imgur.com/n5lNz3z.jpg",
-        "https://i.imgur.com/tup8Ocu.jpg",
-        "https://i.imgur.com/yjpOvlM.jpg",
-        "https://i.imgur.com/akNhnrh.jpg",
-        "https://i.imgur.com/eqpDlh5.jpg",
-        "https://i.imgur.com/ARqnwlQ.jpg",
-        "https://i.imgur.com/2lJ6xLl.jpg",
-        "https://i.imgur.com/kGQUUTw.jpg",
-        "https://i.imgur.com/o4LuRu7.jpg",
-        "https://i.imgur.com/CnDPSpV.png",
-        "https://i.imgur.com/E0s8TW6.png",
-        "https://i.imgur.com/xSmJv0k.png"
+        "https://i.imgur.com/2Z8qEvC.png", // Terraform destroy seagull
+        "https://i.imgur.com/2Xntz2P.jpg", // Gitops Winnie the Pooh
+        "https://i.imgur.com/pIGcI2d.jpg", // Rename the file Kermitt
+        "https://i.imgur.com/n5lNz3z.jpg", // Watch the green ticks pleasure
+        "https://i.imgur.com/tup8Ocu.jpg", // Sent you the app Anakin
+        "https://i.imgur.com/yjpOvlM.jpg", // Scroll of truth
+        "https://i.imgur.com/akNhnrh.jpg", // Thinking about other women
+        "https://i.imgur.com/eqpDlh5.jpg", // Imma head out SpongeBob
+        "https://i.imgur.com/Fgo7nnZ.jpg", // Two buttons ArgoCD Helm 
+        "https://i.imgur.com/pCjM1d6.jpg", // The bug in my pipeline Momoa Cavill 
+        "https://i.imgur.com/kGQUUTw.jpg", // GitOps goosebumps
+        "https://i.imgur.com/o4LuRu7.jpg", // Automation feelings of power
+        "https://i.imgur.com/CnDPSpV.png", // Automate all the things
+        "https://i.imgur.com/E0s8TW6.png", // We are not the same
+        "https://i.imgur.com/xSmJv0k.png" // Automation everywhere
     ];
 
 ingress:
