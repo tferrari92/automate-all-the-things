@@ -17,12 +17,12 @@ steps:
 - checkout: self
   persistCredentials: true
 
-- task: TerraformInstaller@0
+- task: TerraformInstaller@1
   displayName: Install terraform
   inputs:
     terraformVersion: '1.4.6'
 
-- task: TerraformCLI@0
+- task: TerraformCLI@1
   displayName: 'Terraform Init Backend'
   inputs:
     command: init
@@ -31,7 +31,7 @@ steps:
     providerAwsRegion: $(AWS_REGION) 
 
 # This step will fail if the infrastructure was successfully deployed in a prevous build
-- task: TerraformCLI@0
+- task: TerraformCLI@1
   displayName: 'Terraform Apply Backend'
   inputs:
     command: apply
@@ -44,7 +44,7 @@ steps:
   displayName: 'Move terraform.tfstate to /terraform/aws/ directory'
   condition: succeeded() # This will make this step be skipped if the previous step failed
 
-- task: TerraformCLI@0
+- task: TerraformCLI@1
   displayName: 'Terraform Init Infra'
   condition: always()
   inputs:
@@ -56,7 +56,7 @@ steps:
     providerAwsRegion: $(AWS_REGION) 
     commandOptions: '-force-copy'
 
-- task: TerraformCLI@0
+- task: TerraformCLI@1
   displayName: 'Terraform Apply Infra'
   condition: always()
   inputs:
