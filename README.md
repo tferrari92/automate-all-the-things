@@ -197,8 +197,9 @@ Before creating our pipelines we need to get a few things set up:<br>
 ## Install required plugins
 
 These plugins are required for the pipelines we'll be creating. Click on "Get it free", select your organization and then click "Install".
-
-1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=charleszipp.azure-pipelines-tasks-terraform) for Azure Pipelines
+https://marketplace.visualstudio.com/items?itemName=JasonBJohnson.azure-pipelines-tasks-terraform
+                                    
+1. Install [Terraform Tasks plugin](https://marketplace.visualstudio.com/items?itemName=JasonBJohnson.azure-pipelines-tasks-terraform) for Azure Pipelines
 1. Install [AWS Toolkit plugin](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-vsts-tools) for Azure Pipelines
 
 <br/>
