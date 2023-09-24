@@ -8,6 +8,8 @@ configmap:
   images: |-
     var images = [
         "https://i.imgur.com/2Z8qEvC.png", // Terraform destroy seagull
+        "https://i.imgur.com/weNsDia.jpg", // Explaining my K8S architecture
+        "https://i.imgur.com/dgB9Olt.jpg", // Thanos infinity devops stones
         "https://i.imgur.com/2Xntz2P.jpg", // Gitops Winnie the Pooh
         "https://i.imgur.com/pIGcI2d.jpg", // Rename the file Kermitt
         "https://i.imgur.com/n5lNz3z.jpg", // Watch the green ticks pleasure
