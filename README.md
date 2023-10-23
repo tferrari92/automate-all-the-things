@@ -129,7 +129,7 @@ Some things could have been further automatized but I prioritized modularization
 
 For example, the EKS cluster could have been deployed with ArgoCD installed in one pipeline, but I wanted to have them separated so that each module is focused on it's specific task, making each of them more recyclable.
 
-I also wanted to keep it simple, so not every security best practice will be followed. You can use this as a starting point and from here build something larger and more secure.
+Also, please do submit an issue if you find any errors or you have any good ideas on how to improve this, I would love to hear them.
 
 Let's begin...
 
