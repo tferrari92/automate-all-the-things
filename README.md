@@ -71,7 +71,7 @@ I believe in a world where all that's expected of me is to enjoy life, lay on th
 
 I wish I could automate cooking, cleaning, working, doing taxes, making friends, dating and even writing stupid READMEs.
 
-But technology hasn't quite catched up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
+But technology hasn't quite caught up to my level of laziness yet, so I've taken some inspiration from Thanos and said ["Fine... I'll do it myself"](https://www.youtube.com/watch?v=EzWNBmjyv7Y).
 
 Here's my attempt at making the world a better place. People in the future will look back at heroes like me and enjoy their time playing video games and fighting the war against AI, in peace.
 
@@ -278,7 +278,7 @@ These are needed for Terraform to be able to deploy our AWS infrastructure.
 A hosted parallelism basically means that Azure will spin up a server in which to run your pipelines. You can purchase one or you can request a free parallelism by filling out [this form](https://aka.ms/azpipelines-parallelism-request).
 
 If you don't have a hosted parallelism, you will have to run the pipeline in a **self-hosted agent**.
-This means you'll install an Azure DevOps Agent on your local machine, which will recieve and execute the pipeline jobs.
+This means you'll install an Azure DevOps Agent on your local machine, which will receive and execute the pipeline jobs.
 
 To install a self-hosted agent on your machine, you can follow the official documentation [here](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser#install).
 
@@ -297,7 +297,7 @@ To install a self-hosted agent on your machine, you can follow the official docu
 
 ## Description
 
-Our first pipeline, the one that will provide us with all the necessary infrastucture.
+Our first pipeline, the one that will provide us with all the necessary infrastructure.
 
 What does this pipeline do? If you take a look at the [00-deploy-infra.yml](azure-devops/00-deploy-infra.yml) file, you'll see that the first thing we do is use the Terraform plugin we previously installed to deploy a S3 Bucket and DynamoDB table. These two resources will allow us to store our terraform state remotely and give it locking functionality.<br/>
 
@@ -419,11 +419,11 @@ On the Build stage we will use Docker to build a container image from the Docker
 On the Deploy Dev stage, we will checkout the repo and modify the [helm/my-app/backend/environments/values-dev.yaml file](helm/my-app/backend/environments/values-dev.yaml) and push the change to GitHub. [But why?](https://i.gifer.com/2Gg.gif)<br>
 Remember how we just pushed the image to DockerHub with the new tag? And remember how ArgoCD is watching the helm/my-app directory? Well, this is how we tell ArgoCD that a new version of the backend microservice is available and should be deployed. We modify the image.tag value in the values-dev.yaml file and wait for ArgoCD to apply the changes.
 
-[This is how gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastucture with **GitOps**.
+[This is how gentlemen manage their K8S resources](https://i.imgur.com/2Xntz2P.jpg). We are not some cavemen creating and deleting stuff manually with kubectl. We manage our infrastructure with **GitOps**.
 
 After the Deploy Dev stage is done, and only if it was successful, the Deploy Stage stage will commence. It will do the same thing as the previous stage, but this time modifying the [helm/my-app/backend/environments/values-stage.yaml file](helm/my-app/backend/environments/values-stage.yaml).
 
-We'll repeat the same process for Prod, but since Prod should be a more delicate environment, the Deploy Prod stage will require authorization from the top level excecutives (in this case it's you, congrats boss) to be executed. You'll recieve an email with a link asking you to verify and approve the deployment to Prod. Go ahead and approve it.
+We'll repeat the same process for Prod, but since Prod should be a more delicate environment, the Deploy Prod stage will require authorization from the top level excecutives (in this case it's you, congrats boss) to be executed. You'll receive an email with a link asking you to verify and approve the deployment to Prod. Go ahead and approve it.
 
 That's it! Your app was deployed to all environments! Good job buddy!
 
