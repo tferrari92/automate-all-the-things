@@ -41,7 +41,7 @@ steps:
 
 - script: | 
     helm install argocd -n argocd helm/argo-cd --values helm/argo-cd/values-custom.yaml --dependency-update --create-namespace
-  displayName: 'Deploy Argocd'
+  displayName: 'Deploy ArgoCD'
 
 - script: |
     while [[ $(kubectl -n argocd get ingress argocd-server -o 'jsonpath={.status.loadBalancer.ingress[0].hostname}') == '' ]]; do
