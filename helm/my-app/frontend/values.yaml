@@ -7,13 +7,21 @@ deployment:
 configmap:
   images: |-
     var images = [
+        "https://i.imgur.com/Zqi5sCM.jpg", // If we had any
+        "https://i.imgur.com/Stl0y81.jpg", // Hard right
+        "https://i.imgur.com/COOgWcv.jpg", // Kill chain
+        "https://i.imgur.com/ULcCyVx.jpg", // Kevin James
+        "https://i.imgur.com/Gwh1r0L.png", // Anakin - We use k8s now
+        "https://i.imgur.com/QJh4ygO.jpg", // We dont do that here
+        "https://i.imgur.com/4Wqzwlq.jpg", // Gitops arms
+        "https://i.imgur.com/rmhp3EJ.jpg", // Keep your secrets
         "https://i.imgur.com/2Z8qEvC.png", // Terraform destroy seagull
         "https://i.imgur.com/weNsDia.jpg", // Explaining my K8S architecture
         "https://i.imgur.com/dgB9Olt.jpg", // Thanos infinity devops stones
         "https://i.imgur.com/2Xntz2P.jpg", // Gitops Winnie the Pooh
         "https://i.imgur.com/pIGcI2d.jpg", // Rename the file Kermitt
         "https://i.imgur.com/n5lNz3z.jpg", // Watch the green ticks pleasure
-        "https://i.imgur.com/tup8Ocu.jpg", // Sent you the app Anakin
+        "https://i.imgur.com/tup8Ocu.jpg", // Anakin - Sent you the app 
         "https://i.imgur.com/yjpOvlM.jpg", // Scroll of truth
         "https://i.imgur.com/akNhnrh.jpg", // Thinking about other women
         "https://i.imgur.com/eqpDlh5.jpg", // Imma head out SpongeBob
