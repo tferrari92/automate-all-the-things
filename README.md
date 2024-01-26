@@ -566,12 +566,12 @@ Special thanks to all these wonderful YouTube people. This wouldn't have been po
 
 [Automate All The Things Hardcore Edition](https://github.com/tferrari92/automate-all-the-things-hardcore):
 
-- ArgoCD is self-managed
-- ArgoCD App of Apps pattern is implemented
-- Observability implementation:
+- We'll make ArgoCD self-managed through GitOps
+- We'll implement the ArgoCD App of Apps pattern
+- We'll implement observability tools:
   - Monitoring with Prometheus
   - Logging with Loki
   - Visualization with Grafana
-- Addition of AWS Elastic Block Store (required to manage persistent volumes)
-- My-App Backend now logs every time it receives a request
-- Redis DBs are password protected
+- We'll start using AWS Elastic Block Store which is required to manage persistent volumes
+- We'll make the backend service log every time it receives a request
+- We'll make the ElastiCache DBs password protected
