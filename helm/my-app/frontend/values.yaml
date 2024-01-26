@@ -7,7 +7,7 @@ deployment:
 configmap:
   images: |-
     var images = [
-        "https://i.imgur.com/Zqi5sCM.jpg", // If we had any
+        "https://i.imgur.com/pttvySs.jpg", // If we had any
         "https://i.imgur.com/Stl0y81.jpg", // Hard right
         "https://i.imgur.com/COOgWcv.jpg", // Kill chain
         "https://i.imgur.com/ULcCyVx.jpg", // Kevin James
