@@ -129,6 +129,8 @@ Our app is a very simple static website, but I'm not spoiling it for you. You'll
 
 ## Disclaimer
 
+This is not a free project, it will cost you between $1 US dollars and $10 depending on how long you run the resources for. That's assuming you run them for a few hours tops, not days. Always remember to run the [destroy-all-the-things pipeline](/azure-devops/06-destroy-all-the-things.yml) when you are done.
+
 Some things could have been further automated but I prioritized modularization and separation of concerns.<br>
 
 For example, the EKS cluster could have been deployed with ArgoCD installed in one pipeline, but I wanted to have them separated so that each module is focused on its specific task, making each of them more recyclable.
