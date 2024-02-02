@@ -9,7 +9,7 @@ configmap:
     var images = [
         "https://i.imgur.com/pttvySs.jpg", // If we had any
         "https://i.imgur.com/Stl0y81.jpg", // Hard right
-        "https://i.imgur.com/COOgWcv.jpg", // Kill chain
+        "https://i.imgur.com/KcSXPER.jpg", // Kill chain
         "https://i.imgur.com/ULcCyVx.jpg", // Kevin James
         "https://i.imgur.com/Gwh1r0L.png", // Anakin - We use k8s now
         "https://i.imgur.com/QJh4ygO.jpg", // We dont do that here
