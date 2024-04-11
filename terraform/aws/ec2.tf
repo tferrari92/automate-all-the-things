@@ -8,7 +8,9 @@ resource "aws_key_pair" "ssh-keys" {
 }
 
 resource "aws_instance" "ssh_host" {
-  ami           = "ami-024e6efaf93d85776" # Ubuntu 22.04
+  # ami           = "ami-0c7217cdde317cfec" # Ubuntu 22.04 us-east-1
+  ami           = "ami-024e6efaf93d85776" # Ubuntu 22.04 us-east-2
+
   instance_type = "t2.micro"
   key_name      = aws_key_pair.ssh-keys.key_name
 
