@@ -1,0 +1,59 @@
+name: 01-Deploy ArgoCD
+
+on:
+  workflow_dispatch:
+
+env:
+  AWS_REGION: AATT_AWS_REGION # This value was modified by the initial-setup python script
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  APP_NAME: AATT_APP_NAME # This value was modified by the initial-setup python script
+
+jobs:
+  deploy-argocd:
+    runs-on: ubuntu-latest
+        
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install kubectl & helm
+        uses: yokawasa/action-setup-kube-tools@v0.11.1
+        with:
+          kubectl: '1.28.2'
+          helm: '3.11.2'
+
+      - name: Configure kubeconfig
+        run: aws eks --region $AWS_REGION update-kubeconfig --name $APP_NAME-cluster
+
+      - name: Deploy ArgoCD
+        run: helm install argocd -n argocd helm/argo-cd --values helm/argo-cd/values-custom.yaml --dependency-update --create-namespace
+
+      - name: Save ArgoCD credential
+        run: |
+          while [[ $(kubectl get ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}') -o 'jsonpath={.status.loadBalancer.ingress[0].hostname}') == '' ]]; do
+            echo "Ingress is not ready. Checking again in 5 seconds..."
+            sleep 5
+          done
+          kubectl get ingress -n argocd $(kubectl get ingress -n argocd | awk 'NR>1{print $1}') -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > argocd-access.txt
+          echo "admin" >> argocd-access.txt
+          while [[ $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}") == '' ]]; do
+            echo "Secret is not ready. Checking again in 5 seconds..."
+            sleep 5
+          done
+          echo $(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d) >> argocd-access.txt
+
+      - name: Publish ArgoCD credentials
+        uses: actions/upload-artifact@v4
+        with:
+          name: argocd-access
+          path: argocd-access.txt
+
+      - name: Create ArgoCD application resources
+        run: |
+          kubectl create -n argocd -f argo-cd/backend/application-dev.yaml
+          kubectl create -n argocd -f argo-cd/backend/application-stage.yaml
+          kubectl create -n argocd -f argo-cd/backend/application-prod.yaml
+          kubectl create -n argocd -f argo-cd/frontend/application-dev.yaml
+          kubectl create -n argocd -f argo-cd/frontend/application-stage.yaml
+          kubectl create -n argocd -f argo-cd/frontend/application-prod.yaml

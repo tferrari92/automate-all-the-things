@@ -1,0 +1,96 @@
+name: 00-Deploy AWS infrastructure
+
+on:
+  workflow_dispatch:
+
+env:
+  AWS_REGION: AATT_AWS_REGION # This value was modified by the initial-setup python script
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  # TF_LOG: INFO
+  # TF_INPUT: false # This makes it so Terraform doesn't ask for confirmation when running apply
+
+jobs:
+  deploy-infra:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.4.6"
+
+      - name: Terraform init Backend
+        run: terraform init
+        working-directory: terraform/backend
+
+      - name: Terraform apply backend
+      #   id: apply-backend
+        run: terraform apply -auto-approve
+        working-directory: terraform/backend
+      #   continue-on-error: true
+      #   env:
+      #     ARM_CLIENT_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     ARM_CLIENT_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Move terraform state to /terraform/aws/ directory
+        if: ${{ success() }}
+        run: cp terraform/backend/terraform.tfstate terraform/aws
+
+      - name: Terraform init actual infrastructure
+        if: ${{ always() }}
+        run: terraform init -force-copy
+        working-directory: terraform/aws
+
+      - name: Terraform apply actual infrastructure
+      #   id: apply-actual-infrastructure
+        run: terraform apply -auto-approve
+        working-directory: terraform/aws
+        if: ${{ always() }}
+
+      # The terraform apply takes a long time so we run a git pull in case there have been any changes on the repo
+      - name: Update repo
+        if: ${{ always() }}
+        run: git pull
+
+
+      - name: Save ElastiCache DBs endpoints
+        if: ${{ always() }}
+        run: |
+          echo "$(terraform -chdir=terraform/aws output -raw elasticache_dev_primary_endpoint_address)" > elasticache_dev_endpoint.txt
+          echo "$(terraform -chdir=terraform/aws output -raw elasticache_stage_primary_endpoint_address)" > elasticache_stage_endpoint.txt
+          echo "$(terraform -chdir=terraform/aws output -raw elasticache_prod_primary_endpoint_address)" > elasticache_prod_endpoint.txt
+
+      - name: Modify values for each environment
+        if: ${{ always() }}
+        run: |
+          sed -i "s/redis_host:.*/redis_host: $(cat elasticache_dev_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-dev.yaml
+          sed -i "s/redis_host:.*/redis_host: $(cat elasticache_stage_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-stage.yaml
+          sed -i "s/redis_host:.*/redis_host: $(cat elasticache_prod_endpoint.txt | tr -d '\n')/g" helm/my-app/backend/environments/values-prod.yaml
+
+      - name: Commit changes to GitHub
+        if: ${{ always() }}
+        run: |
+          git config --global user.email "GitHubActions@DeployInfraWorkflow.com"
+          git config --global user.name "GitHub Actions - Deploy Infra Workflow"
+          git add helm/my-app/backend/environments/
+          git commit -m "ElastiCache endpoints updated in environments values.yaml files by GitHub Actions"
+          git push
+
+      - name: Save SSH command
+        if: ${{ always() }}
+        run: |
+          echo "Assuming you are on the root directory of the automate-all-the-things repo, run this:" > ssh-to-bastion.txt
+          echo "chmod 400 terraform/aws/templates/private-key" >> ssh-to-bastion.txt
+          echo "ssh -i terraform/aws/templates/private-key ubuntu@$(terraform -chdir=terraform/aws output -raw ssh_host)" >> ssh-to-bastion.txt
+          cat ssh-to-bastion.txt
+
+      - name: Upload SSH command to connect to bastion
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ssh-to-bastion
+          path: ssh-to-bastion.txt
