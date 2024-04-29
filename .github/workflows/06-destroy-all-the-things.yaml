@@ -1,0 +1,56 @@
+name: 06-Destroy infrastructure
+
+on:
+  workflow_dispatch:
+
+env:
+  AWS_REGION: AATT_AWS_REGION
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  APP_NAME: AATT_APP_NAME
+
+jobs:
+  destroy-k8s-resources:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install kubectl & helm
+        uses: yokawasa/action-setup-kube-tools@v0.11.1
+        with:
+          kubectl: '1.28.2'
+          helm: '3.11.2'
+
+      - name: Configure kubeconfig
+        run: aws eks --region $AWS_REGION update-kubeconfig --name $APP_NAME-cluster
+
+      # Before deleting all Ingresses we delete all ArgoCD applications because if we don't, it will re-deploy the Ingresses, automatically creating untracked AWS Application Load Balancers, which would mess with the terraform destroy  
+      - name: Delete applications & ArgoCD
+        run: | 
+          kubectl delete -n argocd applications.argoproj.io --all
+          helm uninstall -n argocd argocd
+
+      # Before deleting all infra we make sure there are no existing ingresses so the terraform destroy isn't messed up by the existance of untracked AWS Application Load Balancers
+      - name: Delete ingresses
+        run: | 
+          kubectl delete ingress --all --all-namespaces
+
+  destroy-infra:
+    runs-on: ubuntu-latest
+    needs: destroy-k8s-resources
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.4.6"
+
+      - name: Terraform init
+        run: terraform init
+        working-directory: terraform/aws
+
+      - name: Terraform destroy
+        run: terraform destroy -auto-approve
+        working-directory: terraform/aws
+        continue-on-error: true
