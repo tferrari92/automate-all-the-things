@@ -207,7 +207,7 @@ These will be required for our workflows to connect to your AWS account.
 
 ## Create secrets for GitHub Actions
 
-1. Go back to the Settings tab of your GitHub repo.
+1. Go to the Settings tab of your GitHub repo.
 2. On the left-side menu click "Secrets and variables" and then on "Actions".
 3. Under "Repository secrets" click on "New repository secret".
 <p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/656voMj.png"> </p>
