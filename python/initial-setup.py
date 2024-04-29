@@ -123,7 +123,7 @@ def search_and_replace(directory, replacements):
                              'application-stage.yaml',
                              'application-prod.yaml',
                              '00-deploy-infra.yaml',
-                             '01-deploy-argocd.yml',
+                             '01-deploy-argocd.yaml',
                              '02-build-and-deploy-backend.yaml',
                              '03-build-and-deploy-frontend.yaml',
                              '04-destroy-all-the-things.yaml',
