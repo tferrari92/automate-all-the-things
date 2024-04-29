@@ -275,7 +275,6 @@ Oh and lastly... it will export an artifact with the instructions on how to conn
 2. Click on the "01-Deploy AWS infrastructure" workflow.
 3. Click on "Run workflow" (Use workflow from branch main).
 4. When it's finished, the EC2 instance public IP address will be exported as an artifact. You'll find it in the pipeline run screen under "Artifacts". Download it to see the instructions to access the instance.
-<p title="Guide" align="center"> <img width="700" src="https://i.imgur.com/UtZyCCe.png"> </p>
 
 <br/>
 <br/>
