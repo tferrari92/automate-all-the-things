@@ -274,7 +274,7 @@ Oh and lastly... it will export an artifact with the instructions on how to conn
 1. On your GitHub repo, go to the "Actions" tab.
 2. Click on the "00-Deploy AWS infrastructure" workflow.
 3. Click on "Run workflow" (Use workflow from Branch: main).
-4. When it's finished, the EC2 instance public IP address will be exported as an artifact. You'll find it in the pipeline run screen under "Artifacts". Download it to see the instructions to access the instance.
+4. When it's finished, the EC2 instance public IP address will be exported as an artifact. You'll find it in the workflow run screen under "Artifacts". Download it to see the instructions to access the instance.
 
 <br/>
 <br/>
@@ -304,8 +304,8 @@ If you want to know more about Helm, [here's another Nana video](https://youtu.b
 1. On your GitHub repo, go to the "Actions" tab.
 2. Click on the "01-Deploy ArgoCD" workflow.
 3. Click on "Run workflow" (Use workflow from Branch: main).
-4. When it's finished, the access file will be exported as an artifact. You'll find it in the pipeline run screen under "Artifacts". Download it to see the URL and credentials.
-5. You can now access the ArgoCD UI, if it's not ready just hit refresh every few seconds. Here you should find six applications running but in a "Progressing/Degraded" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
+4. When it's finished, the access file will be exported as an artifact. You'll find it in the workflow run screen under "Artifacts". Download it to see the URL and credentials.
+5. You can now access the ArgoCD UI, if it's not ready just hit refresh every a few seconds. Here you should find six applications running but in a "Progressing/Degraded" state. This is because we haven't built our app and pushed it to DockerHub yet. Let's take care of that next.
 
 <br/>
 <br/>
