@@ -272,7 +272,7 @@ Oh and lastly... it will export an artifact with the instructions on how to conn
 ## Instructions
 
 1. On your GitHub repo, go to the "Actions" tab.
-2. Click on the "01-Deploy AWS infrastructure" workflow.
+2. Click on the "00-Deploy AWS infrastructure" workflow.
 3. Click on "Run workflow" (Use workflow from branch main).
 4. When it's finished, the EC2 instance public IP address will be exported as an artifact. You'll find it in the pipeline run screen under "Artifacts". Download it to see the instructions to access the instance.
 
