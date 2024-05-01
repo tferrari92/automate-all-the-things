@@ -63,7 +63,7 @@ jobs:
       - name: Configure kubeconfig
         run: aws eks --region $AWS_REGION update-kubeconfig --name $APP_NAME-cluster
 
-      - name: Commit changes to GitHub
+      - name: Get URL
         run: |
           kubectl get ingress -n $APP_NAME-dev $APP_NAME-frontend-dev-ingress -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-dev-url.txt
 
@@ -102,7 +102,7 @@ jobs:
       - name: Configure kubeconfig
         run: aws eks --region $AWS_REGION update-kubeconfig --name $APP_NAME-cluster
 
-      - name: Commit changes to GitHub
+      - name: Get URL
         run: |
           kubectl get ingress -n $APP_NAME-stage $APP_NAME-frontend-stage-ingress -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-stage-url.txt
 
@@ -142,7 +142,7 @@ jobs:
       - name: Configure kubeconfig
         run: aws eks --region $AWS_REGION update-kubeconfig --name $APP_NAME-cluster
 
-      - name: Commit changes to GitHub
+      - name: Get URL
         run: |
           kubectl get ingress -n $APP_NAME-prod $APP_NAME-frontend-prod-ingress -o=jsonpath="{'http://'}{.status.loadBalancer.ingress[].hostname}{'\n'}" > my-app-prod-url.txt
 
