@@ -26,7 +26,7 @@ This is the Regular Edition. It's the most basic version of Automate All The Thi
 1. [Regular Edition](https://github.com/tferrari92/automate-all-the-things)
 2. [Hardcore Edition](https://github.com/tferrari92/automate-all-the-things-hardcore)
 3. [Insane Edition](https://github.com/tferrari92/automate-all-the-things-insane)
-4. [Overload Edition](https://github.com/tferrari92/automate-all-the-things-overload)
+4. [Braindamage Edition](https://github.com/tferrari92/automate-all-the-things-braindamage)
 5. [Transcendence Edition](https://github.com/tferrari92/automate-all-the-things-transcendence)
 6. [Nirvana Edition](https://github.com/tferrari92/automate-all-the-things-nirvana)
 
