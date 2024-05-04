@@ -187,7 +187,7 @@ git push
 
 # **GITHUB ACTIONS SETUP**
 
-Before creating our pipelines we need to get a few things set up:<br>
+Before running our pipelines we need to get a few things set up<br>
 
 ## Get your AWS keys
 
