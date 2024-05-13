@@ -35,6 +35,7 @@ This is the Regular Edition. It's the most basic version of Automate All The Thi
 
 ### Spin-offs:
 - [Backstage Minikube Lab](https://github.com/tferrari92/backstage-minikube-lab)
+- [Backstage Minikube Lab Reloaded](https://github.com/tferrari92/backstage-minikube-lab-reloaded)
 
 <br/>
 
