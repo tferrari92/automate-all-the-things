@@ -31,6 +31,7 @@ This is the Regular Edition. It's the most basic version of Automate All The Thi
 5. [Braindamage Edition](https://github.com/tferrari92/automate-all-the-things-braindamage)
 6. [Transcendence Edition](https://github.com/tferrari92/automate-all-the-things-transcendence)
 7. [Nirvana Edition](https://github.com/tferrari92/automate-all-the-things-nirvana)
+8. [Almighty Edition](https://github.com/tferrari92/automate-all-the-things-almighty)
 
 
 ### Spin-offs:
