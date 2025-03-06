@@ -1,0 +1,72 @@
+name: 04-Destroy Azure infrastructure
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout and actions/pull
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_USE_OIDC: true
+
+jobs:
+  destroy-k8s-resources:
+    runs-on: ubuntu-latest
+    environment: TEST
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+  
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Set AKS context
+      id: set-context
+      uses: azure/aks-set-context@v3
+      with:
+        resource-group: 'automate-all-the-things-AATT_APP_NAME' 
+        cluster-name: 'automation-AATT_APP_NAME'
+
+    - name: Setup kubectl
+      id: install-kubectl
+      uses: azure/setup-kubectl@v4
+
+    - name: Deploy ArgoCD
+      run: |
+        kubectl delete -n argocd applications.argoproj.io --all
+        helm uninstall argocd -n argocd
+
+    # Before deleting all infra we make sure there are no existing ingresses so the terraform destroy isn't messed up by the existance of untracked AWS Application Load Balancers
+    - name: Delete ingresses
+      run: | 
+        kubectl delete ingress --all --all-namespaces
+
+  destroy-infra:
+    runs-on: ubuntu-latest
+    needs: destroy-k8s-resources
+    environment: TEST
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.0"
+
+      - name: Terraform init Backend
+        run: terraform init -force-copy
+        working-directory: terraform/azure
+
+      - name: Terraform apply actual infrastructure
+        run: terraform destroy -auto-approve
+        working-directory: terraform/azure

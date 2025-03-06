@@ -1,0 +1,67 @@
+on:
+  workflow_dispatch:
+
+name: 00-Deploy Infrastructure (Azure)
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: write  # This is required for actions/checkout and actions/pull
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_USE_OIDC: true
+
+jobs:
+  deploy-infrastructure:
+    runs-on: ubuntu-latest
+    environment: TEST
+
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v4
+  
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Install terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.9.0"
+
+    - name: Terraform init Backend
+      run: terraform init -reconfigure
+      working-directory: terraform/azure
+
+    - name: Terraform apply actual infrastructure
+      run: terraform apply -auto-approve
+      working-directory: terraform/azure
+
+      # The terraform apply takes a long time so we run a git pull in case there have been any changes on the repo
+    - name: Update repo
+      run: git pull
+
+    - name: Save ElastiCache DBs endpoints
+      run: |
+        for env in dev stage prod; do
+          echo "$(terraform -chdir=terraform/azure output -raw redis_${env})" > "elasticache_${env}_endpoint.txt"
+        done
+
+    - name: Modify values for each environment
+      run: |
+        for env in dev stage prod; do
+          sed -i "s/redis_host:.*/redis_host: $(cat elasticache_${env}_endpoint.txt | tr -d '\n')/g" "helm/my-app/backend/environments/values-${env}.yaml"
+        done
+
+    - name: Commit changes to GitHub
+      run: |
+        git config --global user.email "GitHubActions@DeployInfraWorkflow.com"
+        git config --global user.name "GitHub Actions - Deploy Infra Workflow"
+        git add helm/my-app/backend/environments/
+        git commit -m "ElastiCache endpoints updated in environments values.yaml files by GitHub Actions"
+        git push

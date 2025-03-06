@@ -2,7 +2,7 @@ environment: dev
 
 deployment:
   image:  
-    tag: 0
+    tag: 7
   replicas: 1
   env:
     redis_host: # This value was modified by the deploy-infra pipeline
